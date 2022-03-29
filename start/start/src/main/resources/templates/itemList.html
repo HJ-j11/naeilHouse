@@ -6,6 +6,23 @@
 </head>
 <body>
 
-    <p th:utext="${itemList}"></p>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>가격</th>
+                <th>정보</th>
+                <th>카테고리</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item: ${itemList}">
+                <td th:text="${item.name}" th:href="/list/${item.item_id}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.info}"></td>
+                <td th:text="${item.category}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

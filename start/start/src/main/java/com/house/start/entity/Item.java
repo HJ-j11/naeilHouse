@@ -5,13 +5,17 @@ import javax.persistence.*;
 @Entity
 public class Item {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private long item_id;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
     private int price;
+
     private String info;
+
     @Column(nullable = false)
     private int category;
 

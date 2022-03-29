@@ -24,8 +24,14 @@ public class TestController {
     public String showList(Model model) {
         List<Item> items = testService.findAll();
         model.addAttribute("itemList", items);
-
         return "itemList";
+    }
+
+    @GetMapping("/list/{id}")
+    public String showDetail(String id, Model model) {
+        Item oneItem = testService.findById(id);
+        model.addAttribute("oneItem", oneItem);
+        return "itemDetail";
     }
 
 }
