@@ -1,9 +1,8 @@
 package com.house.start.repository;
 
-import domain.Admin;
+import com.house.start.domain.Admin;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 import java.util.Optional;
 
 public class JpaAdminRepository {

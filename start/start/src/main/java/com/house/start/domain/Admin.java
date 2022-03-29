@@ -1,4 +1,4 @@
-package domain;
+package com.house.start.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,11 +14,11 @@ public class Admin {
     private String id;
     private String pwd;
 
-    public Long getAdmin_idId() {
+    public Long getAdmin_id() {
         return admin_id;
     }
 
-    public void setAdmin_idId(Long admin_id) {
+    public void setAdmin_id(Long admin_id) {
         this.admin_id = admin_id;
     }
 
