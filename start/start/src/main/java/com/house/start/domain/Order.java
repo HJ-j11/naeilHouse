@@ -24,7 +24,7 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    private LocalDateTime orderDate;
+    private LocalDateTime orderDate; // 주문 일시
 
     private OrderStatus orderStatus; // 주문 상태 [주문, 취소, 완료]
 

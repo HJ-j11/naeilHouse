@@ -16,7 +16,7 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "seller_id")
-    private Seller seller;
+    private Seller seller; // 판매자
 
     private String name; // 상품 이름
     private int price; // 상품 가격

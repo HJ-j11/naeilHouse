@@ -18,7 +18,7 @@ public class Comment {
      */
     @ManyToOne
     @JoinColumn(name = "consumer_id")
-    private Consumer consumer;
+    private Consumer consumer; // 작성자
 
     private String content; // 댓글 내용
 }

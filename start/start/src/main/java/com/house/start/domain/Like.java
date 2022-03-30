@@ -11,9 +11,9 @@ public class Like {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private Post post;
+    private Post post; // 게시물
 
     @ManyToOne
     @JoinColumn(name = "consumer_id")
-    private Consumer consumer;
+    private Consumer consumer; // 작성자
 }
