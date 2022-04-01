@@ -31,3 +31,14 @@
     - u41: 커뮤니티 버튼
     - u39: '관리자 페이지'로 되어 있지만 마이페이지 혹은 판매자 페이지로 변경하셔서 사용하시면 될 것 같습니다!!
 
+- consumer.html
+
+<img src="images/consumer_screen.PNG" width="500"/>
+
+    - u134: 스토어 버튼
+    - u135: 커뮤니티 버튼
+    - u126: 장바구니
+    - u125: 글쓰기 버튼
+
+- consumer_top_bar.html
+    -consumer.html과 동일한데 상단바에 마우스를 가져가면 소메뉴만 보이는 것이외에는 동일합니다.
