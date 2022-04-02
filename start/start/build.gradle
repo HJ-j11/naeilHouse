@@ -19,7 +19,6 @@ dependencies {
 
 	// db
 	implementation 'org.springframework.boot:spring-boot-devtools'
-	implementation 'junit:junit:4.13.1'
 	runtimeOnly 'com.h2database:h2'
 
 	// jpa
