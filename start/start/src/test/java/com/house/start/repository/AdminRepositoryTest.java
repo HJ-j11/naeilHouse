@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@WebAppConfiguration
 public class AdminRepositoryTest {
     @Autowired AdminRepository adminRepository;
 
