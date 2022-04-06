@@ -1,8 +1,12 @@
 package com.house.start.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter @Setter
 public class Delivery {
 
     @Id @GeneratedValue
@@ -11,6 +15,8 @@ public class Delivery {
 
     @OneToOne(mappedBy = "delivery")
     private Order order;
+
+    private String address;
 
     private DeliveryStatus deliveryStatus; // 배송 상태 [배송 준비중, 배송 완료]
 

@@ -61,23 +61,51 @@
 
 <div class="container" style="height: 50px"></div>
 
-<div class="container">
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/images/house.svg" alt="" width="272" height="257">
-        <h1 class="display-6">내일의 집</h1>
+<div class="container" style="height: 50px">
+    <div class="row justify-content-center">
+        등록된 상품 목록
     </div>
 </div>
 
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-muted">&copy; Spring Boot Study</p>
-
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-        </ul>
-    </footer>
+<div class="container" style="width: 750px">
+    <div class="row justify-content-center">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>재고</th>
+                    <th>카테고리</th>
+                    <th>#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td th:text="${item.stockQuantity}"></td>
+                    <td th:text="${item.category}"></td>
+                    <td>
+                        <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<!--<div class="container">-->
+<!--    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">-->
+<!--        <p class="col-md-4 mb-0 text-muted">&copy; Spring Boot Study</p>-->
+
+<!--        <ul class="nav col-md-4 justify-content-end">-->
+<!--            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>-->
+<!--            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>-->
+<!--        </ul>-->
+<!--    </footer>-->
+<!--</div>-->
 
 </body>
 </html>
