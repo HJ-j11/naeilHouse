@@ -2,6 +2,7 @@ package com.house.start.repository;
 
 import com.house.start.domain.Admin;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

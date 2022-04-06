@@ -19,5 +19,4 @@ public class ConsumerRepository {
         return em.createQuery("select c from Consumer", Consumer.class)
                 .getResultList();
     }
-
 }

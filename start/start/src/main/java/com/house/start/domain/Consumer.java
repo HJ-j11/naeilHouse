@@ -16,12 +16,10 @@ public class Consumer {
 
     @OneToMany(mappedBy = "consumer")
     private List<Like> likes = new ArrayList<>();
-
     private String name; // 소비자 이름
 
     @Column(name = "id")
     private String cId; // 아이디
-
     private String pwd; // 비밀번호
 
 }
