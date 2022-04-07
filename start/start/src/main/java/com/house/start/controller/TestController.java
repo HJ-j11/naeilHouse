@@ -37,4 +37,10 @@ public class TestController {
         return "itemDetail";
     }
 
+    @GetMapping("/webpage")
+    public String webpage() {
+        return "main";
+    }
+
+
 }
