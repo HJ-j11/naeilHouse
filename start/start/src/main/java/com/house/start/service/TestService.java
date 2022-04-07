@@ -1,7 +1,7 @@
 package com.house.start.service;
 
 
-import com.house.start.entity.Item;
+import com.house.start.domain.Item;
 import com.house.start.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
