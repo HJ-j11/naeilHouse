@@ -61,23 +61,46 @@
 
 <div class="container" style="height: 50px"></div>
 
+<!--<div class="container">-->
+<!--    <div th:each="data, row: ${datas}" th:if="${row.current} % 4 == 0" class="row align-items-start" >-->
+<!--        <div th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" class="col text-center" >-->
+<!--            <img src="/images/newitem.png" width="150" height="150">-->
+<!--            <p>상품명</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 <div class="container">
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/images/house.svg" alt="" width="272" height="257">
-        <h1 class="display-6">내일의 집</h1>
+    <div class="row align-items-start">
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
     </div>
 </div>
 
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-muted">&copy; Spring Boot Study</p>
+<!--<div class="container">-->
+<!--    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">-->
+<!--        <p class="col-md-4 mb-0 text-muted">&copy; Spring Boot Study</p>-->
 
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-        </ul>
-    </footer>
-</div>
+<!--        <ul class="nav col-md-4 justify-content-end">-->
+<!--            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>-->
+<!--            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>-->
+<!--        </ul>-->
+<!--    </footer>-->
+<!--</div>-->
 
 </body>
 </html>

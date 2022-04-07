@@ -49,14 +49,29 @@ public class Order {
     }
 
     //==생성 메서드==//
-    /* Order를 생성할 때, 여러 연관 관계도 같이 설정해 주어야 하는데 이럴 때는 별도의 메서드 생성 추천 */
+
+    /**
+     *  주문 객체 생성
+     */
     public static Order createOrder(Consumer consumer, Delivery delivery, OrderItem... orderItems) {
+
+        // 현재 소비자 포인트 - 총 주문 포인트
+        int totalOrderPoint = 0;
+
         Order order = new Order();
-        order.setConsumer(consumer);
         order.setDelivery(delivery);
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
+            totalOrderPoint += orderItem.getOrderPrice();
         }
+
+        // 현재 소비자 포인트 - 총 주문 포인트
+        int pointBeforeOrder = consumer.getPoint();
+        int pointAfterOrder = pointBeforeOrder - totalOrderPoint; // 예외 처리 필요
+        consumer.setPoint(pointAfterOrder);
+        order.setConsumer(consumer);
+
+
         order.setOrderStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
         return order;

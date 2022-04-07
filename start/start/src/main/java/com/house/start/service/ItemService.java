@@ -10,15 +10,23 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ItemService {
 
     private final ItemRepository itemRepository;
 
+    /**
+     *  상품 등록
+     */
     @Transactional
     public void createItem(Item item) {
         itemRepository.create(item);
     }
 
+
+    /**
+     *  모든 상품 조회
+     */
     public List<Item> findItems() {
         return itemRepository.findAll();
     }

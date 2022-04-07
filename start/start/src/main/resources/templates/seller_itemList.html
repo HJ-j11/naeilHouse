@@ -37,7 +37,7 @@
                         <a class="nav-link dropdown-toggle" href="/seller" id="dropdown10" data-bs-toggle="dropdown"
                            aria-expanded="false">스토어</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown10">
-                            <li><a class="dropdown-item" href="#">홈</a></li>
+                            <li><a class="dropdown-item" href="/seller/item/list">홈</a></li>
                             <li><a class="dropdown-item" href="/seller/add/item">상품 등록</a></li>
                         </ul>
                     </li>
@@ -63,7 +63,7 @@
 
 <div class="container" style="height: 50px">
     <div class="row justify-content-center">
-        등록된 상품 목록
+        <p class="fw-bold text-center">등록된 상품 목록</p>
     </div>
 </div>
 
@@ -73,6 +73,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>상품명</th>
                     <th>가격</th>
                     <th>재고</th>
@@ -82,10 +83,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="item : ${items}">
-                    <td th:text="${item.name}"></td>
-                    <td th:text="${item.price}"></td>
-                    <td th:text="${item.stockQuantity}"></td>
-                    <td th:text="${item.category}"></td>
+                    <td><img src="/images/newitem.png" width="40" height="40"></td>
+                    <td th:text="${item.name}" class="align-middle"></td>
+                    <td th:text="${item.price}" class="align-middle"></td>
+                    <td th:text="${item.stockQuantity}" class="align-middle"></td>
+                    <td th:text="${item.category}" class="align-middle"></td>
                     <td>
                         <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a>
                     </td>

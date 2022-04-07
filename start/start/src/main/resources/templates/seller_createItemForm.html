@@ -37,7 +37,7 @@
                         <a class="nav-link dropdown-toggle" href="/sample" id="dropdown10" data-bs-toggle="dropdown"
                            aria-expanded="false">스토어</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown10">
-                            <li><a class="dropdown-item" href="/sample">홈</a></li>
+                            <li><a class="dropdown-item" href="/seller/item/list">홈</a></li>
                             <li><a class="dropdown-item" href="/seller/add/item">상품 등록</a></li>
                         </ul>
                     </li>
@@ -63,7 +63,7 @@
 
 <div class="container" style="height: 50px">
     <div class="row justify-content-center">
-        상품 등록
+        <p class="fw-bold text-center">상품 등록</p>
     </div>
 </div>
 
@@ -74,7 +74,7 @@
         </div>
         <div class="col-4">
             <form th:action="@{/seller/add/item}" th:object="${form}" method="post">
-                <div class="form-group" style="margin-top: 5px;">
+                <div class="form-group">
                     <label th:for="name">상품명</label>
                     <input type="text" th:field="*{name}" class="form-control" placeholder="상품명을 입력하세요">
                 </div>
@@ -94,7 +94,7 @@
                     <label th:for="info">카테고리</label>
                     <input type="text" th:field="*{category}" class="form-control" placeholder="카테고리 입력하세요">
                 </div>
-                <button type="submit" class="btn btn-primary" style="margin-top: 30px">등록하기</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px">등록하기</button>
             </form>
         </div>
     </div>

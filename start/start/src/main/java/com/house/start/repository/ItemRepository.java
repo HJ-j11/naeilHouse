@@ -13,14 +13,23 @@ public class ItemRepository {
 
     private final EntityManager em;
 
+    /**
+     *  상품 등록
+     */
     public void create(Item item) {
         em.persist(item);
     }
 
+    /**
+     *  아이디로 1개 상품 조회
+     */
     public Item findItem(Long id) {
         return em.find(Item.class, id);
     }
 
+    /**
+     *  모든 상품 조회
+     */
     public List<Item> findAll() {
         return em.createQuery("select i from Item i", Item.class)
                 .getResultList();
