@@ -12,7 +12,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/navbar.css" rel="stylesheet">
     <link href="/css/footers.css" rel="stylesheet">
-    <script src="/js/bootstrap.bundle.min.js"
+    <script src="/javascript/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
@@ -23,9 +23,8 @@
 <div class="container" style="margin-top: 50px">
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
 
-        <a class="navbar-brand" href="#" style="position: absolute; left: 20px">
-            <img src="/image/house.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-            오늘의집
+        <a class="navbar-brand" href="/sample" style="position: absolute; left: 20px">
+            <img src="/images/logo.png" alt="" width="90" height="44" class="d-inline-block align-text-top">
         </a>
 
         <div class="container-fluid">
@@ -35,16 +34,11 @@
                         <a class="nav-link" href="#">커뮤니티</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-bs-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" href="/seller" id="dropdown10" data-bs-toggle="dropdown"
                            aria-expanded="false">스토어</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown10">
-<<<<<<< HEAD
-                            <li><a class="dropdown-item" href="#">홈</a></li>
-                            <li><a class="dropdown-item" href="#">상품 등록</a></li>
-=======
                             <li><a class="dropdown-item" href="/seller/item/list">홈</a></li>
                             <li><a class="dropdown-item" href="/seller/add/item">상품 등록</a></li>
->>>>>>> 62bccde (개발중)
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -67,23 +61,46 @@
 
 <div class="container" style="height: 50px"></div>
 
+<!--<div class="container">-->
+<!--    <div th:each="data, row: ${datas}" th:if="${row.current} % 4 == 0" class="row align-items-start" >-->
+<!--        <div th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" class="col text-center" >-->
+<!--            <img src="/images/newitem.png" width="150" height="150">-->
+<!--            <p>상품명</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 <div class="container">
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/image/house.svg" alt="" width="272" height="257">
-        <h1 class="display-6">오늘의집</h1>
+    <div class="row align-items-start">
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
+        <div class="col text-center">
+            <img src="/images/newitem.png" width="150" height="150">
+            <p>상품명</p>
+        </div>
     </div>
 </div>
 
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-muted">&copy; Spring Boot Study</p>
+<!--<div class="container">-->
+<!--    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">-->
+<!--        <p class="col-md-4 mb-0 text-muted">&copy; Spring Boot Study</p>-->
 
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-        </ul>
-    </footer>
-</div>
+<!--        <ul class="nav col-md-4 justify-content-end">-->
+<!--            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>-->
+<!--            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>-->
+<!--        </ul>-->
+<!--    </footer>-->
+<!--</div>-->
 
 </body>
 </html>

@@ -7,8 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Admin {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long admin_id;
     private String name;
     private String id;
