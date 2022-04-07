@@ -1,2 +1,7 @@
-package com.house.start.service;public class ConsumerService {
+package com.house.start.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ConsumerService {
 }

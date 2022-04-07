@@ -1,2 +1,8 @@
-package com.house.start.controller;public class ConsumerController {
+package com.house.start.controller;
+
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ConsumerController {
 }
