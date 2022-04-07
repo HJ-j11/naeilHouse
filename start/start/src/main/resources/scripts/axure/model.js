@@ -1,5 +1,4 @@
-﻿// ******* Object Model ******** //
-$axure.internal(function($ax) {
+﻿$axure.internal(function($ax) {
     var _implementations = {};
 
     var _initializeObject = function(type, obj) {
