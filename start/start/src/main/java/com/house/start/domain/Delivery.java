@@ -14,4 +14,6 @@ public class Delivery {
 
     private DeliveryStatus deliveryStatus; // 배송 상태 [배송 준비중, 배송 완료]
 
+    @Column(name="review_yn")
+    private boolean reviewYn = false;
 }
