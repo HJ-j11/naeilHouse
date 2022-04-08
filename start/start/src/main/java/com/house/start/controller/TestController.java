@@ -1,5 +1,6 @@
 package com.house.start.controller;
 
+import com.house.start.domain.Seller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,6 +42,14 @@ public class TestController {
     @GetMapping("/webpage")
     public String webpage() {
         return "main";
+    }
+
+    @GetMapping("/admin_sellers")
+    public String showSellers(String id, Model model) {
+        List<Seller> sellerList = new ArrayList<>();
+        // 판매자 이름, id, 상호명, 물품 갯수, 승인 여부
+        model.addAttribute("sellerList",sellerList);
+        return "admin/show_sellers";
     }
 
 
