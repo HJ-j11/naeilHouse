@@ -1,13 +1,18 @@
 package com.house.start.controller;
 
 
+import com.house.start.domain.Item;
+import com.house.start.domain.Post;
 import com.house.start.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+
+import java.util.List;
 
 @Controller
 public class ConsumerController {
@@ -16,12 +21,14 @@ public class ConsumerController {
 
     // 물건 리스트
     @GetMapping("/list")
-    public String getAllItem(){
-        return "";
+    public String getAllItem(Model model){
+
+        return "consumer_itemList";
     }
     // 물건 카테고리
     @GetMapping("list/{id}")
     public String getItemByCategory(){
+        List<Item> items = consumerService
         return "";
     }
 
@@ -31,17 +38,22 @@ public class ConsumerController {
         return "";
     }
 
+    // 장바구니 담기
+
+
+
     // 장바구니
     @GetMapping("/cart")
     public String getCarts(){
+
         return "";
     }
 
 
     // 배송 완료
-    @GetMapping("/user/deliveries/{id}/completed")
-    public String getAllDelivery(String id){
-        return "";
+    @PutMapping("/user/deliveries/{id}/completed")
+    public void getAllDelivery(String id){
+
     }
 
     //마이 페이지
@@ -75,13 +87,17 @@ public class ConsumerController {
 
     // 커뮤니티 목록
     @GetMapping("/community")
-    public String getAllPost() {
-        return "boardList";
+    public String getAllPost(Model model) {
+        List<Post> posts = consumerService.getAllPost();
+        model.addAttribute("postList", posts);
+        return "postList";
     }
 
     @GetMapping("/community/{id}")
-    public String getOnePost() {
-        return "community/post";
+    public String getOnePost(Long id, Model model) {
+        Post post = consumerService.getOnePost(id);
+        model.addAttribute("post", "post");
+        return "post";
     }
 
     @PutMapping("/community/{id}/like")
@@ -92,12 +108,12 @@ public class ConsumerController {
     // 글 작성 페이지
     @GetMapping("/community/new")
     public String getNewPost() {
-        return "communitiy/likes";
+        return "new_post";
     }
 
     // 글 작성
     @PostMapping("/community/write")
-    public void postNew() {
+    public void postUser() {
 
     }
 

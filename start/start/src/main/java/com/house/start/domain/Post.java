@@ -25,4 +25,6 @@ public class Post {
 
     private LocalDateTime postDate; // 게시물 작성일시
     private String photo;
+
+    private String contents;
 }

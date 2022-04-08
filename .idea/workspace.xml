@@ -5,62 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/BoardList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/DeliveryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/newPost.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/action.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/adaptive.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/annotation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/axQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/axQuery.std.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/doc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/drag.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/events.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/expr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/flyout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/geometry.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/globals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/ie.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/init.temp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/ios.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/jquery.nicescroll.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/legacy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/math.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/model.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/move.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/recording.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/repeater.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/sto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/style.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/tree.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/utils.temp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/variables.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/viewer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axure/visibility.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/axutils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/jquery-1.7.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/jquery-3.2.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/jquery-ui-1.8.10.custom.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/messagecenter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/player/axplayer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/player/init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/scripts/player/splitter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/image/house.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.esm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.esm.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.esm.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.esm.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/community/communities.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_top_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_top_bar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/boardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/postList.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,9 +40,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
         <option value="HTML File" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
