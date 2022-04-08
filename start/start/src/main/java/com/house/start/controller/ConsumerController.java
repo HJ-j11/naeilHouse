@@ -76,7 +76,7 @@ public class ConsumerController {
     // 커뮤니티 목록
     @GetMapping("/community")
     public String getAllPost() {
-        return "community/communities";
+        return "boardList";
     }
 
     @GetMapping("/community/{id}")
