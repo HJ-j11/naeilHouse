@@ -39,10 +39,7 @@ public class Order {
         this.delivery = delivery;
     }
 
+    /*비즈니스로직*/
+    
 
-    //    비즈니스로직
-    public void complete() {
-        delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
-
-    }
 }

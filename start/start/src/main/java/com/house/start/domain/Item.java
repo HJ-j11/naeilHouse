@@ -32,6 +32,15 @@ public class Item {
     private Category category; // 상품 카테고리
 
     // 상품 상태
+    @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus;
+
+    /**
+     * 생성 메서드
+     * **/
+
+    /**
+     * 비즈니스 로직
+     * **/
 
 }

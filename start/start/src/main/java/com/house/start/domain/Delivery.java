@@ -20,4 +20,20 @@ public class Delivery {
 
     @Column(name="review_yn")
     private boolean reviewYn = false;
+    
+    // 생성 메서드
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    /** 
+     *  비즈니스 로직 개발 중
+     * **/
+
+    // 배송 완료
+    public void complete() {
+        this.setDeliveryStatus(DeliveryStatus.COMPLETE);
+        order.setOrderStatus(OrderStatus.COMPLETE);
+        this.reviewYn = true;
+    }
 }
