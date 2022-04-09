@@ -17,11 +17,17 @@ public class SellerRepository {
         this.em = em;
     }
 
+    /*
+    판매자 전체 목록 조회
+     */
     public List<Seller> findAll() {
         return em.createQuery("select s from Seller s", Seller.class)
                 .getResultList();
     }
 
+    /*
+    seller_id 하나의 객체만 조회
+     */
     public Seller findOne(Long seller_id) {
         return em.find(Seller.class, seller_id);
     }

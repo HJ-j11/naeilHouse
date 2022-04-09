@@ -166,26 +166,36 @@
                     <th width="120"> btn</th>
                 </tr>
 
-                <tr th:each="order: ${orderList}">
-                    <p id ="order_data" th:text="${order.data}"></p>
-                    <block th:each="item: ${order.orderItem}">
-                        <td th:src="@{item.photo}"></td>
-                        <td>
-                            <p th:text="${item.store}"></p>
-                            <p th:text="${item.name}"></p>
-                        </td>
-                        <td>
-                            <p th:text="${item.price}"></p>
-                            <p th:text="${item.num}"></p>
-                        </td>
-                    </block>
-                    <td th:if="${order.orderState == 'ORDER'}">
-                        <button id="btn_order">취소하기</button>
+                <block th:each="order: ${orderList}">
+                        <p id ="order_data" th:text="${order.orderDate}"></p>
+                        <tr th:each="orderitem: ${order.orderItems}">
+                            <td>
+                                <p th:text="${orderitem}"></p>
+                                <p th:text="${orderitem}"></p>
+                            </td>
+                        </tr>
+                </block>
+                <!--
+                <block th:each="item: ${order.orderItems}">
+                    <td th:src="@{item.photo}"></td>
+                    <td>
+                        <p th:text="${item.store}"></p>
+                        <p th:text="${item.name}"></p>
                     </td>
-                    <td th:if="${order.orderState == 'COMPLETE'}">
-                        <button id="btn_order">리뷰작성</button>
+                    <td>
+                        <p th:text="${item.price}"></p>
+                        <p th:text="${item.num}"></p>
                     </td>
-                </tr>
+                </block>
+                <td th:if="${order.orderState == 'ORDER'}">
+                    <button >취소하기</button>
+                </td>
+                <td th:if="${order.orderState == 'COMPLETE'}">
+                    <button id="btn_order">리뷰작성</button>
+                </td>
+                -->
+
+
 
             </table>
         </div>
