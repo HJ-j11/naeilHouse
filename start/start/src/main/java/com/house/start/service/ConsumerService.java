@@ -1,9 +1,7 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
-import com.house.start.repository.DeliveryRepository;
-import com.house.start.repository.ItemRepository;
-import com.house.start.repository.PostRepository;
+import com.house.start.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,15 +13,61 @@ import java.util.List;
 public class ConsumerService {
     @Autowired
     PostRepository postRepository;
-
     @Autowired
     DeliveryRepository deliveryRepository;
-
     @Autowired
     ItemRepository itemRepository;
+    @Autowired
+    ConsumerRepository consumerRepository;
+    @Autowired
+    OrderRepository orderRepository;
 
-    // 카테고리별 물건
 
+    // 물건 정렬
+    public List<Item> getAllItems() {
+        List<Item> items = itemRepository.findAll();
+        return items;
+    }
+    // 카테고리 별 물건 정렬
+    public List<Item> getAllByCategory(Long id) {
+        List<Item> items = itemRepository.findByCategory(id);
+        return items;
+    }
+    // 물건 상세
+    public Item getOneItem(Long id) {
+        Item item = itemRepository.getById(id);
+        return item;
+    }
+
+    // 장바구니 보기
+    public List<Item> findItemByStatus(ItemStatus status) {
+        List<Item> items = itemRepository.findByCart(ItemStatus.CART);
+        return items;
+    }
+
+    // 장바구니 담기
+    public void putCart(Long id) {
+        Item item = itemRepository.getById(id);
+        item.setItemStatus(ItemStatus.CART);
+        itemRepository.save(item);
+    }
+
+    // 마이페이지
+    public Consumer getConsumerInfo(Long id) {
+        Consumer user = consumerRepository.getById(id);
+        return user;
+    }
+    // 주문 목록
+    public List<Order> getAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+        return orders;
+    }
+
+    // 배송 목록
+    public List<Delivery> getAllDeliveries() {
+        List<Delivery> deliveries = deliveryRepository.findAll();
+        return deliveries;
+    }
 
     // 배송 완료
     @Transactional

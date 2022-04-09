@@ -1,7 +1,9 @@
 package com.house.start.controller;
 
 
+import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
+import com.house.start.domain.ItemStatus;
 import com.house.start.domain.Post;
 import com.house.start.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,31 +24,41 @@ public class ConsumerController {
     // 물건 리스트
     @GetMapping("/list")
     public String getAllItem(Model model){
-
+        List<Item> items = consumerService.getAllItems();
+        model.addAttribute("items", items);
         return "consumer_itemList";
     }
     // 물건 카테고리
-    @GetMapping("list/{id}")
-    public String getItemByCategory(){
-        List<Item> items = consumerService
+    @GetMapping("list/{category_id}")
+    public String getItemByCategory(Long category_id, Model model){
+        List<Item> items = consumerService.getAllByCategory(category_id);
+        model.addAttribute("items", items);
         return "";
     }
 
     // 물건 상세
     @GetMapping("/list/{category_id}/{id}")
-    public String getOneItem(){
-        return "";
+    public String getOneItem(Long id, Model model){
+        Item item = consumerService.getOneItem(id);
+        model.addAttribute("item", item);
+        return "item";
     }
 
     // 장바구니 담기
+    @PutMapping("/list/{id}/getCart")
+    public void getItemToCart(Long id) {
+        Item item = consumerService.getOneItem(id);
 
+    }
 
 
     // 장바구니
     @GetMapping("/cart")
-    public String getCarts(){
-
-        return "";
+    public String getCarts(Model model){
+        ItemStatus status = ItemStatus.CART;
+        List<Item> items = consumerService.findItemByStatus(status);
+        model.addAttribute("items", items);
+        return "cart";
     }
 
 
@@ -58,13 +70,17 @@ public class ConsumerController {
 
     //마이 페이지
     @GetMapping("/user")
-    public String getUserInfo() {
+    public String getUserInfo(Long id, Model model) {
+        Consumer user = consumerService.getConsumerInfo(id);
+        model.addAttribute("user", user);
         return "info/user";
     }
 
     // 주문 보기
     @GetMapping("/user/orders")
-    public String getAllOrders() {
+    public String getAllOrders(Model model) {
+        // 자신이 주문한 걸 가져와야할텐데..?
+
         return "info/orders";
     }
 

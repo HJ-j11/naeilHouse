@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/DeliveryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/newPost.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/ItemStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ConsumerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/DevelopController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/boardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/postList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ItemService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +43,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Enum" />
+        <option value="Class" />
         <option value="Interface" />
       </list>
     </option>
@@ -49,6 +53,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -129,6 +141,9 @@
       <updated>1649315538925</updated>
       <workItem from="1649315541697" duration="2619000" />
       <workItem from="1649318230455" duration="3286000" />
+      <workItem from="1649406417201" duration="47000" />
+      <workItem from="1649406536173" duration="9000" />
+      <workItem from="1649510879599" duration="2857000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -144,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649317699639</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- 글 목록, 글 작성 html 추가&#10;- 글 작성, 조회 API 설계&#10;- 배송완료 API 설계">
+      <created>1649401822082</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1649401822082</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +175,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Model 충돌 발생 &#10;develop branch로 reset" />
     <MESSAGE value="scripts 경로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="scripts 경로 변경" />
+    <MESSAGE value="- 글 목록, 글 작성 html 추가&#10;- 글 작성, 조회 API 설계&#10;- 배송완료 API 설계" />
+    <option name="LAST_COMMIT_MESSAGE" value="- 글 목록, 글 작성 html 추가&#10;- 글 작성, 조회 API 설계&#10;- 배송완료 API 설계" />
   </component>
 </project>

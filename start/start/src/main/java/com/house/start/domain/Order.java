@@ -31,7 +31,18 @@ public class Order {
 
     private LocalDateTime orderDate; // 주문 일시
 
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus; // 주문 상태 [주문, 취소, 완료]
 
+    // setDelivery
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
 
+
+    //    비즈니스로직
+    public void complete() {
+        delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
+
+    }
 }
