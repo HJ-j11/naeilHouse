@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,24 +20,20 @@ public class AdminController {
     private final ConsumerService consumerService;
     private final SellerService sellerService;
 
-    @GetMapping("/admin/consumers")
-    public String manageConsumer (Model model) { // ??더 자세히 보기일 경우에만 게시글, 댓글 리뷰를 보게하는 지
-        // 회원 정보
-        List<Consumer> consumers = consumerService.findConsumers();
-
-        // 게시글 조회
-
-        // 댓글 조회
-
-        // 리뷰 조회
-
-        return "admin_consumers";
+    @GetMapping("/admin_consumers")
+    public String manageConsumer (Model model) {
+        List<String> consumerList = consumerService.findConsumers();
+        System.out.println(consumerList);
+        model.addAttribute("consumerList", consumerList);
+        return "admin/show_consumer";
     }
 
     @GetMapping("/admin/sellers")
-    public String manageSellers (Model model) {
-        List<Seller> sellers = sellerService.findSellers();
-        return "admin_sellers";
+    public String showSellers(String id, Model model) {
+        List<Seller> sellerList = new ArrayList<>();
+        // 판매자 이름, id, 상호명, 물품 갯수, 승인 여부
+        model.addAttribute("sellerList",sellerList);
+        return "admin/show_sellers";
     }
 
     @GetMapping("/admin/sellers/proved")

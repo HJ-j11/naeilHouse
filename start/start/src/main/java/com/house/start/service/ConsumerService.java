@@ -15,8 +15,8 @@ public class ConsumerService {
     private final ConsumerRepository consumerRepository;
 
     @Transactional
-    public List<Consumer> findConsumers() {
-        return consumerRepository.findAll();
+    public List<String> findConsumers() {
+        return consumerRepository.findAllWith();
     }
 
 }

@@ -25,5 +25,7 @@ public class Consumer {
     @Column(name = "id")
     private String cId; // 아이디
     private String pwd; // 비밀번호
+    private String photo;
+    private Long point; // 포인트
 
 }
