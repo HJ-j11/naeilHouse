@@ -18,7 +18,7 @@ public class SellerRepository {
     }
 
     public List<Seller> findAll() {
-        return em.createQuery("select c from Seller", Seller.class)
+        return em.createQuery("select s from Seller s", Seller.class)
                 .getResultList();
     }
 

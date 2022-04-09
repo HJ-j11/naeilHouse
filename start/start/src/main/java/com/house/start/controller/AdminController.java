@@ -28,10 +28,10 @@ public class AdminController {
         return "admin/show_consumer";
     }
 
-    @GetMapping("/admin/sellers")
+    @GetMapping("/admin_sellers")
     public String showSellers(String id, Model model) {
-        List<Seller> sellerList = new ArrayList<>();
-        // 판매자 이름, id, 상호명, 물품 갯수, 승인 여부
+        List<Seller> sellerList = sellerService.findSellers();
+        System.out.println(sellerList);
         model.addAttribute("sellerList",sellerList);
         return "admin/show_sellers";
     }

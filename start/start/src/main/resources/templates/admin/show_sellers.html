@@ -145,22 +145,25 @@
       <div id ="main_content">
         <table class="sellers" width="1440">
           <tr width="300">
-            <th width="300">판매자 이름 </th>
-            <th width="300">id </th>
+            <th width="150">판매자 이름 </th>
+            <th width="150">id </th>
             <th width="300">상호명</th>
             <th width="300">판매 물품 갯수</th>
-            <th>승인 여부</th>
+            <th width="300">승인 여부</th>
           </tr>
           <tr th:each="seller : ${sellerList}">
             <td th:text="${seller.name}"></td>
-            <td th:text="${seller.id}"></td>
-            <td th:text="${seller.store}"></td>
-            <td th:text="${seller.items_count}"></td>
-            <td th:if="${seller.isProved == 'True'}">
-              <button id="btn_isProved">승인하기</button>
+            <td th:text="${seller.sId}"></td>
+            <td th:text="${seller.storeName}"></td>
+
+            <!-- count 완성시 count(items)로 변경될 예정 -->
+            <td th:text="${seller.isApproved}"></td>
+
+            <td th:if="${seller.isApproved == true}">
+              <button >승인하기</button>
             </td>
-            <td th:if="${seller.isProved.equals('False')}">
-              <button id="btn_isProved">승인 취소하기</button>
+            <td th:if="${seller.isApproved == false}">
+              <button >승인 취소하기</button>
             </td>
           </tr>
         </table>
