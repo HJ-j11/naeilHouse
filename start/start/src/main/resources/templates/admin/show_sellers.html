@@ -156,8 +156,7 @@
             <td th:text="${seller.sId}"></td>
             <td th:text="${seller.storeName}"></td>
 
-            <!-- count 완성시 count(items)로 변경될 예정 -->
-            <td th:text="${seller.isApproved}"></td>
+            <td th:text="${seller.items.size}">개</td>
 
             <td th:if="${seller.isApproved == false}">
               <a href="#" th:href="@{/admin_sellers/approved/{seller_id} (seller_id=${seller.id})}" role ="button">승인하기</a>
