@@ -46,9 +46,9 @@ public class ConsumerController {
 
     // 장바구니 담기
     @PutMapping("/list/{id}/getCart")
-    public void getItemToCart(Long id) {
+    public Item getItemToCart(Long id) {
         Item item = consumerService.getOneItem(id);
-
+        return item;
     }
 
 
@@ -145,6 +145,7 @@ public class ConsumerController {
 
     }
 
+    // 댓글 삭제
     @DeleteMapping("/comments/{id}/delete")
     public void deleteComment() {
 

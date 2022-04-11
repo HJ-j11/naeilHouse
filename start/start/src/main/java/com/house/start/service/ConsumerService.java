@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class ConsumerService {
     @Autowired
     OrderRepository orderRepository;
 
-
+    private EntityManager em;
     // 물건 정렬
     public List<Item> getAllItems() {
         List<Item> items = itemRepository.findAll();
@@ -46,10 +47,11 @@ public class ConsumerService {
     }
 
     // 장바구니 담기
-    public void putCart(Long id) {
-        Item item = itemRepository.getById(id);
-        item.setItemStatus(ItemStatus.CART);
-        itemRepository.save(item);
+    @Transactional
+    public void putCart(Item item) {
+        Item Oneitem = em.find(Item.class, item.getId());
+        Oneitem.setItemStatus(ItemStatus.CART);
+
     }
 
     // 마이페이지
@@ -71,14 +73,12 @@ public class ConsumerService {
 
     // 배송 완료
     @Transactional
-    public void completeDelivery(Long id) {
-        Delivery delivery = deliveryRepository.getById(id);
-        Order order = delivery.getOrder();
+    public void completeDelivery(Delivery delivery) {
+        Delivery oneDelivery = em.find(Delivery.class, delivery.getId());
+        Order order = oneDelivery.getOrder();
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);
         delivery.setReviewYn(true);
-
-        deliveryRepository.save(delivery);
     }
 
     // 글 목록
