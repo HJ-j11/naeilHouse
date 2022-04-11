@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Getter@Setter
 public class Item {
-
     @Id @GeneratedValue
     @Column(name = "item_id")
     private Long id;
@@ -26,5 +25,4 @@ public class Item {
     private int price; // 상품 가격
     private String info; // 상품 정보
     private String category; // 상품 카테고리
-
 }

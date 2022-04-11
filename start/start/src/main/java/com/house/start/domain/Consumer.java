@@ -27,5 +27,4 @@ public class Consumer {
     private String pwd; // 비밀번호
     private String photo;
     private Long point; // 포인트
-
 }

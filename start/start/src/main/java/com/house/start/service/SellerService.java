@@ -19,10 +19,21 @@ public class SellerService {
     }
 
     /**
-     * 판매자 수락
+     * 판매자 승인
      */
-    public void updateSeller(Long seller_id) {
+    @Transactional
+    public void approveSeller(Long seller_id) {
         Seller seller = sellerRepository.findOne(seller_id);
-        seller.setIsApproved(Boolean.TRUE);
+        seller.setIsApproved(true);
+
+    }
+
+    /**
+     * 판매자 승인 취소
+     */
+    @Transactional
+    public void notapproveSeller(Long seller_id) {
+        Seller seller = sellerRepository.findOne(seller_id);
+        seller.setIsApproved(false);
     }
 }

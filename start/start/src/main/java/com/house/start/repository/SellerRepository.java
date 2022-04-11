@@ -17,6 +17,14 @@ public class SellerRepository {
         this.em = em;
     }
 
+    public void save(Seller seller) {
+        if (seller.getId() == null) {
+            em.persist(seller);
+        }else {
+            em.merge(seller);
+        }
+    }
+
     /*
     판매자 전체 목록 조회
      */

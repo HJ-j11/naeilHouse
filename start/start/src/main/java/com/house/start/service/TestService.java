@@ -19,7 +19,7 @@ public class TestService {
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
         items = testRepository.findAll();
-//        items.forEach(e-> System.out.println(e.getName()));
+//      items.forEach(e-> System.out.println(e.getName()));
         return items;
     }
 

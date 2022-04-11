@@ -159,11 +159,11 @@
             <!-- count 완성시 count(items)로 변경될 예정 -->
             <td th:text="${seller.isApproved}"></td>
 
-            <td th:if="${seller.isApproved == true}">
-              <button >승인하기</button>
-            </td>
             <td th:if="${seller.isApproved == false}">
-              <button >승인 취소하기</button>
+              <a href="#" th:href="@{/admin_sellers/approved/{seller_id} (seller_id=${seller.id})}" role ="button">승인하기</a>
+            </td>
+            <td th:if="${seller.isApproved == true}">
+              <a href="#" th:href="@{/admin_sellers/notapproved/{seller_id} (seller_id=${seller.id})}" role ="button">승인취소하기</a>
             </td>
           </tr>
         </table>

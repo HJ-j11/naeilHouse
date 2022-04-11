@@ -36,10 +36,17 @@ public class AdminController {
         return "admin/show_sellers";
     }
 
-    @GetMapping("/admin/sellers/proved")
-    public String provedSeller (@PathVariable Long seller_id) {
-        sellerService.updateSeller(seller_id);
-        return "redirect:/admin/sellers";
+    @GetMapping("/admin_sellers/approved/{seller_id}")
+    public String approvedSeller (@PathVariable Long seller_id) {
+        sellerService.approveSeller(seller_id);
+        return "redirect:/admin_sellers";
     }
+
+    @GetMapping("/admin_sellers/notapproved/{seller_id}")
+    public String notapprovedSeller (@PathVariable Long seller_id) {
+        sellerService.notapproveSeller(seller_id);
+        return "redirect:/admin_sellers";
+    }
+
 }
 
