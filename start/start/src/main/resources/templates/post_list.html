@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/footers.css" rel="stylesheet">
+    <script src="/javascript/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <title>Community List</title>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+
+    <a class="navbar-brand" href="/sample" style="position: absolute; left: 20px">
+        <img src="/images/logo.png" alt="" width="90" height="44" class="d-inline-block align-text-top">
+    </a>
+
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-md-center">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">커뮤니티</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/sample" id="dropdown10" data-bs-toggle="dropdown"
+                       aria-expanded="false">스토어</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown10">
+                        <li><a class="dropdown-item" href="/seller/item/list">홈</a></li>
+                        <li><a class="dropdown-item" href="/seller/add/item">상품 등록</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">마이페이지</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/community/new">글쓰기</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="border: 1px solid black">
+    <table style="border-collapse:collapse">
+        <tr>
+            <th>No</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>좋아요</th>
+        </tr>
+        <tr th:each="post : ${PostList}">
+            <td th:text=""></td>
+            <td th:text="${post.title}"></td>
+            <td th:text="${post.name}"></td>
+            <td th:text="${post.date}"></td>
+            <td th:text="${post.like}"></td>
+        </tr>
+    </table>
+</div>
+
+<script src="scripts/axure/ios.js"></script>
+</body>
+</html>

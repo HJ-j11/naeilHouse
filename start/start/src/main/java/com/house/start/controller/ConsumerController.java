@@ -3,7 +3,6 @@ package com.house.start.controller;
 
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
-import com.house.start.domain.ItemStatus;
 import com.house.start.domain.Post;
 import com.house.start.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,13 +105,13 @@ public class ConsumerController {
     public String getAllPost(Model model) {
         List<Post> posts = consumerService.getAllPost();
         model.addAttribute("postList", posts);
-        return "postList";
+        return "post_list";
     }
 
     @GetMapping("/community/{id}")
     public String getOnePost(Long id, Model model) {
         Post post = consumerService.getOnePost(id);
-        model.addAttribute("post", "post");
+        model.addAttribute("post", post);
         return "post";
     }
 
@@ -123,7 +122,8 @@ public class ConsumerController {
 
     // 글 작성 페이지
     @GetMapping("/community/new")
-    public String getNewPost() {
+    public String getNewPost(Model model) {
+        model.addAttribute("post", new Post());
         return "new_post";
     }
 
