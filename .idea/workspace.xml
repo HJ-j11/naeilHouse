@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/UploadFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_itemInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +28,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="start" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -207,6 +217,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Model 충돌 발생 &#10;develop branch로 reset" />

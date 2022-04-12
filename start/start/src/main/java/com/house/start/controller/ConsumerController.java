@@ -53,13 +53,13 @@ public class ConsumerController {
 
 
     // 장바구니
-    @GetMapping("/cart")
-    public String getCarts(Model model){
-        ItemStatus status = ItemStatus.CART;
-        List<Item> items = consumerService.findItemByStatus(status);
-        model.addAttribute("items", items);
-        return "cart";
-    }
+//    @GetMapping("/cart")
+//    public String getCarts(Model model){
+//        ItemStatus status = ItemStatus.CART;
+//        List<Item> items = consumerService.findItemByStatus(status);
+//        model.addAttribute("items", items);
+//        return "cart";
+//    }
 
 
     // 배송 완료
