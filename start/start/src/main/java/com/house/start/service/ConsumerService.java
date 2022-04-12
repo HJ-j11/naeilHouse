@@ -76,9 +76,13 @@ public class ConsumerService {
     public void completeDelivery(Delivery delivery) {
         Delivery oneDelivery = em.find(Delivery.class, delivery.getId());
         Order order = oneDelivery.getOrder();
+
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);
         delivery.setReviewYn(true);
+
+//        em.persist(oneDelivery);
+//        em.persist(order);
     }
 
     // 글 목록
