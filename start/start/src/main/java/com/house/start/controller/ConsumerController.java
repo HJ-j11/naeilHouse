@@ -5,6 +5,7 @@ import com.house.start.controller.form.PostForm;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
 import com.house.start.domain.Post;
+import com.house.start.domain.UploadFile;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import org.slf4j.Logger;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -21,7 +25,8 @@ public class ConsumerController {
     @Autowired
     ConsumerService consumerService;
 
-
+    @Autowired
+    FileStore fileStore;
 
     private Logger logger = LoggerFactory.getLogger(ConsumerController.class);
 
@@ -134,11 +139,20 @@ public class ConsumerController {
 
     // 글 작성
     @PostMapping("/community/write")
-    public void postUser(@ModelAttribute PostForm post) {
+    public String postUser(@ModelAttribute PostForm post, HttpServletRequest request) throws IOException {
        logger.info(post.getContents());
        logger.info(String.valueOf(post.getPhoto()));
 
+        Post newPost = new Post();
 
+        UploadFile uploadFile = fileStore.storeFile(post.getPhoto(), request);
+
+        newPost.setContents(post.getContents());
+        newPost.setUploadFile(uploadFile);
+
+        consumerService.postNew(newPost);
+
+        return "redirect:/community";
     }
 
     // 댓글 등록

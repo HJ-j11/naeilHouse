@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/form/PostForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/new_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/new_post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +106,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources" />
     </key>
@@ -145,6 +146,8 @@
       <workItem from="1649510879599" duration="4242000" />
       <workItem from="1649656600242" duration="2307000" />
       <workItem from="1649737313314" duration="939000" />
+      <workItem from="1649753048779" duration="1803000" />
+      <workItem from="1649756168234" duration="1231000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -202,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649749546135</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="post 담을 수 있는 postForm 설정">
+      <created>1649751229225</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1649751229225</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +251,18 @@
     <MESSAGE value="저장 방식 고민&#10;- extends JpaRepository&lt;&gt;&#10;- EntityManager persist method" />
     <MESSAGE value="UploadFile 파일 병합 (sj-branch -&gt; hj-branch)" />
     <MESSAGE value="Post : 파일 경로/이름 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="Post : 파일 경로/이름 변경" />
+    <MESSAGE value="post 담을 수 있는 postForm 설정" />
+    <option name="LAST_COMMIT_MESSAGE" value="post 담을 수 있는 postForm 설정" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

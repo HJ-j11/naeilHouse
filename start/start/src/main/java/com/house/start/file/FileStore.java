@@ -34,13 +34,14 @@ public class FileStore {
         uploadFile.setStoreFileName(storeFileName);
 
         // 서버 저장 경로 탐색
-        ServletContext servletContext = request.getServletContext();
-        String realPath = servletContext.getRealPath("/upload"); // 절대 경로 탐색
-//        log.info("realPath={}", realPath);
+//        ServletContext servletContext = request.getServletContext();
+//        String realPath = servletContext.getRealPath("/upload"); // 절대 경로 탐색
+        String realPath = "D:\\JPA\\naeilHouse\\start\\start\\src\\main\\webapp\\upload";
+        log.info("realPath={}", realPath);
 
         // webapp/upload/{storeFileName}.png 경로로 저장됨
         String fullPath = realPath + "/" + storeFileName;
-//        log.info("파일 저장 fullPath={}", fullPath);
+        log.info("파일 저장 fullPath={}", fullPath);
         multipartFile.transferTo(new File(fullPath));
 
         return uploadFile;

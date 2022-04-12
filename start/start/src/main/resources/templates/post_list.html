@@ -55,20 +55,12 @@
         <tr>
             <th>No</th>
             <th>제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
-            <th>좋아요</th>
         </tr>
-        <tr th:each="post : ${PostList}">
-            <td th:text=""></td>
-            <td th:text="${post.title}"></td>
-            <td th:text="${post.name}"></td>
-            <td th:text="${post.date}"></td>
-            <td th:text="${post.like}"></td>
+        <tr th:each="post : ${postList}">
+            <td th:text="${post.id}"></td>
+            <td th:text="${post.contents}"></td>
         </tr>
     </table>
 </div>
-
-<script src="scripts/axure/ios.js"></script>
 </body>
 </html>
