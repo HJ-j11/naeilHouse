@@ -35,12 +35,18 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uploadfile_id")
+    private UploadFile uploadFile;
+
+
     /**
      * 생성 메서드
      * **/
 
-    /**
-     * 비즈니스 로직
-     * **/
+    public void setUploadFile(UploadFile uploadFile) {
+        this.uploadFile = uploadFile;
+        uploadFile.setItem(this);
+    }
 
 }
