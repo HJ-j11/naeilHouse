@@ -61,35 +61,53 @@
 
 <div class="container" style="height: 50px"></div>
 
+<div class="container" style="width: 750px">
+    <div class="row justify-content-center">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${items}">
+                    <td><img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40"></td>
+                    <td th:text="${item.name}" class="align-middle"></td>
+                    <td th:text="${item.price}" class="align-middle"></td>
+                    <td>
+                        <a href="#" th:href="@{/consumer/item/{id}/info (id=${item.id})}" class="btn btn-primary" role="button">상세 정보</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 <!--<div class="container">-->
-<!--    <div th:each="data, row: ${datas}" th:if="${row.current} % 4 == 0" class="row align-items-start" >-->
-<!--        <div th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" class="col text-center" >-->
+<!--    <div class="row align-items-start">-->
+<!--        <div class="col text-center">-->
+<!--            <img src="/images/newitem.png" width="150" height="150">-->
+<!--            <p>상품명</p>-->
+<!--        </div>-->
+<!--        <div class="col text-center">-->
+<!--            <img src="/images/newitem.png" width="150" height="150">-->
+<!--            <p>상품명</p>-->
+<!--        </div>-->
+<!--        <div class="col text-center">-->
+<!--            <img src="/images/newitem.png" width="150" height="150">-->
+<!--            <p>상품명</p>-->
+<!--        </div>-->
+<!--        <div class="col text-center">-->
 <!--            <img src="/images/newitem.png" width="150" height="150">-->
 <!--            <p>상품명</p>-->
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-
-<div class="container">
-    <div class="row align-items-start">
-        <div class="col text-center">
-            <img src="/images/newitem.png" width="150" height="150">
-            <p>상품명</p>
-        </div>
-        <div class="col text-center">
-            <img src="/images/newitem.png" width="150" height="150">
-            <p>상품명</p>
-        </div>
-        <div class="col text-center">
-            <img src="/images/newitem.png" width="150" height="150">
-            <p>상품명</p>
-        </div>
-        <div class="col text-center">
-            <img src="/images/newitem.png" width="150" height="150">
-            <p>상품명</p>
-        </div>
-    </div>
-</div>
 
 <!--<div class="container">-->
 <!--    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">-->

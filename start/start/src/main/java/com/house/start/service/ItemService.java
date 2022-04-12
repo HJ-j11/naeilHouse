@@ -23,6 +23,12 @@ public class ItemService {
         itemRepository.create(item);
     }
 
+    /**
+     *  아이디로 1개 상품 조회
+     */
+    public Item findItem(Long id) {
+        return itemRepository.findItem(id);
+    }
 
     /**
      *  모든 상품 조회

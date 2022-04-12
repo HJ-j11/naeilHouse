@@ -30,7 +30,7 @@ public class Order {
 
     private LocalDateTime orderDate; // 주문 일시
 
-    private OrderStatus orderStatus; // 주문 상태 [주문, 취소, 완료]
+    private OrderStatus orderStatus; // 주문 상태 [카트, 주문, 취소, 완료]
 
     //==연관관계 편의 메서드==//
     public void setMember(Consumer consumer) {

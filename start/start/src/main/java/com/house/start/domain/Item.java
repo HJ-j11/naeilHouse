@@ -23,6 +23,10 @@ public class Item {
     @JoinColumn(name = "seller_id")
     private Seller seller; // 판매자
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uploadfile_id")
+    private UploadFile uploadFile;
+
     private String name; // 상품 이름
     private int price; // 상품 가격
     private int stockQuantity; // 재고 수량
@@ -41,6 +45,11 @@ public class Item {
     public void setCategory(Category category) {
         this.category = category;
         category.getItems().add(this);
+    }
+
+    public void setUploadFile(UploadFile uploadFile) {
+        this.uploadFile = uploadFile;
+        uploadFile.setItem(this);
     }
 
     //==Getter==//

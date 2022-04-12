@@ -68,6 +68,9 @@ public class DevelopController {
         return "itemList";
     }
 
+    @GetMapping("/consumer/top/bar")
+    public String consumerTopBar() { return "consumer_top_bar"; }
+
 
 
 

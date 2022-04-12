@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class OrderService {
     private final ConsumerRepository consumerRepository;
 
     /**
-     *  주문 (바로구매)
+     *  주문 (바로 구매)
      */
     @Transactional
     public Long order(Long consumerId, Long itemId, int count) {
@@ -43,6 +44,10 @@ public class OrderService {
         // 주문 저장
         orderRepository.save(order);
         return order.getId();
+    }
+
+    public List<Order> findCartOrder(Long consumerId) {
+        return orderRepository.findCartOrder(consumerId);
     }
 
 
