@@ -1,17 +1,18 @@
 package com.house.start.controller;
 
 
+import com.house.start.controller.form.PostForm;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
 import com.house.start.domain.Post;
+import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +20,10 @@ import java.util.List;
 public class ConsumerController {
     @Autowired
     ConsumerService consumerService;
+
+
+
+    private Logger logger = LoggerFactory.getLogger(ConsumerController.class);
 
     // 물건 리스트
     @GetMapping("/list")
@@ -123,13 +128,16 @@ public class ConsumerController {
     // 글 작성 페이지
     @GetMapping("/community/new")
     public String getNewPost(Model model) {
-        model.addAttribute("post", new Post());
+        model.addAttribute("post", new PostForm());
         return "new_post";
     }
 
     // 글 작성
     @PostMapping("/community/write")
-    public void postUser() {
+    public void postUser(@ModelAttribute PostForm post) {
+       logger.info(post.getContents());
+       logger.info(String.valueOf(post.getPhoto()));
+
 
     }
 

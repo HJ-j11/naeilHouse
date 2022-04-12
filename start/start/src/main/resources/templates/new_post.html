@@ -50,13 +50,12 @@
     </div>
 </nav>
 <div class="container">
-    <form method="post" th:action="@{/community/write}" enctype="multipart/form-data">
-        <input type="file" name="photo"/>
-        <input type="text" name="contents"/>
+    <form method="post" th:object="${post}" th:action="@{/community/write}" enctype="multipart/form-data">
+        <input type="file" th:field="*{photo}" name="photo"/>
+        <input type="text" th:field="*{contents}"name="contents"/>
+        <input type="submit" value="작성"/>
     </form>
-    <input type="submit" value="작성"/>
-</div>
 
-<script src="scripts/axure/ios.js"></script>
+</div>
 </body>
 </html>
