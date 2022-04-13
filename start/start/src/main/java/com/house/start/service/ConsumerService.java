@@ -5,12 +5,16 @@ import com.house.start.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.house.start.domain.Consumer;
+import com.house.start.repository.ConsumerRepository;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class ConsumerService {
     @Autowired
     PostRepository postRepository;
@@ -106,6 +110,5 @@ public class ConsumerService {
     public void postNew(Post post) {
         postRepository.save(post);
     }
-
 
 }

@@ -1,0 +1,2 @@
+select s.seller_id from Seller s;
+select c.ID, c.name, c.point, count(p.id) as post_num, count(l.id) as likes_num, count(r.review_id) as review_num from Consumer c, Post p, Likes l, Review r where c.consumer_id = p.consumer_id and p.consumer_id = l.consumer_id and l.consumer_id = r.consumer_id GROUP BY c.consumer_id;

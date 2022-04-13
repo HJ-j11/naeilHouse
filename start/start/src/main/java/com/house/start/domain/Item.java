@@ -1,7 +1,5 @@
 package com.house.start.domain;
-
 import com.house.start.exception.NotEnoughStockException;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +10,6 @@ import java.util.List;
 @Entity
 @Getter @Setter
 public class Item {
-
     @Id @GeneratedValue
     @Column(name = "item_id")
     private Long id;
@@ -77,5 +74,6 @@ public class Item {
         }
         this.stockQuantity = restStock;
     }
+    
 
 }

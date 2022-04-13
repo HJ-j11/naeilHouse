@@ -1,16 +1,21 @@
 package com.house.start.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
 public class Admin {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "admin_id")
     private Long admin_id;
+
     private String name;
+
     private String id;
+
     private String pwd;
 
     public Long getAdmin_id() {
@@ -44,5 +49,6 @@ public class Admin {
     public void setPwd (String pwd) {
         this.pwd = pwd;
     }
+
 
 }

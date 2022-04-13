@@ -1,9 +1,13 @@
 package com.house.start.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter@Setter
 public class Review {
 
     @Id @GeneratedValue
@@ -20,6 +24,5 @@ public class Review {
 
     private String content; // 리뷰 내용
     private LocalDateTime reviewDate; // 리뷰 작성 일시
-
 
 }

@@ -20,14 +20,14 @@ public class ItemService {
      */
     @Transactional
     public void createItem(Item item) {
-        itemRepository.create(item);
+        itemRepository.save(item);
     }
 
     /**
      *  아이디로 1개 상품 조회
      */
     public Item findItem(Long id) {
-        return itemRepository.findItem(id);
+        return itemRepository.findById(id).get();
     }
 
     /**
