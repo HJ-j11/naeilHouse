@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ConsumerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ConsumerRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,6 +148,8 @@
       <workItem from="1649761076766" duration="2237000" />
       <workItem from="1649773118771" duration="126000" />
       <workItem from="1649827312640" duration="558000" />
+      <workItem from="1649831051615" duration="10000" />
+      <workItem from="1649833404906" duration="31000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
