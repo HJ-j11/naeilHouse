@@ -1,6 +1,7 @@
 package com.house.start.domain;
 
 import com.house.start.exception.NotEnoughStockException;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,14 +24,22 @@ public class Item {
     @JoinColumn(name = "seller_id")
     private Seller seller; // 판매자
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "uploadfile_id")
-    private UploadFile uploadFile;
-
     private String name; // 상품 이름
     private int price; // 상품 가격
     private int stockQuantity; // 재고 수량
     private String info; // 상품 정보
+
+    // 상품 상태
+    @Enumerated(EnumType.STRING)
+    private ItemStatus itemStatus;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uploadfile_id")
+    private UploadFile uploadFile;
+
+    /**
+     * 생성 메서드
+     * **/
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
@@ -57,8 +66,6 @@ public class Item {
         return category.getName();
     }
 
-
-
     //==비즈니스 로직==//
     /**
      * 재고 감소
@@ -70,4 +77,5 @@ public class Item {
         }
         this.stockQuantity = restStock;
     }
+
 }

@@ -30,6 +30,8 @@ public class Order {
 
     private LocalDateTime orderDate; // 주문 일시
 
+    /*비즈니스로직*/
+    
     private OrderStatus orderStatus; // 주문 상태 [카트, 주문, 취소, 완료]
 
     //==연관관계 편의 메서드==//
@@ -76,5 +78,6 @@ public class Order {
         order.setOrderDate(LocalDateTime.now());
         return order;
     }
+
 
 }
