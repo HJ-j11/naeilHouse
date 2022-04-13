@@ -27,6 +27,9 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	//session
+	implementation 'org.springframework.session:spring-session-core'
 }
 
 tasks.named('test') {
