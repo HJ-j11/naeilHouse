@@ -37,8 +37,8 @@ public class OrderService {
     public Long order(Long consumerId, Long itemId, int count) {
 
         // 엔티티 조회 (소비자 정보 + 상품 정보)
-        Consumer consumer = consumerRepository.findConsumer(consumerId);
-        Item item = itemRepository.findItem(itemId);
+        Consumer consumer = consumerRepository.findById(consumerId).get();
+        Item item = itemRepository.findById(itemId).get();
 
         // 배송정보 생성
         Delivery delivery = new Delivery();
@@ -57,7 +57,7 @@ public class OrderService {
     }
 
     public List<Order> findCartOrder(Long consumerId) {
-        return orderRepository.findCartOrder(consumerId);
+        return orderRepository.findByConsumer(consumerId);
     }
 
     public List<Order> findOrders() {
