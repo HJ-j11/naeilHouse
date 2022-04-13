@@ -25,5 +25,4 @@ public class Review {
     private String content; // 리뷰 내용
     private LocalDateTime reviewDate; // 리뷰 작성 일시
 
-
 }
