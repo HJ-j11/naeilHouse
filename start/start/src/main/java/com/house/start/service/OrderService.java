@@ -1,7 +1,9 @@
 package com.house.start.service;
 
 import com.house.start.domain.Delivery;
+import com.house.start.domain.DeliveryStatus;
 import com.house.start.domain.Order;
+import com.house.start.domain.OrderStatus;
 import com.house.start.repository.DeliveryRepository;
 import com.house.start.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,10 +30,16 @@ public class OrderService {
     public void cancel_delivery(Long orderId){
         // Order 정보 변경
         Order order = orderRepository.findOne(orderId);
-        order.cancel();
+        Delivery delivery = order.getDelivery();
+        if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
+            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
+        }
+        order.setOrderStatus(OrderStatus.CANCEL);
 
         // Delivery 삭제
-        Delivery delivery = order.getDelivery();
+
         deliveryRepository.deleteDelivery(delivery);
     }
+
+
 }

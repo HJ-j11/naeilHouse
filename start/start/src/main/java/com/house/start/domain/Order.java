@@ -32,15 +32,4 @@ public class Order {
 
     private OrderStatus orderStatus; // 주문 상태 [주문, 취소, 완료]
 
-    /**
-     * 주문 취소
-     */
-    public void cancel() {
-        if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
-            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
-        }
-        // 주문 상태 변경
-        this.setOrderStatus(OrderStatus.CANCEL);
-    }
-
 }
