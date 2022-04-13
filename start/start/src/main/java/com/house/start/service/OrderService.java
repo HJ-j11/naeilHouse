@@ -7,18 +7,28 @@ import com.house.start.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.house.start.domain.Delivery;
+import com.house.start.domain.DeliveryStatus;
+import com.house.start.domain.Order;
+import com.house.start.domain.OrderStatus;
+import com.house.start.repository.DeliveryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class OrderService {
-
+    private final EntityManager em;
     private final ItemRepository itemRepository;
-    private final OrderRepository orderRepository;
     private final ConsumerRepository consumerRepository;
+    @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    DeliveryRepository deliveryRepository;
 
     /**
      *  주문 (바로 구매)
@@ -50,7 +60,24 @@ public class OrderService {
         return orderRepository.findCartOrder(consumerId);
     }
 
+    public List<Order> findOrders() {
+        return orderRepository.findAll();
+    }
 
+    /**
+     * 주문 취소
+     */
+    @Transactional
+    public void cancel_delivery(Long order_id){
+        // Order 정보 변경
+        Order order = orderRepository.findById(order_id).get();
+        Delivery delivery = order.getDelivery();
+        if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
+            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
+        }
+        order.setOrderStatus(OrderStatus.CANCEL);
 
-
+        // Delivery 삭제
+        deliveryRepository.delete(delivery);
+    }
 }

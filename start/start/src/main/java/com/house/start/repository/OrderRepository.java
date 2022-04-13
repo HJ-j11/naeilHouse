@@ -2,6 +2,7 @@ package com.house.start.repository;
 
 import com.house.start.domain.Order;
 import lombok.RequiredArgsConstructor;
+import com.house.start.domain.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

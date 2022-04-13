@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "orders")
 @Getter @Setter
@@ -78,6 +81,5 @@ public class Order {
         order.setOrderDate(LocalDateTime.now());
         return order;
     }
-
 
 }

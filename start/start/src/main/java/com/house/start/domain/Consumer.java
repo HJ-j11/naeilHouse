@@ -20,13 +20,11 @@ public class Consumer {
 
     @OneToMany(mappedBy = "consumer")
     private List<Like> likes = new ArrayList<>();
-
     private String name; // 소비자 이름
     private int point; // 포인트 금액
 
     @Column(name = "id")
     private String cId; // 아이디
-
     private String pwd; // 비밀번호
-
+    private String photo;
 }

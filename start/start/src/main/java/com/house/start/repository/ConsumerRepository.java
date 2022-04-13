@@ -22,4 +22,9 @@ public interface ConsumerRepository extends JpaRepository<Consumer, Long> {
 //        return em.find(Consumer.class, consumerId);
 //    }
 
+    /*
+    public List<String> findAllWith() {
+        return em.createQuery("select c.id, c.cId, count(p.id) from Consumer c, Post p where c.id = p.consumer", String.class)
+                .getResultList();
+    }*/
 }
