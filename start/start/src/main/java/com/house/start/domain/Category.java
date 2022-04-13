@@ -1,16 +1,23 @@
 package com.house.start.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity @Getter @Setter
 public class Category {
 
     @Id
     @Column(name="category_id")
     private long id;
     @Column(name="category_name")
-    private long name;
+    private String name;
+
+    @OneToMany(mappedBy = "category")
+    private List<Item> items = new ArrayList<>();
+
 }

@@ -19,16 +19,17 @@ dependencies {
 
 	// db
 	implementation 'org.springframework.boot:spring-boot-devtools'
-    implementation 'org.projectlombok:lombok:1.18.20'
-    runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.h2database:h2'
 
 	// jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	// lombok
-	implementation 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	//session
+	implementation 'org.springframework.session:spring-session-core'
 }
 
 tasks.named('test') {

@@ -16,6 +16,8 @@ public class Delivery {
     @OneToOne(mappedBy = "delivery")
     private Order order;
 
+    private String address;
+
     private DeliveryStatus deliveryStatus; // 배송 상태 [배송 준비중, 배송 완료]
 
     @Column(name="review_yn")
@@ -26,14 +28,4 @@ public class Delivery {
         this.order = order;
     }
 
-    /** 
-     *  비즈니스 로직 개발 중
-     * **/
-
-    // 배송 완료
-    public void complete() {
-        this.setDeliveryStatus(DeliveryStatus.COMPLETE);
-        order.setOrderStatus(OrderStatus.COMPLETE);
-        this.reviewYn = true;
-    }
 }
