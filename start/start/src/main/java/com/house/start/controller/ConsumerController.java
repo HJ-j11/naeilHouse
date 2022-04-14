@@ -1,10 +1,7 @@
 package com.house.start.controller;
 
 import com.house.start.controller.form.PostForm;
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Item;
-import com.house.start.domain.Post;
-import com.house.start.domain.UploadFile;
+import com.house.start.domain.*;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
@@ -12,7 +9,6 @@ import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -69,13 +65,12 @@ public class ConsumerController {
 
 
     // 장바구니
-//    @GetMapping("/cart")
-//    public String getCarts(Model model){
-//        ItemStatus status = ItemStatus.CART;
-//        List<Item> items = consumerService.findItemByStatus(status);
-//        model.addAttribute("items", items);
-//        return "cart";
-//    }
+    @GetMapping("/cart")
+    public String getCarts(Model model){
+        List<Item> itemList = consumerService.findByCart(ItemStatus.CART);
+        model.addAttribute("itemList", itemList);
+        return "cart";
+    }
 
 
     // 배송 완료
@@ -147,21 +142,25 @@ public class ConsumerController {
     // 글 작성
     @PostMapping("/community/write")
     public String postUser(@ModelAttribute PostForm post, HttpServletRequest request) throws IOException {
-        HttpSession session = request.getSession();
-
         logger.info(post.getContents());
         logger.info(String.valueOf(post.getPhoto()));
 
         UploadFile uploadFile = fileStore.storeFile(post.getPhoto(), request);
-        String consumerId = session.getId();
-        
+
+        try {
+            HttpSession session = request.getSession();
+            Consumer consumer = (Consumer) session.getAttribute("userInfo");
+        } catch(Exception e) {
+            logger.error("No session");
+        }
+
         Post newPost = Post.builder()
                 .contents(post.getContents())
                 .uploadFile(uploadFile)
                 .postDate(LocalDateTime.now())
                 .build();
 
-        consumerService.postNew(newPost);
+        consumerService.save(newPost);
 
         return "redirect:/community";
     }

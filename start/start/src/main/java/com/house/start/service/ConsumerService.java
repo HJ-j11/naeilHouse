@@ -45,10 +45,10 @@ public class ConsumerService {
     }
 
     // 장바구니 보기
-//    public List<Item> findItemByStatus(ItemStatus status) {
-//        List<Item> items = itemRepository.findByCart(ItemStatus.CART);
-//        return items;
-//    }
+    public List<Item> findByCart(ItemStatus status) {
+        List<Item> items = itemRepository.findByCart(ItemStatus.CART);
+        return items;
+    }
 
     // 장바구니 담기
     @Transactional
@@ -63,6 +63,7 @@ public class ConsumerService {
         Consumer user = consumerRepository.getById(id);
         return user;
     }
+
     // 주문 목록
     public List<Order> getAllOrders() {
         List<Order> orders = orderRepository.findAll();
@@ -107,7 +108,7 @@ public class ConsumerService {
     
     // 글 작성
     @Transactional
-    public void postNew(Post post) {
+    public void save(Post post) {
         postRepository.save(post);
     }
 
