@@ -20,6 +20,10 @@ public class Consumer {
 
     @OneToMany(mappedBy = "consumer")
     private List<Like> likes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "consumer")
+    private List<Post> posts = new ArrayList<>();
+
     private String name; // 소비자 이름
     private int point; // 포인트 금액
 

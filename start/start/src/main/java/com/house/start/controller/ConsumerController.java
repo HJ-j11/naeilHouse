@@ -18,7 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -145,15 +147,19 @@ public class ConsumerController {
     // 글 작성
     @PostMapping("/community/write")
     public String postUser(@ModelAttribute PostForm post, HttpServletRequest request) throws IOException {
-       logger.info(post.getContents());
-       logger.info(String.valueOf(post.getPhoto()));
+        HttpSession session = request.getSession();
 
-        Post newPost = new Post();
+        logger.info(post.getContents());
+        logger.info(String.valueOf(post.getPhoto()));
 
         UploadFile uploadFile = fileStore.storeFile(post.getPhoto(), request);
-
-        newPost.setContents(post.getContents());
-        newPost.setUploadFile(uploadFile);
+        String consumerId = session.getId();
+        
+        Post newPost = Post.builder()
+                .contents(post.getContents())
+                .uploadFile(uploadFile)
+                .postDate(LocalDateTime.now())
+                .build();
 
         consumerService.postNew(newPost);
 
