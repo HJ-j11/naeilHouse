@@ -1,17 +1,17 @@
 package com.house.start.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
-@Builder
+@NoArgsConstructor
 public class Post {
 
     @Id
@@ -39,5 +39,10 @@ public class Post {
 
     private LocalDateTime postDate; // 게시물 작성일시
 
-    public Post() {}
+    @Builder
+    public Post(UploadFile uploadFile, String contents, LocalDateTime postDate) {
+        this.uploadFile = uploadFile;
+        this.contents = contents;
+        this.postDate = postDate;
+    }
 }

@@ -44,18 +44,18 @@ public class ConsumerService {
         return item;
     }
 
-    // 장바구니 보기
-    public List<Item> findByCart(ItemStatus status) {
-        List<Item> items = itemRepository.findByCart(ItemStatus.CART);
-        return items;
-    }
+//    // 장바구니 보기
+//    public List<Item> findByCart(ItemStatus status) {
+//        List<Item> items = itemRepository.findByCart(ItemStatus.CART);
+//        return items;
+//    }
 
     // 장바구니 담기
     @Transactional
-    public void putCart(Item item) {
-        Item Oneitem = em.find(Item.class, item.getId());
-        Oneitem.setItemStatus(ItemStatus.CART);
-
+    public void putCart(Long id) {
+        Item item = itemRepository.getById(id);
+        item.setItemStatus(ItemStatus.CART);
+        itemRepository.save(item);
     }
 
     // 마이페이지
