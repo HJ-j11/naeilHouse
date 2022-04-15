@@ -2,7 +2,7 @@ INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (1, '1234', '홍
 INSERT INTO post (id, consumer_id) VALUES (1, 1);
 INSERT INTO Likes (id, consumer_id, post_id) VALUES (1, 1, 1);
 
-INSERT INTO Seller (seller_id, name, s_Id, store_Name, IS_APPROVED ) values (1, '판매자1', '1234', '내일의 집', TRUE);
+INSERT INTO Seller (seller_id, name, s_Id, pwd, store_Name, IS_APPROVED ) values (1, '판매자1', '1234', '1234','내일의 집', TRUE);
 INSERT INTO Seller (seller_id, name, s_Id, store_Name, IS_APPROVED ) values (2, '판매자2', '155234', '오늘의 집', FALSE);
 
 INSERT INTO ORDERS  (ORDER_ID, ORDER_DATE , CONSUMER_ID, ORDER_STATUS) VALUES (1, '20221010', 1, 1);

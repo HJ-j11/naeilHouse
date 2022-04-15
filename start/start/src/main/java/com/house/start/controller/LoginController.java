@@ -71,7 +71,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute(SessionConstants.LOGIN_MEMBER, loginSeller);
             session.setAttribute(SessionConstants.ROLE, "seller");
-            log.info("login controller - success login id: " + session.getAttribute(SessionConstants.LOGIN_MEMBER));
+            log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
         } else {
             // 관리자 로그인
             Admin loginAdmin = loginService.loginAdmin(loginForm.getLoginId(), loginForm.getPwd());
@@ -85,7 +85,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute(SessionConstants.LOGIN_MEMBER, loginAdmin);
             session.setAttribute(SessionConstants.ROLE, "admin");
-            log.info("login controller - success login id: " + session.getAttribute(SessionConstants.LOGIN_MEMBER));
+            log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
 
         }
         return "redirect:/" + redirectURL;
