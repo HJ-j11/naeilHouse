@@ -40,7 +40,6 @@ public class ConsumerController {
         model.addAttribute("items", items);
         return "consumer_itemList";
     }
-
     // 물건 카테고리
     @GetMapping("list/{category_id}")
     public String getItemByCategory(Long category_id, Model model){
@@ -59,12 +58,13 @@ public class ConsumerController {
 
     // 장바구니 담기
     @PutMapping("/list/{id}/getCart")
-    public void getItemToCart(Long id) {
-        consumerService.putCart(id);
+    public Item getItemToCart(Long id) {
+        Item item = consumerService.getOneItem(id);
+        return item;
     }
 
 
-    // 장바구니
+//    // 장바구니
 //    @GetMapping("/cart")
 //    public String getCarts(Model model){
 //        List<Item> itemList = consumerService.findByCart(ItemStatus.CART);
@@ -121,10 +121,10 @@ public class ConsumerController {
     }
 
     @GetMapping("/community/{id}")
-    public String getOnePost(Long id, Model model) {
+    public String getOnePost(@PathVariable Long id, Model model) {
         Post post = consumerService.getOnePost(id);
         model.addAttribute("post", post);
-        return "post";
+        return "post_detail";
     }
 
     @PutMapping("/community/{id}/like")
@@ -152,7 +152,6 @@ public class ConsumerController {
             Consumer consumer = (Consumer) session.getAttribute("userInfo");
         } catch(Exception e) {
             logger.error("No session");
-            //로그인 창 이동
         }
 
         Post newPost = Post.builder()

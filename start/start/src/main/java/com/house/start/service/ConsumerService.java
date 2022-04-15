@@ -16,16 +16,16 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class ConsumerService {
-    @Autowired
-    PostRepository postRepository;
-    @Autowired
-    DeliveryRepository deliveryRepository;
-    @Autowired
-    ItemRepository itemRepository;
-    @Autowired
-    ConsumerRepository consumerRepository;
-    @Autowired
-    OrderRepository orderRepository;
+
+    private final PostRepository postRepository;
+
+    private final DeliveryRepository deliveryRepository;
+
+    private final ItemRepository itemRepository;
+
+    private final ConsumerRepository consumerRepository;
+
+    private final OrderRepository orderRepository;
 
     private EntityManager em;
     // 물건 정렬

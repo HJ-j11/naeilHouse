@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ConsumerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ConsumerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/orderlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/orderlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +45,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -108,6 +110,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\templates" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources" />
@@ -157,7 +160,7 @@
       <workItem from="1649833404906" duration="666000" />
       <workItem from="1649898006879" duration="7602000" />
       <workItem from="1649931983499" duration="10000" />
-      <workItem from="1650009185575" duration="1586000" />
+      <workItem from="1650009185575" duration="5218000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -243,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649916417167</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="@Builder 변경&#10;@NoArgsConstructor 추가">
+      <created>1650010827982</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1650010827982</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +296,7 @@
     <MESSAGE value="파일 업로드 설정" />
     <MESSAGE value="Post @Bulider 적용" />
     <MESSAGE value="장바구니 담기 기능 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니 담기 기능 추가" />
+    <MESSAGE value="@Builder 변경&#10;@NoArgsConstructor 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="@Builder 변경&#10;@NoArgsConstructor 추가" />
   </component>
 </project>
