@@ -14,7 +14,6 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
-    // ?ordercontroller일지 consumercontroller가 맞을지 모르겠어서 ㅜㅜㅜ 회의 후에 여쭤보고 옮기겠습니다...!!
     @GetMapping("/orderlist")
     public String showOrder (Model model) {
         List<Order> orderList = orderService.findOrders();

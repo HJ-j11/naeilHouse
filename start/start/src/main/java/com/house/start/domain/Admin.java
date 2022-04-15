@@ -13,7 +13,7 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "admin_id")
-    private Long admin_id;
+    private Long id;
 
     private String name; // 관리자 이름
     private String aId; // 아이디
