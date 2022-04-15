@@ -10,4 +10,7 @@ import java.util.Optional;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
+    // 관리자 아이디로 조회
+    Admin findByAId (String aId);
+
 }

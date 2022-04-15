@@ -29,7 +29,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin_sellers")
-    public String showSellers(String id, Model model) {
+    public String showSellers(Model model) {
         List<Seller> sellerList = sellerService.findSellers();
         System.out.println(sellerList);
         model.addAttribute("sellerList",sellerList);
