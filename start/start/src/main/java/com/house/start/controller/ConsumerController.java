@@ -234,13 +234,6 @@ public class ConsumerController {
 
         return "redirect:/consumer/cart/list";
     }
-    // 로그인
-    @PostMapping("/login")
-    public String login(Model model) {
-        return "/login";
-    }
-
-
     /**
      *  장바구니 페이지
      */

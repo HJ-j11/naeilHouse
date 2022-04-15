@@ -1,4 +1,4 @@
-INSERT INTO consumer (consumer_id, id, name, pwd) VALUES (1, '1234', '홍길동', '55555');
+INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (1, '1234', '홍길동', '1234', 123);
 INSERT INTO post (id, consumer_id) VALUES (1, 1);
 INSERT INTO Likes (id, consumer_id, post_id) VALUES (1, 1, 1);
 

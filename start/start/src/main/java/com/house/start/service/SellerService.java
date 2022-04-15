@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SellerService {
     private final EntityManager em;
+    @Autowired
     SellerRepository sellerRepository;
 
     /**

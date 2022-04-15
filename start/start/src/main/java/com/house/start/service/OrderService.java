@@ -25,7 +25,9 @@ public class OrderService {
     private final EntityManager em;
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
+    @Autowired
     OrderRepository orderRepository;
+    @Autowired
     DeliveryRepository deliveryRepository;
 
     /**

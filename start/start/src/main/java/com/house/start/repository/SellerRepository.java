@@ -14,5 +14,5 @@ import java.util.List;
 public interface SellerRepository extends JpaRepository<Seller, Long> {
 
     // 판매자 아이디로 조회
-    Seller findBySId (String sId);
+    Seller findBysId (String sId);
 }

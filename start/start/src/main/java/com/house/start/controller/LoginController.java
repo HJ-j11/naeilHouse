@@ -16,19 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class LoginuserController {
+public class LoginController {
     private final LoginService loginService;
 
     // 로그인 화면으로 이동
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute LoginForm loginForm) {
+    public String login(@ModelAttribute LoginForm loginForm) {
+        log.info("login controller - do login");
         return "login/loginForm";
     }
 
     @PostMapping("/login")
     public String loginUser(@ModelAttribute @Validated LoginForm loginForm,
-                        BindingResult bindingResult,
-                        @RequestParam(defaultValue = "/") String redirectURL) {
+                            BindingResult bindingResult,
+                            @RequestParam(defaultValue = "/") String redirectURL) {
+        log.info("login controller - post login data");
         if (bindingResult.hasErrors()) {
             return "login/loginForm";
         }
@@ -37,19 +39,19 @@ public class LoginuserController {
             // 소비자 로그인
             Consumer loginConsumer = loginService.loginConsumer(loginForm.getLoginId(), loginForm.getPwd());
             if (loginConsumer == null) {
+                log.info("login controller - fail login" + loginForm.getLoginId());
                 bindingResult.reject("loginFall", "아이디 또는 비밀번호가 맞지 않습니다. 회원이 맞는지 확인해보세요.");
             }
-
+        /*
         } else if (role_num == 1) {
             // 판매자 로그인
 
         } else {
             // 관리자 로그인
 
+        }*/
         }
-
-
-        return "reditect: " +redirectURL;
-
+        log.info("login controller - success login" + loginForm.getLoginId());
+        return "redirect:/" + redirectURL;
     }
 }

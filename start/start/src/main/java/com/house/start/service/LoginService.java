@@ -5,27 +5,30 @@ import com.house.start.repository.AdminRepository;
 import com.house.start.repository.ConsumerRepository;
 import com.house.start.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class LoginService {
     private final EntityManager em;
+    @Autowired
     ConsumerRepository consumerRepository;
+    @Autowired
     SellerRepository sellerRepository;
+    @Autowired
     AdminRepository adminRepository;
 
     public Consumer loginConsumer(String loginId, String pwd) {
-        Consumer consumer = consumerRepository.findByCId(loginId);
-        if (consumer.getPwd().equals(pwd)) {
-            return consumer;
-        } else{
-            return null;
-        }
+        return consumerRepository.findBycId(loginId)
+                .filter(c -> c.getPwd().equals(pwd))
+                .orElse(null);
     }
 
 }
