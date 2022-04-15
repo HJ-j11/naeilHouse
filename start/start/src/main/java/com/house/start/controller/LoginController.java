@@ -4,6 +4,7 @@ import com.house.start.controller.form.LoginForm;
 import com.house.start.domain.Consumer;
 import com.house.start.service.LoginService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +13,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
-public class LoginController {
+public class LoginuserController {
     private final LoginService loginService;
 
     // 로그인 화면으로 이동
@@ -24,7 +26,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute @Validated LoginForm loginForm,
+    public String loginUser(@ModelAttribute @Validated LoginForm loginForm,
                         BindingResult bindingResult,
                         @RequestParam(defaultValue = "/") String redirectURL) {
         if (bindingResult.hasErrors()) {
@@ -37,7 +39,7 @@ public class LoginController {
             if (loginConsumer == null) {
                 bindingResult.reject("loginFall", "아이디 또는 비밀번호가 맞지 않습니다. 회원이 맞는지 확인해보세요.");
             }
-            
+
         } else if (role_num == 1) {
             // 판매자 로그인
 
