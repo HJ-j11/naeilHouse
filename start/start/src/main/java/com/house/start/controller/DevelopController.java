@@ -43,10 +43,6 @@ public class DevelopController {
         return "sample";
     }
 
-    @GetMapping("/")
-    public String main() {
-        return "main";
-    }
 
     @GetMapping("/admin/consumerSetting")
     public String consumerManagement() {

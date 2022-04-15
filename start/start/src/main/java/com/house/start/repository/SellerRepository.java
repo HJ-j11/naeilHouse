@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SellerRepository extends JpaRepository<Seller, Long> {
 
     // 판매자 아이디로 조회
-    Seller findBysId (String sId);
+    Optional<Seller> findBysId (String sId);
 }
