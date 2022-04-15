@@ -36,7 +36,6 @@ public class LoginController {
     @PostMapping("/login")
     public String loginUser(@ModelAttribute @Validated LoginForm loginForm,
                             BindingResult bindingResult,
-                            @RequestParam(defaultValue = "/") String redirectURL,
                             HttpServletRequest request) {
         log.info("login controller - post login data");
         if (bindingResult.hasErrors()) { // 입력한 loginForm 형식이 안맞는 경우
@@ -88,12 +87,10 @@ public class LoginController {
             log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
 
         }
-        return "redirect:/" + redirectURL;
+        return "redirect:/";
     }
 
-
-
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
