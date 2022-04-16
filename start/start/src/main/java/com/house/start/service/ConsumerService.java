@@ -10,7 +10,9 @@ import com.house.start.repository.ConsumerRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -18,16 +20,12 @@ import java.util.List;
 public class ConsumerService {
 
     private final PostRepository postRepository;
-
     private final DeliveryRepository deliveryRepository;
-
     private final ItemRepository itemRepository;
-
     private final ConsumerRepository consumerRepository;
-
     private final OrderRepository orderRepository;
+    private final LikeRepository likeRepository;
 
-    private EntityManager em;
     // 물건 정렬
     public List<Item> getAllItems() {
         List<Item> items = itemRepository.findAll();
@@ -78,16 +76,14 @@ public class ConsumerService {
 
     // 배송 완료
     @Transactional
-    public void completeDelivery(Delivery delivery) {
-        Delivery oneDelivery = em.find(Delivery.class, delivery.getId());
-        Order order = oneDelivery.getOrder();
+    public void completeDelivery(Long id) {
+        Delivery delivery = deliveryRepository.getById(id);
+        Order order = delivery.getOrder();
 
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);
         delivery.setReviewYn(true);
 
-//        em.persist(oneDelivery);
-//        em.persist(order);
     }
 
     // 글 목록
@@ -101,9 +97,17 @@ public class ConsumerService {
         return post;
     }
     
-    // 좋아요
-    public void putLikes() {
+    /**
+     * 글 좋아요 누르기
+     * **/
+    public void putLikes(Long id) {
+        Post post = postRepository.getById(id);
+        Like like = Like.builder()
+                .consumer(post.getConsumer())
+                .post(post)
+                .build();
 
+        likeRepository.save(like);
     }
     
     // 글 작성

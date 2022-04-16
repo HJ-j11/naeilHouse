@@ -20,9 +20,32 @@
     <div>
         <img th:src="|/upload/${post.uploadFile.storeFileName}|">
     </div>
-    <div>좋아요 <span></span></div>
+    <div>
+        <button id="likes" th:onclick="putLikes(${post.id})">좋아요</button>
+    </div>
+    <div>좋아요 수 <span th:text="${likes}"></span></div>
     <div>유저 정보 <span th:text="${post.consumer.name}"></span></div>
     <div>댓글 수</div>
     <div>댓글</div>
 </body>
+<script>
+    function putLikes(id) {
+        let putUrl = "/community/"+id+"/likes";
+        fetch(putUrl, {
+            method : "POST",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+            body : JSON.stringify({
+                postId : id,
+                // session에서 값 넣어줄 것.
+                // consumerId : consumerId
+            }),
+        })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+        // console에 데이터 잘 넘어갔는지 확인 필요.
+    }
+
+</script>
 </html>

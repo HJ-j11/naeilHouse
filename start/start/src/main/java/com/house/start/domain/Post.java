@@ -37,10 +37,16 @@ public class Post {
 
     private LocalDateTime postDate; // 게시물 작성일시
 
+    public Long countLikes() {
+        return Long.valueOf(this.likes.size());
+    }
+
     @Builder
     public Post(UploadFile uploadFile, String contents, LocalDateTime postDate) {
         this.uploadFile = uploadFile;
         this.contents = contents;
         this.postDate = postDate;
     }
+
+
 }

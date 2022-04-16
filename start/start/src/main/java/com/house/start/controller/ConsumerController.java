@@ -18,7 +18,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -123,14 +125,13 @@ public class ConsumerController {
     @GetMapping("/community/{id}")
     public String getOnePost(@PathVariable Long id, Model model) {
         Post post = consumerService.getOnePost(id);
+
         model.addAttribute("post", post);
+        model.addAttribute("likes", post.countLikes());
+
         return "post_detail";
     }
 
-    @PutMapping("/community/{id}/like")
-    public void putLikes() {
-
-    }
 
     // 글 작성 페이지
     @GetMapping("/community/new")
@@ -164,7 +165,13 @@ public class ConsumerController {
 
         return "redirect:/community";
     }
-
+    /**
+     * 글 -> 좋아요 누르기
+     * **/
+    @PostMapping("/community/{id}/likes")
+    public void putLikes(@RequestParam Long id) {
+        consumerService.putLikes(id);
+    }
     // 댓글 등록
     @PostMapping("/comments/write")
     public void postComment() {
