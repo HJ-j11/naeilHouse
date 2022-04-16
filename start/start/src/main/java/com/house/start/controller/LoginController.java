@@ -5,10 +5,12 @@ import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.Admin;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Seller;
+import com.house.start.domain.UserType;
 import com.house.start.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,7 +30,7 @@ public class LoginController {
 
     // 로그인 화면으로 이동
     @GetMapping("/login")
-    public String login(@ModelAttribute LoginForm loginForm) {
+    public String login(@ModelAttribute LoginForm loginForm, Model model) {
         log.info("login controller - do login");
         return "login/loginForm";
     }

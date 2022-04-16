@@ -1,70 +1,147 @@
-loginForm.html
-
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <link th:href="@{/css/bootstrap.min.css}"
-          href="../css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .container {
-            max-width: 560px;
-        }
-        .field-error {
-            border-color: #dc3545;
-            color: #dc3545;
-        }
-    </style>
+    <title>내일의 집</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <!--axure-->
+    <link href="css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="css/login/loginForm.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="javascript/document.js"></script>
+    <script src="css/login/data.js"></script>
+
 </head>
 <body>
+<div id="base" class="">
 
-<div class="container">
+    <!-- Login (Group) -->
+    <div id="u16" class="ax_default" data-label="Login" data-left="390" data-top="110" data-width="607" data-height="591">
 
-    <div class="py-5 text-center">
-        <h2>로그인</h2>
+        <!-- logo_img (Rectangle) -->
+        <div id="u17" class="ax_default shape" data-label="logo_img">
+            <div id="u17_div" class=""></div>
+            <div id="u17_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- logo (Rectangle) -->
+        <div id="u18" class="ax_default shape" data-label="logo">
+            <div id="u18_div" class=""></div>
+            <div id="u18_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <form th:action th:object="${loginForm}" method="post">
+
+            <!-- 로그인 에러 메세지 -->
+            <div id="login-error-msg" th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
+
+            </div>
+
+            <!-- pwd_box (Group) -->
+            <div id="u22" class="ax_default" data-label="pwd_box" data-left="440" data-top="399" data-width="557" data-height="93">
+
+                <!-- pwd_box (Rectangle) -->
+                <div id="u23" class="ax_default shape" data-label="pwd_box">
+                    <div id="u23_div" class=""></div>
+                    <div id="u23_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- 비밀번호 (Text Field) -->
+                <div id="u24" class="ax_default text_field" data-label="비밀번호">
+                    <img id="u24_img" class="img " src="images/login/비밀번호_u24.svg"/>
+                    <input id="u24_input" type="password" th:field="*{pwd}" th:errorclass="field-error" value="" class="u24_input"/>
+                    <div class="field-error" th:errors="*{pwd}" />
+                </div>
+
+            </div>
+
+            <!-- 이메일_button (Group) -->
+            <div id="u25" class="ax_default" data-label="id_button" data-left="440" data-top="308" data-width="557" data-height="93">
+
+                <!-- 이메일_box (Rectangle) -->
+                <div id="u26" class="ax_default shape" data-label="id_box">
+                    <div id="u26_div" class=""></div>
+                    <div id="u26_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- 이메일 (Text Field) -->
+                <div id="u27" class="ax_default text_field" data-label="이메일">
+                    <img id="u27_img" class="img " src="images/login/비밀번호_u24.svg"/>
+                    <input id="u27_input" type="text" th:field="*{loginId}" th:errorclass="field-error" value="" class="u27_input" />
+                    <div class="field-error" th:errors="*{loginId}" />
+                </div>
+
+
+            </div>
+
+            <!-- 소비자, 판매자, 관리자 중 선택-->
+            <div id="user-type">
+                <input type="radio" id="role" name="role" value="0" th:field="*{role}" th:errorclass="field-error">
+                <label for="role">회원</label>
+
+                <input type="radio" id="role" name="role" value="1" th:field="*{role}" th:errorclass="field-error">
+                <label  for="role">판매자</label>
+
+                <input type="radio" id="role" name="role" value="2" th:field="*{role}" th:errorclass="field-error">
+                <label for="role">관리자</label>
+
+                <div class="field-error" th:errors="*{role}"/>
+            </div>
+
+            <!-- login_summit (Group) -->
+            <button id ="login-summit" type="submit">로그인</button>
+
+        </form>
+
+        <!-- 판매자 신청 (Rectangle) -->
+        <div id="enroll_seller" class="ax_default shape" data-label="판매자 신청">
+            <div id="u28_div" class=""></div>
+            <div id="u28_text" class="text ">
+                <p><span>판매자 신청</span></p>
+            </div>
+        </div>
+
     </div>
-
-    <form action="item.html" th:action th:object="${loginForm}" method="post">
-
-        <div th:if="${#fields.hasGlobalErrors()}">
-            <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
-        </div>
-
-        <div>
-            <label for="role">선택</label>
-            <input type="number" id="role" th:field="*{role}" class="form-control"
-                   th:errorclass="field-error">
-            <div class="field-error" th:errors="*{role}" />
-        </div>
-
-        <div>
-            <label for="loginId">로그인 ID</label>
-            <input type="text" id="loginId" th:field="*{loginId}" class="form-control"
-                   th:errorclass="field-error">
-            <div class="field-error" th:errors="*{loginId}" />
-        </div>
-        <div>
-            <label for="pwd">비밀번호</label>
-            <input type="password" id="pwd" th:field="*{pwd}" class="form-control"
-                   th:errorclass="field-error">
-            <div class="field-error" th:errors="*{pwd}" />
-        </div>
-
-        <hr class="my-4">
-
-        <div class="row">
-            <div class="col">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">로그인</button>
-            </div>
-            <div class="col">
-                <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='items.html'"
-                        th:onclick="|location.href='@{/}'|"
-                        type="button">취소</button>
-            </div>
-        </div>
-
-    </form>
-
-</div> <!-- /container -->
+</div>
+<script src="resources/scripts/axure/ios.js"></script>
 </body>
 </html>
