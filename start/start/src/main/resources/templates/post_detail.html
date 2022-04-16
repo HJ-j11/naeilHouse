@@ -21,12 +21,16 @@
         <img th:src="|/upload/${post.uploadFile.storeFileName}|">
     </div>
     <div>
-        <button id="likes" th:onclick="putLikes(${post.id})">좋아요</button>
+        <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>
     </div>
     <div>좋아요 수 <span th:text="${likes}"></span></div>
     <div>유저 정보 <span th:text="${post.consumer.name}"></span></div>
-    <div>댓글 수</div>
+    <div>댓글 수<span th:text="${comments.size()}"></span></div>
     <div>댓글</div>
+    <form th:action="@{/comments/write}">
+        <input type="textarea" name="contents"/>
+        <input type="submit" value="댓글 작성"/>
+    </form>
 </body>
 <script>
     function putLikes(id) {
@@ -37,13 +41,15 @@
                 "Content-Type" : "application/json",
             },
             body : JSON.stringify({
-                postId : id,
+                id : id
                 // session에서 값 넣어줄 것.
                 // consumerId : consumerId
             }),
         })
         .then((response) => response.json())
-        .then((data) => console.log(data));
+        .then(
+            alert("좋아요를 눌렀습니다.")
+        );
         // console에 데이터 잘 넘어갔는지 확인 필요.
     }
 

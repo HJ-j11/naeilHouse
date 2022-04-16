@@ -126,9 +126,11 @@ public class ConsumerController {
     public String getOnePost(@PathVariable Long id, Model model) {
         Post post = consumerService.getOnePost(id);
 
+        // 간편하게 넘기는 법 없을까?
+
         model.addAttribute("post", post);
         model.addAttribute("likes", post.countLikes());
-
+        model.addAttribute("comments", post.getComments());
         return "post_detail";
     }
 
@@ -169,13 +171,22 @@ public class ConsumerController {
      * 글 -> 좋아요 누르기
      * **/
     @PostMapping("/community/{id}/likes")
-    public void putLikes(@RequestParam Long id) {
-        consumerService.putLikes(id);
+    public String putLikes(@PathVariable String id) {
+        consumerService.putLikes(Long.valueOf(id));
+        return "redirect:/community/"+id;
     }
-    // 댓글 등록
-    @PostMapping("/comments/write")
-    public void postComment() {
 
+
+    /**
+     * 댓글
+     * **/
+
+
+    // 댓글 작성
+    @PostMapping("/community/{id}/comments/write")
+    public String postComment(@PathVariable String id, @RequestParam String contents) {
+        consumerService.saveComment(id, contents);
+        return "redirect:/community/"+id;
     }
 
     // 댓글 수정
@@ -189,6 +200,8 @@ public class ConsumerController {
     public void deleteComment() {
 
     }
+
+
     /**
      *  상품 목록 페이지
      */

@@ -41,6 +41,7 @@ public class Post {
         return Long.valueOf(this.likes.size());
     }
 
+
     @Builder
     public Post(UploadFile uploadFile, String contents, LocalDateTime postDate) {
         this.uploadFile = uploadFile;

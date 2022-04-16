@@ -25,6 +25,11 @@ public class ConsumerService {
     private final ConsumerRepository consumerRepository;
     private final OrderRepository orderRepository;
     private final LikeRepository likeRepository;
+    private final CommentRepository commentRepository;
+
+    /**
+     * 상품
+     * **/
 
     // 물건 정렬
     public List<Item> getAllItems() {
@@ -84,8 +89,14 @@ public class ConsumerService {
         order.setOrderStatus(OrderStatus.COMPLETE);
         delivery.setReviewYn(true);
 
+        deliveryRepository.save(delivery);
+
     }
 
+    /**
+     * 커뮤니티
+     * **/
+    
     // 글 목록
     public List<Post> getAllPost() {
         List<Post> posts = postRepository.findAll();
@@ -96,12 +107,12 @@ public class ConsumerService {
         Post post = postRepository.getById(id);
         return post;
     }
-    
-    /**
-     * 글 좋아요 누르기
-     * **/
+
+    // 글 좋아요
+    @Transactional
     public void putLikes(Long id) {
         Post post = postRepository.getById(id);
+        // session 구현되면 consumer 넣기
         Like like = Like.builder()
                 .consumer(post.getConsumer())
                 .post(post)
@@ -115,5 +126,22 @@ public class ConsumerService {
     public void save(Post post) {
         postRepository.save(post);
     }
+
+    /**
+     * 댓글
+     * **/
+    
+    // 댓글 등록
+    @Transactional
+    public void saveComment(String id, String contents) {
+        Post post = getOnePost(Long.valueOf(id));
+        Comment comment = Comment.builder()
+                .consumer(post.getConsumer())
+                .post(post)
+                .content(contents)
+                .build();
+        commentRepository.save(comment);
+    }
+
 
 }
