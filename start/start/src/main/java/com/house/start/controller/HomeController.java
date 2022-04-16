@@ -23,7 +23,7 @@ public class HomeController {
         log.info("home controller - check session: " + session.getAttribute(SessionConstants.LOGIN_MEMBER));
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "main";
+            return "home";
         }
 
         // ROLE에 따라 다르게 routing
