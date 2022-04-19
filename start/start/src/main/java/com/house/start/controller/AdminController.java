@@ -2,8 +2,10 @@ package com.house.start.controller;
 
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
+import com.house.start.domain.Post;
 import com.house.start.domain.Seller;
 import com.house.start.service.ConsumerService;
+import com.house.start.service.PostService;
 import com.house.start.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,7 @@ import java.util.List;
 public class AdminController {
     private final ConsumerService consumerService;
     private final SellerService sellerService;
+    private final PostService postService;
 
     // 소비자 정보 조회
     @GetMapping("/admin/consumers")
@@ -36,7 +39,6 @@ public class AdminController {
     public String showSellers(Model model) {
         log.info("--- admin controller - show sellers info -----------------------------------------");
         List<Seller> sellerList = sellerService.findSellers();
-        System.out.println(sellerList);
         model.addAttribute("sellerList",sellerList);
         return "admin/show_sellers";
     }
@@ -55,6 +57,15 @@ public class AdminController {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);
         return "redirect:/admin_sellers";
+    }
+
+    // 게시글 정보 조회
+    @GetMapping("/admin/posts")
+    public String showPosts(Model model) {
+        log.info("--- admin controller - show posts info -----------------------------------------");
+        List<Post> postList = postService.findPosts();
+        model.addAttribute("postList",postList);
+        return "admin/show_posts";
     }
 
 }

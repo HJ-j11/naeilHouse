@@ -6,7 +6,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <!-- develop -->
-    <link href="http://localhost:8080/css/admin/show_consumers.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/admin/show_posts.css" type="text/css" rel="stylesheet"/>
 
     <!--axure-->
     <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -143,29 +143,23 @@
             </div>
 
             <div id ="main_content">
-                <table id="consumers" width="1440">
-                    <tr>
-                        <th width="200">회원 프로필 </th>
-                        <th width="600">info </th>
-                        <th width="120">주문 수</th>
-                        <th width="120">리뷰 수</th>
-                        <th width="120">게시글 수</th>
-                        <th width="120">좋아요 수</th>
+                <table class="posts" width="1440">
+                    <tr width="300">
+                        <th width="150">판매자 이름 </th>
+                        <th width="150">id </th>
+                        <th width="300">상호명</th>
+                        <th width="300">판매 물품 갯수</th>
+                        <th width="300">승인 여부</th>
                     </tr>
+                    <tr th:each="post : ${postList}">
+                        <td th:text="${seller.name}"></td>
+                        <td th:text="${seller.sId}"></td>
+                        <td th:text="${seller.storeName}"></td>
 
-                    <tr th:each="consumer: ${consumerList}">
-                        <td th:src="@{consumer.photo}"></td>
-                        <td>
-                            <p th:text="${consumer.name}">님</p>
-                            <p th:text="${consumer.id}"></p>
-                            <p id ="consumer_point" th:text="${consumer.point}"></p>
-                        </td>
-                        <td th:text="${consumer.orders.size}"></td>
-                        <td th:text="${consumer.reviews.size}"></td>
-                        <td th:text="${consumer.posts.size}"></td>
-                        <td th:text="${consumer.likes.size}"></td>
+                        <td th:text="${seller.items.size}">개</td>
+
+    
                     </tr>
-
                 </table>
             </div>
 
@@ -219,6 +213,5 @@
     </div>
 
 </div>
-
 </body>
 </html>
