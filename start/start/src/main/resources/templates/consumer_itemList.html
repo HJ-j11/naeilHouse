@@ -45,11 +45,11 @@
                         <a class="nav-link" href="#">마이페이지</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown11" data-bs-toggle="dropdown"
-                           aria-expanded="false">관리페이지</a>
+                        <a class="nav-link dropdown-toggle" href="/cart" id="dropdown11" data-bs-toggle="dropdown"
+                           aria-expanded="false">장바구니</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown11">
-                            <li><a class="dropdown-item" href="#">판매 현황</a></li>
-                            <li><a class="dropdown-item" href="#">주문 현황</a></li>
+                            <li><a class="dropdown-item" href="#">로그인</a></li>
+                            <li><a class="dropdown-item" href="#">회원가입</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -67,7 +67,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
+<!--                    <th>#</th>-->
                     <th>상품명</th>
                     <th>가격</th>
                     <th>#</th>
@@ -75,11 +75,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="item : ${items}">
-                    <td><img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40"></td>
+                    <td><img th:src="|/upload/${item.uploadFileName.storeFileName}|" width="40" height="40"></td>
                     <td th:text="${item.name}" class="align-middle"></td>
                     <td th:text="${item.price}" class="align-middle"></td>
                     <td>
-                        <a href="#" th:href="@{/consumer/item/{id}/info (id=${item.id})}" class="btn btn-primary" role="button">상세 정보</a>
+                        <a th:href="@{/consumer/item/{id}/info (id=${item.id})}" class="btn btn-primary" role="button">상세 정보</a>
                     </td>
                 </tr>
                 </tbody>

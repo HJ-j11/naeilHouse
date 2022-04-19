@@ -1,72 +1,270 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consumer Post</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
-    <!-- Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- develop -->
+    <link href="css/consumer/orderlist.css" type="text/css" rel="stylesheet"/>
 
-    <!-- Custom styles for this template -->
-    <link href="/css/navbar.css" rel="stylesheet">
-    <link href="/css/footers.css" rel="stylesheet">
-    <script src="/javascript/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-    <title>Community List</title>
+    <!--axure-->
+    <link href="css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="css/consumer/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="scripts/jquery-3.2.1.min.js"></script>
+    <script src="scripts/axure/axQuery.js"></script>
+    <script src="scripts/axure/globals.js"></script>
+    <script src="scripts/axutils.js"></script>
+    <script src="scripts/axure/annotation.js"></script>
+    <script src="scripts/axure/axQuery.std.js"></script>
+    <script src="scripts/axure/doc.js"></script>
+    <script src="scripts/messagecenter.js"></script>
+    <script src="scripts/axure/events.js"></script>
+    <script src="scripts/axure/recording.js"></script>
+    <script src="scripts/axure/action.js"></script>
+    <script src="scripts/axure/expr.js"></script>
+    <script src="scripts/axure/geometry.js"></script>
+    <script src="scripts/axure/flyout.js"></script>
+    <script src="scripts/axure/model.js"></script>
+    <script src="scripts/axure/repeater.js"></script>
+    <script src="scripts/axure/sto.js"></script>
+    <script src="scripts/axure/utils.temp.js"></script>
+    <script src="scripts/axure/variables.js"></script>
+    <script src="scripts/axure/drag.js"></script>
+    <script src="scripts/axure/move.js"></script>
+    <script src="scripts/axure/visibility.js"></script>
+    <script src="scripts/axure/style.js"></script>
+    <script src="scripts/axure/adaptive.js"></script>
+    <script src="scripts/axure/tree.js"></script>
+    <script src="scripts/axure/init.temp.js"></script>
+    <script src="scripts/axure/legacy.js"></script>
+    <script src="scripts/axure/viewer.js"></script>
+    <script src="scripts/axure/math.js"></script>
+    <script src="scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="javascript/document.js"></script>
+    <script src="css/consumer/data.js"></script>
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+<div id="base" class="">
 
-    <a class="navbar-brand" href="/sample" style="position: absolute; left: 20px">
-        <img src="/images/logo.png" alt="" width="90" height="44" class="d-inline-block align-text-top">
-    </a>
+    <!-- Topbar (Group) -->
+    <div id="u121" class="ax_default" data-label="Topbar" data-left="0" data-top="2" data-width="1440" data-height="115">
 
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse justify-content-md-center">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">커뮤니티</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/sample" id="dropdown10" data-bs-toggle="dropdown"
-                       aria-expanded="false">스토어</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown10">
-                        <li><a class="dropdown-item" href="/seller/item/list">홈</a></li>
-                        <li><a class="dropdown-item" href="/seller/add/item">상품 등록</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">마이페이지</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/community/new">글쓰기</a>
-                </li>
-            </ul>
+        <!-- logo (Rectangle) -->
+        <div id="u122" class="ax_default shape" data-label="logo">
+            <div id="u122_div" class=""></div>
+            <div id="u122_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- posting_button (Group) -->
+        <div id="u123" class="ax_default" data-label="posting_button" data-left="1295" data-top="17" data-width="125" data-height="49">
+
+            <!-- post_box (Rectangle) -->
+            <div id="u124" class="ax_default shape" data-label="post_box">
+                <div id="u124_div" class=""></div>
+                <div id="u124_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- 글쓰기 (Rectangle) -->
+            <div id="u125" class="ax_default shape" data-label="글쓰기">
+                <div id="u125_div" class=""></div>
+                <div id="u125_text" class="text ">
+                    <p><span>글쓰기</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- cart icon (Dynamic Panel) -->
+        <div id="u126" class="ax_default" data-label="cart icon">
+            <div id="u126_state0" class="panel_state" data-label="State 1" style="">
+                <div id="u126_state0_content" class="panel_state_content">
+                </div>
+            </div>
+        </div>
+
+        <!-- 검색 (Group) -->
+        <div id="u127" class="ax_default" data-label="검색" data-left="637" data-top="17" data-width="331" data-height="54">
+
+            <!-- 검색바 (Rectangle) -->
+            <div id="u128" class="ax_default shape" data-label="검색바">
+                <div id="u128_div" class=""></div>
+                <div id="u128_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- 검색창 (Text Field) -->
+            <div id="u129" class="ax_default text_field" data-label="검색창">
+                <img id="u129_img" class="img " src="images/main/검색창_u8.svg"/>
+                <input id="u129_input" type="text" value="" class="u129_input"/>
+            </div>
+
+            <!-- search_icon (Group) -->
+            <div id="u130" class="ax_default" data-label="search_icon" data-left="637" data-top="17" data-width="53" data-height="54">
+
+                <!-- search_icon (Rectangle) -->
+                <div id="u131" class="ax_default shape" data-label="search_icon">
+                    <div id="u131_div" class=""></div>
+                    <div id="u131_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- icon (Shape) -->
+                <div id="u132" class="ax_default shape" data-label="icon">
+                    <img id="u132_img" class="img " src="images/main/icon_u11.svg"/>
+                    <div id="u132_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 마이페이지 (Rectangle) -->
+        <div id="u133" class="ax_default shape" data-label="마이페이지">
+            <div id="u133_div" class=""></div>
+            <div id="u133_text" class="text ">
+                <p><span>마이페이지</span></p>
+            </div>
+        </div>
+
+        <!-- 스토어 (Rectangle) -->
+        <div id="u134" class="ax_default shape" data-label="스토어">
+            <div id="u134_div" class=""></div>
+            <div id="u134_text" class="text ">
+                <p><span>스토어</span></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u135" class="ax_default shape">
+            <div id="u135_div" class=""></div>
+            <div id="u135_text" class="text ">
+                <p><span>커뮤니티</span></p>
+            </div>
+        </div>
+
+        <!-- border (Shape) -->
+        <div id="u136" class="ax_default shape" data-label="border">
+            <img id="u136_img" class="img " src="images/main/border_u14.svg"/>
+            <div id="u136_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <div id ="main_content">
+            <table id="orders" th:width="1440">
+                <tr>
+                    <th th:width="200">이미지</th>
+                    <th th:width="200">No</th>
+                    <th th:width="500">제목</th>
+                    <th th:width="200">작성자</th>
+                    <th th:width="200">조회수</th>
+                </tr>
+                <tr th:each="post : ${postList}">
+                    <td><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="100" height="100"></td>
+                    <td th:text="${post.id}"></td>
+                    <td>
+                        <a th:href="@{'/community/'+${post.id}}">
+                            <span th:text="${post.contents}"></span>
+                        </a>
+                    </td>
+                    <td th:text="${post.consumer.name}"></td>
+                    <td></td>
+                </tr>
+            </table>
+<!--            <table id="orders" width="1440">-->
+<!--                -->
+
+<!--                <block th:each="order: ${orderList}">-->
+<!--                    <p id ="order_data" th:text="${order.orderDate}"></p>-->
+<!--                    <tr th:each="orderitem: ${order.orderItems}">-->
+<!--                        &lt;!&ndash;-->
+<!--                        <td th:src="@{orderitem.item.photo}"></td>-->
+<!--                        &ndash;&gt;-->
+<!--                        <td>-->
+<!--                            <p th:text="${orderitem.item.seller.storeName}"></p>-->
+<!--                            <p th:text="${orderitem.item.name}"></p>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <p th:text="${orderitem.orderPrice}">원</p>-->
+<!--                            <p th:text="${orderitem.count}">개</p>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <p th:text="${order.orderStatus}"></p>-->
+<!--                    <button th:if="${order.orderStatus == ORDER}">승인 취소하기</button>-->
+<!--                    <div th:switch="${order.orderStatus}">-->
+<!--                        <button th:case="ORDER">취소하기</button>-->
+<!--                        <button th:case='ORDER'>리뷰작성</button>-->
+<!--                        <button th:case=ORDER>취소완료</button>-->
+<!--                    </div>-->
+<!--                </block>-->
+
+<!--            </table>-->
+        </div>
+
+        <!-- Vector (Shape) -->
+        <div id="u137" class="ax_default shape" data-label="Vector">
+            <img id="u137_img" class="img " src="images/consumer_top_bar/vector_u99.svg"/>
+            <div id="u137_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
         </div>
     </div>
-</nav>
 
-<div class="container" style="border: 1px solid black">
-    <table style="border-collapse:collapse">
-        <tr>
-            <th>이미지</th>
-            <th>No</th>
-            <th>제목</th>
-        </tr>
-        <tr th:each="post : ${postList}">
-            <td><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="100" height="100"></td>
-            <td th:text="${post.id}"></td>
-            <td>
-                <a th:href="@{'/community/'+${post.id}}">
-                    <span th:text="${post.contents}"></span>
-                </a>
-            </td>
-        </tr>
-    </table>
+    <!-- Top Bar 주문 관리 부분 -->
+
+    <!-- middle_title_3 (Group) -->
+<!--    <div id="u138" class="ax_default" data-label="middle_title_3" data-left="384" data-top="62" data-width="129" data-height="72">-->
+
+<!--        &lt;!&ndash; 주문관리 (Group) &ndash;&gt;-->
+<!--        <div id="u139" class="ax_default" data-label="주문관리" data-left="384" data-top="98" data-width="129" data-height="36">-->
+
+<!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
+<!--            <div id="u140" class="ax_default shape" data-label="mid_title">-->
+<!--                <div id="u140_div" class=""></div>-->
+<!--                <div id="u140_text" class="text " style="display:none; visibility: hidden">-->
+<!--                    <p></p>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 주문관리 (Rectangle) &ndash;&gt;-->
+<!--            <div id="u141" class="ax_default shape" data-label="주문관리">-->
+<!--                <div id="u141_div" class=""></div>-->
+<!--                <div id="u141_text" class="text ">-->
+<!--                    <p><span>주문 관리</span></p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; 회원관리 (Group) &ndash;&gt;-->
+<!--        <div id="u142" class="ax_default" data-label="회원관리" data-left="384" data-top="62" data-width="129" data-height="36">-->
+
+<!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
+<!--            <div id="u143" class="ax_default shape" data-label="mid_title">-->
+<!--                <div id="u143_div" class=""></div>-->
+<!--                <div id="u143_text" class="text " style="display:none; visibility: hidden">-->
+<!--                    <p></p>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 리뷰 관리 (Rectangle) &ndash;&gt;-->
+<!--            <div id="u144" class="ax_default shape" data-label="리뷰관리">-->
+<!--                <div id="u144_div" class=""></div>-->
+<!--                <div id="u144_text" class="text ">-->
+<!--                    <p><span>리뷰 관리</span></p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
+<script src="scripts/axure/ios.js">
+
+</script>
 </body>
 </html>

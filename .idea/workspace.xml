@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌.">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/images/detail_screen.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/images/login_screen.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/images/main_screen.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/images/top_bar.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_itemList.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_itemList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,10 +104,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/start/start/src/main/resources/static/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images" />
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\css" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\templates" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main" />
@@ -158,7 +168,7 @@
       <workItem from="1650014742816" duration="127000" />
       <workItem from="1650022215452" duration="556000" />
       <workItem from="1650102607158" duration="10254000" />
-      <workItem from="1650344976945" duration="1482000" />
+      <workItem from="1650344976945" duration="5391000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -272,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650113649228</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌.">
+      <created>1650346596713</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1650346596713</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,6 +336,7 @@
     <MESSAGE value="Post 게시판 상세 조회 html 연동&#10;(thymeleaf if-else 고민)" />
     <MESSAGE value="Post 글 상세 페이지 좋아요 수 카운트 고민&#10;좋아요 생성하는 fetch() 자바스크립트 작성" />
     <MESSAGE value="댓글 기능 추가&#10;- 댓글 수(후에 fetch join으로)&#10;- 댓글 등록" />
-    <option name="LAST_COMMIT_MESSAGE" value="댓글 기능 추가&#10;- 댓글 수(후에 fetch join으로)&#10;- 댓글 등록" />
+    <MESSAGE value="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌." />
+    <option name="LAST_COMMIT_MESSAGE" value="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌." />
   </component>
 </project>
