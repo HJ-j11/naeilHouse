@@ -457,21 +457,7 @@
   font-size:25px;
   color:#424142;
 }
-#enroll_seller {
-  border-width:0px;
-  position:absolute;
-  left:138px;
-  top:367px;
-  width:139px;
-  height:31px;
-  display:flex;
-  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-  font-weight:800;
-  font-style:normal;
-  font-size:25px;
-  color:#424142;
 
-}
 #u28 .text {
   position:absolute;
   align-self:flex-start;
@@ -516,10 +502,26 @@
   color: #dc3545;
 }
 
+#enroll_seller {
+  border-width:0px;
+  position:absolute;
+  left:860px;
+  top:620px;
+  width:139px;
+  height:31px;
+  display:flex;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:25px;
+  color:#424142;
+
+}
+
 #login-summit {
   position:absolute;
-  left:-288px;
-  top:253px;
+  left:440px;
+  top:520px;
   width:557px;
   height:97px;
 
