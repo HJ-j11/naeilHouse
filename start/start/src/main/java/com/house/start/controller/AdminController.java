@@ -23,17 +23,16 @@ public class AdminController {
     private final SellerService sellerService;
 
     // 소비자 정보 조회
-    @GetMapping("/admin_consumers")
+    @GetMapping("/admin/consumers")
     public String showConsumer (Model model) {
         log.info("--- admin controller - show consumers info -----------------------------------------");
-        //List<String> consumerList = consumerService.findConsumers();
-        //System.out.println(consumerList);
-        //model.addAttribute("consumerList", consumerList);
-        return "admin/show_consumer";
+        List<Consumer> consumerList = consumerService.findConsumers();
+        model.addAttribute("consumerList", consumerList);
+        return "admin/show_consumers";
     }
 
     // 판매자 정보 조회
-    @GetMapping("/admin_sellers")
+    @GetMapping("/admin/sellers")
     public String showSellers(Model model) {
         log.info("--- admin controller - show sellers info -----------------------------------------");
         List<Seller> sellerList = sellerService.findSellers();

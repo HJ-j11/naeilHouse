@@ -5,7 +5,6 @@ import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.Admin;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Seller;
-import com.house.start.domain.UserType;
 import com.house.start.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
