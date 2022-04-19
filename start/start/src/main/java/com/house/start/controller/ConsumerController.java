@@ -57,7 +57,7 @@ public class ConsumerController {
     public String getOneItem(@PathVariable Long id, Model model){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
-        return "item";
+        return "item_info";
     }
 
     // 장바구니 담기

@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" afterDir="false" />
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="상품 목록 &#10;- 상품 목록 html 연동">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/itemList.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/itemList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +166,7 @@
       <workItem from="1650022215452" duration="556000" />
       <workItem from="1650102607158" duration="10254000" />
       <workItem from="1650344976945" duration="7675000" />
-      <workItem from="1650352750280" duration="767000" />
+      <workItem from="1650352750280" duration="5713000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -295,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650350497483</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="상품 목록 &#10;- 상품 목록 html 연동">
+      <created>1650353801558</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1650353801558</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,17 +350,7 @@
     <MESSAGE value="댓글 기능 추가&#10;- 댓글 수(후에 fetch join으로)&#10;- 댓글 등록" />
     <MESSAGE value="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌." />
     <MESSAGE value="커뮤니티&#10;- 커뮤니티 리스트 디자인 thymeleaf 연동" />
-    <option name="LAST_COMMIT_MESSAGE" value="커뮤니티&#10;- 커뮤니티 리스트 디자인 thymeleaf 연동" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="상품 목록 &#10;- 상품 목록 html 연동" />
+    <option name="LAST_COMMIT_MESSAGE" value="상품 목록 &#10;- 상품 목록 html 연동" />
   </component>
 </project>

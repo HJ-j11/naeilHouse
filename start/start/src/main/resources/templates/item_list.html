@@ -157,21 +157,24 @@
       </div>
     </div>
 
+    <!-- 메인 컨텐츠-->
     <div id ="main_content">
       <table th:width="1440">
         <thead>
         <tr>
-<!--          <th>이미지</th>-->
+          <th>이미지</th>
           <th>이름</th>
           <th>가격</th>
           <th>정보</th>
-          <th>재고</th>
-          <th>카테고리</th>
+<!--          <th>재고</th>-->
+<!--          <th>카테고리</th>-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="item: ${items}">
-<!--          <td><img/></td>-->
+          <td>
+<!--            <img th:src="|/upload/${item.uploadFile.storeFileName}|"/>-->
+          </td>
           <td>
             <a th:href="'/list/item/'+${item.id}">
               <span th:text="${item.name}"></span>
@@ -179,8 +182,8 @@
           </td>
           <td th:text="${item.price}"></td>
           <td th:text="${item.info}"></td>
-          <td th:text="${item.stockQuantity}"></td>
-          <td th:text="${item.category}"></td>
+<!--          <td th:text="${item.stockQuantity}"></td>-->
+<!--          <td th:text="${item.category}"></td>-->
         </tr>
         </tbody>
       </table>

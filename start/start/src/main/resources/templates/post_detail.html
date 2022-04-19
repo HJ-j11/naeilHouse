@@ -157,6 +157,7 @@
             </div>
         </div>
 
+        <!-- 메인 컨텐츠-->
         <div id="main_content">
             <div>
                 <img th:src="|/upload/${post.uploadFile.storeFileName}|" width="600" height="600">
@@ -169,13 +170,21 @@
             <div>댓글 수<span th:text="${comments.size()}"></span></div>
             <div>댓글</div>
             <div th:each="comment : ${comments}">
-                <div>
-                    <p>이름 :<span th:text="${comment.consumer.name}"></span></p>
-                    <p>내용 :<span th:text="${comment.content}"></span></p>
+                <div style="border: 1px solid black;">
+                    <div id="originForm">
+                        <p>이름 :<span th:text="${comment.consumer.name}"></span></p>
+                        <p>내용 :<span th:text="${comment.content}"></span></p>
+                    </div>
+                    <div id="modifyForm" style="display: none" th:action="@{'/comments/'+${comment.id}+'/put'}">
+                        <input type="text" name="contents" th:value="${comment.content}"/>
+                        <input type="submit" value="댓글 수정"/>
+                    </div>
+                    <div></div>
+                    <span><button th:attr="onclick=|modifyComment()|">댓글 수정</button> <button>댓글 삭제</button></span>
                 </div>
-            </div>
+            </div>z
             <form th:action="@{'/community/'+${post.id}+'/comments/write'}" method="post">
-                <input type="textarea" name="contents"/>
+                <input type="text" name="contents"/>
                 <input type="submit" value="댓글 작성"/>
             </form>
         </div>
@@ -236,5 +245,39 @@
     <!--    </div>-->
 </div>
 <script src="scripts/axure/ios.js"></script>
+<script>
+    function putLikes(id) {
+        let putUrl = "/community/"+id+"/likes";
+
+        fetch(putUrl, {
+            method : "POST",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+            body : JSON.stringify({
+                id : id
+                // session에서 값 넣어줄 것.
+                // consumerId : consumerId
+            }),
+        })
+            .then((response) => response.json())
+            .then(
+                alert("좋아요를 눌렀습니다.")
+                // location.reload();
+            );
+        // console에 데이터 잘 넘어갔는지 확인 필요.
+    }
+
+    function modifyComment() {
+        var x = document.getElementById("modifyForm");
+        var y = document.getElementById("originForm");
+
+        if(x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+    }
+
+</script>
 </body>
 </html>
