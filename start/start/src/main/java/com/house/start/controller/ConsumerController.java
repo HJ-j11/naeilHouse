@@ -41,19 +41,20 @@ public class ConsumerController {
     public String getAllItem(Model model){
         List<Item> items = consumerService.getAllItems();
         model.addAttribute("items", items);
-        return "consumer_itemList";
+        return "item_list";
     }
+
     // 물건 카테고리
     @GetMapping("list/{category_id}")
-    public String getItemByCategory(Long category_id, Model model){
+    public String getItemByCategory(@PathVariable Long category_id, Model model){
         List<Item> items = consumerService.getAllByCategory(category_id);
         model.addAttribute("items", items);
         return "";
     }
 
     // 물건 상세
-    @GetMapping("/list/{category_id}/{id}")
-    public String getOneItem(Long id, Model model){
+    @GetMapping("/list/item/{id}")
+    public String getOneItem(@PathVariable Long id, Model model){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
         return "item";
@@ -61,9 +62,8 @@ public class ConsumerController {
 
     // 장바구니 담기
     @PutMapping("/list/{id}/getCart")
-    public Item getItemToCart(Long id) {
+    public void getItemToCart(@PathVariable Long id) {
         Item item = consumerService.getOneItem(id);
-        return item;
     }
 
 
@@ -78,13 +78,22 @@ public class ConsumerController {
 
     // 배송 완료
     @PutMapping("/user/deliveries/{id}/completed")
-    public void getAllDelivery(String id){
+    public void getAllDelivery(@PathVariable String id){
 
     }
 
     //마이 페이지
     @GetMapping("/user")
-    public String getUserInfo(Long id, Model model) {
+    public String getUserInfo(@PathVariable Long id, Model model, HttpServletRequest request) {
+        // 후에 session으로 교체할 예정.
+        try {
+            HttpSession session = request.getSession();
+            String userId = session.getId();
+
+        } catch(Exception e) {
+            logger.error(e.getMessage());
+        }
+
         Consumer user = consumerService.getConsumerInfo(id);
         model.addAttribute("user", user);
         return "info/user";
