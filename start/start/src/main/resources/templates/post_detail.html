@@ -175,10 +175,10 @@
                         <p>이름 :<span th:text="${comment.consumer.name}"></span></p>
                         <p>내용 :<span th:text="${comment.content}"></span></p>
                     </div>
-                    <div id="modifyForm" style="display: none" th:action="@{'/comments/'+${comment.id}+'/put'}">
-                        <input type="text" name="contents" th:value="${comment.content}"/>
+                    <form id="modifyForm" style="display: none" th:action="@{'/comments/'+${comment.id}+'/put'}">
+                        <input type="text" name="content" th:value="${comment.content}"/>
                         <input type="submit" value="댓글 수정"/>
-                    </div>
+                    </form>
                     <div></div>
                     <span><button th:attr="onclick=|modifyComment()|">댓글 수정</button> <button>댓글 삭제</button></span>
                 </div>
@@ -263,7 +263,6 @@
             .then((response) => response.json())
             .then(
                 alert("좋아요를 눌렀습니다.")
-                // location.reload();
             );
         // console에 데이터 잘 넘어갔는지 확인 필요.
     }
@@ -276,6 +275,25 @@
             x.style.display = "block";
             y.style.display = "none";
         }
+    }
+
+    function putComments(id, content) {
+        let putUrl = "/comments/"+id+"/put";
+
+        fetch(putUrl, {
+            method : "PUT",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+            body : JSON.stringify({
+                id : id,
+                content : content
+            }),
+        })
+            .then((response) => response.json())
+            .then(
+                alert("댓글을 수정했습니다")
+            );
     }
 
 </script>
