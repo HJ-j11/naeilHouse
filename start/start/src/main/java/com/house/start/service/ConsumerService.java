@@ -55,7 +55,7 @@ public class ConsumerService {
 
     // 장바구니 담기
     @Transactional
-    public void putCart(Long id) {
+    public void goToCart(Long id) {
         Item item = itemRepository.getById(id);
         item.setItemStatus(ItemStatus.CART);
         itemRepository.save(item);
@@ -142,6 +142,18 @@ public class ConsumerService {
                 .build();
         commentRepository.save(comment);
     }
+    
+    // 댓글 수정
+    @Transactional
+    public void updateComment(Long id, String content) {
+        Comment comment = commentRepository.getById(id);
+        comment.setConsumer(comment.getConsumer());
+        comment.setPost(comment.getPost());
+        comment.setId(comment.getId());
+        comment.setContent(content);
 
+        commentRepository.save(comment);
+
+    }
 
 }

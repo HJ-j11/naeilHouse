@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +169,9 @@
       <workItem from="1650365507456" duration="1778000" />
       <workItem from="1650378201868" duration="37000" />
       <workItem from="1650428081531" duration="1591000" />
-      <workItem from="1650440755288" duration="647000" />
+      <workItem from="1650440755288" duration="1349000" />
+      <workItem from="1650446406380" duration="3000" />
+      <workItem from="1650513984327" duration="3588000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -309,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650358584716</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="커뮤니티 &#10;- 댓글 수정 display none/block 지정">
+      <created>1650442607714</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1650442607714</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,6 +371,7 @@
     <MESSAGE value="커뮤니티&#10;- 커뮤니티 리스트 디자인 thymeleaf 연동" />
     <MESSAGE value="상품 목록 &#10;- 상품 목록 html 연동" />
     <MESSAGE value="커뮤니티&#10;- 댓글 수정과 onclick none/block 기능&#10;- 댓글 수정 form url 작성." />
-    <option name="LAST_COMMIT_MESSAGE" value="커뮤니티&#10;- 댓글 수정과 onclick none/block 기능&#10;- 댓글 수정 form url 작성." />
+    <MESSAGE value="커뮤니티 &#10;- 댓글 수정 display none/block 지정" />
+    <option name="LAST_COMMIT_MESSAGE" value="커뮤니티 &#10;- 댓글 수정 display none/block 지정" />
   </component>
 </project>

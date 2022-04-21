@@ -185,7 +185,7 @@
                         <div class="row justify-content-center">
                             <p th:text="${item.info != null} ? ${item.info} : 'null'" class="fw-bold text-center"></p>
                         </div>
-                        <a href="#" th:href="@{/consumer/cart/{id}/add (id=${item.id})}" methods="post" class="btn btn-primary" role="button">장바구니 담기</a>
+                        <a href="#" th:href="@{/list/item/{id}/getCart (id=${item.id})}" methods="post" class="btn btn-primary" role="button">장바구니 담기</a>
                         <a href="#" th:href="@{/consumer/item/{id}/purchase (id=${item.id})}" class="btn btn-primary" role="button">바로 구매</a>
                         <!--            <button type="button" class="btn btn-primary" style="margin-top: 10px">바로 구매</button>-->
                     </div>

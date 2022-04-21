@@ -61,9 +61,9 @@ public class ConsumerController {
     }
 
     // 장바구니 담기
-    @PutMapping("/list/{id}/getCart")
-    public void getItemToCart(@PathVariable Long id) {
-        Item item = consumerService.getOneItem(id);
+    @PutMapping("/list/item/{id}/getCart")
+    public void goToCart(@PathVariable Long id) {
+        consumerService.goToCart(id);
     }
 
 
@@ -201,8 +201,8 @@ public class ConsumerController {
 
     // 댓글 수정
     @PutMapping("/comments/{id}/put")
-    public void putComment() {
-
+    public void putComment(@PathVariable Long id, @RequestParam String content) {
+        consumerService.updateComment(id, content);
     }
 
     // 댓글 삭제
