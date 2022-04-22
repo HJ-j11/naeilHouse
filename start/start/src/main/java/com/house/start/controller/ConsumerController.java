@@ -1,5 +1,6 @@
 package com.house.start.controller;
 
+import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
 import com.house.start.domain.*;
 import com.house.start.file.FileStore;
@@ -201,8 +202,9 @@ public class ConsumerController {
 
     // 댓글 수정
     @PutMapping("/comments/{id}/put")
-    public void putComment(@PathVariable Long id, @RequestParam String content) {
-        consumerService.updateComment(id, content);
+    public String putComment(@PathVariable String id, @ModelAttribute CommentForm commentForm) {
+        consumerService.updateComment(commentForm.getId(), commentForm.getContent());
+        return "redirect:/community"+commentForm.getPostId();
     }
 
     // 댓글 삭제

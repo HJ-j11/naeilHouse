@@ -175,15 +175,15 @@
                         <p>이름 :<span th:text="${comment.consumer.name}"></span></p>
                         <p>내용 :<span th:text="${comment.content}"></span></p>
                     </div>
-                    <form id="modifyForm" style="display: none" th:action="@{'/comments/'+${comment.id}+'/put'}">
+                    <div id="modifyForm" style="display: none">
                         <input type="text" name="content" th:value="${comment.content}"/>
-                        <input type="submit" value="댓글 수정"/>
-                    </form>
+                        <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>
+                    </div>
                     <div></div>
                     <span><button th:attr="onclick=|modifyComment()|">댓글 수정</button> <button>댓글 삭제</button></span>
                 </div>
-            </div>z
-            <form th:action="@{'/community/'+${post.id}+'/comments/write'}" method="post">
+            </div>
+            <form th:action="@{/community/{id}/comments/write (id=${post.id})}" method="post">
                 <input type="text" name="contents"/>
                 <input type="submit" value="댓글 작성"/>
             </form>
@@ -277,23 +277,27 @@
         }
     }
 
-    function putComments(id, content) {
-        let putUrl = "/comments/"+id+"/put";
+    function putComments(id, postId) {
+            let putUrl = "/comments/"+id+"/put";
+            var content = document.getElementsByName("content")[0].value;
 
-        fetch(putUrl, {
-            method : "PUT",
-            headers: {
-                "Content-Type" : "application/json",
-            },
-            body : JSON.stringify({
-                id : id,
-                content : content
-            }),
-        })
-            .then((response) => response.json())
-            .then(
-                alert("댓글을 수정했습니다")
-            );
+            console.log(content);
+
+            fetch(putUrl, {
+                method : "PUT",
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body : JSON.stringify({
+                    id: id,
+                    postId : postId,
+                    content : content
+                }),
+            })
+                .then((response) => response.json())
+                .then(
+                    alert("댓글을 수정했습니다")
+                );
     }
 
 </script>

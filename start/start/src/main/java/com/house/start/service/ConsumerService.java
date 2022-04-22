@@ -147,9 +147,6 @@ public class ConsumerService {
     @Transactional
     public void updateComment(Long id, String content) {
         Comment comment = commentRepository.getById(id);
-        comment.setConsumer(comment.getConsumer());
-        comment.setPost(comment.getPost());
-        comment.setId(comment.getId());
         comment.setContent(content);
 
         commentRepository.save(comment);
