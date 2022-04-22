@@ -5,6 +5,8 @@ INSERT INTO Likes (id, consumer_id, post_id) VALUES (1, 1, 1);
 INSERT INTO Seller (seller_id, name, s_Id, pwd, store_Name, IS_APPROVED ) values (1, '판매자1', '1234', '1234','내일의 집', TRUE);
 INSERT INTO Seller (seller_id, name, s_Id, store_Name, IS_APPROVED ) values (2, '판매자2', '155234', '오늘의 집', FALSE);
 
+INSERT INTO Admin (ADMIN_ID , A_ID , NAME , PWD ) values (1, '1234', '관리자1','1234');
+
 INSERT INTO ORDERS  (ORDER_ID, ORDER_DATE , CONSUMER_ID, ORDER_STATUS) VALUES (1, '20221010', 1, 1);
 INSERT INTO ORDERS  (ORDER_ID, ORDER_DATE , CONSUMER_ID, ORDER_STATUS) VALUES (2, '20221011', 1, 0);
 INSERT INTO ORDERS  (ORDER_ID, ORDER_DATE , CONSUMER_ID, ORDER_STATUS) VALUES (3, '20221012', 1, 3);
