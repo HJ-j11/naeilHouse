@@ -1,13 +1,7 @@
 package com.house.start.controller;
 
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Item;
-import com.house.start.domain.Post;
-import com.house.start.domain.Seller;
-import com.house.start.service.ConsumerService;
-import com.house.start.service.ItemService;
-import com.house.start.service.PostService;
-import com.house.start.service.SellerService;
+import com.house.start.domain.*;
+import com.house.start.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,6 +20,7 @@ public class AdminController {
     private final SellerService sellerService;
     private final PostService postService;
     private final ItemService itemService;
+    private final OrderService orderService;
 
     // 소비자 정보 조회
     @GetMapping("/admin/consumers")
@@ -77,6 +72,15 @@ public class AdminController {
         List<Item> itemList = itemService.findItems();
         model.addAttribute("itemList",itemList);
         return "admin/show_items";
+    }
+
+    // 주문 목록 조회
+    @GetMapping("/admin/orders")
+    public String showOrders(Model model) {
+        log.info("--- admin controller - show orders info -----------------------------------------");
+        List<Order> orderList = orderService.findOrders();
+        model.addAttribute("orderList",orderList);
+        return "admin/show_orders";
     }
 
 }
