@@ -1,6 +1,6 @@
 #main_content {
     position: absolute;
-    top: 100px;
+    top: 150px;
     font-family:"Gothic A1 ", "Gothic A1", sans-serif;
     font-weight:500;
     font-style:normal;
@@ -94,4 +94,16 @@ table {
 
 .dropdown-content a:hover {
     color:#35C5F0;
+}
+
+
+#routing_info {
+  position: absolute;
+  width:300px;
+  top:115px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:19px;
+  text-decoration: underline;
 }

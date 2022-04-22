@@ -784,3 +784,15 @@ body {
   text-transform:none;
   visibility:hidden;
 }
+
+
+#routing_info {
+  position: absolute;
+  width:300px;
+  top:110px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:19px;
+  text-decoration: underline;
+}

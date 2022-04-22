@@ -118,6 +118,10 @@
                 </div>
             </div>
 
+            <div  class="text">
+                <p><span id="routing_info">관리자 페이지/회원 관리</span></p>
+            </div>
+
             <div id ="main_content">
                 <table id="consumers" width="1440">
                     <tr>
@@ -132,9 +136,9 @@
                     <tr th:each="consumer: ${consumerList}">
                         <td th:src="@{consumer.photo}"></td>
                         <td>
-                            <p th:text="${consumer.name}">님</p>
-                            <p th:text="${consumer.id}"></p>
-                            <p id ="consumer_point" th:text="${consumer.point}"></p>
+                            <p th:text="|회원이름: ${consumer.name}|"></p>
+                            <p th:text="|회원 아이디: ${consumer.id}|"></p>
+                            <p id ="consumer_point" th:text="|포인트: ${consumer.point}|"></p>
                         </td>
                         <td th:text="${consumer.orders.size}"></td>
                         <td th:text="${consumer.reviews.size}"></td>

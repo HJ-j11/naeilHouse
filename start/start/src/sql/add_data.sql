@@ -1,5 +1,6 @@
 INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (1, '1234', '홍길동', '1234', 123);
-INSERT INTO post (id, consumer_id) VALUES (1, 1);
+INSERT INTO post (id, consumer_id, CONTENTS , POST_DATE) VALUES (1, 1, '게시글 내용1', '20221012');
+INSERT INTO post (id, consumer_id, CONTENTS , POST_DATE) VALUES (2, 1, '게시글 내용2', '20221010');
 INSERT INTO Likes (id, consumer_id, post_id) VALUES (1, 1, 1);
 
 INSERT INTO Seller (seller_id, name, s_Id, pwd, store_Name, IS_APPROVED ) values (1, '판매자1', '1234', '1234','내일의 집', TRUE);

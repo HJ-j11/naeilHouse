@@ -117,6 +117,10 @@
         </div>
       </div>
 
+      <div  class="text">
+        <p><span id="routing_info">관리자 페이지/판매자 관리</span></p>
+      </div>
+
       <div id ="main_content">
         <table class="sellers" width="1440">
           <tr width="300">
@@ -131,7 +135,7 @@
             <td th:text="${seller.sId}"></td>
             <td th:text="${seller.storeName}"></td>
 
-            <td th:text="${seller.items.size}">개</td>
+            <td th:text="|${seller.items.size}개|"></td>
 
             <td th:if="${seller.isApproved == false}">
               <a href="#" th:href="@{/admin_sellers/approved/{seller_id} (seller_id=${seller.id})}" role ="button">승인하기</a>
