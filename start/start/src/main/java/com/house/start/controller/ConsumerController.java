@@ -202,9 +202,10 @@ public class ConsumerController {
 
     // 댓글 수정
     @PutMapping("/comments/{id}/put")
-    public String putComment(@PathVariable String id, @ModelAttribute CommentForm commentForm) {
+    public String putComment(@PathVariable String id, @RequestBody CommentForm commentForm, Model model) {
         consumerService.updateComment(commentForm.getId(), commentForm.getContent());
-        return "redirect:/community"+commentForm.getPostId();
+        model.addAttribute("ACCESS", "SUCCESS");
+        return "redirect:/community/"+commentForm.getPostId();
     }
 
     // 댓글 삭제
