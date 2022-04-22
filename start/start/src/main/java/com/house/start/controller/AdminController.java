@@ -5,6 +5,7 @@ import com.house.start.domain.Item;
 import com.house.start.domain.Post;
 import com.house.start.domain.Seller;
 import com.house.start.service.ConsumerService;
+import com.house.start.service.ItemService;
 import com.house.start.service.PostService;
 import com.house.start.service.SellerService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class AdminController {
     private final ConsumerService consumerService;
     private final SellerService sellerService;
     private final PostService postService;
+    private final ItemService itemService;
 
     // 소비자 정보 조회
     @GetMapping("/admin/consumers")
@@ -66,6 +68,15 @@ public class AdminController {
         List<Post> postList = postService.findPosts();
         model.addAttribute("postList",postList);
         return "admin/show_posts";
+    }
+
+    // 상품 목록 조회
+    @GetMapping("/admin/items")
+    public String showItems(Model model) {
+        log.info("--- admin controller - show items info -----------------------------------------");
+        List<Item> itemList = itemService.findItems();
+        model.addAttribute("itemList",itemList);
+        return "admin/show_items";
     }
 
 }
