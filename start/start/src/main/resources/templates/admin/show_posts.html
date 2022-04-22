@@ -109,31 +109,6 @@
                 </div>
             </div>
 
-            <!-- 관리페이지 (Rectangle) -->
-            <div id="u39" class="ax_default shape" data-label="관리페이지">
-                <div id="u39_div" class=""></div>
-                <div id="u39_text" class="text ">
-                    <p><span>관리자 페이지</span></p>
-                </div>
-            </div>
-
-            <!-- 스토어 (Rectangle) -->
-            <div id="u40" class="ax_default shape" data-label="스토어">
-                <div id="u40_div" class=""></div>
-                <div id="u40_text" class="text ">
-                    <p><span>스토어</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u41" class="ax_default shape">
-                <div id="u41_div" class=""></div>
-                <div id="u41_text" class="text ">
-                    <p><span>커뮤니티</span></p>
-
-                </div>
-            </div>
-
             <!-- border (Shape) -->
             <div id="u42" class="ax_default shape" data-label="border">
                 <img id="u42_img" class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
@@ -157,61 +132,46 @@
                         <td th:text="${seller.storeName}"></td>
 
                         <td th:text="${seller.items.size}">개</td>
-
-
+                        
                     </tr>
                 </table>
             </div>
 
-
-
         </div>
-        <!-- middle_title (Group) -->
-        <div id="u43" class="ax_default ax_default_hidden" data-label="middle_title" style="display:none; visibility: hidden" data-left="384" data-top="62" data-width="129" data-height="72">
 
-            <!-- 주문관리 (Group) -->
-            <div id="u44" class="ax_default" data-label="주문관리" data-left="384" data-top="98" data-width="129" data-height="36">
-
-                <!-- mid_title (Rectangle) -->
-                <div id="u45" class="ax_default shape" data-label="mid_title">
-                    <div id="u45_div" class=""></div>
-                    <div id="u45_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- 주문관리 (Rectangle) -->
-                <div id="u46" class="ax_default shape" data-label="주문관리">
-                    <div id="u46_div" class=""></div>
-                    <div id="u46_text" class="text ">
-                        <p><span>주문 관리</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 회원관리 (Group) -->
-            <div id="u47" class="ax_default" data-label="회원관리" data-left="384" data-top="62" data-width="129" data-height="36">
-
-                <!-- mid_title (Rectangle) -->
-                <div id="u48" class="ax_default shape" data-label="mid_title">
-                    <div id="u48_div" class=""></div>
-                    <div id="u48_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- 회원관리 (Rectangle) -->
-                <div id="u49" class="ax_default shape" data-label="회원관리">
-                    <div id="u49_div" class=""></div>
-                    <div id="u49_text" class="text ">
-                        <p><span>회원 관리</span></p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
 </div>
+
+<!-- 네비게이션바 -->
+<ul id="ul_dropdown">
+    <li id="li_dropdown" class="dropdown" >
+        <div class="dropdown-menu">스토어</div>
+        <div class="dropdown-content">
+            <a href="#">회원 관리</a>
+            <a href="#">주문 관리</a>
+            <a href="#">게시판 관리</a>
+        </div>
+    </li>
+
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">커뮤니티</div>
+        <div class="dropdown-content">
+            <a href="#">회원 관리</a>
+            <a href="#">주문 관리</a>
+            <a href="#">게시판 관리</a>
+        </div>
+    </li>
+
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">관리자 페이지</div>
+        <div class="dropdown-content">
+            <a href="/admin/consumers">회원 관리</a>
+            <a href="/admin/sellers">판매자 관리</a>
+            <a href="/admin/orders">주문 관리</a>
+            <a href="/admin/posts">게시판 관리</a>
+        </div>
+    </li>
+</ul>
+
 </body>
 </html>

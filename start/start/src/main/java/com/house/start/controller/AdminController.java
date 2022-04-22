@@ -48,7 +48,7 @@ public class AdminController {
     public String approvedSeller (@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers approved -----------------------------------------");
         sellerService.approveSeller(seller_id);
-        return "redirect:/admin_sellers";
+        return "redirect:/admin/sellers";
     }
 
     // 판매자 승인 철회
@@ -56,7 +56,7 @@ public class AdminController {
     public String notapprovedSeller (@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);
-        return "redirect:/admin_sellers";
+        return "redirect:/admin/sellers";
     }
 
     // 게시글 정보 조회
