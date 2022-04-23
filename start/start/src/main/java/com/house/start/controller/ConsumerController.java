@@ -68,7 +68,7 @@ public class ConsumerController {
     }
 
 
-//    // 장바구니
+    // 장바구니
 //    @GetMapping("/cart")
 //    public String getCarts(Model model){
 //        List<Item> itemList = consumerService.findByCart(ItemStatus.CART);
@@ -79,8 +79,8 @@ public class ConsumerController {
 
     // 배송 완료
     @PutMapping("/user/deliveries/{id}/completed")
-    public void getAllDelivery(@PathVariable String id){
-
+    public void getAllDelivery(@PathVariable Long id){
+        consumerService.completeDelivery(id);
     }
 
     //마이 페이지
@@ -210,7 +210,10 @@ public class ConsumerController {
 
     // 댓글 삭제
     @DeleteMapping("/comments/{id}/delete")
-    public void deleteComment() {
+    public String deleteComment(@PathVariable Long id, Model model) {
+        consumerService.deleteComment(id);
+        model.addAttribute("ACESS", "SUCCESS");
+        return "redirect:/community/";
 
     }
 

@@ -153,4 +153,11 @@ public class ConsumerService {
 
     }
 
+    //댓글 삭제
+    @Transactional
+    public void deleteComment(Long id) {
+        Comment comment = commentRepository.getById(id);
+        commentRepository.delete(comment);
+    }
+
 }
