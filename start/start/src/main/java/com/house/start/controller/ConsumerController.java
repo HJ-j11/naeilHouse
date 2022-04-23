@@ -234,8 +234,6 @@ public class ConsumerController {
 
         return "redirect:/consumer/cart/list";
     }
-
-
     /**
      *  장바구니 페이지
      */

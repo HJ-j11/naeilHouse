@@ -4,51 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter @Setter
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "admin_id")
-    private Long admin_id;
+    private Long id;
 
-    private String name;
-
-    private String id;
-
-    private String pwd;
-
-    public Long getAdmin_id() {
-        return admin_id;
-    }
-
-    public void setAdmin_id(Long admin_id) {
-        this.admin_id = admin_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPwd(){
-        return pwd;
-    }
-
-    public void setPwd (String pwd) {
-        this.pwd = pwd;
-    }
-
-
+    private String name; // 관리자 이름
+    private String aId; // 아이디
+    private String pwd; // 비밀번호
 }
