@@ -111,12 +111,12 @@ table {
   font-weight:800;
   font-style:normal;
   font-size:18px;
-  color:#f9f9f9;
+  color:#ffffff;
   text-align: center;
   line-height: 50px;
   background:inherit;
   background-color:rgba(53, 197, 240, 1);
-  border: 2px solid #f9f9f9;;
+  border: 2px solid #ffffff;;
   border-radius:5px;
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
@@ -135,7 +135,7 @@ table {
   color:#35C5F0;
   text-align: center;
   line-height: 50px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   border: 2px solid #35C5F0;
   border-radius:5px;
   -moz-box-shadow:none;
