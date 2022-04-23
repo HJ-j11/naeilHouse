@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    // consumer id로 조회하는 것 같아서 수정했는데 맞을까요..?
     List<Order> findByConsumer(Long consumerId);
 
 }

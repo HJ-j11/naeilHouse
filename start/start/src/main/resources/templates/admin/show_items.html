@@ -6,7 +6,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <!-- develop -->
-    <link href="http://localhost:8080/css/admin/show_sellers.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/admin/show_items.css" type="text/css" rel="stylesheet"/>
 
     <!--axure-->
     <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -124,25 +124,23 @@
             <div id ="main_content">
                 <table class="items" width="1440">
                     <tr width="300">
-                        <th width="150">판매자 이름 </th>
-                        <th width="150">id </th>
-                        <th width="300">상호명</th>
-                        <th width="300">판매 물품 갯수</th>
-                        <th width="300">승인 여부</th>
+                        <th width="150">상품 사진 </th>
+                        <th width="500">info </th>
+                        <th width="500">상호내용</th>
+                        <th width="150">리뷰수</th>
+                        <th width="150">주문 량</th>
                     </tr>
                     <tr th:each="item : ${itemList}">
-                        <td th:text="${seller.name}"></td>
-                        <td th:text="${seller.sId}"></td>
-                        <td th:text="${seller.storeName}"></td>
-
-                        <td th:text="|${seller.items.size}개|"></td>
-
-                        <td th:if="${seller.isApproved == false}">
-                            <a href="#" th:href="@{/admin_sellers/approved/{seller_id} (seller_id=${seller.id})}" role ="button">승인하기</a>
+                        <td th:src="${item.uploadFile}"></td>
+                        <td>
+                            <p th:text="|판매자: ${item.seller.name} 님|"></p>
+                            <p th:text="|상품명: ${item.name}|"></p>
+                            <p th:text="|상품 가격: ${item.price} 원|"></p>
+                            <p th:text="|재고 수량: ${item.stockQuantity} 개|"></p>
                         </td>
-                        <td th:if="${seller.isApproved == true}">
-                            <a href="#" th:href="@{/admin_sellers/notapproved/{seller_id} (seller_id=${seller.id})}" role ="button">승인취소하기</a>
-                        </td>
+                        <td th:text="${item.info}"></td>
+                        <td th:text="|리뷰 수: ${item.reviews.size} 개|"></td>
+
                     </tr>
                 </table>
             </div>
