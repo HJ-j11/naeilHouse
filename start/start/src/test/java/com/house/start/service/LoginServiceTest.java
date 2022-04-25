@@ -6,6 +6,7 @@ import com.house.start.domain.Admin;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Seller;
 import com.house.start.repository.AdminRepository;
+import com.house.start.repository.CategoryRepository;
 import com.house.start.repository.ConsumerRepository;
 import com.house.start.repository.SellerRepository;
 import org.junit.Test;
@@ -23,6 +24,7 @@ public class LoginServiceTest {
     @Autowired ConsumerRepository consumerRepository;
     @Autowired SellerRepository sellerRepository;
     @Autowired AdminRepository adminRepository;
+
 
 
     @Test

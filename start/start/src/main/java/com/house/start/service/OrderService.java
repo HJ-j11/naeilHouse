@@ -68,7 +68,7 @@ public class OrderService {
      * 주문 취소
      */
     @Transactional
-    public void cancel_delivery(Long order_id){
+    public void cancelOrder(Long order_id){
         // Order 정보 변경
         Order order = orderRepository.findById(order_id).get();
         Delivery delivery = order.getDelivery();
@@ -76,6 +76,11 @@ public class OrderService {
             throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
         }
         order.setOrderStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem : order.getOrderItems()) {
+            Item canceledItem = orderItem.getItem();
+            canceledItem.setStockQuantity(canceledItem.getStockQuantity() + orderItem.getCount());
+        }
+
 
         // Delivery 삭제
         deliveryRepository.delete(delivery);
