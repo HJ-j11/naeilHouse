@@ -37,7 +37,6 @@ public class Item {
     /**
      * 생성 메서드
      * **/
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category; // 상품 카테고리

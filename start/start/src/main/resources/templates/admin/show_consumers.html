@@ -134,7 +134,7 @@
                     </tr>
 
                     <tr th:each="consumer: ${consumerList}">
-                        <td th:src="@{consumer.photo}"></td>
+                        <td th:src="|/upload/${consumer.photo}|"></td>
                         <td>
                             <p th:text="|회원이름: ${consumer.name}|"></p>
                             <p th:text="|회원 아이디: ${consumer.id}|"></p>

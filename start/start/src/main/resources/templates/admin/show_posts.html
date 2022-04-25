@@ -131,7 +131,7 @@
                         <th width="150">댓글 수</th>
                     </tr>
                     <tr th:each="post : ${postList}">
-                        <td th:src="${post.uploadFile}"></td>
+                        <td ><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="100" height="100"></td>
                         <td>
                             <p th:text="|작성자: ${post.consumer.id} 님|"></p>
                             <p th:text="|작성일시: ${post.postDate}|"></p>
