@@ -32,17 +32,20 @@ public class LoginServiceTest {
         String name= "소비자";
         String cId = "consumer";
         String pwd = "password";
-        consumer.setId(100L);
         consumer.setName(name);
         consumer.setCId(cId);
         consumer.setPwd(pwd);
 
         //When
         consumerRepository.save(consumer);
-        Consumer test_consumer = loginService.loginConsumer(cId, pwd);
+        Consumer test_consumer = loginService.loginConsumer(cId, pwd); // 로그인 ok
+        Consumer test_noneID = loginService.loginConsumer("null", pwd); // 아이디가 없을 때
+        Consumer test_nonePWD = loginService.loginConsumer(cId, "null"); // 비밀번호와 동일하지 않을 떄
 
         //Then
-        assertEquals(consumer.getName(), test_consumer.getName());
+        assertEquals(consumer.getId(), test_consumer.getId());
+        assertNull(test_noneID);
+        assertNull(test_nonePWD);
     }
 
     @Test
@@ -52,17 +55,20 @@ public class LoginServiceTest {
         String name= "판매자";
         String sId = "seller";
         String pwd = "password";
-        seller.setId(100L);
         seller.setName(name);
         seller.setSId(sId);
         seller.setPwd(pwd);
 
         //When
         sellerRepository.save(seller);
-        Seller test_seller = loginService.loginSeller(sId, pwd);
+        Seller test_seller = loginService.loginSeller(sId, pwd);// 로그인 ok
+        Seller test_noneID = loginService.loginSeller("null", pwd); // 아이디가 없을 때
+        Seller test_nonePWD = loginService.loginSeller(sId, "null"); // 비밀번호와 동일하지 않을 떄
 
         //Then
-        assertEquals(seller.getName(), test_seller.getName());
+        assertEquals(seller.getId(), test_seller.getId());
+        assertNull(test_noneID);
+        assertNull(test_nonePWD);
     }
 
     @Test
@@ -72,17 +78,20 @@ public class LoginServiceTest {
         String name= "관리자";
         String aId = "admin";
         String pwd = "password";
-        admin.setId(100L);
         admin.setName(name);
         admin.setAId(aId);
         admin.setPwd(pwd);
 
         //When
         adminRepository.save(admin);
-        Admin test_admin = loginService.loginAdmin(aId, pwd);
+        Admin test_admin = loginService.loginAdmin(aId, pwd);// 로그인 ok
+        Admin test_noneID = loginService.loginAdmin("null", pwd); // 아이디가 없을 때
+        Admin test_nonePWD = loginService.loginAdmin(aId, "null"); // 비밀번호와 동일하지 않을 떄
 
         //Then
-        assertEquals(admin.getName(), test_admin.getName());
+        assertEquals(admin.getId(), test_admin.getId());
+        assertNull(test_noneID);
+        assertNull(test_nonePWD);
     }
 
 

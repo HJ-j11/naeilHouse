@@ -22,7 +22,9 @@ public class AdminController {
     private final ItemService itemService;
     private final OrderService orderService;
 
-    // 소비자 정보 조회
+    /**
+     * 소비자 정보 조회
+     */
     @GetMapping("/admin/consumers")
     public String showConsumer (Model model) {
         log.info("--- admin controller - show consumers info -----------------------------------------");

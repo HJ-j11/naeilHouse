@@ -56,6 +56,7 @@ public class LoginController {
             session.setAttribute(SessionConstants.LOGIN_MEMBER, loginConsumer);
             session.setAttribute(SessionConstants.ROLE, "consumer");
             log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
+
         } else if (role_num == 1) {
             // 판매자 로그인
             Seller loginSeller = loginService.loginSeller(loginForm.getLoginId(), loginForm.getPwd());
@@ -70,6 +71,7 @@ public class LoginController {
             session.setAttribute(SessionConstants.LOGIN_MEMBER, loginSeller);
             session.setAttribute(SessionConstants.ROLE, "seller");
             log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
+
         } else {
             // 관리자 로그인
             Admin loginAdmin = loginService.loginAdmin(loginForm.getLoginId(), loginForm.getPwd());
@@ -93,7 +95,7 @@ public class LoginController {
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            session.invalidate();   // 세션 날림
+            session.invalidate();// 세션 날림
         }
         return "redirect:/";
     }

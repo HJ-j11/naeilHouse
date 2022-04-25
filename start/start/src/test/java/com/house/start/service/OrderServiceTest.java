@@ -17,19 +17,18 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @Transactional
 public class OrderServiceTest {
-    @Autowired EntityManager em;
     @Autowired OrderService orderService;
     @Autowired OrderRepository orderRepository;
 
-    /*
+
     @Test
     public void 주문취소() throws Exception {
-        // given
+        //Given
 
-        //when
+        //When
 
-        //then
-    }*/
+        //Then
+    }
 
 
 }

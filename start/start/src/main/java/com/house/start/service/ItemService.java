@@ -12,7 +12,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ItemService {
-
     private final ItemRepository itemRepository;
 
     /**
