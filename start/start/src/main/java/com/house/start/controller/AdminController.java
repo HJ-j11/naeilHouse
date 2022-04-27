@@ -1,5 +1,6 @@
 package com.house.start.controller;
 
+import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.service.*;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +31,20 @@ public class AdminController {
     @GetMapping("/admin/consumers")
     public String showConsumer (HttpServletRequest request, Model model) {
         log.info("--- admin controller - show consumers info -----------------------------------------");
-        List<Consumer> consumerList = consumerService.findConsumers();
-        model.addAttribute("consumerList", consumerList);
-        return "admin/show_consumers";
+        HttpSession session = request.getSession();
+
+        // 세션이 없으면 홈으로 이동
+        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+            return "err/notLogin";
+        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+            // 관리자인 경우
+            List<Consumer> consumerList = consumerService.findConsumers();
+            model.addAttribute("consumerList", consumerList);
+            return "admin/show_consumers";
+        }else {
+            // 소비자나 판매자인 경우
+            return "err/denyPage";
+        }
     }
 
     /**
@@ -40,9 +53,21 @@ public class AdminController {
     @GetMapping("/admin/sellers")
     public String showSellers(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show sellers info -----------------------------------------");
-        List<Seller> sellerList = sellerService.findSellers();
-        model.addAttribute("sellerList",sellerList);
-        return "admin/show_sellers";
+        HttpSession session = request.getSession();
+
+        // 세션이 없으면 홈으로 이동
+        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+            return "err/notLogin";
+        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+            // 관리자인 경우
+            List<Seller> sellerList = sellerService.findSellers();
+            model.addAttribute("sellerList",sellerList);
+            return "admin/show_sellers";
+        }else {
+            // 소비자나 판매자인 경우
+            return "err/denyPage";
+        }
+
     }
 
     /**
@@ -69,29 +94,51 @@ public class AdminController {
      * 게시글 정보 조회
       */
     @GetMapping("/admin/posts")
-    public String showPosts(Model model) {
+    public String showPosts(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show posts info -----------------------------------------");
-        List<Post> postList = postService.findPosts();
-        model.addAttribute("postList",postList);
-        return "admin/show_posts";
+        HttpSession session = request.getSession();
+
+        // 세션이 없으면 홈으로 이동
+        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+            return "err/notLogin";
+        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+            // 관리자인 경우
+            List<Post> postList = postService.findPosts();
+            model.addAttribute("postList",postList);
+            return "admin/show_posts";
+        }else {
+            // 소비자나 판매자인 경우
+            return "err/denyPage";
+        }
     }
 
     /**
      * 상품 목록 조회
       */
     @GetMapping("/admin/items")
-    public String showItems(Model model) {
+    public String showItems(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show items info -----------------------------------------");
-        List<Item> itemList = itemService.findItems();
-        model.addAttribute("itemList",itemList);
-        return "admin/show_items";
+        HttpSession session = request.getSession();
+        
+        // 세션이 없으면 홈으로 이동
+        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+            return "err/notLogin";
+        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+            // 관리자인 경우
+            List<Item> itemList = itemService.findItems();
+            model.addAttribute("itemList",itemList);
+            return "admin/show_items";
+        }else {
+            // 소비자나 판매자인 경우
+            return "err/denyPage";
+        }
     }
 
     /**
      * 주문 목록 조회
       */
     @GetMapping("/admin/orders")
-    public String showOrders(Model model) {
+    public String showOrders(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show orders info -----------------------------------------");
         List<Order> orderList = orderService.findOrders();
         model.addAttribute("orderList",orderList);

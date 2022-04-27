@@ -123,25 +123,26 @@
 
             <div id ="main_content">
                 <table class="posts" width="1440">
-                    <tr width="300">
-                        <th width="300">게시글 사진</th>
-                        <th width="300">info </th>
-                        <th width="500">내용</th>
-                        <th width="150">좋아요 수</th>
-                        <th width="150">댓글 수</th>
-                    </tr>
-                    <tr th:each="order : ${orderList}">
-                        <td th:src="${post.uploadFile}"></td>
-                        <td>
-                            <p th:text="|작성자: ${post.consumer.id} 님|"></p>
-                            <p th:text="|작성일시: ${post.postDate}|"></p>
-                        </td>
-                        <td th:text="${post.contents}"></td>
-                        <td th:text="|${post.likes.size} 개|"></td>
 
-                        <td th:text="|${post.comments.size} 개|"></td>
+                    <block th:each="order: ${orderList}">
+                        <p id ="order_data" th:text="${order.orderDate}"></p>
+                        <p th:text="|구매자 id: ${order.consumer.cId}|"></p>
+                        <p id ="orderStatus" th:text="${order.orderStatus}"></p>
 
-                    </tr>
+                        <tr th:each="orderitem: ${order.orderItems}">
+                            <!--
+                            <td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}|" width="40" height="40"></td>
+                            -->
+                            <td>
+                                <p th:text="${orderitem.item.seller.storeName}"></p>
+                                <p th:text="${orderitem.item.name}"></p>
+                            </td>
+                            <td>
+                                <p th:text="|${orderitem.orderPrice} 원|"></p>
+                                <p th:text="|${orderitem.count}| 개"></p>
+                            </td>
+                        </tr>
+                    </block>
                 </table>
             </div>
 

@@ -131,13 +131,14 @@
                         <th width="150">주문 량</th>
                     </tr>
                     <tr th:each="item : ${itemList}">
-                        <td><img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40"></td>
+                        <!--
+                        <td><img th:src="|http://localhost:8080/upload/${item.uploadFile.uploadFileName}|" width="40" height="40"></td>
+                        -->
+                        <td th:text="${item.uploadFile.id}"></td>
                         <td>
                             <p th:text="|판매자: ${item.seller.name} 님|"></p>
                             <p th:text="|상품명: ${item.name}|"></p>
-                            <!--
-                            <p th:text="|카테고리: ${item.category.name}|"></p>
-                            -->
+                            <p th:text="|카테고리: ${item.category}|"></p>
                             <p th:text="|상품 가격: ${item.price} 원|"></p>
                             <p th:text="|재고 수량: ${item.stockQuantity} 개|"></p>
                         </td>
