@@ -117,25 +117,32 @@
         </div>
       </div>
 
-      <div  class="text">
-        <p><span id="routing_info">관리자 페이지/판매자 관리</span></p>
+      <div id="routing_info" class="text">
+        <p><span >관리자 페이지/판매자 관리</span></p>
+
+        <!-- border -->
+        <div id="border_middle" class="ax_default shape" data-label="border">
+          <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
+          <div class="text " style="display:none; visibility: hidden">
+          </div>
+        </div>
       </div>
 
       <div id ="main_content">
         <table class="sellers" width="1440">
           <tr width="300">
-            <th width="700">info</th>
+            <th width="600">info</th>
             <th width="200">판매 물품 갯수</th>
             <th width="200">승인 여부</th>
           </tr>
-          <tr th:each="seller : ${sellerList}">
+          <tr id="sellerData" th:each="seller : ${sellerList}">
             <td>
-              <p th:text="|이름: ${seller.name} 님|"></p>
-              <p th:text="|id: ${seller.sId}|"></p>
-              <p th:text="|상호명: ${seller.storeName}|"></p>
+              <p th:text="|판매자명: ${seller.name} 님|">이름</p>
+              <p th:text="|판매자 id: ${seller.sId}|">id</p>
+              <p th:text="|상호명: ${seller.storeName}|">상호명</p>
             </td>
 
-            <td th:text="|판매 물품 갯수: ${seller.items.size}개|"></td>
+            <td th:text="|판매 물품 갯수: ${seller.items.size}개|">개</td>
 
             <td th:if="${seller.isApproved == false}">
               <a href="#" th:href="@{/admin_sellers/approved/{seller_id} (seller_id=${seller.id})}" role ="button" id="approved">승인하기</a>
@@ -149,7 +156,7 @@
 
     </div>
 
-</div>
+  </div>
 
   <!-- 네비게이션바 -->
   <ul id="ul_dropdown">

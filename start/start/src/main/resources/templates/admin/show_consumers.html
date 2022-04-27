@@ -118,14 +118,23 @@
                 </div>
             </div>
 
-            <div  class="text">
-                <p><span id="routing_info">관리자 페이지/회원 관리</span></p>
+            <div id="routing_info" class="text">
+                <p><span >관리자 페이지/회원 관리</span></p>
+
+                <!-- border -->
+                <div id="border_middle" class="ax_default shape" data-label="border">
+                    <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
+                    <div class="text " style="display:none; visibility: hidden">
+                    </div>
+                </div>
             </div>
+
+
 
             <div id ="main_content">
                 <table id="consumers" width="1440">
                     <tr>
-                        <th width="200">회원 프로필 </th>
+                        <th width="100">회원 프로필 </th>
                         <th width="600">info </th>
                         <th width="120">주문 수</th>
                         <th width="120">리뷰 수</th>
@@ -133,17 +142,27 @@
                         <th width="120">좋아요 수</th>
                     </tr>
 
-                    <tr th:each="consumer: ${consumerList}">
-                        <td th:src="|/upload/${consumer.photo}|"></td>
-                        <td>
-                            <p th:text="|회원이름: ${consumer.name}|"></p>
-                            <p th:text="|회원 아이디: ${consumer.id}|"></p>
-                            <p id ="consumer_point" th:text="|포인트: ${consumer.point}|"></p>
+                    <tr id="consumerData" th:each="consumer: ${consumerList}">
+                        <td th:if="${consumer.photo == null}">
+                            <img id = "consumer_profile" src="http://localhost:8080/upload/default_img.png" width="80" height="80">
                         </td>
-                        <td th:text="${consumer.orders.size}"></td>
-                        <td th:text="${consumer.reviews.size}"></td>
-                        <td th:text="${consumer.posts.size}"></td>
-                        <td th:text="${consumer.likes.size}"></td>
+                        <td th:if="${consumer.photo != null}">
+                            <img id = "consumer_profile" th:src="${consumer.photo}" width="80" height="80">
+                        </td>
+                        <!--
+                      <td >
+                          <img id = "consumer_profile" th:src="|http://localhost:8080/upload/${consumer.uploadFile.uploadFileName}|" width="80" height="80">
+                      </td>
+                      -->
+                        <td>
+                            <p th:text="|회원명: ${consumer.name}|"> 이름</p>
+                            <p th:text="|회원 id: ${consumer.id}|"> 아이디</p>
+                            <p id ="consumer_point" th:text="|포인트: ${consumer.point}|">포인트: 300</p>
+                        </td>
+                        <td th:text="|${consumer.orders.size} 개|"></td>
+                        <td th:text="|${consumer.reviews.size} 개|"></td>
+                        <td th:text="|${consumer.posts.size} 개|"></td>
+                        <td th:text="|${consumer.likes.size} 개|"></td>
                     </tr>
 
                 </table>

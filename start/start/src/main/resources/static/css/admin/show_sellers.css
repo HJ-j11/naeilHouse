@@ -1,145 +1,155 @@
 #main_content {
-    position: absolute;
-    top: 150px;
-    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-    font-weight:500;
-    font-style:normal;
-    font-size:18px;
-  }
-
-table {
-    margin-left:auto;
-    margin-right:auto;
+  position: absolute;
+  top: 170px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:1300;
+  font-style:normal;
+  font-size:16px;
+}
+#sellerData {
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:900;
+  font-style:normal;
+  font-size:15px;
 }
 
-  th, td {
-    border-bottom: 1px solid #999999;
-    padding: 20px;
-    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-    font-style:normal;
-  }
+table {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+th, td {
+  border-bottom: 1px solid #999999;
+  padding: 20px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-style:normal;
+}
 
 #ul_dropdown {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
 }
 
 
 #li_dropdown {
-    float:left;
-    margin-right: 100px;
+  float:left;
+  margin-right: 100px;
 }
 
 .dropdown {
-    position: relative;
-    list-style:none;
-    margin:10px;
-    display: inline-block;
+  position: relative;
+  list-style:none;
+  margin:10px;
+  display: inline-block;
 }
 
 .dropdown-menu {
-    position: absolute;
-    width:135px;
-    height:31px;
-    left:150px;
-    top:8px;
-    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-    font-weight:800;
-    font-style:normal;
-    font-size:20px;
+  position: absolute;
+  width:135px;
+  height:31px;
+  left:150px;
+  top:8px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:20px;
 
-    color:#424142;
-    padding: 16px;
-    cursor: pointer;
+  color:#424142;
+  padding: 16px;
+  cursor: pointer;
 }
 
 .dropdown-content {
-    position: absolute;
-    left:160px;
-    top:60px;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  position: absolute;
+  left:160px;
+  top:60px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .dropdown-content a {
-    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-    font-weight:800;
-    font-style:normal;
-    font-size:18px;
-    text-align:left;
-    color:#424142;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:18px;
+  text-align:left;
+  color:#424142;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 .dropdown-content {
-    display: none;
+  display: none;
 }
 
 .dropdown-menu:hover:not(.home){
-    color:#35C5F0;
+  color:#35C5F0;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 .dropdown-content a:hover {
-    color:#35C5F0;
+  color:#35C5F0;
 }
 
 
 #routing_info {
-  position: absolute;
-  width:300px;
-  top:115px;
-  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-  font-weight:800;
-  font-style:normal;
-  font-size:19px;
-  text-decoration: underline;
+position: absolute;
+width:300px;
+top:115px;
+font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+font-weight:800;
+font-style:normal;
+font-size:19px;
+text-decoration: underline;
 }
 
 #approved {
-  width:150px;
-  height:45px;
-  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-  font-weight:800;
-  font-style:normal;
-  font-size:18px;
-  color:#ffffff;
-  text-align: center;
-  line-height: 50px;
-  background:inherit;
-  background-color:rgba(53, 197, 240, 1);
-  border: 2px solid #ffffff;;
-  border-radius:5px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  display: block;
-  text-decoration: none;
+width:150px;
+height:45px;
+font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+font-weight:800;
+font-style:normal;
+font-size:18px;
+color:#ffffff;
+text-align: center;
+line-height: 50px;
+background:inherit;
+background-color:rgba(53, 197, 240, 1);
+border: 2px solid #ffffff;;
+border-radius:5px;
+-moz-box-shadow:none;
+-webkit-box-shadow:none;
+display: block;
+text-decoration: none;
 
 }
 
 #notapproved {
-  width:150px;
-  height:45px;
-  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-  font-weight:800;
-  font-style:normal;
-  font-size:18px;
-  color:#35C5F0;
-  text-align: center;
-  line-height: 50px;
-  background-color: #ffffff;
-  border: 2px solid #35C5F0;
-  border-radius:5px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  display: block;
-  text-decoration: none;
+width:150px;
+height:45px;
+font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+font-weight:800;
+font-style:normal;
+font-size:18px;
+color:#35C5F0;
+text-align: center;
+line-height: 50px;
+background-color: #ffffff;
+border: 2px solid #35C5F0;
+border-radius:5px;
+-moz-box-shadow:none;
+-webkit-box-shadow:none;
+display: block;
+text-decoration: none;
+}
+
+#border_middle {
+
 }

@@ -36,7 +36,7 @@ public class AdminController {
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Consumer> consumerList = consumerService.findConsumers();
             model.addAttribute("consumerList", consumerList);
@@ -58,7 +58,7 @@ public class AdminController {
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Seller> sellerList = sellerService.findSellers();
             model.addAttribute("sellerList",sellerList);
@@ -101,7 +101,7 @@ public class AdminController {
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Post> postList = postService.findPosts();
             model.addAttribute("postList",postList);
@@ -119,11 +119,11 @@ public class AdminController {
     public String showItems(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show items info -----------------------------------------");
         HttpSession session = request.getSession();
-        
+
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == "admin") {
+        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Item> itemList = itemService.findItems();
             model.addAttribute("itemList",itemList);

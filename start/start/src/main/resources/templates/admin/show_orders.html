@@ -127,8 +127,7 @@
                     <block th:each="order: ${orderList}">
                         <p id ="order_data" th:text="${order.orderDate}"></p>
                         <p th:text="|구매자 id: ${order.consumer.cId}|"></p>
-                        <p id ="orderStatus" th:text="${order.orderStatus}"></p>
-
+                        <p id ="orderStatus" th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"></p>
                         <tr th:each="orderitem: ${order.orderItems}">
                             <!--
                             <td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}|" width="40" height="40"></td>
@@ -139,7 +138,9 @@
                             </td>
                             <td>
                                 <p th:text="|${orderitem.orderPrice} 원|"></p>
+                                <!--
                                 <p th:text="|${orderitem.count}| 개"></p>
+                                -->
                             </td>
                         </tr>
                     </block>
