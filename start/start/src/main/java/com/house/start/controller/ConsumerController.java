@@ -1,10 +1,8 @@
 package com.house.start.controller;
 
+import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Item;
-import com.house.start.domain.Post;
-import com.house.start.domain.UploadFile;
+import com.house.start.domain.*;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
@@ -12,15 +10,19 @@ import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,51 +40,59 @@ public class ConsumerController {
     public String getAllItem(Model model){
         List<Item> items = consumerService.getAllItems();
         model.addAttribute("items", items);
-        return "consumer_itemList";
+        return "item_list";
     }
+
     // 물건 카테고리
     @GetMapping("list/{category_id}")
-    public String getItemByCategory(Long category_id, Model model){
+    public String getItemByCategory(@PathVariable Long category_id, Model model){
         List<Item> items = consumerService.getAllByCategory(category_id);
         model.addAttribute("items", items);
         return "";
     }
 
     // 물건 상세
-    @GetMapping("/list/{category_id}/{id}")
-    public String getOneItem(Long id, Model model){
+    @GetMapping("/list/item/{id}")
+    public String getOneItem(@PathVariable Long id, Model model){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
-        return "item";
+        return "item_info";
     }
 
     // 장바구니 담기
-    @PutMapping("/list/{id}/getCart")
-    public Item getItemToCart(Long id) {
-        Item item = consumerService.getOneItem(id);
-        return item;
+    @PutMapping("/list/item/{id}/getCart")
+    public void goToCart(@PathVariable Long id) {
+        consumerService.goToCart(id);
     }
 
 
     // 장바구니
 //    @GetMapping("/cart")
 //    public String getCarts(Model model){
-//        ItemStatus status = ItemStatus.CART;
-//        List<Item> items = consumerService.findItemByStatus(status);
-//        model.addAttribute("items", items);
+//        List<Item> itemList = consumerService.findByCart(ItemStatus.CART);
+//        model.addAttribute("itemList", itemList);
 //        return "cart";
 //    }
 
 
     // 배송 완료
     @PutMapping("/user/deliveries/{id}/completed")
-    public void getAllDelivery(String id){
-
+    public void getAllDelivery(@PathVariable Long id){
+        consumerService.completeDelivery(id);
     }
 
     //마이 페이지
     @GetMapping("/user")
-    public String getUserInfo(Long id, Model model) {
+    public String getUserInfo(@PathVariable Long id, Model model, HttpServletRequest request) {
+        // 후에 session으로 교체할 예정.
+        try {
+            HttpSession session = request.getSession();
+            String userId = session.getId();
+
+        } catch(Exception e) {
+            logger.error(e.getMessage());
+        }
+
         Consumer user = consumerService.getConsumerInfo(id);
         model.addAttribute("user", user);
         return "info/user";
@@ -122,16 +132,17 @@ public class ConsumerController {
     }
 
     @GetMapping("/community/{id}")
-    public String getOnePost(Long id, Model model) {
+    public String getOnePost(@PathVariable Long id, Model model) {
         Post post = consumerService.getOnePost(id);
+
+        // 간편하게 넘기는 법 없을까?
+
         model.addAttribute("post", post);
-        return "post";
+        model.addAttribute("likes", post.countLikes());
+        model.addAttribute("comments", post.getComments());
+        return "post_detail";
     }
 
-    @PutMapping("/community/{id}/like")
-    public void putLikes() {
-
-    }
 
     // 글 작성 페이지
     @GetMapping("/community/new")
@@ -143,36 +154,64 @@ public class ConsumerController {
     // 글 작성
     @PostMapping("/community/write")
     public String postUser(@ModelAttribute PostForm post, HttpServletRequest request) throws IOException {
-       logger.info(post.getContents());
-       logger.info(String.valueOf(post.getPhoto()));
-
-        Post newPost = new Post();
+        logger.info(post.getContents());
+        logger.info(String.valueOf(post.getPhoto()));
 
         UploadFile uploadFile = fileStore.storeFile(post.getPhoto(), request);
 
-        newPost.setContents(post.getContents());
-        newPost.setUploadFile(uploadFile);
+        try {
+            HttpSession session = request.getSession();
+            Consumer consumer = (Consumer) session.getAttribute("userInfo");
+        } catch(Exception e) {
+            logger.error("No session");
+        }
 
-        consumerService.postNew(newPost);
+        Post newPost = Post.builder()
+                .contents(post.getContents())
+                .uploadFile(uploadFile)
+                .postDate(LocalDateTime.now())
+                .build();
+
+        consumerService.save(newPost);
 
         return "redirect:/community";
     }
+    /**
+     * 글 -> 좋아요 누르기
+     * **/
+    @PostMapping("/community/{id}/likes")
+    public String putLikes(@PathVariable String id) {
+        consumerService.putLikes(Long.valueOf(id));
+        return "redirect:/community/"+id;
+    }
 
-    // 댓글 등록
-    @PostMapping("/comments/write")
-    public void postComment() {
 
+    /**
+     * 댓글
+     * **/
+
+
+    // 댓글 작성
+    @PostMapping("/community/{id}/comments/write")
+    public String postComment(@PathVariable String id, @RequestParam String contents) {
+        consumerService.saveComment(id, contents);
+        return "redirect:/community/"+id;
     }
 
     // 댓글 수정
     @PutMapping("/comments/{id}/put")
-    public void putComment() {
-
+    public String putComment(@PathVariable String id, @RequestBody CommentForm commentForm, Model model) {
+        consumerService.updateComment(commentForm.getId(), commentForm.getContent());
+        model.addAttribute("ACCESS", "SUCCESS");
+        return "redirect:/community/"+commentForm.getPostId();
     }
 
     // 댓글 삭제
     @DeleteMapping("/comments/{id}/delete")
-    public void deleteComment() {
+    public String deleteComment(@PathVariable Long id, Model model) {
+        consumerService.deleteComment(id);
+        model.addAttribute("ACESS", "SUCCESS");
+        return "redirect:/community/";
 
     }
 

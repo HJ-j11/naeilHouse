@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Consumer Post</title>
+    <title>Item Info</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
@@ -43,13 +43,12 @@
     <script src="scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="javascript/document.js"></script>
     <script src="css/consumer/data.js"></script>
-
 </head>
 <body>
 <div id="base" class="">
-
     <!-- Topbar (Group) -->
-    <div id="u121" class="ax_default" data-label="Topbar" data-left="0" data-top="2" data-width="1440" data-height="115">
+    <div id="u121" class="ax_default" data-label="Topbar" data-left="0" data-top="2" data-width="1440"
+         data-height="115">
 
         <!-- logo (Rectangle) -->
         <div id="u122" class="ax_default shape" data-label="logo">
@@ -60,7 +59,8 @@
         </div>
 
         <!-- posting_button (Group) -->
-        <div id="u123" class="ax_default" data-label="posting_button" data-left="1295" data-top="17" data-width="125" data-height="49">
+        <div id="u123" class="ax_default" data-label="posting_button" data-left="1295" data-top="17" data-width="125"
+             data-height="49">
 
             <!-- post_box (Rectangle) -->
             <div id="u124" class="ax_default shape" data-label="post_box">
@@ -88,7 +88,8 @@
         </div>
 
         <!-- 검색 (Group) -->
-        <div id="u127" class="ax_default" data-label="검색" data-left="637" data-top="17" data-width="331" data-height="54">
+        <div id="u127" class="ax_default" data-label="검색" data-left="637" data-top="17" data-width="331"
+             data-height="54">
 
             <!-- 검색바 (Rectangle) -->
             <div id="u128" class="ax_default shape" data-label="검색바">
@@ -105,7 +106,8 @@
             </div>
 
             <!-- search_icon (Group) -->
-            <div id="u130" class="ax_default" data-label="search_icon" data-left="637" data-top="17" data-width="53" data-height="54">
+            <div id="u130" class="ax_default" data-label="search_icon" data-left="637" data-top="17" data-width="53"
+                 data-height="54">
 
                 <!-- search_icon (Rectangle) -->
                 <div id="u131" class="ax_default shape" data-label="search_icon">
@@ -157,58 +159,40 @@
             </div>
         </div>
 
-        <div id ="main_content">
-            <table id="orders" th:width="1440">
-                <tr>
-                    <th th:width="200">이미지</th>
-                    <th th:width="200">No</th>
-                    <th th:width="500">제목</th>
-                    <th th:width="200">작성자</th>
-                    <th th:width="200">조회수</th>
-                </tr>
-                <tr th:each="post : ${postList}">
-                    <td><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="100" height="100"></td>
-                    <td th:text="${post.id}"></td>
-                    <td>
-                        <a th:href="@{'/community/'+${post.id}}">
-                            <span th:text="${post.contents}"></span>
-                        </a>
-                    </td>
-                    <td th:text="${post.consumer.name}"></td>
-                    <td></td>
-                </tr>
-            </table>
-<!--            <table id="orders" width="1440">-->
-<!--                -->
-
-<!--                <block th:each="order: ${orderList}">-->
-<!--                    <p id ="order_data" th:text="${order.orderDate}"></p>-->
-<!--                    <tr th:each="orderitem: ${order.orderItems}">-->
-<!--                        &lt;!&ndash;-->
-<!--                        <td th:src="@{orderitem.item.photo}"></td>-->
-<!--                        &ndash;&gt;-->
-<!--                        <td>-->
-<!--                            <p th:text="${orderitem.item.seller.storeName}"></p>-->
-<!--                            <p th:text="${orderitem.item.name}"></p>-->
-<!--                        </td>-->
-<!--                        <td>-->
-<!--                            <p th:text="${orderitem.orderPrice}">원</p>-->
-<!--                            <p th:text="${orderitem.count}">개</p>-->
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                    <p th:text="${order.orderStatus}"></p>-->
-<!--                    <button th:if="${order.orderStatus == ORDER}">승인 취소하기</button>-->
-<!--                    <div th:switch="${order.orderStatus}">-->
-<!--                        <button th:case="ORDER">취소하기</button>-->
-<!--                        <button th:case='ORDER'>리뷰작성</button>-->
-<!--                        <button th:case=ORDER>취소완료</button>-->
-<!--                    </div>-->
-<!--                </block>-->
-
-<!--            </table>-->
+        <!-- 메인 화면 -->
+        <div id="main_content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-4 text-center">
+<!--                        <img th:src="|/upload/${item.uploadFile.storeFileName}|" class="img-thumbnail" alt="...">-->
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="row justify-content-center">
+                            <p class="fw-bold text-center bg-light">상품명</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <p th:text="${item.name != null} ? ${item.name} : 'null'" class="fw-bold text-center"></p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="fw-bold text-center bg-light">가격</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <p th:text="${item.price != null} ? ${item.price} : 'null'" class="fw-bold text-center"></p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="fw-bold text-center bg-light">상품 정보</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <p th:text="${item.info != null} ? ${item.info} : 'null'" class="fw-bold text-center"></p>
+                        </div>
+                        <a href="#" th:href="@{/list/item/{id}/getCart (id=${item.id})}" methods="post" class="btn btn-primary" role="button">장바구니 담기</a>
+                        <a href="#" th:href="@{/consumer/item/{id}/purchase (id=${item.id})}" class="btn btn-primary" role="button">바로 구매</a>
+                        <!--            <button type="button" class="btn btn-primary" style="margin-top: 10px">바로 구매</button>-->
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Vector (Shape) -->
         <div id="u137" class="ax_default shape" data-label="Vector">
             <img id="u137_img" class="img " src="images/consumer_top_bar/vector_u99.svg"/>
             <div id="u137_text" class="text " style="display:none; visibility: hidden">
@@ -216,53 +200,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Top Bar 주문 관리 부분 -->
-
-    <!-- middle_title_3 (Group) -->
-<!--    <div id="u138" class="ax_default" data-label="middle_title_3" data-left="384" data-top="62" data-width="129" data-height="72">-->
-
-<!--        &lt;!&ndash; 주문관리 (Group) &ndash;&gt;-->
-<!--        <div id="u139" class="ax_default" data-label="주문관리" data-left="384" data-top="98" data-width="129" data-height="36">-->
-
-<!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
-<!--            <div id="u140" class="ax_default shape" data-label="mid_title">-->
-<!--                <div id="u140_div" class=""></div>-->
-<!--                <div id="u140_text" class="text " style="display:none; visibility: hidden">-->
-<!--                    <p></p>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; 주문관리 (Rectangle) &ndash;&gt;-->
-<!--            <div id="u141" class="ax_default shape" data-label="주문관리">-->
-<!--                <div id="u141_div" class=""></div>-->
-<!--                <div id="u141_text" class="text ">-->
-<!--                    <p><span>주문 관리</span></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; 회원관리 (Group) &ndash;&gt;-->
-<!--        <div id="u142" class="ax_default" data-label="회원관리" data-left="384" data-top="62" data-width="129" data-height="36">-->
-
-<!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
-<!--            <div id="u143" class="ax_default shape" data-label="mid_title">-->
-<!--                <div id="u143_div" class=""></div>-->
-<!--                <div id="u143_text" class="text " style="display:none; visibility: hidden">-->
-<!--                    <p></p>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; 리뷰 관리 (Rectangle) &ndash;&gt;-->
-<!--            <div id="u144" class="ax_default shape" data-label="리뷰관리">-->
-<!--                <div id="u144_div" class=""></div>-->
-<!--                <div id="u144_text" class="text ">-->
-<!--                    <p><span>리뷰 관리</span></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>
-<script src="scripts/axure/ios.js"></script>
 </body>
 </html>

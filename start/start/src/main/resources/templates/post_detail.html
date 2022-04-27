@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Consumer Post</title>
+    <title>Post Detail</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
@@ -157,55 +157,36 @@
             </div>
         </div>
 
-        <div id ="main_content">
-            <table id="orders" th:width="1440">
-                <tr>
-                    <th th:width="200">이미지</th>
-                    <th th:width="200">No</th>
-                    <th th:width="500">제목</th>
-                    <th th:width="200">작성자</th>
-                    <th th:width="200">조회수</th>
-                </tr>
-                <tr th:each="post : ${postList}">
-                    <td><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="100" height="100"></td>
-                    <td th:text="${post.id}"></td>
-                    <td>
-                        <a th:href="@{'/community/'+${post.id}}">
-                            <span th:text="${post.contents}"></span>
-                        </a>
-                    </td>
-                    <td th:text="${post.consumer.name}"></td>
-                    <td></td>
-                </tr>
-            </table>
-<!--            <table id="orders" width="1440">-->
-<!--                -->
-
-<!--                <block th:each="order: ${orderList}">-->
-<!--                    <p id ="order_data" th:text="${order.orderDate}"></p>-->
-<!--                    <tr th:each="orderitem: ${order.orderItems}">-->
-<!--                        &lt;!&ndash;-->
-<!--                        <td th:src="@{orderitem.item.photo}"></td>-->
-<!--                        &ndash;&gt;-->
-<!--                        <td>-->
-<!--                            <p th:text="${orderitem.item.seller.storeName}"></p>-->
-<!--                            <p th:text="${orderitem.item.name}"></p>-->
-<!--                        </td>-->
-<!--                        <td>-->
-<!--                            <p th:text="${orderitem.orderPrice}">원</p>-->
-<!--                            <p th:text="${orderitem.count}">개</p>-->
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                    <p th:text="${order.orderStatus}"></p>-->
-<!--                    <button th:if="${order.orderStatus == ORDER}">승인 취소하기</button>-->
-<!--                    <div th:switch="${order.orderStatus}">-->
-<!--                        <button th:case="ORDER">취소하기</button>-->
-<!--                        <button th:case='ORDER'>리뷰작성</button>-->
-<!--                        <button th:case=ORDER>취소완료</button>-->
-<!--                    </div>-->
-<!--                </block>-->
-
-<!--            </table>-->
+        <!-- 메인 컨텐츠-->
+        <div id="main_content">
+            <div>
+                <img th:src="|/upload/${post.uploadFile.storeFileName}|" width="600" height="600">
+            </div>
+            <div>
+                <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>
+            </div>
+            <div>좋아요 수 <span th:text="${likes}"></span></div>
+            <div>유저 정보 <span th:text="${post.consumer.name}"></span></div>
+            <div>댓글 수<span th:text="${comments.size()}"></span></div>
+            <div>댓글</div>
+            <div th:each="comment : ${comments}">
+                <div style="border: 1px solid black;">
+                    <div id="originForm">
+                        <p>이름 :<span th:text="${comment.consumer.name}"></span></p>
+                        <p>내용 :<span th:text="${comment.content}"></span></p>
+                    </div>
+                    <div id="modifyForm" style="display: none">
+                        <input type="text" name="content" th:value="${comment.content}"/>
+                        <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>
+                    </div>
+                    <div></div>
+                    <span><button th:attr="onclick=|modifyComment()|">댓글 수정</button> <button>댓글 삭제</button></span>
+                </div>
+            </div>
+            <form th:action="@{/community/{id}/comments/write (id=${post.id})}" method="post">
+                <input type="text" name="contents"/>
+                <input type="submit" value="댓글 작성"/>
+            </form>
         </div>
 
         <!-- Vector (Shape) -->
@@ -220,49 +201,105 @@
     <!-- Top Bar 주문 관리 부분 -->
 
     <!-- middle_title_3 (Group) -->
-<!--    <div id="u138" class="ax_default" data-label="middle_title_3" data-left="384" data-top="62" data-width="129" data-height="72">-->
+    <!--    <div id="u138" class="ax_default" data-label="middle_title_3" data-left="384" data-top="62" data-width="129" data-height="72">-->
 
-<!--        &lt;!&ndash; 주문관리 (Group) &ndash;&gt;-->
-<!--        <div id="u139" class="ax_default" data-label="주문관리" data-left="384" data-top="98" data-width="129" data-height="36">-->
+    <!--        &lt;!&ndash; 주문관리 (Group) &ndash;&gt;-->
+    <!--        <div id="u139" class="ax_default" data-label="주문관리" data-left="384" data-top="98" data-width="129" data-height="36">-->
 
-<!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
-<!--            <div id="u140" class="ax_default shape" data-label="mid_title">-->
-<!--                <div id="u140_div" class=""></div>-->
-<!--                <div id="u140_text" class="text " style="display:none; visibility: hidden">-->
-<!--                    <p></p>-->
-<!--                </div>-->
-<!--            </div>-->
+    <!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
+    <!--            <div id="u140" class="ax_default shape" data-label="mid_title">-->
+    <!--                <div id="u140_div" class=""></div>-->
+    <!--                <div id="u140_text" class="text " style="display:none; visibility: hidden">-->
+    <!--                    <p></p>-->
+    <!--                </div>-->
+    <!--            </div>-->
 
-<!--            &lt;!&ndash; 주문관리 (Rectangle) &ndash;&gt;-->
-<!--            <div id="u141" class="ax_default shape" data-label="주문관리">-->
-<!--                <div id="u141_div" class=""></div>-->
-<!--                <div id="u141_text" class="text ">-->
-<!--                    <p><span>주문 관리</span></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+    <!--            &lt;!&ndash; 주문관리 (Rectangle) &ndash;&gt;-->
+    <!--            <div id="u141" class="ax_default shape" data-label="주문관리">-->
+    <!--                <div id="u141_div" class=""></div>-->
+    <!--                <div id="u141_text" class="text ">-->
+    <!--                    <p><span>주문 관리</span></p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
 
-<!--        &lt;!&ndash; 회원관리 (Group) &ndash;&gt;-->
-<!--        <div id="u142" class="ax_default" data-label="회원관리" data-left="384" data-top="62" data-width="129" data-height="36">-->
+    <!--        &lt;!&ndash; 회원관리 (Group) &ndash;&gt;-->
+    <!--        <div id="u142" class="ax_default" data-label="회원관리" data-left="384" data-top="62" data-width="129" data-height="36">-->
 
-<!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
-<!--            <div id="u143" class="ax_default shape" data-label="mid_title">-->
-<!--                <div id="u143_div" class=""></div>-->
-<!--                <div id="u143_text" class="text " style="display:none; visibility: hidden">-->
-<!--                    <p></p>-->
-<!--                </div>-->
-<!--            </div>-->
+    <!--            &lt;!&ndash; mid_title (Rectangle) &ndash;&gt;-->
+    <!--            <div id="u143" class="ax_default shape" data-label="mid_title">-->
+    <!--                <div id="u143_div" class=""></div>-->
+    <!--                <div id="u143_text" class="text " style="display:none; visibility: hidden">-->
+    <!--                    <p></p>-->
+    <!--                </div>-->
+    <!--            </div>-->
 
-<!--            &lt;!&ndash; 리뷰 관리 (Rectangle) &ndash;&gt;-->
-<!--            <div id="u144" class="ax_default shape" data-label="리뷰관리">-->
-<!--                <div id="u144_div" class=""></div>-->
-<!--                <div id="u144_text" class="text ">-->
-<!--                    <p><span>리뷰 관리</span></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--            &lt;!&ndash; 리뷰 관리 (Rectangle) &ndash;&gt;-->
+    <!--            <div id="u144" class="ax_default shape" data-label="리뷰관리">-->
+    <!--                <div id="u144_div" class=""></div>-->
+    <!--                <div id="u144_text" class="text ">-->
+    <!--                    <p><span>리뷰 관리</span></p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </div>
 <script src="scripts/axure/ios.js"></script>
+<script>
+    function putLikes(id) {
+        let putUrl = "/community/"+id+"/likes";
+
+        fetch(putUrl, {
+            method : "POST",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+            body : JSON.stringify({
+                id : id
+                // session에서 값 넣어줄 것.
+                // consumerId : consumerId
+            }),
+        })
+            .then((response) => response.json())
+            .then(
+                alert("좋아요를 눌렀습니다.")
+            );
+        // console에 데이터 잘 넘어갔는지 확인 필요.
+    }
+
+    function modifyComment() {
+        var x = document.getElementById("modifyForm");
+        var y = document.getElementById("originForm");
+
+        if(x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+    }
+
+    function putComments(id, postId) {
+            let putUrl = "/comments/"+id+"/put";
+            var content = document.getElementsByName("content")[0].value;
+
+            console.log(content);
+
+            fetch(putUrl, {
+                method : "PUT",
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body : JSON.stringify({
+                    id: id,
+                    postId : postId,
+                    content : content
+                }),
+            })
+                .then((response) => response.json())
+                .then(
+                    alert("댓글을 수정했습니다.")
+                );
+    }
+
+</script>
 </body>
 </html>

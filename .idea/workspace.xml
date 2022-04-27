@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +39,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -98,11 +99,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/start/start/src/main/resources/static/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images" />
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\css" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\templates" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources" />
@@ -148,6 +155,26 @@
       <workItem from="1649761076766" duration="2237000" />
       <workItem from="1649773118771" duration="126000" />
       <workItem from="1649827312640" duration="558000" />
+      <workItem from="1649831051615" duration="10000" />
+      <workItem from="1649833404906" duration="666000" />
+      <workItem from="1649898006879" duration="7602000" />
+      <workItem from="1649931983499" duration="10000" />
+      <workItem from="1650009185575" duration="5422000" />
+      <workItem from="1650014742816" duration="127000" />
+      <workItem from="1650022215452" duration="556000" />
+      <workItem from="1650102607158" duration="10254000" />
+      <workItem from="1650344976945" duration="7675000" />
+      <workItem from="1650352750280" duration="5795000" />
+      <workItem from="1650365507456" duration="1778000" />
+      <workItem from="1650378201868" duration="37000" />
+      <workItem from="1650428081531" duration="1591000" />
+      <workItem from="1650440755288" duration="1349000" />
+      <workItem from="1650446406380" duration="3000" />
+      <workItem from="1650513984327" duration="7057000" />
+      <workItem from="1650590360376" duration="4776000" />
+      <workItem from="1650605236035" duration="1085000" />
+      <workItem from="1650625361390" duration="2717000" />
+      <workItem from="1650689578487" duration="756000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -219,7 +246,105 @@
       <option name="project" value="LOCAL" />
       <updated>1649757671810</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Post @Bulider 적용">
+      <created>1649907794457</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1649907794457</updated>
+    </task>
+    <task id="LOCAL-00012" summary="장바구니 담기 기능 추가">
+      <created>1649916417167</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1649916417167</updated>
+    </task>
+    <task id="LOCAL-00013" summary="@Builder 변경&#10;@NoArgsConstructor 추가">
+      <created>1650010827982</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1650010827982</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Post 게시판 상세 조회 html 연동&#10;(thymeleaf if-else 고민)">
+      <created>1650014643837</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1650014643837</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Post 글 상세 페이지 좋아요 수 카운트 고민&#10;좋아요 생성하는 fetch() 자바스크립트 작성">
+      <created>1650110094323</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1650110094323</updated>
+    </task>
+    <task id="LOCAL-00016" summary="댓글 기능 추가&#10;- 댓글 수(후에 fetch join으로)&#10;- 댓글 등록">
+      <created>1650113649228</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1650113649228</updated>
+    </task>
+    <task id="LOCAL-00017" summary="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌.">
+      <created>1650346596713</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1650346596713</updated>
+    </task>
+    <task id="LOCAL-00018" summary="커뮤니티&#10;- 커뮤니티 리스트 디자인 thymeleaf 연동">
+      <created>1650350497483</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1650350497483</updated>
+    </task>
+    <task id="LOCAL-00019" summary="상품 목록 &#10;- 상품 목록 html 연동">
+      <created>1650353801558</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1650353801558</updated>
+    </task>
+    <task id="LOCAL-00020" summary="커뮤니티&#10;- 댓글 수정과 onclick none/block 기능&#10;- 댓글 수정 form url 작성.">
+      <created>1650358584716</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1650358584716</updated>
+    </task>
+    <task id="LOCAL-00021" summary="커뮤니티 &#10;- 댓글 수정 display none/block 지정">
+      <created>1650442607714</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1650442607714</updated>
+    </task>
+    <task id="LOCAL-00022" summary="커뮤니티 &#10;- 댓글 수정 Controlle구현 완료&#10;상품&#10;- 상품 장바구니 담기 주소 매핑 중">
+      <created>1650519671997</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1650519671997</updated>
+    </task>
+    <task id="LOCAL-00023" summary="댓글 등록&#10;- ModelAttribute로 getter,setter를 통해 데이터 가져오기.&#10;- 완료 후 이전 페이지로 돌아가기 위해 post id 함께 전송">
+      <created>1650606293790</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1650606293790</updated>
+    </task>
+    <task id="LOCAL-00024" summary="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현.">
+      <created>1650629697857</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1650629697857</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +385,20 @@
     <MESSAGE value="Post : 파일 경로/이름 변경" />
     <MESSAGE value="post 담을 수 있는 postForm 설정" />
     <MESSAGE value="파일 업로드 설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="파일 업로드 설정" />
+    <MESSAGE value="Post @Bulider 적용" />
+    <MESSAGE value="장바구니 담기 기능 추가" />
+    <MESSAGE value="@Builder 변경&#10;@NoArgsConstructor 추가" />
+    <MESSAGE value="Post 게시판 상세 조회 html 연동&#10;(thymeleaf if-else 고민)" />
+    <MESSAGE value="Post 글 상세 페이지 좋아요 수 카운트 고민&#10;좋아요 생성하는 fetch() 자바스크립트 작성" />
+    <MESSAGE value="댓글 기능 추가&#10;- 댓글 수(후에 fetch join으로)&#10;- 댓글 등록" />
+    <MESSAGE value="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌." />
+    <MESSAGE value="커뮤니티&#10;- 커뮤니티 리스트 디자인 thymeleaf 연동" />
+    <MESSAGE value="상품 목록 &#10;- 상품 목록 html 연동" />
+    <MESSAGE value="커뮤니티&#10;- 댓글 수정과 onclick none/block 기능&#10;- 댓글 수정 form url 작성." />
+    <MESSAGE value="커뮤니티 &#10;- 댓글 수정 display none/block 지정" />
+    <MESSAGE value="커뮤니티 &#10;- 댓글 수정 Controlle구현 완료&#10;상품&#10;- 상품 장바구니 담기 주소 매핑 중" />
+    <MESSAGE value="댓글 등록&#10;- ModelAttribute로 getter,setter를 통해 데이터 가져오기.&#10;- 완료 후 이전 페이지로 돌아가기 위해 post id 함께 전송" />
+    <MESSAGE value="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현." />
+    <option name="LAST_COMMIT_MESSAGE" value="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현." />
   </component>
 </project>

@@ -17,7 +17,19 @@ public class UploadFile {
     @OneToOne(mappedBy = "uploadFile")
     private Item item;
 
+    @OneToOne(mappedBy = "uploadFile")
+    private Post post;
+
     private String uploadFileName;
     private String storeFileName;
+
+    /**
+     * 생성 메소드
+     * **/
+
+    private void setFileNames(String uploadFileName, String storeFileName) {
+        this.setUploadFileName(uploadFileName);
+        this.setStoreFileName(storeFileName);
+    }
 
 }
