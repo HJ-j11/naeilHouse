@@ -6,7 +6,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <!-- develop -->
-    <link href="http://localhost:8080/css/admin/show_consumers.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/admin/show_posts.css" type="text/css" rel="stylesheet"/>
 
     <!--axure-->
     <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -113,7 +113,6 @@
                 </div>
             </div>
 
-
             <!-- border (Shape) -->
             <div id="u42" class="ax_default shape" data-label="border">
                 <img id="u42_img" class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
@@ -123,7 +122,7 @@
             </div>
 
             <div id="routing_info" class="text">
-                <p><span>관리자 페이지/회원 관리</span></p>
+                <p><span>관리자 페이지/커뮤니티 관리</span></p>
 
                 <!-- border -->
                 <div id="border_middle" class="ax_default shape" data-label="border">
@@ -134,42 +133,39 @@
             </div>
 
             <div id="main_content">
-                <table id="consumers" width="1440">
-                    <tr>
-                        <th width="100">회원 프로필</th>
-                        <th width="600">info</th>
-                        <th width="120">주문 수</th>
-                        <th width="120">리뷰 수</th>
-                        <th width="120">게시글 수</th>
-                        <th width="120">좋아요 수</th>
+                <table class="posts" width="1440">
+                    <tr width="300">
+                        <th width="300">커뮤니티 사진</th>
+                        <th width="300">info</th>
+                        <th width="500">내용</th>
+                        <th width="150">좋아요 수</th>
+                        <th width="150">댓글 수</th>
                     </tr>
 
-                    <tr id="consumerData" th:each="consumer: ${consumerList}">
-                        <td th:if="${consumer.photo == null}">
-                            <img id="consumer_profile" src="http://localhost:8080/upload/default_img.png" width="80"
+                    <tr id="postData" th:each="post : ${postList}">
+                        <td th:if="${post.uploadFile == null}">
+                            <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
                                  height="80">
                         </td>
-                        <td th:if="${consumer.photo != null}">
-                            <img id="consumer_profile" th:src="${consumer.photo}" width="80" height="80">
+                        <td th:if="${post.uploadFile != null}">
+                            <!--
+                            <td ><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="80" height="80"></td>
+                            -->
                         </td>
-                        <!--
-                      <td >
-                          <img id = "consumer_profile" th:src="|http://localhost:8080/upload/${consumer.uploadFile.uploadFileName}|" width="80" height="80">
-                      </td>
-                      -->
-                        <td>
-                            <p th:text="|회원명: ${consumer.name}|"> 이름</p>
-                            <p th:text="|회원 id: ${consumer.id}|"> 아이디</p>
-                            <p id="consumer_point" th:text="|포인트: ${consumer.point}|">포인트: 300</p>
-                        </td>
-                        <td th:text="|${consumer.orders.size} 개|"></td>
-                        <td th:text="|${consumer.reviews.size} 개|"></td>
-                        <td th:text="|${consumer.posts.size} 개|"></td>
-                        <td th:text="|${consumer.likes.size} 개|"></td>
-                    </tr>
 
+                        <td>
+                            <p th:text="|작성자 id: ${post.consumer.cId} 님|">님 </p>
+                            <p th:text="|작성일시: ${post.postDate}|"> 일시</p>
+                        </td>
+                        <td th:text="${post.contents}"> 내용</td>
+                        <td th:text="|${post.likes.size} 개|">개</td>
+
+                        <td th:text="|${post.comments.size} 개|">개</td>
+
+                    </tr>
                 </table>
             </div>
+
             <!-- 로그아웃 (Rectangle) -->
             <a href="/logout">
                 <div id="logout" class="ax_default shape" data-label="로그인">
@@ -178,7 +174,6 @@
                     </div>
             </a>
         </div>
-
     </div>
 
 </div>
@@ -199,7 +194,7 @@
         <div class="dropdown-content">
             <a href="#">회원 관리</a>
             <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
+            <a href="#"> 관리</a>
         </div>
     </li>
 

@@ -12,7 +12,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ItemService {
-
     private final ItemRepository itemRepository;
 
     /**
@@ -36,4 +35,5 @@ public class ItemService {
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
+    
 }

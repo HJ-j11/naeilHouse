@@ -107,97 +107,6 @@
   text-transform:none;
   visibility:hidden;
 }
-#u19 {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:0px;
-  height:0px;
-}
-#u20_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:557px;
-  height:97px;
-  background:inherit;
-  background-color:rgba(53, 197, 240, 1);
-  border:none;
-  border-radius:5px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-}
-#u20 {
-  border-width:0px;
-  position:absolute;
-  left:440px;
-  top:531px;
-  width:557px;
-  height:97px;
-  display:flex;
-}
-#u20 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u20_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u21_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:136px;
-  height:31px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-  font-weight:800;
-  font-style:normal;
-  font-size:30px;
-  color:#FFFFFF;
-}
-#u21 {
-  border-width:0px;
-  position:absolute;
-  left:651px;
-  top:564px;
-  width:136px;
-  height:31px;
-  display:flex;
-  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-  font-weight:800;
-  font-style:normal;
-  font-size:30px;
-  color:#FFFFFF;
-}
-#u21 .text {
-  position:absolute;
-  align-self:flex-start;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u21_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
 #u22 {
   border-width:0px;
   position:absolute;
@@ -548,11 +457,56 @@
   font-size:25px;
   color:#424142;
 }
-#u28 {
+
+#u28 .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+
+}
+#u28_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+}
+#user-type {
+  position:absolute;
+  top:260px;
+  left:730px;
+  width:1000px;
+  height: 450px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:20px;
+  float: left;
+  text-align:left;
+}
+
+#login-error-msg {
+  position:absolute;
+  top:230px;
+  margin: auto;
+  width:1440px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:18px;
+  text-align:center;
+}
+
+.field-error {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+#enroll_seller {
   border-width:0px;
   position:absolute;
-  left:759px;
-  top:667px;
+  left:860px;
+  top:620px;
   width:139px;
   height:31px;
   display:flex;
@@ -561,16 +515,28 @@
   font-style:normal;
   font-size:25px;
   color:#424142;
+
 }
-#u28 .text {
+
+#login-summit {
   position:absolute;
-  align-self:flex-start;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u28_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
+  left:440px;
+  top:520px;
+  width:557px;
+  height:97px;
+
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:30px;
+  color:#FFFFFF;
+  text-align: center;
+
+  background:inherit;
+  background-color:rgba(53, 197, 240, 1);
+  border:none;
+  border-radius:5px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow: 7px 14px 30px 3px rgba(163, 174, 184, 0.7);
 }

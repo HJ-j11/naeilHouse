@@ -27,13 +27,11 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class ConsumerController {
-
     private final ConsumerService consumerService;
     private final FileStore fileStore;
 
     private final ItemService itemService;
     private final OrderService orderService;
-
 
     private Logger logger = LoggerFactory.getLogger(ConsumerController.class);
 
@@ -217,7 +215,6 @@ public class ConsumerController {
 
     }
 
-
     /**
      *  상품 목록 페이지
      */
@@ -275,8 +272,6 @@ public class ConsumerController {
 
         return "redirect:/consumer/cart/list";
     }
-
-
     /**
      *  장바구니 페이지
      */

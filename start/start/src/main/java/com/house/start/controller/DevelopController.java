@@ -43,15 +43,6 @@ public class DevelopController {
         return "sample";
     }
 
-    @GetMapping("/")
-    public String main() {
-        return "main";
-    }
-
-    @GetMapping("/login")
-    public String loginForm() {
-        return "login";
-    }
 
     @GetMapping("/admin/consumerSetting")
     public String consumerManagement() {

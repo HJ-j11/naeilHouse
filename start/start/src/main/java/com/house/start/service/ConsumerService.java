@@ -18,18 +18,21 @@ import java.util.Map;
 @Transactional
 @RequiredArgsConstructor
 public class ConsumerService {
+    private EntityManager em;
 
     private final PostRepository postRepository;
     private final DeliveryRepository deliveryRepository;
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
     private final OrderRepository orderRepository;
+
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
 
     /**
      * 상품
      * **/
+
 
     // 물건 정렬
     public List<Item> getAllItems() {
@@ -158,6 +161,12 @@ public class ConsumerService {
     public void deleteComment(Long id) {
         Comment comment = commentRepository.getById(id);
         commentRepository.delete(comment);
+    }
+      /*
+     * 소비자 전체 목록 조회
+     */
+    public List<Consumer> findConsumers() {
+        return consumerRepository.findAll();
     }
 
 }

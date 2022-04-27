@@ -14,6 +14,7 @@ public class Category {
     @Id
     @Column(name="category_id")
     private long id;
+
     @Column(name="category_name")
     private String name;
 
