@@ -15,8 +15,8 @@ public class LoginForm {
     private Integer role; // 0: consumer, 1: seller, 2: admin
 
     @NotBlank
-    private String loginId; //아이디
+    private String loginId; // 아이디
 
     @NotBlank
-    private String pwd; //비밀번호
+    private String pwd; // 비밀번호
 }

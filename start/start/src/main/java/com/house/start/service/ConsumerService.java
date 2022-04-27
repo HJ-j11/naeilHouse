@@ -16,18 +16,13 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class ConsumerService {
-    @Autowired
-    PostRepository postRepository;
-    @Autowired
-    DeliveryRepository deliveryRepository;
-    @Autowired
-    ItemRepository itemRepository;
-    @Autowired
-    ConsumerRepository consumerRepository;
-    @Autowired
-    OrderRepository orderRepository;
-
     private EntityManager em;
+    private final PostRepository postRepository;
+    private final DeliveryRepository deliveryRepository;
+    private final ItemRepository itemRepository;
+    private final ConsumerRepository consumerRepository;
+    private final OrderRepository orderRepository;
+
     // 물건 정렬
     public List<Item> getAllItems() {
         List<Item> items = itemRepository.findAll();
@@ -111,4 +106,10 @@ public class ConsumerService {
         postRepository.save(post);
     }
 
+    /**
+     * 소비자 전체 목록 조회
+     */
+    public List<Consumer> findConsumers() {
+        return consumerRepository.findAll();
+    }
 }

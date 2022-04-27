@@ -20,12 +20,9 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class LoginService {
     private final EntityManager em;
-    @Autowired
-    ConsumerRepository consumerRepository;
-    @Autowired
-    SellerRepository sellerRepository;
-    @Autowired
-    AdminRepository adminRepository;
+    private final ConsumerRepository consumerRepository;
+    private final SellerRepository sellerRepository;
+    private final AdminRepository adminRepository;
 
     /**
      * 소비자 로그인 서비스

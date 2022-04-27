@@ -16,6 +16,9 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
+    /**
+     * 주문 취소
+     */
     @GetMapping("/orderlist")
     public String showOrder (Model model) {
         List<Order> orderList = orderService.findOrders();

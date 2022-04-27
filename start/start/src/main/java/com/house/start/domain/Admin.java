@@ -10,8 +10,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 public class Admin {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     @Column(name = "admin_id")
     private Long id;
 
