@@ -170,10 +170,8 @@ $axure.internal(function ($ax) {
         if (jObj.length > 0) {
           var id = jObj.attr('id');
           var axObj = $ax('#' + id);
-          try {
-            var rect = axObj.pageBoundingRect(); // can throw exception
-            return { 'id': id, 'rect': rect };
-          } catch (e) { }          
+          var rect = axObj.pageBoundingRect();
+          return { 'id': id, 'rect': rect };
         }
         return undefined;
     }
@@ -189,13 +187,9 @@ $axure.internal(function ($ax) {
             var jObj = _getElementIdFromTarget(domElement);
             if (jObj.length > 0) {
                 var id = jObj.attr('id');
-                var axObj = $ax('#' + id);
-                var rect = undefined;
-                try {
-                    rect = axObj.pageBoundingRect(); // can throw exception
-                } catch (e) { }
-                
-                if (rect && elements.findIndex(function (x) { return x.id === id }) < 0) {                    
+                var axObj = $ax('#' + id);                
+                var rect = axObj.pageBoundingRect();
+                if (elements.findIndex(function (x) { return x.id === id }) < 0) {                    
                     elements.push( { 'id': id, 'rect': rect } );
                 }
             }
@@ -227,9 +221,8 @@ $axure.internal(function ($ax) {
             var jObj = _getElementIdFromTarget(domElement);
             if (jObj.length > 0) {
                 var id = jObj.attr('id');
-                var rectAndStyle = $axure.getRectAndStyleById(id);
-                if (rectAndStyle && elements.findIndex(function (x) { return x.id === id }) < 0) {
-                    elements.push(rectAndStyle);
+                if (elements.findIndex(function (x) { return x.id === id }) < 0) {                    
+                    elements.push($axure.getRectAndStyleById(id));
                 }
             }
         });
@@ -239,14 +232,10 @@ $axure.internal(function ($ax) {
 
     $axure.getRectAndStyleById = function (id) {
         var axObj = $ax('#' + id);
-        try {
-            var rect = axObj.pageBoundingRect(); // can throw exception
-            var style = $ax.style.computeFullStyle(id, $ax.style.generateState(id), $ax.adaptive.currentViewId);
-            style.text = axObj.text();
-            return { 'id': id, 'rect': rect, 'style': style };
-        } catch (e) { }
-        
-        return undefined;
+        var rect = axObj.pageBoundingRect();
+        var style = $ax.style.computeFullStyle(id, $ax.style.generateState(id), $ax.adaptive.currentViewId);
+        style.text = axObj.text();
+        return { 'id': id, 'rect': rect, 'style': style };
     }
 
     $axure.isIdVisible = function (id) {

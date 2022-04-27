@@ -44,14 +44,14 @@ public class DevelopController {
     }
 
 
-    @GetMapping("/admin/consumerSetting")
+    @GetMapping("/consumer_detail")
     public String consumerManagement() {
-        return "admin_회원관리";
+        return "consumer_detail";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/consumer_postdetail")
     public String adminHome() {
-        return "admin_default";
+        return "consumer_postdetail";
     }
 
     @GetMapping("/items")

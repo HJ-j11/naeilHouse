@@ -90,24 +90,14 @@ $axure.internal(function($ax) {
         for(var i = 0; i < regionList.length; i++) {
             var region = regionMap[regionList[i]];
             var points = region.points;
-
-            var intersects = false;
             for(var j = 0; j < points.length; j++) {
                 var startSegment = points[j];
                 var endSegment = points[(j + 1) % points.length];
                 var intersectInfo = linesIntersect(line, { p1: startSegment, p2: endSegment });
                 if(intersectInfo) {
-                    intersects = true;
                     region.callback(intersectInfo);
                     break;
                 }
-            }
-
-            if (!intersects) {
-                // If line not intersects region points then it is fully inside or outside of the region.
-                // To check if line outside of the region it is enough to check any of the line point.
-                if (!_checkInside(points, line.p1))
-                    region.callback({ outside: true });
             }
         }
 

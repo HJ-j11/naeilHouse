@@ -146,16 +146,6 @@ $axure.internal(function($ax) {
         //TODO: [mas] handle required type
         if((sto.prop == 'url' || sto.prop == 'img') && sto.thisSTO.sto == 'item') return _stoHandlers.item(sto.thisSTO, scope, eventInfo, sto.prop);
         var thisObj = _evaluateSTO(sto.thisSTO, scope, eventInfo);
-
-        // calculate cursor offset for elements that are located relative to their parents
-        if (sto.thisSTO.name == 'cursor') {
-            var cursorOffset = $ax.public.fn.getCursorOffset(eventInfo.targetElement);
-            thisObj = {
-                x: thisObj.x - cursorOffset.x,
-                y: thisObj.y - cursorOffset.y,
-            };
-        }
-
         var prop = thisObj[sto.prop] instanceof Function ? thisObj[sto.prop]() : thisObj[sto.prop];
         return prop;
     };
