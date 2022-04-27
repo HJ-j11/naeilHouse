@@ -189,8 +189,6 @@ public class ConsumerController {
     /**
      * 댓글
      * **/
-
-
     // 댓글 작성
     @PostMapping("/community/{id}/comments/write")
     public String postComment(@PathVariable String id, @RequestParam String contents) {
