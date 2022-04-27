@@ -25,10 +25,8 @@ public class OrderService {
     private final EntityManager em;
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    DeliveryRepository deliveryRepository;
+    private final OrderRepository orderRepository;
+    private final DeliveryRepository deliveryRepository;
 
     /**
      *  주문 (바로 구매)
@@ -76,11 +74,12 @@ public class OrderService {
             throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
         }
         order.setOrderStatus(OrderStatus.CANCEL);
+
+        // Item 수량 변경
         for (OrderItem orderItem : order.getOrderItems()) {
             Item canceledItem = orderItem.getItem();
             canceledItem.setStockQuantity(canceledItem.getStockQuantity() + orderItem.getCount());
         }
-
 
         // Delivery 삭제
         deliveryRepository.delete(delivery);

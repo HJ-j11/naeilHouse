@@ -9,6 +9,7 @@ import com.house.start.repository.AdminRepository;
 import com.house.start.repository.CategoryRepository;
 import com.house.start.repository.ConsumerRepository;
 import com.house.start.repository.SellerRepository;
+import lombok.RequiredArgsConstructor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,6 @@ public class LoginServiceTest {
     @Autowired ConsumerRepository consumerRepository;
     @Autowired SellerRepository sellerRepository;
     @Autowired AdminRepository adminRepository;
-
-
 
     @Test
     public void 소비자_로그인() throws Exception {

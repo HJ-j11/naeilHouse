@@ -23,8 +23,7 @@ public class OrderServiceTest {
     @Autowired SellerRepository sellerRepository;
     @Autowired ItemRepository itemRepository;
     @Autowired CategoryRepository categoryRepository;
-
-
+    
     @Test
     public void 주문취소() throws Exception {
         //Given

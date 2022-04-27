@@ -17,16 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ConsumerService {
     private EntityManager em;
-    @Autowired
-    PostRepository postRepository;
-    @Autowired
-    DeliveryRepository deliveryRepository;
-    @Autowired
-    ItemRepository itemRepository;
-    @Autowired
-    ConsumerRepository consumerRepository;
-    @Autowired
-    OrderRepository orderRepository;
+    private final PostRepository postRepository;
+    private final DeliveryRepository deliveryRepository;
+    private final ItemRepository itemRepository;
+    private final ConsumerRepository consumerRepository;
+    private final OrderRepository orderRepository;
 
     // 물건 정렬
     public List<Item> getAllItems() {

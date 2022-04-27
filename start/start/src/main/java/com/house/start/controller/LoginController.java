@@ -25,13 +25,20 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     private final LoginService loginService;
 
-    // 로그인 화면으로 이동
+    /**
+     * 로그인 화면으로 이동
+      */
     @GetMapping("/login")
     public String login(@ModelAttribute LoginForm loginForm, Model model) {
         log.info("login controller - do login");
         return "login/loginForm";
     }
 
+    /**
+     * 로그인 데이터 입력 시, 로직 처리
+     * @param loginForm role, loginId, pwd로 이루어진 데이터
+     * @param bindingResult 입력한 loginForm 형식이 올바른지에 대한 결과
+     */
     @PostMapping("/login")
     public String loginUser(@ModelAttribute @Validated LoginForm loginForm,
                             BindingResult bindingResult,
@@ -91,6 +98,9 @@ public class LoginController {
         return "redirect:/";
     }
 
+    /**
+     * 로그아웃
+     */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

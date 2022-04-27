@@ -17,8 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SellerService {
     private final EntityManager em;
-    @Autowired
-    SellerRepository sellerRepository;
+    private final SellerRepository sellerRepository;
 
     /**
      *  아이디로 한 명의 판매자 조회

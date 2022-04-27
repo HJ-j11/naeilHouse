@@ -15,8 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService {
     private EntityManager em;
-    @Autowired
-    PostRepository postRepository;
+    private final PostRepository postRepository;
 
     public List<Post> findPosts(){
         return postRepository.findAll();

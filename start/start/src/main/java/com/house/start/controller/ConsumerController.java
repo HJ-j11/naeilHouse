@@ -25,13 +25,11 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class ConsumerController {
-
     private final ConsumerService consumerService;
     private final FileStore fileStore;
 
     private final ItemService itemService;
     private final OrderService orderService;
-
 
     private Logger logger = LoggerFactory.getLogger(ConsumerController.class);
 
@@ -177,6 +175,7 @@ public class ConsumerController {
     public void deleteComment() {
 
     }
+
     /**
      *  상품 목록 페이지
      */
