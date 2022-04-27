@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <form th:action th:object="${loginForm}" method="post">
+        <form th:action="@{/login}" th:object="${loginForm}" method="post">
 
             <!-- 로그인 에러 메세지 -->
             <div id="login-error-msg" th:if="${#fields.hasGlobalErrors()}">
