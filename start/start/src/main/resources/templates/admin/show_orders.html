@@ -49,7 +49,8 @@
 <div id="base" class="">
 
     <!-- Admin_default (Group) -->
-    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440" data-height="1024">
+    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440"
+         data-height="1024">
 
         <!-- Admin_default BG (Rectangle) -->
         <div id="u30" class="ax_default shape" data-label="Admin_default BG">
@@ -61,7 +62,8 @@
         </div>
 
         <!-- Topbar (Group) -->
-        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440" data-height="87">
+        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
+             data-height="87">
 
             <!-- logo (Rectangle) -->
             <div id="u32" class="ax_default shape" data-label="logo">
@@ -72,7 +74,8 @@
             </div>
 
             <!-- 검색 (Group) -->
-            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331" data-height="54">
+            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
+                 data-height="54">
 
                 <!-- 검색바 (Rectangle) -->
                 <div id="u34" class="ax_default shape" data-label="검색바">
@@ -89,7 +92,8 @@
                 </div>
 
                 <!-- search_icon (Group) -->
-                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53" data-height="54">
+                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
+                     data-height="54">
 
                     <!-- search_icon (Rectangle) -->
                     <div id="u37" class="ax_default shape" data-label="search_icon">
@@ -117,17 +121,18 @@
                 </div>
             </div>
 
-            <div  class="text">
+            <div class="text">
                 <p><span id="routing_info">관리자 페이지/주문 관리</span></p>
             </div>
 
-            <div id ="main_content">
+            <div id="main_content">
                 <table class="posts" width="1440">
 
                     <block th:each="order: ${orderList}">
-                        <p id ="order_data" th:text="${order.orderDate}"></p>
+                        <p id="order_data" th:text="${order.orderDate}"></p>
                         <p th:text="|구매자 id: ${order.consumer.cId}|"></p>
-                        <p id ="orderStatus" th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"></p>
+                        <p id="orderStatus"
+                           th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"></p>
                         <tr th:each="orderitem: ${order.orderItems}">
                             <!--
                             <td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}|" width="40" height="40"></td>
@@ -147,42 +152,49 @@
                 </table>
             </div>
 
+            <!-- 로그아웃 (Rectangle) -->
+            <a href="/logout">
+                <div id="logout" class="ax_default shape" data-label="로그인">
+                    <div id="u5_text" class="text ">
+                        <p><span>로그아웃</span></p>
+                    </div>
+            </a>
         </div>
-
-
     </div>
 
-    <!-- 네비게이션바 -->
-    <ul id="ul_dropdown">
-        <li id="li_dropdown" class="dropdown" >
-            <div class="dropdown-menu">스토어</div>
-            <div class="dropdown-content">
-                <a href="#">회원 관리</a>
-                <a href="#">주문 관리</a>
-                <a href="#">게시판 관리</a>
-            </div>
-        </li>
+</div>
 
-        <li id="li_dropdown" class="dropdown">
-            <div class="dropdown-menu">커뮤니티</div>
-            <div class="dropdown-content">
-                <a href="#">회원 관리</a>
-                <a href="#">주문 관리</a>
-                <a href="#">게시판 관리</a>
-            </div>
-        </li>
+<!-- 네비게이션바 -->
+<ul id="ul_dropdown">
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">스토어</div>
+        <div class="dropdown-content">
+            <a href="#">회원 관리</a>
+            <a href="#">주문 관리</a>
+            <a href="#">게시판 관리</a>
+        </div>
+    </li>
 
-        <li id="li_dropdown" class="dropdown">
-            <div class="dropdown-menu">관리자 페이지</div>
-            <div class="dropdown-content">
-                <a href="/admin/consumers">회원 관리</a>
-                <a href="/admin/sellers">판매자 관리</a>
-                <a href="/admin/orders">주문 관리</a>
-                <a href="/admin/items">상품 관리</a>
-                <a href="/admin/posts">커뮤니티 관리</a>
-            </div>
-        </li>
-    </ul>
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">커뮤니티</div>
+        <div class="dropdown-content">
+            <a href="#">회원 관리</a>
+            <a href="#">주문 관리</a>
+            <a href="#">게시판 관리</a>
+        </div>
+    </li>
+
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">관리자 페이지</div>
+        <div class="dropdown-content">
+            <a href="/admin/consumers">회원 관리</a>
+            <a href="/admin/sellers">판매자 관리</a>
+            <a href="/admin/orders">주문 관리</a>
+            <a href="/admin/items">상품 관리</a>
+            <a href="/admin/posts">커뮤니티 관리</a>
+        </div>
+    </li>
+</ul>
 
 </body>
 </html>

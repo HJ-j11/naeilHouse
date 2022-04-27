@@ -106,7 +106,6 @@ table {
     color:#35C5F0;
 }
 
-
 #routing_info {
   position: absolute;
   width:300px;
@@ -116,4 +115,45 @@ table {
   font-style:normal;
   font-size:19px;
   text-decoration: underline;
+}
+
+#u5_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:100px;
+  height:31px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:16px;
+  color:#717378;
+}
+#logout {
+  border-width:0px;
+  position:absolute;
+  left:1026px;
+  top:40px;
+  width:64px;
+  height:31px;
+  display:flex;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:16px;
+  color:#717378;
+}
+
+#u5_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
 }

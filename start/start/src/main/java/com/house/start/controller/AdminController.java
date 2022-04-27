@@ -29,19 +29,19 @@ public class AdminController {
      * 소비자 정보 조회
      */
     @GetMapping("/admin/consumers")
-    public String showConsumer (HttpServletRequest request, Model model) {
+    public String showConsumer(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show consumers info -----------------------------------------");
         HttpSession session = request.getSession();
 
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
+        } else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Consumer> consumerList = consumerService.findConsumers();
             model.addAttribute("consumerList", consumerList);
             return "admin/show_consumers";
-        }else {
+        } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
         }
@@ -49,7 +49,7 @@ public class AdminController {
 
     /**
      * 판매자 정보 조회
-      */
+     */
     @GetMapping("/admin/sellers")
     public String showSellers(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show sellers info -----------------------------------------");
@@ -58,12 +58,12 @@ public class AdminController {
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
+        } else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Seller> sellerList = sellerService.findSellers();
-            model.addAttribute("sellerList",sellerList);
+            model.addAttribute("sellerList", sellerList);
             return "admin/show_sellers";
-        }else {
+        } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
         }
@@ -74,7 +74,7 @@ public class AdminController {
      * 판매자 승인 처리
      */
     @GetMapping("/admin_sellers/approved/{seller_id}")
-    public String approvedSeller (@PathVariable Long seller_id) {
+    public String approvedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers approved -----------------------------------------");
         sellerService.approveSeller(seller_id);
         return "redirect:/admin/sellers";
@@ -82,9 +82,9 @@ public class AdminController {
 
     /**
      * 판매자 승인 철회
-      */
+     */
     @GetMapping("/admin_sellers/notapproved/{seller_id}")
-    public String notapprovedSeller (@PathVariable Long seller_id) {
+    public String notapprovedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);
         return "redirect:/admin/sellers";
@@ -92,7 +92,7 @@ public class AdminController {
 
     /**
      * 게시글 정보 조회
-      */
+     */
     @GetMapping("/admin/posts")
     public String showPosts(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show posts info -----------------------------------------");
@@ -101,12 +101,12 @@ public class AdminController {
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
+        } else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Post> postList = postService.findPosts();
-            model.addAttribute("postList",postList);
+            model.addAttribute("postList", postList);
             return "admin/show_posts";
-        }else {
+        } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
         }
@@ -114,7 +114,7 @@ public class AdminController {
 
     /**
      * 상품 목록 조회
-      */
+     */
     @GetMapping("/admin/items")
     public String showItems(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show items info -----------------------------------------");
@@ -123,12 +123,12 @@ public class AdminController {
         // 세션이 없으면 홈으로 이동
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
-        }else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
+        } else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Item> itemList = itemService.findItems();
-            model.addAttribute("itemList",itemList);
+            model.addAttribute("itemList", itemList);
             return "admin/show_items";
-        }else {
+        } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
         }
@@ -136,13 +136,24 @@ public class AdminController {
 
     /**
      * 주문 목록 조회
-      */
+     */
     @GetMapping("/admin/orders")
     public String showOrders(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show orders info -----------------------------------------");
-        List<Order> orderList = orderService.findOrders();
-        model.addAttribute("orderList",orderList);
-        return "admin/show_orders";
+        HttpSession session = request.getSession();
+
+        // 세션이 없으면 홈으로 이동
+        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+            return "err/notLogin";
+        } else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
+            // 관리자인 경우
+            List<Order> orderList = orderService.findOrders();
+            model.addAttribute("orderList", orderList);
+            return "admin/show_orders";
+        } else {
+            // 소비자나 판매자인 경우
+            return "err/denyPage";
+        }
     }
 
 }

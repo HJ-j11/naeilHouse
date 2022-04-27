@@ -46,7 +46,8 @@
 <div id="base" class="">
 
     <!-- Login (Group) -->
-    <div id="u16" class="ax_default" data-label="Login" data-left="390" data-top="110" data-width="607" data-height="591">
+    <div id="u16" class="ax_default" data-label="Login" data-left="390" data-top="110" data-width="607"
+         data-height="591">
 
         <!-- logo_img (Rectangle) -->
         <div id="u17" class="ax_default shape" data-label="logo_img">
@@ -73,44 +74,42 @@
             </div>
 
             <!-- pwd_box (Group) -->
-            <div id="u22" class="ax_default" data-label="pwd_box" data-left="440" data-top="399" data-width="557" data-height="93">
+            <div id="u22" class="ax_default" data-label="pwd_box" data-left="440" data-top="399" data-width="557"
+                 data-height="93">
 
                 <!-- pwd_box (Rectangle) -->
                 <div id="u23" class="ax_default shape" data-label="pwd_box">
                     <div id="u23_div" class=""></div>
-                    <div id="u23_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
+
                 </div>
 
                 <!-- 비밀번호 (Text Field) -->
                 <div id="u24" class="ax_default text_field" data-label="비밀번호">
                     <img id="u24_img" class="img " src="images/login/비밀번호_u24.svg"/>
-                    <input id="u24_input" type="password" th:field="*{pwd}" th:errorclass="field-error" value="" class="u24_input"/>
-                    <div class="field-error" th:errors="*{pwd}" />
+                    <input id="u24_input" type="password" th:field="*{pwd}" th:errorclass="field-error" value=""
+                           class="u24_input"/>
+                    <div class="field-error" th:errors="*{pwd}"/>
                 </div>
 
             </div>
 
             <!-- 이메일_button (Group) -->
-            <div id="u25" class="ax_default" data-label="id_button" data-left="440" data-top="308" data-width="557" data-height="93">
+            <div id="u25" class="ax_default" data-label="id_button" data-left="440" data-top="308" data-width="557"
+                 data-height="93">
 
                 <!-- 이메일_box (Rectangle) -->
                 <div id="u26" class="ax_default shape" data-label="id_box">
                     <div id="u26_div" class=""></div>
-                    <div id="u26_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
+
                 </div>
 
                 <!-- 이메일 (Text Field) -->
                 <div id="u27" class="ax_default text_field" data-label="이메일">
                     <img id="u27_img" class="img " src="images/login/비밀번호_u24.svg"/>
-                    <input id="u27_input" type="text" th:field="*{loginId}" th:errorclass="field-error" value="" class="u27_input" />
-                    <div class="field-error" th:errors="*{loginId}" />
+                    <input id="u27_input" type="text" th:field="*{loginId}" th:errorclass="field-error" value=""
+                           class="u27_input"/>
+                    <div class="field-error" th:errors="*{loginId}"/>
                 </div>
-
-
 
             </div>
 
@@ -120,7 +119,7 @@
                 <label for="role">회원</label>
 
                 <input type="radio" id="role" name="role" value="1" th:field="*{role}" th:errorclass="field-error">
-                <label  for="role">판매자</label>
+                <label for="role">판매자</label>
 
                 <input type="radio" id="role" name="role" value="2" th:field="*{role}" th:errorclass="field-error">
                 <label for="role">관리자</label>
@@ -129,7 +128,7 @@
             </div>
 
             <!-- login_summit (Group) -->
-            <button id ="login-summit" type="submit">로그인</button>
+            <button id="login-summit" type="submit">로그인</button>
 
         </form>
 

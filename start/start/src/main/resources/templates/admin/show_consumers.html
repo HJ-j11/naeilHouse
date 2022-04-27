@@ -49,7 +49,8 @@
 <div id="base" class="">
 
     <!-- Admin_default (Group) -->
-    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440" data-height="1024">
+    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440"
+         data-height="1024">
 
         <!-- Admin_default BG (Rectangle) -->
         <div id="u30" class="ax_default shape" data-label="Admin_default BG">
@@ -61,7 +62,8 @@
         </div>
 
         <!-- Topbar (Group) -->
-        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440" data-height="87">
+        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
+             data-height="87">
 
             <!-- logo (Rectangle) -->
             <div id="u32" class="ax_default shape" data-label="logo">
@@ -72,7 +74,8 @@
             </div>
 
             <!-- 검색 (Group) -->
-            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331" data-height="54">
+            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
+                 data-height="54">
 
                 <!-- 검색바 (Rectangle) -->
                 <div id="u34" class="ax_default shape" data-label="검색바">
@@ -89,7 +92,8 @@
                 </div>
 
                 <!-- search_icon (Group) -->
-                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53" data-height="54">
+                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
+                     data-height="54">
 
                     <!-- search_icon (Rectangle) -->
                     <div id="u37" class="ax_default shape" data-label="search_icon">
@@ -119,7 +123,7 @@
             </div>
 
             <div id="routing_info" class="text">
-                <p><span >관리자 페이지/회원 관리</span></p>
+                <p><span>관리자 페이지/회원 관리</span></p>
 
                 <!-- border -->
                 <div id="border_middle" class="ax_default shape" data-label="border">
@@ -129,13 +133,11 @@
                 </div>
             </div>
 
-
-
-            <div id ="main_content">
+            <div id="main_content">
                 <table id="consumers" width="1440">
                     <tr>
-                        <th width="100">회원 프로필 </th>
-                        <th width="600">info </th>
+                        <th width="100">회원 프로필</th>
+                        <th width="600">info</th>
                         <th width="120">주문 수</th>
                         <th width="120">리뷰 수</th>
                         <th width="120">게시글 수</th>
@@ -144,10 +146,11 @@
 
                     <tr id="consumerData" th:each="consumer: ${consumerList}">
                         <td th:if="${consumer.photo == null}">
-                            <img id = "consumer_profile" src="http://localhost:8080/upload/default_img.png" width="80" height="80">
+                            <img id="consumer_profile" src="http://localhost:8080/upload/default_img.png" width="80"
+                                 height="80">
                         </td>
                         <td th:if="${consumer.photo != null}">
-                            <img id = "consumer_profile" th:src="${consumer.photo}" width="80" height="80">
+                            <img id="consumer_profile" th:src="${consumer.photo}" width="80" height="80">
                         </td>
                         <!--
                       <td >
@@ -157,7 +160,7 @@
                         <td>
                             <p th:text="|회원명: ${consumer.name}|"> 이름</p>
                             <p th:text="|회원 id: ${consumer.id}|"> 아이디</p>
-                            <p id ="consumer_point" th:text="|포인트: ${consumer.point}|">포인트: 300</p>
+                            <p id="consumer_point" th:text="|포인트: ${consumer.point}|">포인트: 300</p>
                         </td>
                         <td th:text="|${consumer.orders.size} 개|"></td>
                         <td th:text="|${consumer.reviews.size} 개|"></td>
@@ -167,9 +170,13 @@
 
                 </table>
             </div>
-
-
-
+            <!-- 로그아웃 (Rectangle) -->
+            <a href="/logout">
+                <div id="logout" class="ax_default shape" data-label="로그인">
+                    <div id="u5_text" class="text ">
+                        <p><span>로그아웃</span></p>
+                    </div>
+            </a>
         </div>
 
     </div>
@@ -178,7 +185,7 @@
 
 <!-- 네비게이션바 -->
 <ul id="ul_dropdown">
-    <li id="li_dropdown" class="dropdown" >
+    <li id="li_dropdown" class="dropdown">
         <div class="dropdown-menu">스토어</div>
         <div class="dropdown-content">
             <a href="#">회원 관리</a>
