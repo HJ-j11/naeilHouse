@@ -93,7 +93,6 @@ public class LoginController {
             session.setAttribute(SessionConstants.LOGIN_MEMBER, loginAdmin);
             session.setAttribute(SessionConstants.ROLE, "admin");
             log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
-
         }
         return "redirect:/";
     }
