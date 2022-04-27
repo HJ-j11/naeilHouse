@@ -117,29 +117,45 @@
                 </div>
             </div>
 
-            <div  class="text">
-                <p><span id="routing_info">관리자 페이지/게시글 관리</span></p>
+            <div id="routing_info" class="text">
+                <p><span >관리자 페이지/커뮤니티 관리</span></p>
+
+                <!-- border -->
+                <div id="border_middle" class="ax_default shape" data-label="border">
+                    <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
+                    <div class="text " style="display:none; visibility: hidden">
+                    </div>
+                </div>
             </div>
 
             <div id ="main_content">
                 <table class="posts" width="1440">
                     <tr width="300">
-                        <th width="300">게시글 사진</th>
+                        <th width="300">커뮤니티 사진</th>
                         <th width="300">info </th>
                         <th width="500">내용</th>
                         <th width="150">좋아요 수</th>
                         <th width="150">댓글 수</th>
                     </tr>
-                    <tr th:each="post : ${postList}">
-                        <td ><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="100" height="100"></td>
-                        <td>
-                            <p th:text="|작성자: ${post.consumer.id} 님|"></p>
-                            <p th:text="|작성일시: ${post.postDate}|"></p>
-                        </td>
-                        <td th:text="${post.contents}"></td>
-                        <td th:text="|${post.likes.size} 개|"></td>
 
-                        <td th:text="|${post.comments.size} 개|"></td>
+                    <tr id = "postData" th:each="post : ${postList}">
+                        <td th:if="${post.uploadFile == null}">
+                            <img id = "uploadFile" src="http://localhost:8080/upload/default_img.png" width="80" height="80">
+                        </td>
+                        <td th:if="${post.uploadFile != null}">
+                            <!--
+                            <td ><img th:src="|/upload/${post.uploadFile.storeFileName}|" width="80" height="80"></td>
+                            -->
+                        </td>
+
+                        <td>
+                            <p th:text="|작성자 id: ${post.consumer.cId} 님|">님 </p>
+                            <p th:text="|작성일시: ${post.postDate}|"> 일시</p>
+                        </td>
+                        <td th:text="${post.contents}"> 내용</td>
+                        <td th:text="|${post.likes.size} 개|">개</td>
+
+                        <td th:text="|${post.comments.size} 개|">개</td>
 
                     </tr>
                 </table>
@@ -148,39 +164,39 @@
         </div>
 
 
-</div>
+    </div>
 
-<!-- 네비게이션바 -->
-<ul id="ul_dropdown">
-    <li id="li_dropdown" class="dropdown" >
-        <div class="dropdown-menu">스토어</div>
-        <div class="dropdown-content">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
+    <!-- 네비게이션바 -->
+    <ul id="ul_dropdown">
+        <li id="li_dropdown" class="dropdown" >
+            <div class="dropdown-menu">스토어</div>
+            <div class="dropdown-content">
+                <a href="#">회원 관리</a>
+                <a href="#">주문 관리</a>
+                <a href="#">게시판 관리</a>
+            </div>
+        </li>
 
-    <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">커뮤니티</div>
-        <div class="dropdown-content">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
+        <li id="li_dropdown" class="dropdown">
+            <div class="dropdown-menu">커뮤니티</div>
+            <div class="dropdown-content">
+                <a href="#">회원 관리</a>
+                <a href="#">주문 관리</a>
+                <a href="#"> 관리</a>
+            </div>
+        </li>
 
-    <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">관리자 페이지</div>
-        <div class="dropdown-content">
-            <a href="/admin/consumers">회원 관리</a>
-            <a href="/admin/sellers">판매자 관리</a>
-            <a href="/admin/orders">주문 관리</a>
-            <a href="/admin/items">상품 관리</a>
-            <a href="/admin/posts">게시판 관리</a>
-        </div>
-    </li>
-</ul>
+        <li id="li_dropdown" class="dropdown">
+            <div class="dropdown-menu">관리자 페이지</div>
+            <div class="dropdown-content">
+                <a href="/admin/consumers">회원 관리</a>
+                <a href="/admin/sellers">판매자 관리</a>
+                <a href="/admin/orders">주문 관리</a>
+                <a href="/admin/items">상품 관리</a>
+                <a href="/admin/posts">커뮤니티 관리</a>
+            </div>
+        </li>
+    </ul>
 
 </body>
 </html>
