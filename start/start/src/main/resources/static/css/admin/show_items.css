@@ -1,11 +1,19 @@
 #main_content {
     position: absolute;
-    top: 150px;
+    top: 170px;
     font-family:"Gothic A1 ", "Gothic A1", sans-serif;
-    font-weight:500;
+    font-weight:1300;
     font-style:normal;
-    font-size:18px;
+    font-size:16px;
   }
+  
+  #itemData {
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:900;
+    font-style:normal;
+    font-size:15px;
+  }
+
 
 table {
     margin-left:auto;
