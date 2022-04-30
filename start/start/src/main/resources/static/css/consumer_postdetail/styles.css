@@ -1062,7 +1062,7 @@ th, td {
 }
 
 
-#li_dropdown {
+.li_dropdown {
   float:left;
   margin-right: 100px;
 }

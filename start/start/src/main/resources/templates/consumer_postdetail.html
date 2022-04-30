@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>consumer_postDetail</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -175,7 +175,9 @@
 
         <!-- Rectangle 2 (Rectangle) -->
         <div id="u58" class="ax_default shape" data-label="Rectangle 2">
-          <div id="u58_div" class=""></div>
+          <div id="u58_div" class="">
+            <img th:src="|/upload/${post.uploadFile.storeFileName}|">
+          </div>
           <div id="u58_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -183,7 +185,10 @@
 
         <!-- Rectangle 3 (Rectangle) -->
         <div id="u59" class="ax_default shape" data-label="Rectangle 3">
-          <div id="u59_div" class=""></div>
+          <div id="u59_div" class="">
+            <span th:text="${likes}"></span>
+            <span th:text="${comments.size()}"></span>
+          </div>
           <div id="u59_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -215,7 +220,8 @@
             <div id="u64" class="ax_default shape" data-label="글쓰기">
               <div id="u64_div" class=""></div>
               <div id="u64_text" class="text " style="text-align:center">
-                <p><span>댓글 작성</span></p>
+<!--                <p><span>댓글 작성</span></p>-->
+                <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>
               </div>
             </div>
           </div>
@@ -231,7 +237,7 @@
           <!-- writeComment (Text Field) -->
           <div id="u66" class="ax_default text_field" data-label="writeComment">
             <div id="u66_div" class=""></div>
-            <input id="u66_input" type="text" value="" class="u66_input"/>
+            <input id="u66_input" type="text" value="" class="u66_input" th:value="${comment.content}"/>
           </div>
         </div>
       </div>
@@ -241,7 +247,7 @@
     
     <!-- 네비게이션바 -->
     <ul id="ul_dropdown">
-      <li id="li_dropdown" class="dropdown">
+      <li class="dropdown li_dropdown">
           <div class="dropdown-menu">스토어</div>
           <div class="dropdown-content">
               <a href="#">회원 관리</a>
@@ -250,7 +256,7 @@
           </div>
       </li>
 
-      <li id="li_dropdown" class="dropdown">
+      <li class="dropdown li_dropdown">
           <div class="dropdown-menu">커뮤니티</div>
           <div class="dropdown-content">
               <a href="#">회원 관리</a>
@@ -259,7 +265,7 @@
           </div>
       </li>
 
-      <li id="li_dropdown" class="dropdown">
+      <li class="dropdown li_dropdown">
           <div class="dropdown-menu">마이페이지</div>
           <div class="dropdown-content">
               <a href="/admin/consumers">회원 관리</a>
@@ -271,4 +277,59 @@
       </li>
     </ul>
   </body>
+<script>
+  function putLikes(id) {
+    let putUrl = "/community/"+id+"/likes";
+
+    fetch(putUrl, {
+      method : "POST",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body : JSON.stringify({
+        id : id
+        // session에서 값 넣어줄 것.
+        // consumerId : consumerId
+      }),
+    })
+            .then((response) => response.json())
+            .then(
+                    alert("좋아요를 눌렀습니다.")
+            );
+    // console에 데이터 잘 넘어갔는지 확인 필요.
+  }
+
+  function modifyComment() {
+    var x = document.getElementById("modifyForm");
+    var y = document.getElementById("originForm");
+
+    if(x.style.display === "none") {
+      x.style.display = "block";
+      y.style.display = "none";
+    }
+  }
+
+  function putComments(id, postId) {
+    let putUrl = "/comments/"+id+"/put";
+    var content = document.getElementsByName("content")[0].value;
+
+    console.log(content);
+
+    fetch(putUrl, {
+      method : "PUT",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body : JSON.stringify({
+        id: id,
+        postId : postId,
+        content : content
+      }),
+    })
+            .then((response) => response.json())
+            .then(
+                    alert("댓글을 수정했습니다.")
+            );
+  }
+</script>
 </html>

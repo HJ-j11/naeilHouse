@@ -29,7 +29,6 @@ import java.util.Map;
 public class ConsumerController {
     private final ConsumerService consumerService;
     private final FileStore fileStore;
-
     private final ItemService itemService;
     private final OrderService orderService;
 
