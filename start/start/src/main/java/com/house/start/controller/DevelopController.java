@@ -1,13 +1,19 @@
 package com.house.start.controller;
 
+import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.Consumer;
+import com.house.start.domain.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Transactional
@@ -39,8 +45,11 @@ public class DevelopController {
 
 
     @GetMapping("/sample")
-    public String sample() {
-        return "sample";
+    public String sample(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        session.setAttribute("login_user", session.getAttribute(SessionConstants.LOGIN_MEMBER));
+        session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
+        return "index";
     }
 
 
