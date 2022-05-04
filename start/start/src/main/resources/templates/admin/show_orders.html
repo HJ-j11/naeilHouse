@@ -121,34 +121,52 @@
                 </div>
             </div>
 
-            <div class="text">
-                <p><span id="routing_info">관리자 페이지/주문 관리</span></p>
+            <div id="routing_info" class="text">
+                <p><span>관리자 페이지/주문 관리</span></p>
+
+                <!-- border -->
+                <div id="border_middle" class="ax_default shape" data-label="border">
+                    <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
+                    <div class="text " style="display:none; visibility: hidden">
+                    </div>
+                </div>
             </div>
 
             <div id="main_content">
                 <table class="posts" width="1440">
+                    <div id = "orderData" th:each="order: ${orderList}" style="margin-top: 1%;">
+                        <ul id="orderDate" th:text="${order.orderDate}"> 날짜 </ul>
+                        <ul th:text="|구매자 id: ${order.consumer.cId}|"> 구매자 id</ul>
+                        <ul id="orderStatus"
+                            th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"> 주문/ 배송상태</ul>
+                        <ul th:each="orderitem: ${order.orderItems}" style="margin-top: 2%;">
 
-                    <block th:each="order: ${orderList}">
-                        <p id="order_data" th:text="${order.orderDate}"></p>
-                        <p th:text="|구매자 id: ${order.consumer.cId}|"></p>
-                        <p id="orderStatus"
-                           th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"></p>
-                        <tr th:each="orderitem: ${order.orderItems}">
-                            <!--
-                            <td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}|" width="40" height="40"></td>
-                            -->
-                            <td>
-                                <p th:text="${orderitem.item.seller.storeName}"></p>
-                                <p th:text="${orderitem.item.name}"></p>
-                            </td>
-                            <td>
-                                <p th:text="|${orderitem.orderPrice} 원|"></p>
-                                <!--
-                                <p th:text="|${orderitem.count}| 개"></p>
-                                -->
-                            </td>
-                        </tr>
-                    </block>
+
+
+
+                            <ul th:if="${orderitem.item.uploadFile == null}" style="float: left; margin-right: 10%;">
+                                <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
+                                     height="80">
+                            </ul>
+                            <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 10%;">
+                                <td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|" width="80" height="80"></td>
+                            </ul>
+
+
+                            <ul style="float: left; margin-right: 40%;">
+                                <p th:text="|상호명: ${orderitem.item.seller.storeName}|"> 상호명</p>
+                                <p th:text="|상품명: ${orderitem.item.name}|">
+                                    상품 이름</p>
+                            </ul>
+                            <ul style="margin-bottom: 7%;";>
+                                <p th:text="|가격: ${orderitem.orderPrice} 원|">가격</p>
+                                <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
+                            </ul>
+                        </ul>
+                    </div>
+
+
+
                 </table>
             </div>
 

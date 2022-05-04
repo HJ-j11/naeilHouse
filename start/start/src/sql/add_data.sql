@@ -1,4 +1,4 @@
-INSERT INTO UPLOAD_FILE (UPLOADFILE_ID , STORE_FILE_NAME , UPLOAD_FILE_NAME ) values (1, 'default_img', 'default_img');
+INSERT INTO UPLOAD_FILE (UPLOADFILE_ID , STORE_FILE_NAME , UPLOAD_FILE_NAME ) values (1, 'default_img.png', 'default_img.png');
 
 INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (1, '1234', '홍길동', '1234', 123);
 INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (2, '12345', '홍길동', '1234', 123);
