@@ -1,0 +1,48 @@
+<ul id="ul_dropdown">
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">스토어</div>
+        <div class="dropdown-content">
+            <a href="#">회원 관리</a>
+            <a href="#">주문 관리</a>
+            <a href="#">게시판 관리</a>
+        </div>
+    </li>
+
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">커뮤니티</div>
+        <div class="dropdown-content">
+            <a href="#">회원 관리</a>
+            <a href="#">주문 관리</a>
+            <a href="#">게시판 관리</a>
+        </div>
+    </li>
+
+    <li id="li_dropdown" class="dropdown" th:if="${session.role == 'consumer'}" >
+        <div class="dropdown-menu">마이페이지</div>
+        <div class="dropdown-content">
+            <a href="/admin/consumers">회원 관리</a>
+            <a href="/admin/sellers">판매자 관리</a>
+        </div>
+    </li>
+
+    <li id="li_dropdown" class="dropdown" th:if="${session.role == 'seller'}">
+        <div class="dropdown-menu">판매자페이지</div>
+        <div class="dropdown-content">
+            <a href="/admin/consumers">회원 관리</a>
+            <a href="/admin/sellers">판매자 관리</a>
+
+        </div>
+    </li>
+
+    <li id="li_dropdown" class="dropdown"  th:if="${session.role == 'admin'}">
+        <div class="dropdown-menu">관리자페이지</div>
+        <div class="dropdown-content">
+            <a href="/admin/consumers">회원 관리</a>
+            <a href="/admin/sellers">판매자 관리</a>
+            <a href="/admin/orders">주문 관리</a>
+            <a href="/admin/items">상품 관리</a>
+            <a href="/admin/posts">커뮤니티 관리</a>
+        </div>
+    </li>
+
+</ul>
