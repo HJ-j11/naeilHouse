@@ -186,8 +186,13 @@
         <!-- Rectangle 3 (Rectangle) -->
         <div id="u59" class="ax_default shape" data-label="Rectangle 3">
           <div id="u59_div" class="">
-            <span th:text="${likes}"></span>
-            <span th:text="${comments.size()}"></span>
+            <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>
+            <div>
+              <span th:text="${likes}"></span>
+            </div>
+            <div>
+              <span th:text="${comments.size()}"></span>
+            </div>
           </div>
           <div id="u59_text" class="text " style="display:none; visibility: hidden">
             <p></p>
@@ -247,7 +252,7 @@
     
     <!-- 네비게이션바 -->
     <ul id="ul_dropdown">
-      <li class="dropdown li_dropdown">
+      <li id="li_dropdown" class="dropdown">
           <div class="dropdown-menu">스토어</div>
           <div class="dropdown-content">
               <a href="#">회원 관리</a>
@@ -256,7 +261,7 @@
           </div>
       </li>
 
-      <li class="dropdown li_dropdown">
+      <li id="li_dropdown" class="dropdown">
           <div class="dropdown-menu">커뮤니티</div>
           <div class="dropdown-content">
               <a href="#">회원 관리</a>
@@ -265,7 +270,7 @@
           </div>
       </li>
 
-      <li class="dropdown li_dropdown">
+      <li id="li_dropdown" class="dropdown">
           <div class="dropdown-menu">마이페이지</div>
           <div class="dropdown-content">
               <a href="/admin/consumers">회원 관리</a>

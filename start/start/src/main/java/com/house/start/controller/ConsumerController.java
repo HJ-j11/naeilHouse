@@ -134,12 +134,10 @@ public class ConsumerController {
     public String getOnePost(@PathVariable Long id, Model model) {
         Post post = consumerService.getOnePost(id);
 
-        // 간편하게 넘기는 법 없을까?
-
         model.addAttribute("post", post);
         model.addAttribute("likes", post.countLikes());
         model.addAttribute("comments", post.getComments());
-        return "post_detail";
+        return "consumer_postdetail";
     }
 
 
