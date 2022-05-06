@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/ConsumerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Seller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postdetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/controller/ConsumerControllerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,10 +126,34 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.house.start.service" />
       <recent name="com.house.start.controller" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.StartApplication">
+    <configuration name="ConsumerControllerTest.addItem" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.controller.ConsumerControllerTest.addItem&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="ConsumerControllerTest.getPost" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -143,6 +168,52 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;com.house.start.controller.ConsumerControllerTest.getPost&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConsumerServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.ConsumerServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConsumerServiceTest.addItem" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.ConsumerServiceTest.addItem&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -168,6 +239,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.StartApplication" />
+        <item itemvalue="Gradle.ConsumerServiceTest.addItem" />
+        <item itemvalue="Gradle.ConsumerServiceTest" />
+        <item itemvalue="Gradle.ConsumerControllerTest.addItem" />
         <item itemvalue="Gradle.ConsumerControllerTest.getPost" />
       </list>
     </recent_temporary>
@@ -222,7 +296,7 @@
       <workItem from="1651306742813" duration="2038000" />
       <workItem from="1651468339251" duration="127000" />
       <workItem from="1651536478461" duration="20000" />
-      <workItem from="1651813823828" duration="642000" />
+      <workItem from="1651813823828" duration="4597000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -399,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651280370585</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Delivery @Builder 추가">
+      <created>1651814532012</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1651814532012</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,7 +510,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Model 충돌 발생 &#10;develop branch로 reset" />
     <MESSAGE value="scripts 경로 변경" />
     <MESSAGE value="- 글 목록, 글 작성 html 추가&#10;- 글 작성, 조회 API 설계&#10;- 배송완료 API 설계" />
     <MESSAGE value="- 서비스에 있는 구현 기능 메소드로 옮기는 중&#10;- Repository interface class로 변경 중" />
@@ -454,7 +534,8 @@
     <MESSAGE value="댓글 등록&#10;- ModelAttribute로 getter,setter를 통해 데이터 가져오기.&#10;- 완료 후 이전 페이지로 돌아가기 위해 post id 함께 전송" />
     <MESSAGE value="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현." />
     <MESSAGE value="글쓰기 상세 페이지 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="글쓰기 상세 페이지 구현" />
+    <MESSAGE value="Delivery @Builder 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delivery @Builder 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

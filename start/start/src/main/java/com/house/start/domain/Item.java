@@ -1,6 +1,8 @@
 package com.house.start.domain;
 import com.house.start.exception.NotEnoughStockException;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Item {
     @Id @GeneratedValue
     @Column(name = "item_id")
@@ -28,6 +31,7 @@ public class Item {
 
     // 상품 상태
     @Enumerated(EnumType.STRING)
+    @Column(name="item_status")
     private ItemStatus itemStatus;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -41,7 +45,20 @@ public class Item {
     @JoinColumn(name = "category_id")
     private Category category; // 상품 카테고리
 
+    // builder 패턴
+    @Builder
+    public Item(Seller seller, String name, int price, int stockQuantity, String info, ItemStatus itemStatus) {
+        this.seller = seller;
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.info = info;
+        this.itemStatus = itemStatus;
+    }
+
     //==연관관계 편의 메서드==//
+
+
     public void setSeller(Seller seller) {
         this.seller = seller;
         seller.getItems().add(this);
