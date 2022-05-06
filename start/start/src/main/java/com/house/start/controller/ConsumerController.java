@@ -145,7 +145,7 @@ public class ConsumerController {
     @GetMapping("/community/new")
     public String getNewPost(Model model) {
         model.addAttribute("post", new PostForm());
-        return "new_post";
+        return "consumer_newPost";
     }
 
     // 글 작성
