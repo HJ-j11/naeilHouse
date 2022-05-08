@@ -171,7 +171,7 @@ public class ConsumerController {
 
         consumerService.save(newPost);
 
-        return "redirect:/community";
+        return "post_list";
     }
     /**
      * 글 -> 좋아요 누르기

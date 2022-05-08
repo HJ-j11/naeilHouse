@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" afterDir="false" />
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="&#10;- 포스트 create Thymeleaf 연동&#10;- submit 후 alert 창 추가">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/document.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,17 +104,19 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/JPA/naeilHouse/start/start/src/main/resources/static/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/JPA/naeilHouse/start/start/src/main/resources/static/css/consumer_postNew&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;b85c01361a1273e20490daf6755e66a5&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\css\consumer_postNew" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\css\consumer_postnew" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\templates" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static" />
@@ -293,7 +298,10 @@
       <workItem from="1651536478461" duration="20000" />
       <workItem from="1651813823828" duration="4825000" />
       <workItem from="1651822814293" duration="2546000" />
-      <workItem from="1651825422676" duration="906000" />
+      <workItem from="1651825422676" duration="1017000" />
+      <workItem from="1651927990931" duration="22000" />
+      <workItem from="1651977478633" duration="1513000" />
+      <workItem from="1651983708437" duration="3995000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -484,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651818682633</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Post &#10;- 포스트 create Thymeleaf 연동&#10;- submit 후 alert 창 추가">
+      <created>1651830496828</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1651830496828</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +529,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- 글 목록, 글 작성 html 추가&#10;- 글 작성, 조회 API 설계&#10;- 배송완료 API 설계" />
     <MESSAGE value="- 서비스에 있는 구현 기능 메소드로 옮기는 중&#10;- Repository interface class로 변경 중" />
     <MESSAGE value="Entity vs Service 기능 구현 고민" />
     <MESSAGE value="저장 방식 고민&#10;- extends JpaRepository&lt;&gt;&#10;- EntityManager persist method" />
@@ -539,7 +553,8 @@
     <MESSAGE value="글쓰기 상세 페이지 구현" />
     <MESSAGE value="Delivery @Builder 추가" />
     <MESSAGE value="장바구니 &#10;- itemStatus로 담기 구현&#10;- JPA 공식 문서 따른 메소드 재정의" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니 &#10;- itemStatus로 담기 구현&#10;- JPA 공식 문서 따른 메소드 재정의" />
+    <MESSAGE value="Post &#10;- 포스트 create Thymeleaf 연동&#10;- submit 후 alert 창 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="Post &#10;- 포스트 create Thymeleaf 연동&#10;- submit 후 alert 창 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
