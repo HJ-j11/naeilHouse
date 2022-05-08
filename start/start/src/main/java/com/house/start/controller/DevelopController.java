@@ -23,8 +23,13 @@ public class DevelopController {
     @GetMapping("/sample")
     public String sample(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        session.setAttribute("login_user", session.getAttribute(SessionConstants.LOGIN_MEMBER));
-        session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
+        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+            session.setAttribute("login_user", false);
+            session.setAttribute("role", false);
+        } else {
+            session.setAttribute("login_user", session.getAttribute(SessionConstants.LOGIN_MEMBER));
+            session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
+        }
         return "main_content";
     }
 

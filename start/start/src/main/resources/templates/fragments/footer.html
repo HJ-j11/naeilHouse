@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="footerFragment" class="header navbar-fixed-top" id="footer">
+    this is footer
+    <p th:text="|로그인 사람: ${session.login_user}|"></p>
+    <p th:text="|역할: ${session.role}|"></p>
+</div>
+</html>
