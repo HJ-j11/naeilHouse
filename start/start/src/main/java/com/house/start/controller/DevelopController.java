@@ -24,10 +24,10 @@ public class DevelopController {
     public String sample(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            session.setAttribute("login_user", false);
+            session.setAttribute("login_state", false);
             session.setAttribute("role", false);
         } else {
-            session.setAttribute("login_user", session.getAttribute(SessionConstants.LOGIN_MEMBER));
+            session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
         }
         return "main_content";

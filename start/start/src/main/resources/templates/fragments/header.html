@@ -51,7 +51,7 @@
             <img id="u42_img" class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
         </div>
 
-        <div th:if="${session.login_user == false}">
+        <div th:if="${session.login_state == false}">
             <!-- 회원가입 (Rectangle) -->
             <a href="/member/join">
                 <div id="signin" class="ax_default shape" data-label="회원가입">
@@ -85,14 +85,16 @@
             </a>
         </div>
 
-        <div th:unless="${session.login_user == false}"></div>
+        <div th:unless="${session.login_state == false}">
         <!-- 로그아웃 (Rectangle) -->
         <a href="/logout">
             <div id="logout" class="ax_default shape" data-label="로그인">
                 <div id="u5_text" class="text ">
                     <p><span>로그아웃</span></p>
                 </div>
+            </div>
         </a>
-    </div>
+        </div>
+
 </div>
 </html>
