@@ -20,36 +20,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DevelopController {
 
-//    private final EntityManager em;
-//
-//    /**
-//     *  소비자 테스트 데이터 초기화
-//     */
-//    @PostConstruct
-//    public void init() {
-//        Consumer consumerA = new Consumer();
-//        consumerA.setName("회원A");
-//        consumerA.setPoint(100000);
-//        consumerA.setCId("memberA");
-//        consumerA.setPwd("1234");
-//
-//        Consumer consumerB = new Consumer();
-//        consumerB.setName("회원B");
-//        consumerB.setPoint(200000);
-//        consumerB.setCId("memberB");
-//        consumerB.setPwd("5678");
-//
-//        em.persist(consumerA);
-//        em.persist(consumerB);
-//    }
-
-
     @GetMapping("/sample")
     public String sample(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         session.setAttribute("login_user", session.getAttribute(SessionConstants.LOGIN_MEMBER));
         session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-        return "index";
+        return "main_content";
     }
 
 

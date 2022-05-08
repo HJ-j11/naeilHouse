@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>내일의 집</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <!-- config.html -->
+    <th:block th:replace="fragments/config::configFragment"></th:block>
+</head>
+
+<body>
+<!-- header.html -->
+<header th:replace="fragments/header::headerFragment"></header>
+
+<!-- main_content.html -->
+<!-- 공통적이지 않은 부분-->
+<div layout:fragment="content"></div>
+
+<!-- nav.html -->
+<nav th:replace="fragments/nav::navFragment"></nav>
+
+<!-- footer.html -->
+<footer th:replace="fragments/footer::footerFragment"></footer>
+
+</body>
+
+</html>

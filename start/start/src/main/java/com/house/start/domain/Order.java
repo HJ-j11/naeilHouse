@@ -30,7 +30,6 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
-
     private LocalDateTime orderDate; // 주문 일시
 
     /*비즈니스로직*/

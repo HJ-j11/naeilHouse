@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html
-        xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorator="~{layout/layout}">
-<head>
-    <title>내일의 집</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="configFragment">
     <!-- develop -->
     <script src="http://localhost:8080/javascript/includeHTML.js"></script>
-    <link href="http://localhost:8080/css/index/header.css" type="text/css" rel="stylesheet"/>
-    <link href="http://localhost:8080/css/index/nav.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/fragments/header.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/fragments/nav.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/fragments/footer.css" type="text/css" rel="stylesheet"/>
 
     <!--axure-->
     <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -47,22 +42,5 @@
     <script src="http://localhost:8080/javascript/document.js"></script>
     <script src="http://localhost:8080/css/admin_default/data.js"></script>
     <script src="http://localhost:8080/scripts/axure/ios.js"></script>
-</head>
-
-<body>
-<header th:replace="fragment/header :: headerFragment"></header>
-
-<article include-html="http://localhost:8080/html/index/main_content.html"></article>
-<nav include-html="http://localhost:8080/html/index/nav.html"></nav>
-<footer include-html="http://localhost:8080/html/index/footer.html"></footer>
-
-
-<p th:text="|상품명dddddd: ${session.login_user}|">
-<p th:text="|상품명ddddd: ${session.role}|">
-</body>
-<script>
-    includeHTML();
-
-</script>
-
+</th:block>
 </html>
