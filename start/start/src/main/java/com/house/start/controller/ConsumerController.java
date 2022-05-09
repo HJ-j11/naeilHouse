@@ -210,7 +210,6 @@ public class ConsumerController {
         consumerService.deleteComment(id);
         model.addAttribute("ACESS", "SUCCESS");
         return "redirect:/community/";
-
     }
 
     /**
@@ -218,11 +217,8 @@ public class ConsumerController {
      */
     @GetMapping("/consumer/item/list")
     public String itemList(Model model) {
-
         List<Item> items = itemService.findItems();
-
         model.addAttribute("items", items);
-
         return "consumer_itemList";
     }
 

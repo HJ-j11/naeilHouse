@@ -7,6 +7,7 @@ body {
     margin-left:auto;
     margin-right:auto;
     text-align:left;
+    min-height: 100%;
   }
   .form_sketch {
     border-color:transparent;
@@ -151,7 +152,7 @@ body {
     font-family:"Arial Normal", "Arial", sans-serif;
     font-weight:400;
     font-style:normal;
-    font-size:20px;
+    font-size:18px;
     letter-spacing:normal;
     color:#424142;
     vertical-align:none;
@@ -170,7 +171,7 @@ body {
     font-family:"Arial Normal", "Arial", sans-serif;
     font-weight:400;
     font-style:normal;
-    font-size:20px;
+    font-size:18px;
     letter-spacing:normal;
     color:#999999;
     vertical-align:none;
@@ -195,7 +196,7 @@ body {
     width:272px;
     height:25px;
     display:flex;
-    font-size:20px;
+    font-size:18px;
     color:#424142;
   }
   #u35 .text {
