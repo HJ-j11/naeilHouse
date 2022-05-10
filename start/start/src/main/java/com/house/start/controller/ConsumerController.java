@@ -8,10 +8,10 @@ import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
 import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class ConsumerController {
@@ -96,6 +94,11 @@ public class ConsumerController {
         Consumer user = consumerService.getConsumerInfo(id);
         model.addAttribute("user", user);
         return "info/user";
+    }
+
+    @GetMapping("/user/o")
+    public String getAllOcrders(Model model) {
+        return "consumer/mypage/user";
     }
 
     // 주문 보기
