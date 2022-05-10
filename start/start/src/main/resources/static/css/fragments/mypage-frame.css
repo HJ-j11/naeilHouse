@@ -743,6 +743,12 @@ body {
   color:#35C5F0;
 }
 
-#a21 a22 a23:hover {
-  border-bottom: 10px #35C5F0
+#a21:hover {
+  border-bottom: 3px solid #35C5F0;
+}
+#a22:hover {
+  border-bottom: 3px solid #35C5F0;
+}
+#a23:hover {
+  border-bottom: 3px solid #35C5F0;
 }

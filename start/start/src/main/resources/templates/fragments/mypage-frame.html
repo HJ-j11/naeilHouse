@@ -4,33 +4,27 @@
 
 <div th:fragment="mypageFragment" class="header navbar-fixed-top">
     <div id="base" class="">
-
         <!-- nav (Group) -->
         <div id="a13" class="ax_default" data-label="nav" data-left="152" data-top="35" data-width="333"
              data-height="31">
-
             <!-- border (Shape) -->
             <div id="a17" class="ax_default shape" data-label="border">
                 <td th:if="${consumer.photo == null}">
                     <img id="a17_img" class="img " src="http://localhost:8080/images/page_1/border_u17.svg"/>
                 </td>
+
                 <td th:if="${consumer.photo != null}">
                     <img id="a17_img" th:src="${consumer.photo}" width="80" height="80">
                 </td>
-
-                <div id="a17_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
             </div>
 
             <!-- nav-mypage (Group) -->
             <div id="a19" class="ax_default" data-label="nav-mypage" data-left="0" data-top="92" data-width="1440"
                  data-height="61">
-
                 <!-- 좋아요 (Rectangle) -->
-                <a href="/user/{consumer.id}/likes">
+                <a th:href="@{/user/{id}/likes (id=${consumer.id})}">
                     <div id="a21" class="ax_default shape" data-label="좋아요">
-                        <div id="a21_div" ></div>
+                        <div id="a21_div"></div>
                         <div id="a21_text" class="text ">
                             <p><span id="middle-nav">좋아요</span></p>
                         </div>
@@ -38,7 +32,7 @@
                 </a>
 
                 <!-- 리뷰 (Rectangle) -->
-                <a href="/user/{consumer.id}/reviews">
+                <a  th:href="@{/user/{id}/reviews (id=${consumer.id})}">
                     <div id="a22" class="ax_default shape" data-label="리뷰">
                         <div id="a22_div" class=""></div>
                         <div id="a22_text" class="text ">
@@ -47,7 +41,7 @@
                     </div>
                 </a>
 
-                <a href="/user/{consumer.id}/orders">
+                <a th:href="@{/user/{id}/orders (id=${consumer.id})}">
                     <div id="a23" class="ax_default shape">
                         <div id="a23_div" class=""></div>
                         <div id="a23_text" class="text ">
@@ -56,7 +50,6 @@
                     </div>
                 </a>
             </div>
-
             <!-- user_info (Group) -->
             <div id="a24" class="ax_default" data-label="user_info" data-left="84" data-top="207" data-width="261"
                  data-height="413">
@@ -82,11 +75,11 @@
                     </div>
                 </div>
 
-                <!-- Unnamed (Rectangle) -->
+                <!-- 아이디 (Rectangle) -->
                 <div id="a29" class="ax_default shape">
                     <div id="a29_div" class=""></div>
                     <div id="a29_text" class="text ">
-                        <p><span th:text="${consumer.cId}">이름</span></p>
+                        <p><span th:text="${consumer.cId}">아이디</span></p>
                     </div>
                 </div>
 

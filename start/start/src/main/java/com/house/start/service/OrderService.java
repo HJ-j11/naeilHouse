@@ -54,9 +54,9 @@ public class OrderService {
         return order.getId();
     }
 
-    public List<Order> findCartOrder(Long consumerId) {
-        return orderRepository.findByConsumer(consumerId);
-    }
+    public List<Order> findCartOrder(Consumer consumer) {
+        return orderRepository.findByConsumer(consumer);
+    } // 나중에 이름 바꾸기
 
     public List<Order> findOrders() {
         return orderRepository.findAll();
@@ -83,5 +83,13 @@ public class OrderService {
 
         // Delivery 삭제
         deliveryRepository.delete(delivery);
+    }
+
+    public Long countOrderStaus() {
+        return orderRepository.countByOrderStatus(0);
+    }
+
+    public Long countCompleteStaus() {
+        return orderRepository.countByOrderStatus(3);
     }
 }

@@ -177,4 +177,12 @@ public class ConsumerService {
                 .orElse(null);
     }
 
+    /**
+     * 소비자 Id로 소비자 조회
+     */
+    public Consumer findConsumerById(Long consumer_id) {
+        return consumerRepository.findById(consumer_id)
+                .orElse(null);
+    }
+
 }

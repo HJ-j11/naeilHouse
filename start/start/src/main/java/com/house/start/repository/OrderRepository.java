@@ -1,5 +1,6 @@
 package com.house.start.repository;
 
+import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
 import com.house.start.domain.Order;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    List<Order> findByConsumer(Long consumerId);
+    List<Order> findByConsumer(Consumer consumer);
+
+    Long countByOrderStatus(int orderStatus);
 
 }

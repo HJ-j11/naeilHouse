@@ -141,9 +141,6 @@
                             th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"> 주문/ 배송상태</ul>
                         <ul th:each="orderitem: ${order.orderItems}" style="margin-top: 2%;">
 
-
-
-
                             <ul th:if="${orderitem.item.uploadFile == null}" style="float: left; margin-right: 10%;">
                                 <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
                                      height="80">
