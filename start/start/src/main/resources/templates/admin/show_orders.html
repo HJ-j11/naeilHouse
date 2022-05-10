@@ -146,7 +146,9 @@
                                      height="80">
                             </ul>
                             <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 10%;">
-                                <td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|" width="80" height="80"></td>
+                                <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
+                                     height="80">
+                                <!--<td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|" width="80" height="80"></td>-->
                             </ul>
 
 

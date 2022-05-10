@@ -86,10 +86,11 @@ public class OrderService {
     }
 
     public Long countOrderStaus() {
-        return orderRepository.countByOrderStatus(0);
+        OrderStatus orderStatus = OrderStatus.COMPLETE;
+        return orderRepository.countByOrderStatus(OrderStatus.ORDER);
     }
 
     public Long countCompleteStaus() {
-        return orderRepository.countByOrderStatus(3);
+        return orderRepository.countByOrderStatus(OrderStatus.COMPLETE);
     }
 }

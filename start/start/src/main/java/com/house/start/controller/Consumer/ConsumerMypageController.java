@@ -3,9 +3,11 @@ package com.house.start.controller.Consumer;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Order;
+import com.house.start.domain.Review;
 import com.house.start.repository.ConsumerRepository;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.OrderService;
+import com.house.start.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import java.util.List;
 public class ConsumerMypageController {
     private final ConsumerService consumerService;
     private final OrderService orderService;
+    private final ReviewService reviewService;
 
     /**
      * 마이페이지 처음 페이지
@@ -73,9 +76,11 @@ public class ConsumerMypageController {
             // orders 데이터
             List<Order> orderList = orderService.findCartOrder(consumer);
             model.addAttribute("orderList", orderList);
-            Long orderStaus = orderService.countOrderStaus();
-            Long cStaus = orderService.countCompleteStaus();
-            log.info("--- consumer mypage controller - show user info -> order -----------------------------------------" + orderStaus);
+            Long orderStatus = orderService.countOrderStaus();
+            Long completeStatus = orderService.countCompleteStaus();
+            model.addAttribute("orderStatus", orderStatus);
+            model.addAttribute("completeStatus", completeStatus);
+            model.addAttribute("paidStatus", orderStatus+completeStatus);
             return "consumer/mypage/orders";
         } else {
             // 판매자나 관리자인 경우
@@ -84,9 +89,9 @@ public class ConsumerMypageController {
     }
 
     // 리뷰 보기
-    @GetMapping("/{consumer_id}/review")
+    @GetMapping("/{consumer_id}/reviews")
     public String getAllReviews(@PathVariable Long consumer_id, HttpServletRequest request, Model model) {
-        log.info("--- consumer mypage controller - show user info -> review -----------------------------------------");
+        log.info("--- consumer mypage controller - show user info -> reviews -----------------------------------------");
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
             return "err/notLogin";
@@ -100,9 +105,9 @@ public class ConsumerMypageController {
             model.addAttribute("consumer", consumer);
 
             // orders 데이터
-            List<Order> orderList = orderService.findCartOrder(consumer);
-            model.addAttribute("orderList", orderList);
-            return "consumer/mypage/orders";
+            List<Review> reviewList = reviewService.findReviewsByConsumer(consumer);
+            model.addAttribute("reviewList", reviewList);
+            return "consumer/mypage/reviews";
         } else {
             // 판매자나 관리자인 경우
             return "err/denyPage";
@@ -111,13 +116,29 @@ public class ConsumerMypageController {
 
     // 좋아요 보기
     @GetMapping("/{consumer_id}/likes")
-    public String getAllLikes() {
-        return "info/likes";
+    public String getAllLikes(@PathVariable Long consumer_id, HttpServletRequest request, Model model) {
+        log.info("--- consumer mypage controller - show user info -> likes -----------------------------------------");
+        HttpSession session = request.getSession();
+        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+            return "err/notLogin";
+        } else if (session.getAttribute(SessionConstants.ROLE) == "consumer") {
+            // 소비자인 경우
+
+            // mypage 기본 필수 데이터
+            session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
+            session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
+            Consumer consumer = consumerService.findConsumerById(consumer_id);
+            model.addAttribute("consumer", consumer);
+
+            // orders 데이터
+            List<Review> reviewList = reviewService.findReviewsByConsumer(consumer);
+            model.addAttribute("reviewList", reviewList);
+            return "consumer/mypage/reviews";
+        } else {
+            // 판매자나 관리자인 경우
+            return "err/denyPage";
+        }
     }
 
-    @GetMapping("/{consumer_id}/deliveries")
-    public String getAllDeliveries() {
-        return "info/deliveries";
-    }
 
 }
