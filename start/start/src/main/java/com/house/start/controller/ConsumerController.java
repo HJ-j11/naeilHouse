@@ -79,53 +79,6 @@ public class ConsumerController {
         consumerService.completeDelivery(id);
     }
 
-    //마이 페이지
-    @GetMapping("/user")
-    public String getUserInfo(@PathVariable Long id, Model model, HttpServletRequest request) {
-        // 후에 session으로 교체할 예정.
-        try {
-            HttpSession session = request.getSession();
-            String userId = session.getId();
-
-        } catch(Exception e) {
-            logger.error(e.getMessage());
-        }
-
-        Consumer user = consumerService.getConsumerInfo(id);
-        model.addAttribute("user", user);
-        return "info/user";
-    }
-
-    @GetMapping("/user/o")
-    public String getAllOcrders(Model model) {
-        return "consumer/mypage/user";
-    }
-
-    // 주문 보기
-    @GetMapping("/user/orders")
-    public String getAllOrders(Model model) {
-        // 자신이 주문한 걸 가져와야할텐데..?
-
-        return "info/orders";
-    }
-
-    // 리뷰 보기
-    @GetMapping("/user/review")
-    public String getAllReviews() {
-        return "info/reviews";
-    }
-
-    // 좋아요 보기
-    @GetMapping("/user/likes")
-    public String getAllLikes() {
-        return "info/likes";
-    }
-
-    @GetMapping("/user/deliveries")
-    public String getAllDeliveries() {
-        return "info/deliveries";
-    }
-
     // 커뮤니티 목록
     @GetMapping("/community")
     public String getAllPost(Model model) {

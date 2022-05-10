@@ -11,7 +11,13 @@
 
             <!-- border (Shape) -->
             <div id="a17" class="ax_default shape" data-label="border">
-                <img id="a17_img" class="img " src="http://localhost:8080/images/page_1/border_u17.svg"/>
+                <td th:if="${consumer.photo == null}">
+                    <img id="a17_img" class="img " src="http://localhost:8080/images/page_1/border_u17.svg"/>
+                </td>
+                <td th:if="${consumer.photo != null}">
+                    <img id="a17_img" th:src="${consumer.photo}" width="80" height="80">
+                </td>
+
                 <div id="a17_text" class="text " style="display:none; visibility: hidden">
                     <p></p>
                 </div>
@@ -22,28 +28,33 @@
                  data-height="61">
 
                 <!-- 좋아요 (Rectangle) -->
-                <div id="a21" class="ax_default shape" data-label="좋아요">
-                    <div id="a21_div" class=""></div>
-                    <div id="a21_text" class="text ">
-                        <p><span>좋아요</span></p>
+                <a href="/user/{consumer.id}/likes">
+                    <div id="a21" class="ax_default shape" data-label="좋아요">
+                        <div id="a21_div" ></div>
+                        <div id="a21_text" class="text ">
+                            <p><span id="middle-nav">좋아요</span></p>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- 리뷰 (Rectangle) -->
-                <div id="a22" class="ax_default shape" data-label="리뷰">
-                    <div id="a22_div" class=""></div>
-                    <div id="a22_text" class="text ">
-                        <p><span>리뷰</span></p>
+                <a href="/user/{consumer.id}/reviews">
+                    <div id="a22" class="ax_default shape" data-label="리뷰">
+                        <div id="a22_div" class=""></div>
+                        <div id="a22_text" class="text ">
+                            <p><span id="middle-nav">리뷰</span></p>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- Unnamed (Rectangle) -->
-                <div id="a23" class="ax_default shape">
-                    <div id="a23_div" class=""></div>
-                    <div id="a23_text" class="text ">
-                        <p><span>주문내역</span></p>
+                <a href="/user/{consumer.id}/orders">
+                    <div id="a23" class="ax_default shape">
+                        <div id="a23_div" class=""></div>
+                        <div id="a23_text" class="text ">
+                            <p><span id="middle-nav">주문내역</span></p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- user_info (Group) -->
@@ -75,7 +86,7 @@
                 <div id="a29" class="ax_default shape">
                     <div id="a29_div" class=""></div>
                     <div id="a29_text" class="text ">
-                        <p><span>이름</span></p>
+                        <p><span th:text="${consumer.cId}">이름</span></p>
                     </div>
                 </div>
 
@@ -91,7 +102,7 @@
                 <div id="a31" class="ax_default shape" data-label="count_like">
                     <div id="a31_div" class=""></div>
                     <div id="a31_text" class="text ">
-                        <p><span>0</span></p>
+                        <p><span th:text="${consumer.likes.size}">0</span></p>
                     </div>
                 </div>
 

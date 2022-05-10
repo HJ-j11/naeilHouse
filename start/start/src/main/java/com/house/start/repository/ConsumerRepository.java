@@ -15,12 +15,6 @@ import java.util.Optional;
 
 @Repository
 public interface ConsumerRepository extends JpaRepository<Consumer, Long> {
-    /*
-    public List<String> findAllWith() {
-        return em.createQuery("select c.id, c.cId, count(p.id) from Consumer c, Post p where c.id = p.consumer", String.class)
-                .getResultList();
-    }*/
-//    public Optional<Consumer> findByCId(String cId);
 
     // 소비자 아이디로 조회
     Optional<Consumer> findBycId (String cId);

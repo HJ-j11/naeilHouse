@@ -182,6 +182,7 @@ body {
   font-style:normal;
   font-size:20px;
   color:#424142;
+
 }
 #a21 .text {
   position:absolute;
@@ -738,3 +739,10 @@ body {
   visibility:hidden;
 }
 
+#middle-nav:hover {
+  color:#35C5F0;
+}
+
+#a21 a22 a23:hover {
+  border-bottom: 10px #35C5F0
+}
