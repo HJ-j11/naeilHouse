@@ -6,7 +6,6 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
   <link href="/css/consumer_postnew/styles.css" type="text/css" rel="stylesheet"/>
-<!--  <link href="files/page_1/styles.css" type="text/css" rel="stylesheet"/>-->
   <script src="/scripts/jquery-3.2.1.min.js"></script>
   <script src="/scripts/axure/axQuery.js"></script>
   <script src="/scripts/axure/globals.js"></script>
@@ -37,6 +36,7 @@
   <script src="/scripts/axure/viewer.js"></script>
   <script src="/scripts/axure/math.js"></script>
   <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
+  <script src="/css/consumer_postnew/data.js"></script>
 </head>
 <body>
 <div id="base" class="">
@@ -249,10 +249,11 @@
     var theForm = document.submitForm;
     if(theForm.photo.value==""){
       alert("사진을 올려주세요.");
-    } else {
-      document.forms[0].submit();
-      alert("새 포스트가 등록 되었습니다.");
+      return ;
     }
+  document.forms[0].submit();
+  alert("새 포스트가 등록 되었습니다.");
+
   }
 </script>
 </body>
