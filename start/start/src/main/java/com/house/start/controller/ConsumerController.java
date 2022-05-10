@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -265,14 +261,25 @@ public class ConsumerController {
         // Order 생성
         // order.setOrderStatus(OrderStatus.CART);
 
-        return "redirect:/consumer/cart/list";
+        return "redirect:/cart";
     }
     /**
      *  장바구니 페이지
      */
-//    @GetMapping("/consumer/cart/list")
-//    public String cart() {
-
+    @GetMapping("/cart")
+    public String cart(Model model) {
+        List<Item> cartList = consumerService.findByCart(ItemStatus.CART);
+        model.addAttribute("carts", cartList);
+        return "consumer_cart";
+    }
+    /**
+     * 장바구니 -> 구매
+     * 주문 객체 생성
+     * **/
+    @GetMapping("/orders")
+    public String createOrder() {
+        return "";
+    }
     // 소비자 정보 조회
     //
 

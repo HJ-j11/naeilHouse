@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/document.js" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,7 +304,7 @@
       <workItem from="1652002903313" duration="175000" />
       <workItem from="1652071652332" duration="850000" />
       <workItem from="1652168997032" duration="38000" />
-      <workItem from="1652171342824" duration="358000" />
+      <workItem from="1652171342824" duration="4332000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -511,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652002985170</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="장바구니&#10;- html 파일 (css, js) 추가">
+      <created>1652171761969</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1652171761969</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +546,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Entity vs Service 기능 구현 고민" />
     <MESSAGE value="저장 방식 고민&#10;- extends JpaRepository&lt;&gt;&#10;- EntityManager persist method" />
     <MESSAGE value="UploadFile 파일 병합 (sj-branch -&gt; hj-branch)" />
     <MESSAGE value="Post : 파일 경로/이름 변경" />
@@ -566,7 +570,8 @@
     <MESSAGE value="장바구니 &#10;- itemStatus로 담기 구현&#10;- JPA 공식 문서 따른 메소드 재정의" />
     <MESSAGE value="Post &#10;- 포스트 create Thymeleaf 연동&#10;- submit 후 alert 창 추가" />
     <MESSAGE value="CSS 변경 &#10;- 포스트 Thymeleaf 연동, style.css 적용" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSS 변경 &#10;- 포스트 Thymeleaf 연동, style.css 적용" />
+    <MESSAGE value="장바구니&#10;- html 파일 (css, js) 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니&#10;- html 파일 (css, js) 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
