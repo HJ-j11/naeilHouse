@@ -1,0 +1,30 @@
+#a41_img {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:400px;
+  height:400px;
+}
+#a41 {
+  border-width:0px;
+  position:absolute;
+  left:713px;
+  top:295px;
+  width:400px;
+  height:400px;
+  display:flex;
+}
+#a41 .text {
+  position:absolute;
+  align-self:center;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#a41_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+  visibility:hidden;
+}

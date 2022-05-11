@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("admin")
 public class AdminController {
     private final ConsumerService consumerService;
     private final SellerService sellerService;
@@ -28,7 +30,7 @@ public class AdminController {
     /**
      * 소비자 정보 조회
      */
-    @GetMapping("/admin/consumers")
+    @GetMapping("/consumers")
     public String showConsumer(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show consumers info -----------------------------------------");
         HttpSession session = request.getSession();
@@ -50,7 +52,7 @@ public class AdminController {
     /**
      * 판매자 정보 조회
      */
-    @GetMapping("/admin/sellers")
+    @GetMapping("/sellers")
     public String showSellers(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show sellers info -----------------------------------------");
         HttpSession session = request.getSession();
@@ -73,7 +75,7 @@ public class AdminController {
     /**
      * 판매자 승인 처리
      */
-    @GetMapping("/admin_sellers/approved/{seller_id}")
+    @GetMapping("/sellers/approved/{seller_id}")
     public String approvedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers approved -----------------------------------------");
         sellerService.approveSeller(seller_id);
@@ -83,7 +85,7 @@ public class AdminController {
     /**
      * 판매자 승인 철회
      */
-    @GetMapping("/admin_sellers/notapproved/{seller_id}")
+    @GetMapping("/sellers/notapproved/{seller_id}")
     public String notapprovedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);
@@ -93,7 +95,7 @@ public class AdminController {
     /**
      * 게시글 정보 조회
      */
-    @GetMapping("/admin/posts")
+    @GetMapping("/posts")
     public String showPosts(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show posts info -----------------------------------------");
         HttpSession session = request.getSession();
@@ -115,7 +117,7 @@ public class AdminController {
     /**
      * 상품 목록 조회
      */
-    @GetMapping("/admin/items")
+    @GetMapping("/items")
     public String showItems(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show items info -----------------------------------------");
         HttpSession session = request.getSession();
@@ -137,7 +139,7 @@ public class AdminController {
     /**
      * 주문 목록 조회
      */
-    @GetMapping("/admin/orders")
+    @GetMapping("/orders")
     public String showOrders(HttpServletRequest request, Model model) {
         log.info("--- admin controller - show orders info -----------------------------------------");
         HttpSession session = request.getSession();

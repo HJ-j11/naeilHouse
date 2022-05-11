@@ -8,10 +8,10 @@ import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
 import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class ConsumerController {
@@ -79,48 +77,6 @@ public class ConsumerController {
     @PutMapping("/user/deliveries/{id}/completed")
     public void getAllDelivery(@PathVariable Long id){
         consumerService.completeDelivery(id);
-    }
-
-    //마이 페이지
-    @GetMapping("/user")
-    public String getUserInfo(@PathVariable Long id, Model model, HttpServletRequest request) {
-        // 후에 session으로 교체할 예정.
-        try {
-            HttpSession session = request.getSession();
-            String userId = session.getId();
-
-        } catch(Exception e) {
-            logger.error(e.getMessage());
-        }
-
-        Consumer user = consumerService.getConsumerInfo(id);
-        model.addAttribute("user", user);
-        return "info/user";
-    }
-
-    // 주문 보기
-    @GetMapping("/user/orders")
-    public String getAllOrders(Model model) {
-        // 자신이 주문한 걸 가져와야할텐데..?
-
-        return "info/orders";
-    }
-
-    // 리뷰 보기
-    @GetMapping("/user/review")
-    public String getAllReviews() {
-        return "info/reviews";
-    }
-
-    // 좋아요 보기
-    @GetMapping("/user/likes")
-    public String getAllLikes() {
-        return "info/likes";
-    }
-
-    @GetMapping("/user/deliveries")
-    public String getAllDeliveries() {
-        return "info/deliveries";
     }
 
     // 커뮤니티 목록
@@ -210,7 +166,6 @@ public class ConsumerController {
         consumerService.deleteComment(id);
         model.addAttribute("ACESS", "SUCCESS");
         return "redirect:/community/";
-
     }
 
     /**
@@ -218,11 +173,8 @@ public class ConsumerController {
      */
     @GetMapping("/consumer/item/list")
     public String itemList(Model model) {
-
         List<Item> items = itemService.findItems();
-
         model.addAttribute("items", items);
-
         return "consumer_itemList";
     }
 

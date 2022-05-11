@@ -30,7 +30,6 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
-
     private LocalDateTime orderDate; // 주문 일시
 
     /*비즈니스로직*/
@@ -75,7 +74,6 @@ public class Order {
         int pointAfterOrder = pointBeforeOrder - totalOrderPoint; // 예외 처리 필요
         consumer.setPoint(pointAfterOrder);
         order.setConsumer(consumer);
-
 
         order.setOrderStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());

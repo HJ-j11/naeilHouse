@@ -1,10 +1,12 @@
-INSERT INTO UPLOAD_FILE (UPLOADFILE_ID , STORE_FILE_NAME , UPLOAD_FILE_NAME ) values (1, 'default_img', 'default_img');
+INSERT INTO UPLOAD_FILE (UPLOADFILE_ID , STORE_FILE_NAME , UPLOAD_FILE_NAME ) values (1, 'default_img.png', 'default_img.png');
 
 INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (1, '1234', '홍길동', '1234', 123);
 INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (2, '12345', '홍길동', '1234', 123);
 INSERT INTO post (id, consumer_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (1, 1, '게시글 내용1', '20221012', 1);
 INSERT INTO post (id, consumer_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (2, 1, '게시글 내용2', '20221010', 1);
 INSERT INTO Likes (id, consumer_id, post_id) VALUES (1, 1, 1);
+INSERT INTO REVIEW (REVIEW_ID, CONTENT , REVIEW_DATE , CONSUMER_ID , ITEM_ID ) VALUES (5, '정말 좋아요', '20221010', 1, 1 );
+INSERT INTO REVIEW (REVIEW_ID, CONTENT , REVIEW_DATE , CONSUMER_ID , ITEM_ID ) VALUES (6, '정말 이뻐요', '20211010', 1, 2 );
 
 INSERT INTO Seller (seller_id, name, s_Id, pwd, store_Name, IS_APPROVED ) values (1, '판매자1', '1234', '1234','내일의 집', TRUE);
 INSERT INTO Seller (seller_id, name, s_Id, store_Name, IS_APPROVED ) values (2, '판매자2', '155234', '오늘의 집', FALSE);

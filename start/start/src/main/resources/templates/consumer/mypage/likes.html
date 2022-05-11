@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/mypage-layout}">
+<head>
+    <link href="http://localhost:8080/css/consumer/mypage/likes.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<div layout:fragment="content">
+    <div class="main_content">
+        <div class="likesData"  >
+            <div class="like_post" th:each="like : ${likesList}">
+                <a class="post_image" th:href="@{/user/{id}/posts (id=${consumer.id})}">
+                    <div th:if="${like.post.uploadFile != null}">
+                        <!-- <img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|" width="240" height="240">-->
+                        <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="240"
+                             height="240">
+                    </div>
+
+                    <div th:if="${like.post.uploadFile == null}">
+                        <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="240"
+                             height="240">
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</html>

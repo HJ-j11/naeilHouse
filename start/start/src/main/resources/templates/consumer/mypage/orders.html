@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/mypage-layout}">
+<head>
+    <link href="http://localhost:8080/css/consumer/mypage/orders.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<div layout:fragment="content">
+    <div id="main_content">
+        <div class="order-list__menu">
+            <div class="order-list__menu__list">
+                <ul>
+                    <div class="order-list__menu__list__wrap">
+                        <div class="order-list__menu__list__title">결제완료</div>
+                        <div class="order-list__menu__list__value"><p th:text="${paidStatus}">0</p></div>
+                    </div>
+                </ul>
+                >
+
+                <ul>
+                    <div class="order-list__menu__list__wrap">
+                        <div class="order-list__menu__list__title">배송중</div>
+                        <div class="order-list__menu__list__value"><p th:text="${orderStatus}">0</p></div>
+                    </div>
+                </ul>
+                >
+
+                <ul>
+                    <div class="order-list__menu__list__wrap">
+                        <div class="order-list__menu__list__title">배송완료</div>
+                        <div class="order-list__menu__list__value"><p th:text="${completeStatus}">0</p></div>
+                    </div>
+                </ul>
+            </div>
+
+        </div>
+
+        <table class="Data">
+            <div th:each="order: ${orderList}">
+                <div th:if="!${order.orderStatus.toString.equals('CART')}">
+                    <div id="orderData" style="margin-top: 3%;">
+                        <ul id="orderDate" th:text="${order.orderDate}"> 날짜</ul>
+                        <ul id="orderStatus"
+                            th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"> 주문/ 배송상태
+                        </ul>
+                        <ul th:each="orderitem: ${order.orderItems}" style="padding-top: 2%;">
+
+                            <ul th:if="${orderitem.item.uploadFile == null}" style="float: left; margin-right: 5%;">
+                                <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
+                                     height="80">
+                            </ul>
+
+                            <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 5%;">
+                                <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
+                                     height="80">
+                                <!--<td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|" width="80" height="80"></td>-->
+                            </ul>
+
+                            <ul style="float: left; margin-right: 10%;">
+                                <p th:text="|상호명: ${orderitem.item.seller.storeName}|"> 상호명</p>
+                                <p th:text="|상품명: ${orderitem.item.name}|"> 상품 이름</p>
+                            </ul>
+
+                            <ul style="float: left; margin-right: 30%;">
+                                <p th:text="|가격: ${orderitem.orderPrice} 원|">가격</p>
+                                <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
+                            </ul>
+
+
+                            <ul th:if="${order.delivery.reviewYn == false}" style="padding-bottom: 10%;">
+                                <a id="goReview" href="#"
+                                   th:href="@{/user/{seller_id}/reviews (seller_id=${consumer.id})}"
+                                   role="button">리뷰하기</a>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </table>
+    </div>
+</div>
+</html>

@@ -149,11 +149,12 @@
                         <td th:text="|판매 물품 갯수: ${seller.items.size}개|">개</td>
 
                         <td th:if="${seller.isApproved == false}">
-                            <a href="#" th:href="@{/admin_sellers/approved/{seller_id} (seller_id=${seller.id})}"
+                            <a href="#" th:href="@{/admin/sellers/approved/{seller_id} (seller_id=${seller.id})}"
                                role="button" id="approved">승인하기</a>
                         </td>
+
                         <td th:if="${seller.isApproved == true}">
-                            <a href="#" th:href="@{/admin_sellers/notapproved/{seller_id} (seller_id=${seller.id})}"
+                            <a href="#" th:href="@{/admin/sellers/notapproved/{seller_id} (seller_id=${seller.id})}"
                                role="button" id="notapproved">승인취소하기</a>
                         </td>
                     </tr>

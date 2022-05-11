@@ -1,0 +1,13 @@
+#footer {
+    position: relative;
+    top: 1000px;
+    height: 70px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 15px 0;
+    font-weight:1300;
+    font-style:normal;
+    font-size:15px;
+    background-color: #fafafa;
+}

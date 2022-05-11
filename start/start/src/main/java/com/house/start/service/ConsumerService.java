@@ -169,4 +169,20 @@ public class ConsumerService {
         return consumerRepository.findAll();
     }
 
+    /**
+     * 소비자 cId로 소비자 조회
+     */
+    public Consumer findConsumerBycId(String cId) {
+        return consumerRepository.findBycId(cId)
+                .orElse(null);
+    }
+
+    /**
+     * 소비자 Id로 소비자 조회
+     */
+    public Consumer findConsumerById(Long consumer_id) {
+        return consumerRepository.findById(consumer_id)
+                .orElse(null);
+    }
+
 }

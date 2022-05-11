@@ -1,0 +1,116 @@
+#main_content {
+    position: absolute;
+    top: 200px;
+    left: 370px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:1300;
+    font-style:normal;
+    font-size:16px;
+  }
+.Data {
+    width: 1050px;
+}
+
+  #orderStatus {
+   color:#35C5F0;
+  }
+
+  #orderData {
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:900;
+    font-style:normal;
+    font-size:15px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 1px 4px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  #orderDate{
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-style:normal;
+    font-size:17px;
+  }
+
+  #uploadFile{
+    border:none;
+    border-radius:8px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+  }
+
+  .order-list__menu {
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:900;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px 0 #dbdbdb;
+    height: 100px;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.order-list__menu__list {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.order-list__menu__list__wrap {
+    text-align: center;
+    padding: 60px;
+}
+
+.order-list__menu__list__title {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.order-list__menu__list__value {
+    font-size: 20px;
+    color: #35c5f0;
+}
+
+#goReview {
+  position: absolute;
+  left: 850px;
+  width:150px;
+  height:50px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:18px;
+  color:#ffff;
+  text-align: center;
+  line-height: 40px;
+  background:inherit;
+  background-color:rgba(53, 197, 240, 1);
+  display: block;
+  text-decoration: none;
+  border-radius: 4px;
+
+}
