@@ -19,4 +19,6 @@ public class SellerRespository {
     public Seller findSeller(Long id) {
         return em.find(Seller.class, id);
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
+import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -191,19 +192,58 @@ public class ConsumerController {
     }
 
     /**
-     *  상품 상세 -> 바로 구매시
+     *  상품 상세 -> 바로 구매시 (결제 준비 페이지)
      */
     @GetMapping("/consumer/item/{id}/purchase")
-    public String purchase(@PathVariable Long id) {
+    public String beforePurchase(@PathVariable Long id,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                           Model model) {
 
-        // 배송지 정보 (주소) 조회
+        // 세션에 회원 데이터가 없으면 예외처리
+        if (loginConsumer == null) {
+            return "redirect:/list";
+        }
 
-        // 주문자 정보 조회
+        // 소비자 id 조회
+        Long consumerId = loginConsumer.getId();
+        Consumer consumer = consumerService.findConsumer(consumerId);
 
-        // 아이템 정보 조회
+        // 상품 조회
         Item item = itemService.findItem(id);
 
-        return "comsumer_beforePurchase";
+        model.addAttribute("item", item);
+        model.addAttribute("consumer", consumer);
+
+//        orderService.order(consumerId, id, 1);
+
+        return "consumer_beforePurchase";
+    }
+
+    /**
+     *  결제 준비 페이지 -> 결제하기 (상품 1개) : 결제 완료 페이지로 이동
+     */
+    @PostMapping("/consumer/item/{id}/purchase")
+    public String afterPurchase(@PathVariable Long id,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
+                           Model model) {
+
+        // 소비자 id 조회
+        Long consumerId = loginConsumer.getId();
+
+        // 상품 id 조회
+        Long itemId = itemService.findItem(id).getId();
+        Item item = itemService.findItem(id);
+
+        // 주문 생성
+        Long orderId = orderService.order(consumerId, itemId, 1); // 주문
+        Optional<Order> completedOrder = orderService.findOrder(orderId); // 주문 완료된 객체 반환
+        List<OrderItem> orderItems = completedOrder.get().getOrderItems();
+
+        model.addAttribute(orderItems);
+        model.addAttribute(item);
+
+        // 주문 완료 페이지
+        return "consumer_afterPurchase";
     }
 
     /**
@@ -222,6 +262,7 @@ public class ConsumerController {
 
         return "redirect:/consumer/cart/list";
     }
+
     /**
      *  장바구니 페이지
      */

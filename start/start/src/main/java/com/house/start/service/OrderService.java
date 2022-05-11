@@ -12,11 +12,10 @@ import com.house.start.domain.DeliveryStatus;
 import com.house.start.domain.Order;
 import com.house.start.domain.OrderStatus;
 import com.house.start.repository.DeliveryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -61,6 +60,8 @@ public class OrderService {
     public List<Order> findOrders() {
         return orderRepository.findAll();
     }
+
+    public Optional<Order> findOrder(Long id) { return orderRepository.findById(id);}
 
     /**
      * 주문 취소

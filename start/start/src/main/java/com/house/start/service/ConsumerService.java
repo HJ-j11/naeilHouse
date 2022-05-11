@@ -162,7 +162,7 @@ public class ConsumerService {
         Comment comment = commentRepository.getById(id);
         commentRepository.delete(comment);
     }
-      /*
+    /*
      * 소비자 전체 목록 조회
      */
     public List<Consumer> findConsumers() {
@@ -174,14 +174,6 @@ public class ConsumerService {
      */
     public Consumer findConsumerBycId(String cId) {
         return consumerRepository.findBycId(cId)
-                .orElse(null);
-    }
-
-    /**
-     * 소비자 Id로 소비자 조회
-     */
-    public Consumer findConsumerById(Long consumer_id) {
-        return consumerRepository.findById(consumer_id)
                 .orElse(null);
     }
 
