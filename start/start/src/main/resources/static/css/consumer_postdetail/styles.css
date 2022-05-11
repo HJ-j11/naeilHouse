@@ -1066,6 +1066,14 @@ th, td {
   float:left;
   margin-right: 100px;
 }
+#li_dropdown1 {
+  float:left;
+  margin-right: 100px;
+}
+#li_dropdown2 {
+  float:left;
+  margin-right: 100px;
+}
 
 .dropdown {
   position: relative;
