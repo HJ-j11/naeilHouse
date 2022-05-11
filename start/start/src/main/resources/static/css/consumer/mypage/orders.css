@@ -94,3 +94,23 @@
     font-size: 20px;
     color: #35c5f0;
 }
+
+#goReview {
+  position: absolute;
+  left: 850px;
+  width:150px;
+  height:50px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:18px;
+  color:#ffff;
+  text-align: center;
+  line-height: 40px;
+  background:inherit;
+  background-color:rgba(53, 197, 240, 1);
+  display: block;
+  text-decoration: none;
+  border-radius: 4px;
+
+}

@@ -2,10 +2,11 @@ package com.house.start.controller.Consumer;
 
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.Consumer;
+import com.house.start.domain.Like;
 import com.house.start.domain.Order;
 import com.house.start.domain.Review;
-import com.house.start.repository.ConsumerRepository;
 import com.house.start.service.ConsumerService;
+import com.house.start.service.LikeService;
 import com.house.start.service.OrderService;
 import com.house.start.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ public class ConsumerMypageController {
     private final ConsumerService consumerService;
     private final OrderService orderService;
     private final ReviewService reviewService;
+    private final LikeService likeService;
 
     /**
      * 마이페이지 처음 페이지
@@ -104,7 +106,7 @@ public class ConsumerMypageController {
             Consumer consumer = consumerService.findConsumerById(consumer_id);
             model.addAttribute("consumer", consumer);
 
-            // orders 데이터
+            // review 데이터
             List<Review> reviewList = reviewService.findReviewsByConsumer(consumer);
             model.addAttribute("reviewList", reviewList);
             return "consumer/mypage/reviews";
@@ -130,10 +132,10 @@ public class ConsumerMypageController {
             Consumer consumer = consumerService.findConsumerById(consumer_id);
             model.addAttribute("consumer", consumer);
 
-            // orders 데이터
-            List<Review> reviewList = reviewService.findReviewsByConsumer(consumer);
-            model.addAttribute("reviewList", reviewList);
-            return "consumer/mypage/reviews";
+            // likes 데이터
+            List<Like> likesList = likeService.findLikesByConsumer(consumer);
+            model.addAttribute("likesList", likesList);
+            return "consumer/mypage/likes";
         } else {
             // 판매자나 관리자인 경우
             return "err/denyPage";

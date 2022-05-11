@@ -52,20 +52,27 @@
                                      height="80">
                             </ul>
 
-                            <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 10%;">
+                            <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 5%;">
                                 <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
                                      height="80">
                                 <!--<td><img th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|" width="80" height="80"></td>-->
                             </ul>
 
-                            <ul style="float: left; margin-right: 40%;">
+                            <ul style="float: left; margin-right: 10%;">
                                 <p th:text="|상호명: ${orderitem.item.seller.storeName}|"> 상호명</p>
                                 <p th:text="|상품명: ${orderitem.item.name}|"> 상품 이름</p>
                             </ul>
 
-                            <ul style=" padding-bottom: 5%;" ;>
+                            <ul style="float: left; margin-right: 30%;">
                                 <p th:text="|가격: ${orderitem.orderPrice} 원|">가격</p>
                                 <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
+                            </ul>
+
+
+                            <ul th:if="${order.delivery.reviewYn == false}" style="padding-bottom: 10%;">
+                                <a id="goReview" href="#"
+                                   th:href="@{/user/{seller_id}/reviews (seller_id=${consumer.id})}"
+                                   role="button">리뷰하기</a>
                             </ul>
                         </ul>
                     </div>
