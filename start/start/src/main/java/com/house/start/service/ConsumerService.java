@@ -52,7 +52,8 @@ public class ConsumerService {
 
     // 장바구니 보기
     public List<Item> findByCart(ItemStatus status, Long id) {
-        List<Item> items = itemRepository.findItemsByItemStatusAAndId(ItemStatus.CART, id);
+        List<Item> items = itemRepository.findItemsByItemStatus(ItemStatus.CART);
+
         return items;
     }
 
