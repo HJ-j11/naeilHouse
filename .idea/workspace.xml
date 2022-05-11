@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="글 상세&#10;- src, href 변경">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postdetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +305,8 @@
       <workItem from="1652171342824" duration="4751000" />
       <workItem from="1652184745424" duration="1385000" />
       <workItem from="1652224891204" duration="28000" />
-      <workItem from="1652248975503" duration="4192000" />
+      <workItem from="1652248975503" duration="5384000" />
+      <workItem from="1652254697774" duration="251000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -538,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652253116608</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="글 상세&#10;- src, href 변경">
+      <created>1652253584109</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1652253584109</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,7 +576,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="post 담을 수 있는 postForm 설정" />
     <MESSAGE value="파일 업로드 설정" />
     <MESSAGE value="Post @Bulider 적용" />
     <MESSAGE value="장바구니 담기 기능 추가" />
@@ -593,7 +600,8 @@
     <MESSAGE value="장바구니&#10;- 장바구니 페이지 GET 수정&#10;- 장바구니 -&gt; 구매로 가는 api 생성" />
     <MESSAGE value="장바구니&#10;- onclick 시, 주문 객체 생성&#10;- findBy에 And 조건으로 consumer id 추가 &#10;- session으로 소비자 정보 가져옴" />
     <MESSAGE value="장바구니&#10;- findBy에 And 조건으로 consumer id 제외 (필드 추가 뒤)" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니&#10;- findBy에 And 조건으로 consumer id 제외 (필드 추가 뒤)" />
+    <MESSAGE value="글 상세&#10;- src, href 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="글 상세&#10;- src, href 변경" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
