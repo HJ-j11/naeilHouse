@@ -437,7 +437,7 @@
         <div id="u40" class="ax_default shape" data-label="구매 하기">
             <div id="u40_div" class=""></div>
             <div id="u40_text" class="text ">
-                <p><span id="orderBtn">구매 하기</span></p>
+                <p><span th:attr="onclick=|goOrder('${carts}')|">구매 하기</span></p>
             </div>
         </div>
     </div>
@@ -529,7 +529,19 @@
 </div>
 <script src="/scripts/axure/ios.js"></script>
 <script>
-
+    function goOrder(carts) {
+        fetch("/orders",{
+            method: "GET",
+            headers : {
+                "Content-Type": "application-json",
+            },
+            body : JSON.stringify({
+                "carts": carts,
+            })
+        })
+            .then((response) => response.json())
+            .then(alert("주문으로 이동합니다"));
+    }
 </script>
 </body>
 </html>

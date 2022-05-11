@@ -267,8 +267,10 @@ public class ConsumerController {
      *  장바구니 페이지
      */
     @GetMapping("/cart")
-    public String cart(Model model) {
-        List<Item> cartList = consumerService.findByCart(ItemStatus.CART);
+    public String cart(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        Long consumerId = Long.valueOf(session.getId());
+        List<Item> cartList = consumerService.findByCart(ItemStatus.CART, consumerId);
         model.addAttribute("carts", cartList);
         return "consumer_cart";
     }
@@ -277,7 +279,15 @@ public class ConsumerController {
      * 주문 객체 생성
      * **/
     @GetMapping("/orders")
-    public String createOrder() {
+    public String createOrder(@RequestBody List<Item> carts, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long consumerId = Long.valueOf(session.getId());
+
+        for(Item item : carts) {
+            Long res = orderService.order(consumerId, item.getId(), item.getStockQuantity());
+            System.out.print(res+" ");
+        }
+        // 주문 페이지로 가기
         return "";
     }
     // 소비자 정보 조회

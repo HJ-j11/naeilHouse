@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="장바구니&#10;- onclick -&gt; 변환 과졍">
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_cart/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -304,7 +305,10 @@
       <workItem from="1652002903313" duration="175000" />
       <workItem from="1652071652332" duration="850000" />
       <workItem from="1652168997032" duration="38000" />
-      <workItem from="1652171342824" duration="4332000" />
+      <workItem from="1652171342824" duration="4751000" />
+      <workItem from="1652184745424" duration="1385000" />
+      <workItem from="1652224891204" duration="28000" />
+      <workItem from="1652248975503" duration="2392000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -516,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652171761969</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="장바구니&#10;- 장바구니 페이지 GET 수정&#10;- 장바구니 -&gt; 구매로 가는 api 생성">
+      <created>1652176080357</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1652176080357</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +557,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="저장 방식 고민&#10;- extends JpaRepository&lt;&gt;&#10;- EntityManager persist method" />
     <MESSAGE value="UploadFile 파일 병합 (sj-branch -&gt; hj-branch)" />
     <MESSAGE value="Post : 파일 경로/이름 변경" />
     <MESSAGE value="post 담을 수 있는 postForm 설정" />
@@ -571,7 +581,8 @@
     <MESSAGE value="Post &#10;- 포스트 create Thymeleaf 연동&#10;- submit 후 alert 창 추가" />
     <MESSAGE value="CSS 변경 &#10;- 포스트 Thymeleaf 연동, style.css 적용" />
     <MESSAGE value="장바구니&#10;- html 파일 (css, js) 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니&#10;- html 파일 (css, js) 추가" />
+    <MESSAGE value="장바구니&#10;- 장바구니 페이지 GET 수정&#10;- 장바구니 -&gt; 구매로 가는 api 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니&#10;- 장바구니 페이지 GET 수정&#10;- 장바구니 -&gt; 구매로 가는 api 생성" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
