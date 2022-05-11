@@ -162,11 +162,18 @@ public class ConsumerService {
         Comment comment = commentRepository.getById(id);
         commentRepository.delete(comment);
     }
-      /*
+    /*
      * 소비자 전체 목록 조회
      */
     public List<Consumer> findConsumers() {
         return consumerRepository.findAll();
+    }
+
+    /**
+     *  소비자 한 명 조회
+     */
+    public Consumer findConsumer(Long id) {
+        return consumerRepository.findById(id).get();
     }
 
 }

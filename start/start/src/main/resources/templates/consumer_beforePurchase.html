@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:custom="http://www.w3.org/1999/xhtml">
 <head>
     <title>내일의 집</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -131,68 +131,92 @@
                 </div>
             </div>
 
-            <div id="main_content" style="top: 150px">
+            <div id="main_content" style="top: 50px;">
 
-                <div class="container" style="width: 500px">
-                    <div class="text-center">
-                        <!--<img class="d-block mx-auto mb-4" src="/images/main/u15_div.png" alt="" width="272" height="257">-->
-                        <p class="fw-bold text-center">회원 가입 (판매자)</p>
+                <div class="container" style="height: 100px"></div>
+
+                <div class="row mb-2" style="margin-left: 20px; width: 1000px">
+                    <div class="col-md-6">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                             style="width: 500px">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2 text-primary">배송지 정보</strong>
+                                <!--                            <h3 class="mb-0">Featured post</h3>-->
+                                <!--                            <div class="mb-1 text-muted">Nov 12</div>-->
+                                <p class="card-text mb-auto">대한민국 서울</p>
+                                <!--                            <a href="#" class="stretched-link">Continue reading</a>-->
+                            </div>
+                            <!--                        <div class="col-auto d-none d-lg-block">-->
+                            <!--                            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
+
+                            <!--                        </div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="position: relative">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                             style="width: 150px; margin-left: 30px">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2 text-success">총 금액 정보</strong>
+                                <p class="mb-auto" th:text="${item.price != null} ? ${item.price} : 'null'">15000원</p>
+<!--                                <a th:href="@{/consumer/item/{id}/purchase (id=${item.id})}" custom:linkMethod="post" methods="post" class="btn btn-secondary" role="button">결제하기</a>-->
+                                <form th:action="@{/consumer/item/{id}/purchase (id=${item.id})}" method="post">
+                                    <button type="submit" class="btn btn-primary" th:value="purchase">결제하기</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="container" style="max-width: 600px">
-                    <div class="row">
-                        <form th:action="@{/seller/join}" th:object="${form}" method="post">
-
-                            <div th:if="${#fields.hasGlobalErrors()}">
-                                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
+                <div class="row mb-2" style="margin-left: 20px">
+                    <div class="col-md-6">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                             style="width: 500px">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2 text-primary">주문자 정보</strong>
+                                <p class="card-text mb-auto" th:text="${consumer.name != null} ? ${consumer.name} : 'null'">주문자 이름</p>
                             </div>
-
-                            <div>
-                                <label for="loginId">로그인 ID</label>
-                                <input type="text" id="loginId" th:field="*{id}" class="form-control"
-                                       th:errorclass="field-error">
-                                <div class="field-error" th:errors="*{id}"/>
-                            </div>
-                            <div>
-                                <label for="password">비밀번호</label>
-                                <input type="password" id="password" th:field="*{password}" class="form-control"
-                                       th:errorclass="field-error">
-                                <div class="field-error" th:errors="*{password}"/>
-                            </div>
-                            <div>
-                                <label for="name">이름</label>
-                                <input type="text" id="name" th:field="*{name}" class="form-control"
-                                       th:errorclass="field-error">
-                                <div class="field-error" th:errors="*{name}"/>
-                            </div>
-                            <div>
-                                <label for="name">상호명</label>
-                                <input type="text" id="name" th:field="*{storeName}" class="form-control"
-                                       th:errorclass="field-error">
-                                <div class="field-error" th:errors="*{storeName}"/>
-                            </div>
-
-
-                            <hr class="my-4">
-
-                            <div class="row">
-                                <div class="col">
-                                    <button class="w-100 btn btn-primary btn-lg" type="submit">회원 신청</button>
-                                </div>
-                                <div class="col">
-                                    <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='items.html'"
-                                            th:onclick="|location.href='@{/member/join}'|"
-                                            type="button">취소
-                                    </button>
-                                </div>
-                            </div>
-
-                        </form>
+                        </div>
                     </div>
-                </div> <!-- /container -->
+                </div>
 
+                <div class="row mb-2" style="margin-left: 20px">
+                    <div class="col-md-6">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+                             style="width: 500px">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>상품명</th>
+                                        <th>가격</th>
+                                        <th>재고</th>
+                                        <th>카테고리</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40">
+                                        </td>
+                                        <td th:text="${item.name}" class="align-middle"></td>
+                                        <td th:text="${item.price}" class="align-middle"></td>
+                                        <td th:text="${item.stockQuantity}" class="align-middle"></td>
+                                        <td th:text="${item.category}" class="align-middle"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- 로그아웃 (Rectangle) -->
+            <a href="/logout" style="text-decoration-line: none">
+                <div id="logout" class="ax_default shape" data-label="로그인">
+                    <div id="u5_text" class="text ">
+                        <p><span>로그아웃</span></p>
+                    </div>
+            </a>
         </div>
 
     </div>
