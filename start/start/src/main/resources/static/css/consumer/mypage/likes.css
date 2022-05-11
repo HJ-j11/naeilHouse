@@ -1,0 +1,38 @@
+.main_content {
+    position: absolute;
+    top: 200px;
+    left: 370px;
+  }
+
+.likesData {
+    width: 1050px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    float: left;
+}
+
+.like_post {
+    width: 256.88px;
+    height: 256.88px;
+    padding-right: 5px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 50%;
+
+}
+
+.post_image {
+padding-bottom: 100%;
+overflow: hidden;
+background-color: rgb(237, 237, 237);
+text-decoration: none;
+cursor: pointer;
+}
+
+#uploadFile {
+width: 240;
+height: 240;
+}

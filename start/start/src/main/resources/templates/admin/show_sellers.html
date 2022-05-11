@@ -152,6 +152,7 @@
                             <a href="#" th:href="@{/admin/sellers/approved/{seller_id} (seller_id=${seller.id})}"
                                role="button" id="approved">승인하기</a>
                         </td>
+
                         <td th:if="${seller.isApproved == true}">
                             <a href="#" th:href="@{/admin/sellers/notapproved/{seller_id} (seller_id=${seller.id})}"
                                role="button" id="notapproved">승인취소하기</a>

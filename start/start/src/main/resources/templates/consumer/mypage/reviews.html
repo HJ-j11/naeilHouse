@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/mypage-layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="http://localhost:8080/css/consumer/mypage/reviews.css" type="text/css" rel="stylesheet"/>
 </head>
-<body>
 
-</body>
+<div layout:fragment="content">
+    <div id="main_content">
+        <table class="Data" width="1440">
+            <div id="reviewData" th:each="review : ${reviewList}">
+                <p class="my-review-list__list__item__product__name" th:text="| ${review.item.name}|">아이템명</p>
+                <p class="my-review-list__list__item__product__info__text"
+                   th:text="|${consumer.cId}!${review.reviewDate}|">이름</p>
+                <p class="my-review-list__list__item__product__content" th:text="|${review.content}|">리뷰내용</p>
+            </div>
+
+        </table>
+    </div>
+</div>
 </html>

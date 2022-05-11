@@ -134,6 +134,7 @@ public class ConsumerMypageController {
 
             // likes 데이터
             List<Like> likesList = likeService.findLikesByConsumer(consumer);
+            log.info("--- consumer mypage controller - show user info -> likes -----------------------------------------"+ likesList.size());
             model.addAttribute("likesList", likesList);
             return "consumer/mypage/likes";
         } else {

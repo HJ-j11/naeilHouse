@@ -75,7 +75,6 @@ public class Order {
         consumer.setPoint(pointAfterOrder);
         order.setConsumer(consumer);
 
-
         order.setOrderStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
         return order;
