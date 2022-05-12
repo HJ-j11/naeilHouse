@@ -66,7 +66,7 @@ public class ConsumerService {
     }
 
     // 마이페이지
-    public Consumer getConsumerInfo(Long id) {
+    public Consumer findConsumerById(Long id) {
         Consumer user = consumerRepository.getById(id);
         return user;
     }

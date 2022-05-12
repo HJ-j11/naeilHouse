@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-public class ItemCart {
+public class CartItem {
     @Id
     @GeneratedValue
     private Long id;
@@ -27,9 +27,9 @@ public class ItemCart {
     @JoinColumn(name="item_id")
     private Item item;
 
-    // 빌더 패턴
+
     @Builder
-    public ItemCart(Cart cart, Item item, int count) {
+    public CartItem(Cart cart, Item item, int count) {
         this.cart = cart;
         this.item = item;
         this.count = count;
