@@ -89,7 +89,7 @@
                     if(mouseOveredElement && !mouseOveredElement.is(":visible")) {
                         var axObj = $obj($ax.event.mouseOverObjectId);
 
-                        if(($ax.public.fn.IsDynamicPanel(axObj.type) || $ax.public.fn.IsLayer(axObj.type) || $ax.public.fn.IsRepeater(axObj.type)) && axObj.propagate) {
+                        if(($ax.public.fn.IsDynamicPanel(axObj.type) || $ax.public.fn.IsLayer(axObj.type)) && axObj.propagate) {
                             mouseOveredElement.trigger('mouseleave');
                         } else mouseOveredElement.trigger('mouseleave.ixStyle');
                     }
@@ -653,7 +653,7 @@
             $ax.event.leavingState(oldStateId);
             if (hasEasing) _popContainer(id, true);
 
-            $ax.dynamicPanelManager.updateMobileScroll(id, stateId, true);
+            $ax.dynamicPanelManager.updateMobileScroll(id, stateId);
         };
         // Must do state out first, so if we cull by new state, location is correct
         _setVisibility(id, oldStateId, {
@@ -1216,7 +1216,6 @@
     var _movedIds = _visibility.movedIds = {};
     var _resizedIds = _visibility.resizedIds = {};
     var _rotatedIds = _visibility.rotatedIds = {};
-    var _resizingIds = _visibility.resizingIds = {};
 
     $ax.visibility.getMovedLocation = function(scriptId) {
         return _movedIds[scriptId];
@@ -1261,18 +1260,6 @@
         _resizedIds[scriptId] = { width: width, height: height };
     };
 
-    $ax.visibility.getResizingRect = function (scriptId) {
-        return _resizingIds[scriptId];
-    }
-
-    $ax.visibility.setResizingRect = function (scriptId, offsetBoundingRect) {
-        _resizingIds[scriptId] = offsetBoundingRect;
-    }
-
-    $ax.visibility.clearResizingRects = function () {
-        _resizingIds = _visibility.resizingIds = {};
-    }
-
     $ax.visibility.getRotatedAngle = function (scriptId) {
         return _rotatedIds[scriptId];
     };
@@ -1285,7 +1272,6 @@
         _movedIds = _visibility.movedIds = {};
         _resizedIds = _visibility.resizedIds = {};
         _rotatedIds = _visibility.rotatedIds = {};
-        _resizingIds = _visibility.resizingIds = {};
     };
 
     $ax.visibility.clearMovedAndResizedIds = function (elementIds) {
@@ -1294,7 +1280,6 @@
             delete _movedIds[id];
             delete _resizedIds[id];
             delete _rotatedIds[id];
-            delete _resizingIds[id];
         }
     };
 

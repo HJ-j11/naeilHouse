@@ -278,24 +278,20 @@
             return !parent || filter.indexOf(parentType) != -1 ? parent : getParent(parent);
         };
 
-        for (var i = 0; i < elementIds.length; i++) {
-            var elementId = elementIds[i];
-            // elementId could be "undefined" so escape this
-            if ((elementId || elementId === 0) && elementId !== "undefined") {
-                var parent = getParent(elementId);
-                if(deep) {
-                    var parents = [];
-                    while(parent) {
-                        parents[parents.length] = parent;
-                        // If id is not a valid object, you are either repeater item or dynamic panel state
-                        //if(!$obj(parent)) parent = $ax.visibility.getWidgetFromContainer($jobj(parent).parent().attr('id'));
+        for(var i = 0; i < elementIds.length; i++) {
+            var parent = getParent(elementIds[i]);
+            if(deep) {
+                var parents = [];
+                while(parent) {
+                    parents[parents.length] = parent;
+                    // If id is not a valid object, you are either repeater item or dynamic panel state
+                    //if(!$obj(parent)) parent = $ax.visibility.getWidgetFromContainer($jobj(parent).parent().attr('id'));
 
-                        parent = getParent(parent);
-                    }
-                    parent = parents;
+                    parent = getParent(parent);
                 }
-                parentIds[parentIds.length] = parent;
+                parent = parents;
             }
+            parentIds[parentIds.length] = parent;
         }
         return parentIds;
     };

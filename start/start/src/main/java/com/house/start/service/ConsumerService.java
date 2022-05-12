@@ -50,11 +50,12 @@ public class ConsumerService {
         return item;
     }
 
-//    // 장바구니 보기
-//    public List<Item> findByCart(ItemStatus status) {
-//        List<Item> items = itemRepository.findByCart(ItemStatus.CART);
-//        return items;
-//    }
+    // 장바구니 보기
+    public List<Item> findByCart(ItemStatus status, Long id) {
+        List<Item> items = itemRepository.findItemsByItemStatus(ItemStatus.CART);
+
+        return items;
+    }
 
     // 장바구니 담기
     @Transactional

@@ -22,13 +22,13 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class ConsumerController {
     private final ConsumerService consumerService;
     private final FileStore fileStore;
-
     private final ItemService itemService;
     private final OrderService orderService;
 
@@ -92,12 +92,10 @@ public class ConsumerController {
     public String getOnePost(@PathVariable Long id, Model model) {
         Post post = consumerService.getOnePost(id);
 
-        // 간편하게 넘기는 법 없을까?
-
         model.addAttribute("post", post);
         model.addAttribute("likes", post.countLikes());
         model.addAttribute("comments", post.getComments());
-        return "post_detail";
+        return "consumer_postdetail";
     }
 
 
@@ -105,7 +103,7 @@ public class ConsumerController {
     @GetMapping("/community/new")
     public String getNewPost(Model model) {
         model.addAttribute("post", new PostForm());
-        return "new_post";
+        return "consumer_newPost";
     }
 
     // 글 작성
@@ -131,7 +129,7 @@ public class ConsumerController {
 
         consumerService.save(newPost);
 
-        return "redirect:/community";
+        return "post_list";
     }
     /**
      * 글 -> 좋아요 누르기
@@ -260,15 +258,36 @@ public class ConsumerController {
         // Order 생성
         // order.setOrderStatus(OrderStatus.CART);
 
-        return "redirect:/consumer/cart/list";
+        return "redirect:/cart";
     }
 
     /**
      *  장바구니 페이지
      */
-//    @GetMapping("/consumer/cart/list")
-//    public String cart() {
+    @GetMapping("/cart")
+    public String cart(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        Long consumerId = Long.valueOf(session.getId());
+        List<Item> cartList = consumerService.findByCart(ItemStatus.CART, consumerId);
+        model.addAttribute("carts", cartList);
+        return "consumer_cart";
+    }
+    /**
+     * 장바구니 -> 구매
+     * 주문 객체 생성
+     * **/
+    @GetMapping("/orders")
+    public String createOrder(@RequestBody List<Item> carts, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long consumerId = Long.valueOf(session.getId());
 
+        for(Item item : carts) {
+            Long res = orderService.order(consumerId, item.getId(), item.getStockQuantity());
+            System.out.print(res+" ");
+        }
+        // 주문 페이지로 가기
+        return "";
+    }
     // 소비자 정보 조회
     //
 

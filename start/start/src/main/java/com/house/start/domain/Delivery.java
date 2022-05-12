@@ -6,9 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Delivery {
 
     @Id @GeneratedValue
@@ -26,7 +24,12 @@ public class Delivery {
     private boolean reviewYn = false;
     
     // 생성 메서드
-    public void setOrder(Order order) {
+
+    @Builder
+    public Delivery(DeliveryStatus deliveryStatus, boolean reviewYn, Order order) {
         this.order = order;
+        this.deliveryStatus = deliveryStatus;
+        this.reviewYn = reviewYn;
     }
+
 }
