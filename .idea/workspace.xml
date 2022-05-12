@@ -4,42 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현.">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/form/ItemEditForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/seller/seller.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_afterPurchase.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_beforePurchase.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/1c386945-3232-4e62-a533-9312017b4a54.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/3e033e97-8d74-480f-9bc0-7a00a5cd2d9d.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/3ffbe476-642d-415f-a628-e28a1bebe4c7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/96ec37ef-f77f-4512-a781-85b815ac1b0c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/a24741c3-6342-45c7-9e1a-3ae0701f67f6.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/be65d0f3-8df0-4f58-884e-184815d7107a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/e91ea8cd-ecd7-41bf-b62e-895022b78196.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/edc846f7-b4a2-4251-bbb1-90c20d03a46a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/webapp/upload/fb68f956-ecfb-4e7d-8921-1e18a0b531a7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="글 상세&#10;- src, href 변경">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/ItemCart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/DevelopController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/SellerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/SellerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Consumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/bootstrap-reboot.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/bootstrap-reboot.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/bootstrap-reboot.rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/bootstrap-reboot.rtl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_itemList.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_itemList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/admin_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/admin_add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/consumer_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/consumer_add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/member_select.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/member_select.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/seller_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/join/seller_add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/seller_createItemForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/seller_createItemForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/seller_itemList.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/seller_itemList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +22,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/start/start">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -79,6 +50,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -150,13 +126,13 @@
   <component name="RunManager">
     <configuration name="StartApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="start.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.house.start.StartApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.house.start.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.house.start.StartApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
