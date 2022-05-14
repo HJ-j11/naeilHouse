@@ -15,14 +15,10 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
 
     /**
-     * orderitem_id로 Item 조회
+     * id로 OrderItem 조회
      */
-    public OrderItem findOrderItem(Long orderitem_id) {
-        OrderItem orderItem = orderItemRepository.findById(orderitem_id)
+    public OrderItem findOrderItemById(String orderitem_id) {
+        return orderItemRepository.findById(orderitem_id)
                 .orElse(null);
-        return orderItem;
-
-
-
     }
 }

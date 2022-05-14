@@ -34,8 +34,7 @@ public class Order {
 
     private OrderStatus orderStatus; // 주문 상태 [카트, 주문, 취소, 완료]
 
-    @Column(name="review_yn")
-    private boolean reviewYn = false;
+
 
     //==연관관계 편의 메서드==//
     public void setMember(Consumer consumer) {

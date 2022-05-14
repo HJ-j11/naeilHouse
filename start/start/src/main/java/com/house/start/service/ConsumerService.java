@@ -90,7 +90,7 @@ public class ConsumerService {
 
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);
-        delivery.setReviewYn(true);
+        //delivery.setReviewYn(true);
 
         deliveryRepository.save(delivery);
 

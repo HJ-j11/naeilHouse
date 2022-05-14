@@ -112,5 +112,7 @@
   display: block;
   text-decoration: none;
   border-radius: 4px;
+  border: 0px
+  cursor: pointer;
 
 }

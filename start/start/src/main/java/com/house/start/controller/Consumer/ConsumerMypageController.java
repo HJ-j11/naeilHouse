@@ -58,7 +58,7 @@ public class ConsumerMypageController {
      * 마이페이지에서 주문 보기
      */
     @GetMapping("/{consumer_id}/orders")
-    public String getAllOrders(@PathVariable Long consumer_id, HttpServletRequest request, Model model) {
+    public String getAllOrders(@ModelAttribute ReviewForm reviewForm, @PathVariable Long consumer_id, HttpServletRequest request, Model model) {
         log.info("--- consumer mypage controller - show user info -> order -----------------------------------------");
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
@@ -94,16 +94,18 @@ public class ConsumerMypageController {
     public String createReview(@ModelAttribute @Validated ReviewForm reviewForm,
                                BindingResult bindingResult,
                                HttpServletRequest request,
-                               @PathVariable Long consumer_id, @PathVariable Long orderitem_id) {
+                               @PathVariable Long consumer_id, @PathVariable String orderitem_id) {
         log.info("--- consumer mypage controller - post review data");
         if (bindingResult.hasErrors()) { // 입력한 reviewForm 형식이 안맞는 경우
             return "consumer/mypage/order";
         }
-        String content = reviewForm.getContents();
+        String content = reviewForm.getContent();
 
         Consumer consumer = consumerService.findConsumerById(consumer_id);
-        Item item = orderItemService.findOrderItem(Long orderitem_id).getItem();
-        Review review = reviewService.saveReview(Consumer consumer, Item item, String content);
+        OrderItem orderItem = orderItemService.findOrderItemById(orderitem_id);
+        Item item = orderItem.getItem();
+        Review review = reviewService.saveReview(consumer, item, content);
+        orderItem.setReviewYn(true);
         return "redirect:consumer/mypage/orders";
     }
 

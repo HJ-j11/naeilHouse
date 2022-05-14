@@ -5,6 +5,16 @@
       layout:decorate="~{fragments/layout/mypage-layout}">
 <head>
     <link href="http://localhost:8080/css/consumer/mypage/orders.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/consumer/mypage/reviewSaveModal.css" type="text/css" rel="stylesheet"/>
+    <script>
+    document.getElementById("goReview").onclick = function() {
+        document.getElementById("reviewSaveModal").style.display="block";
+    }
+
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("reviewSaveModal").style.display="none";
+    }
+    </script>
 </head>
 
 <div layout:fragment="content">
@@ -67,17 +77,71 @@
                             <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
                         </ul>
 
-
-                        <ul th:if="${order.reviewYn == false}" style="padding-bottom: 10%;">
-                            <a id="goReview" href="#"
-                               th:href="@{/user/{seller_id}/reviews (seller_id=${consumer.id})}"
-                               role="button">리뷰하기</a>
+                        <ul th:if="${orderitem.reviewYn == false}" style="padding-bottom: 10%;">
+                            <button id="goReview"
+                               type="button">리뷰하기</button>
                         </ul>
                     </ul>
 
                 </div>
             </div>
         </table>
+        <div id="reviewSaveModal">
+            <div class="modal fade" id="mentoringSaveModal" data-bs-backdrop="static" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel"
+                 aria-hidden="true">
+                <div class="review-modal" style="background:#ffffff; width:680px; height: 400px; top:-900px">
+                    <div class="modal-content">
+
+                        <div class="review-modal__title">리뷰 쓰기</div>
+
+                        <button type="button" class="review-modal__close" id="modal_close_btn">
+                            <svg class="review-modal__close__icon" width="20" height="20" viewBox="0 0 20 20"
+                                 fill="currentColor" preserveAspectRatio="xMidYMid meet">
+                                <path fill-rule="nonzero"
+                                      d="M11.6 10l7.1 7.1-1.6 1.6-7.1-7.1-7.1 7.1-1.6-1.6L8.4 10 1.3 2.9l1.6-1.6L10 8.4l7.1-7.1 1.6 1.6z"></path>
+                            </svg>
+                        </button>
+
+                        <div class="modal-body">
+                            <form class="form-control" th:action="@{/user/{consumer_id}/orders/{orderitem_id} (consumer_id=${consumer.id}, orderitem_id=${orderitem.id})}" th:object="${reviewForm}" method="post">
+                                <div class="review-modal__form__product">
+                                    <img/>
+                                </div>
+
+                                <div class="review-modal__section">
+                                    <div class="review-modal__section__title">리뷰작성</div>
+
+                                    <textarea type="text" th:field="*{content}" placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다."
+                                              class="form-control text-area-input review-modal__form__review-input"
+                                              style="height: 56px;"></textarea>
+                                </div>
+
+                                <div class="input-container modal-footer">
+                                    <button type="submit"
+                                            class="button button--color-blue button--size-50 button--shape-4 review-modal__form__submit"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close" >
+                                        완료
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal_layer"></div>
+        </div>
     </div>
+    <script>
+        document.getElementById("goReview").onclick = function() {
+            document.getElementById("reviewSaveModal").style.display="block";
+        }
+
+        document.getElementById("modal_close_btn").onclick = function() {
+            document.getElementById("reviewSaveModal").style.display="none";
+        }
+    </script>
 </div>
 </html>
