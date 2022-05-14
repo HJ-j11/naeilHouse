@@ -105,7 +105,7 @@ public class ConsumerMypageController {
         OrderItem orderItem = orderItemService.findOrderItemById(orderitem_id);
         Item item = orderItem.getItem();
         Review review = reviewService.saveReview(consumer, item, content);
-        orderItem.setReviewYn(true);
+        orderItem = orderItemService.changeRevieYn(orderItem);
         return "redirect:";
     }
 

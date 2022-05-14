@@ -84,6 +84,12 @@
                             </button>
                         </ul>
 
+                        <ul th:if="${orderitem.reviewYn == true}" style="padding-bottom: 10%;">
+                            <button id="notReview"
+                                    type="button">
+                            </button>
+                        </ul>
+
                         <div id="reviewSaveModal">
                             <div class="modal fade" id="mentoringSaveModal" data-bs-backdrop="static" tabindex="-1"
                                  aria-labelledby="staticBackdropLabel"

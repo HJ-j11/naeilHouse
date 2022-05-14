@@ -21,4 +21,9 @@ public class OrderItemService {
         return orderItemRepository.findById(orderitem_id)
                 .orElse(null);
     }
+
+    public OrderItem changeRevieYn(OrderItem orderItem) {
+        orderItem.setReviewYn(true);
+        return orderItem;
+    }
 }
