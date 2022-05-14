@@ -1,21 +1,17 @@
 package com.house.start.controller.Consumer;
 
+import com.house.start.controller.form.LoginForm;
+import com.house.start.controller.form.ReviewForm;
 import com.house.start.controller.session.SessionConstants;
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Like;
-import com.house.start.domain.Order;
-import com.house.start.domain.Review;
-import com.house.start.service.ConsumerService;
-import com.house.start.service.LikeService;
-import com.house.start.service.OrderService;
-import com.house.start.service.ReviewService;
+import com.house.start.domain.*;
+import com.house.start.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,6 +29,7 @@ public class ConsumerMypageController {
     private final OrderService orderService;
     private final ReviewService reviewService;
     private final LikeService likeService;
+    private final OrderItemService orderItemService;
 
     /**
      * 마이페이지 처음 페이지
@@ -76,18 +73,38 @@ public class ConsumerMypageController {
             model.addAttribute("consumer", consumer);
 
             // orders 데이터
-            List<Order> orderList = orderService.findCartOrder(consumer);
+            List<Order> orderList = orderService.findOrderByConsumer(consumer);
             model.addAttribute("orderList", orderList);
             Long orderStatus = orderService.countOrderStaus();
             Long completeStatus = orderService.countCompleteStaus();
             model.addAttribute("orderStatus", orderStatus);
             model.addAttribute("completeStatus", completeStatus);
-            model.addAttribute("paidStatus", orderStatus+completeStatus);
+            model.addAttribute("paidStatus", orderStatus + completeStatus);
             return "consumer/mypage/orders";
         } else {
             // 판매자나 관리자인 경우
             return "err/denyPage";
         }
+    }
+
+    /**
+     * 리뷰 데이터 입력 시, 로직 처리
+     */
+    @PostMapping("/{consumer_id}/orders/{orderitem_id}")
+    public String createReview(@ModelAttribute @Validated ReviewForm reviewForm,
+                               BindingResult bindingResult,
+                               HttpServletRequest request,
+                               @PathVariable Long consumer_id, @PathVariable Long orderitem_id) {
+        log.info("--- consumer mypage controller - post review data");
+        if (bindingResult.hasErrors()) { // 입력한 reviewForm 형식이 안맞는 경우
+            return "consumer/mypage/order";
+        }
+        String content = reviewForm.getContents();
+
+        Consumer consumer = consumerService.findConsumerById(consumer_id);
+        Item item = orderItemService.findOrderItem(Long orderitem_id).getItem();
+        Review review = reviewService.saveReview(Consumer consumer, Item item, String content);
+        return "redirect:consumer/mypage/orders";
     }
 
     // 리뷰 보기

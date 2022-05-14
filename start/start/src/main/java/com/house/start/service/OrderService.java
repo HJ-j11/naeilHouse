@@ -54,9 +54,9 @@ public class OrderService {
         return order.getId();
     }
 
-    public List<Order> findCartOrder(Consumer consumer) {
+    public List<Order> findOrderByConsumer (Consumer consumer) {
         return orderRepository.findByConsumer(consumer);
-    } // 나중에 이름 바꾸기
+    }
 
     public List<Order> findOrders() {
         return orderRepository.findAll();
