@@ -17,7 +17,7 @@ public class OrderItemService {
     /**
      * id로 OrderItem 조회
      */
-    public OrderItem findOrderItemById(String orderitem_id) {
+    public OrderItem findOrderItemById(Long orderitem_id) {
         return orderItemRepository.findById(orderitem_id)
                 .orElse(null);
     }

@@ -94,7 +94,7 @@ public class ConsumerMypageController {
     public String createReview(@ModelAttribute @Validated ReviewForm reviewForm,
                                BindingResult bindingResult,
                                HttpServletRequest request,
-                               @PathVariable Long consumer_id, @PathVariable String orderitem_id) {
+                               @PathVariable Long consumer_id, @PathVariable Long orderitem_id) {
         log.info("--- consumer mypage controller - post review data");
         if (bindingResult.hasErrors()) { // 입력한 reviewForm 형식이 안맞는 경우
             return "consumer/mypage/order";
@@ -106,7 +106,7 @@ public class ConsumerMypageController {
         Item item = orderItem.getItem();
         Review review = reviewService.saveReview(consumer, item, content);
         orderItem.setReviewYn(true);
-        return "redirect:consumer/mypage/orders";
+        return "redirect:";
     }
 
     // 리뷰 보기
