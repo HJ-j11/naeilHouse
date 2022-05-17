@@ -4,21 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/CartRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Consumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/ItemStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/ConsumerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/ConsumerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +187,7 @@
       <workItem from="1652398431210" duration="8000" />
       <workItem from="1652516253855" duration="166000" />
       <workItem from="1652610138406" duration="5000" />
-      <workItem from="1652758455449" duration="3464000" />
+      <workItem from="1652758455449" duration="6701000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -381,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652370437408</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 findItemBySeller)">
+      <created>1652762026421</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1652762026421</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,8 +408,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- 서비스에 있는 구현 기능 메소드로 옮기는 중&#10;- Repository interface class로 변경 중" />
-    <MESSAGE value="Entity vs Service 기능 구현 고민" />
     <MESSAGE value="저장 방식 고민&#10;- extends JpaRepository&lt;&gt;&#10;- EntityManager persist method" />
     <MESSAGE value="UploadFile 파일 병합 (sj-branch -&gt; hj-branch)" />
     <MESSAGE value="Post : 파일 경로/이름 변경" />
@@ -436,6 +431,8 @@
     <MESSAGE value="FindByID Name changed" />
     <MESSAGE value="Entity name changed&#10;- ItemCart to CartItem&#10;- List&lt;Item&gt; in Cart entity added." />
     <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제" />
+    <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 id" />
+    <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 findItemBySeller)" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 findItemBySeller)" />
   </component>
 </project>

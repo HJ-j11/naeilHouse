@@ -136,7 +136,7 @@ public class ConsumerService {
     
     // 글 작성
     @Transactional
-    public void save(Post post) {
+    public void savePost(Post post) {
         postRepository.save(post);
     }
 

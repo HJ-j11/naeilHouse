@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -23,7 +25,8 @@ public class OrderServiceTest {
     @Autowired SellerRepository sellerRepository;
     @Autowired ItemRepository itemRepository;
     @Autowired CategoryRepository categoryRepository;
-    
+    @Autowired CartRepository cartRepository;
+
     @Test
     public void 주문취소() throws Exception {
         //Given
@@ -39,6 +42,30 @@ public class OrderServiceTest {
         Order order = orderRepository.findById(orderId).get();
         assertEquals("주문 취소시 상태는 CANCEL 이다.", OrderStatus.CANCEL, order.getOrderStatus());
         assertEquals("주문이 취소된 상품은 그만큼 재고가 증가해야 한다.", 10, item.getStockQuantity());
+    }
+
+    @Test
+    public void 주문완료() throws Exception {
+        //Given
+        Consumer consumer = createConsumer();
+
+        // when
+        Long orderId = createOrder(consumer);
+
+        //Then
+        Order order = orderRepository.findById(orderId).get();
+        assertEquals("주문 완료 시  orderStatus", OrderStatus.ORDER, order.getOrderStatus());
+        assertEquals("주문 완료 시 deliveryStatus", DeliveryStatus.PREPARING, order.getDelivery().getDeliveryStatus());
+    }
+
+    @Test
+    public void 장바구니() throws Exception {
+        // Given
+        Consumer consumer = createConsumer();
+        Long cartId = createCart(consumer);
+
+        // when
+
     }
 
     private Consumer createConsumer() {
@@ -84,5 +111,23 @@ public class OrderServiceTest {
         return item;
     }
 
+    private Long createOrder(Consumer consumer) {
+        Item item = createItem(20);
+        Long orderId = orderService.order(consumer.getId(), item.getId(), 3);
+        return orderId;
+    }
 
+    private Long createCart(Consumer consumer) {
+        Cart cart = Cart.builder()
+                .consumer(consumer)
+                .build();
+        cartRepository.save(cart);
+        return cart.getId();
+    }
+
+    private void addItemToCart(Long cartId) {
+        Item item = createItem(10);
+
+
+    }
 }

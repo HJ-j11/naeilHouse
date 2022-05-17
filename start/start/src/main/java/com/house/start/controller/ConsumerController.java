@@ -132,7 +132,7 @@ public class ConsumerController {
                 .postDate(LocalDateTime.now())
                 .build();
 
-        consumerService.save(newPost);
+        consumerService.savePost(newPost);
 
         return "post_list";
     }
