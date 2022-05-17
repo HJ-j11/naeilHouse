@@ -10,6 +10,8 @@ import com.house.start.repository.ConsumerRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +27,9 @@ public class ConsumerService {
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
     private final OrderRepository orderRepository;
-
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
+    private final CartRepository cartRepository;
 
     /**
      * 상품
@@ -51,18 +53,26 @@ public class ConsumerService {
     }
 
     // 장바구니 보기
-    public List<Item> findByCart(ItemStatus status, Long id) {
-        List<Item> items = itemRepository.findItemsByItemStatus(ItemStatus.CART);
+    public List<CartItem> findByCart(Long id) {
+        Cart cart = cartRepository.findCartByConsumer_Id(id);
+        List<CartItem> cartItems = cart.getCartItems();
 
-        return items;
+        return cartItems;
     }
 
     // 장바구니 담기
     @Transactional
-    public void goToCart(Long id) {
+    public void goToCart(Long id, Long consumerId, int count) {
         Item item = itemRepository.getById(id);
-        item.setItemStatus(ItemStatus.CART);
-        itemRepository.save(item);
+        Cart cart = cartRepository.findCartByConsumer_Id(consumerId);
+        CartItem cartItem = CartItem.builder()
+                        .item(item)
+                        .cart(cart)
+                        .count(count).build();
+        cart.addCartItem(cartItem);
+
+        cartRepository.save(cart);
+
     }
 
     // 마이페이지
@@ -91,7 +101,6 @@ public class ConsumerService {
 
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);
-        delivery.setReviewYn(true);
 
         deliveryRepository.save(delivery);
 

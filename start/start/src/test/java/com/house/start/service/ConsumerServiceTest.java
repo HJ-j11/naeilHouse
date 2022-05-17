@@ -1,22 +1,12 @@
 package com.house.start.service;
 
-import com.house.start.domain.Item;
-import com.house.start.domain.ItemStatus;
-import com.house.start.domain.Seller;
 import com.house.start.repository.ItemRepository;
 import com.house.start.repository.SellerRepository;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

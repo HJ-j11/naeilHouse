@@ -2,6 +2,7 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.domain.Admin;
+import com.house.start.domain.Cart;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Seller;
 import com.house.start.service.JoinService;
@@ -51,6 +52,10 @@ public class JoinController {
 
         // 포인트 초기화
         consumer.setPoint(500000);
+
+        Cart cart = Cart.builder()
+                        .consumer(consumer)
+                        .build();
 
         joinService.joinConsumer(consumer);
 

@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="FindByID Name changed">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/CartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/ItemCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/CartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Consumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/ItemStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/ConsumerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/ConsumerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +54,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -84,6 +93,9 @@
       </map>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -99,20 +111,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;b85c01361a1273e20490daf6755e66a5&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images" />
@@ -186,6 +194,10 @@
       <workItem from="1650625361390" duration="2717000" />
       <workItem from="1650689578487" duration="756000" />
       <workItem from="1652265071741" duration="12000" />
+      <workItem from="1652398431210" duration="8000" />
+      <workItem from="1652516253855" duration="166000" />
+      <workItem from="1652610138406" duration="5000" />
+      <workItem from="1652758455449" duration="3464000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -362,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652369360135</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Entity name changed&#10;- ItemCart to CartItem&#10;- List&lt;Item&gt; in Cart entity added.">
+      <created>1652370437408</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1652370437408</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,8 +411,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="scripts 경로 변경" />
-    <MESSAGE value="- 글 목록, 글 작성 html 추가&#10;- 글 작성, 조회 API 설계&#10;- 배송완료 API 설계" />
     <MESSAGE value="- 서비스에 있는 구현 기능 메소드로 옮기는 중&#10;- Repository interface class로 변경 중" />
     <MESSAGE value="Entity vs Service 기능 구현 고민" />
     <MESSAGE value="저장 방식 고민&#10;- extends JpaRepository&lt;&gt;&#10;- EntityManager persist method" />
@@ -417,6 +434,8 @@
     <MESSAGE value="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현." />
     <MESSAGE value="Entity Cart Created&#10;- N:N item : cart" />
     <MESSAGE value="FindByID Name changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="FindByID Name changed" />
+    <MESSAGE value="Entity name changed&#10;- ItemCart to CartItem&#10;- List&lt;Item&gt; in Cart entity added." />
+    <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제" />
   </component>
 </project>

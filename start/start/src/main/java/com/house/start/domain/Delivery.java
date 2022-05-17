@@ -20,16 +20,12 @@ public class Delivery {
 
     private DeliveryStatus deliveryStatus; // 배송 상태 [배송 준비중, 배송 완료]
 
-    @Column(name="review_yn")
-    private boolean reviewYn = false;
-    
     // 생성 메서드
 
     @Builder
-    public Delivery(DeliveryStatus deliveryStatus, boolean reviewYn, Order order) {
+    public Delivery(DeliveryStatus deliveryStatus, Order order) {
         this.order = order;
         this.deliveryStatus = deliveryStatus;
-        this.reviewYn = reviewYn;
     }
 
 }

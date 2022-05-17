@@ -59,9 +59,14 @@ public class ConsumerController {
     }
 
     // 장바구니 담기
-    @PutMapping("/list/item/{id}/getCart")
-    public void goToCart(@PathVariable Long id) {
-        consumerService.goToCart(id);
+    @PostMapping("/list/item/{id}/getCart")
+    public void goToCart(@PathVariable Long id, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Long consumerId = Long.valueOf(session.getId());
+        int count = 1;
+
+        consumerService.goToCart(id, consumerId, count);
     }
 
 
@@ -204,7 +209,7 @@ public class ConsumerController {
 
         // 소비자 id 조회
         Long consumerId = loginConsumer.getId();
-        Consumer consumer = consumerService.findConsumer(consumerId);
+        Consumer consumer = consumerService.findConsumerById(consumerId);
 
         // 상품 조회
         Item item = itemService.findItem(id);
@@ -266,9 +271,19 @@ public class ConsumerController {
      */
     @GetMapping("/cart")
     public String cart(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        Long consumerId = Long.valueOf(session.getId());
-        List<Item> cartList = consumerService.findByCart(ItemStatus.CART, consumerId);
+        HttpSession session;
+        Long consumerId;
+
+        try {
+           session = request.getSession();
+           consumerId = Long.valueOf(session.getId());
+           System.out.println("== consumer ID : "+consumerId+"==");
+       } catch (Exception e) {
+           System.out.println("session Expired");
+           return "login/loginForm";
+       }
+
+        List<CartItem> cartList = consumerService.findByCart(consumerId);
         model.addAttribute("carts", cartList);
         return "consumer_cart";
     }
