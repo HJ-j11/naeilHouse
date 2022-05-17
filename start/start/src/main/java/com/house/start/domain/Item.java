@@ -20,7 +20,7 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "seller_id")
     private Seller seller; // 판매자
 
@@ -42,11 +42,12 @@ public class Item {
 
     // builder 패턴
     @Builder
-    public Item(Seller seller, String name, int price, int stockQuantity, String info) {
+    public Item(Seller seller, String name, int price, int stockQuantity, String info, UploadFile uploadFile) {
         this.seller = seller;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
+        this.uploadFile = uploadFile;
         this.info = info;
     }
 

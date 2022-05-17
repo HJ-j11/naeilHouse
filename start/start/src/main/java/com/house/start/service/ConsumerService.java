@@ -53,21 +53,21 @@ public class ConsumerService {
     }
 
     // 장바구니 보기
-    public Cart findByCart(Long id) {
-        Cart cart = cartRepository.findCartByConsumer_Id(id);
-
+    public Cart findByCart(Consumer consumer) {
+        Cart cart = cartRepository.findByConsumer(consumer);
         return cart;
     }
 
     // 장바구니 담기
     @Transactional
-    public void goToCart(Long id, Long consumerId, int count) {
+    public void addItemToCart(Long id, Consumer consumer, int count) {
         Item item = itemRepository.getById(id);
-        Cart cart = cartRepository.findCartByConsumer_Id(consumerId);
+        Cart cart = cartRepository.findByConsumer(consumer);
         CartItem cartItem = CartItem.builder()
                         .item(item)
                         .cart(cart)
                         .count(count).build();
+
         cart.addCartItem(cartItem);
 
         cartRepository.save(cart);
@@ -122,11 +122,11 @@ public class ConsumerService {
 
     // 글 좋아요
     @Transactional
-    public void putLikes(Long id) {
+    public void putLikes(Long id, Consumer consumer) {
         Post post = postRepository.getById(id);
         // session 구현되면 consumer 넣기
         Like like = Like.builder()
-                .consumer(post.getConsumer())
+                .consumer(consumer)
                 .post(post)
                 .build();
 
@@ -145,10 +145,10 @@ public class ConsumerService {
     
     // 댓글 등록
     @Transactional
-    public void saveComment(String id, String contents) {
+    public void saveComment(String id, String contents, Consumer consumer) {
         Post post = getOnePost(Long.valueOf(id));
         Comment comment = Comment.builder()
-                .consumer(post.getConsumer())
+                .consumer(consumer)
                 .post(post)
                 .content(contents)
                 .build();

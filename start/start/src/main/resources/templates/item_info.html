@@ -185,7 +185,10 @@
                         <div class="row justify-content-center">
                             <p th:text="${item.info != null} ? ${item.info} : 'null'" class="fw-bold text-center"></p>
                         </div>
-                        <a href="#" th:href="@{/list/item/{id}/getCart (id=${item.id})}" methods="post"
+                        <div class="row justify-content-center">
+                            <p><input type="number" name="itemNum"/></p>
+                        </div>
+                        <a href="#" th:attr="onclick=|addItem('${item.id}')|"
                            class="btn btn-primary" role="button">장바구니 담기</a>
                         <a href="#" th:href="@{/consumer/item/{id}/purchase (id=${item.id})}" class="btn btn-primary"
                            role="button">바로 구매</a>
@@ -207,8 +210,25 @@
 </div>
 </body>
 <script>
-    function checkLogin(loginState) {
-        console.log(typeof (loginState));
+    function addItem(id) {
+        let loginState = "[[${session.login_state}]]";
+        let url = "/item/"+id+"/cart";
+        let cnt = document.getElementsByName("itemNum")[0].value;
+
+        fetch(url, {
+            method: "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+                id : id,
+                cnt : cnt,
+            })
+        })
+            .then((response) => response.json())
+            .then(
+                alert("장바구니에 담겼습니다.")
+            );
 
     }
 </script>

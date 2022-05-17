@@ -186,7 +186,9 @@
         <!-- Rectangle 3 (Rectangle) -->
         <div id="u59" class="ax_default shape" data-label="Rectangle 3">
           <div id="u59_div" class="">
-            <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>
+            <div>
+              <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>
+            </div>
             <div>
               <span th:text="${likes}"></span>
             </div>
@@ -209,7 +211,7 @@
               <p></p>
             </div>
           </div>
-
+          <form name="commentForm" th:action="@{/community/{id}/comments/write (id=${post.id})}" method="post">
           <!-- posting_button (Group) -->
           <div id="u62" class="ax_default" data-label="posting_button" data-left="1158" data-top="739" data-width="125" data-height="49">
 
@@ -225,7 +227,7 @@
             <div id="u64" class="ax_default shape" data-label="글쓰기">
               <div id="u64_div" class=""></div>
               <div id="u64_text" class="text " style="text-align:center">
-<!--                <p><span>댓글 작성</span></p>-->
+                <p><span>댓글 작성</span></p>
 <!--                <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>-->
               </div>
             </div>
@@ -242,8 +244,9 @@
           <!-- writeComment (Text Field) -->
           <div id="u66" class="ax_default text_field" data-label="writeComment">
             <div id="u66_div" class=""></div>
-            <input id="u66_input" type="text" value="" class="u66_input" th:value="${comment.content}"/>
+            <input id="u66_input" type="text" class="u66_input" name="contents"/>
           </div>
+          </form>
         </div>
       </div>
     </div>

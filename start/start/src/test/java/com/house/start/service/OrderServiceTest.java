@@ -20,6 +20,8 @@ import static org.junit.Assert.*;
 @Transactional
 public class OrderServiceTest {
     @Autowired OrderService orderService;
+    @Autowired ConsumerService consumerService;
+
     @Autowired OrderRepository orderRepository;
     @Autowired ConsumerRepository consumerRepository;
     @Autowired SellerRepository sellerRepository;
@@ -62,10 +64,45 @@ public class OrderServiceTest {
     public void 장바구니() throws Exception {
         // Given
         Consumer consumer = createConsumer();
-        Long cartId = createCart(consumer);
 
         // when
+        Long cartId = createCart(consumer);
 
+        //Then
+        Cart cart = cartRepository.getById(cartId);
+
+        assertEquals("장바구니 객체 확인", consumer.getId(), cart.getConsumer().getId());
+    }
+    @Test
+    public void 장바구니상품생성() {
+        // Given
+        Consumer consumer = createConsumer();
+        Item itm = createItem(10);
+        Long cartId = createCart(consumer);
+
+        //When
+        CartItem cartItem = CartItem.builder()
+                .item(itm)
+                .cart(cartRepository.getById(cartId))
+                .count(2)
+                .build();
+        //Then
+        assertEquals("상품이 생겼는지", itm.getId(), cartItem.getItem().getId());
+    }
+    @Test
+    public void 장바구니물건담기() {
+        //Given
+        Consumer consumer = createConsumer();
+        Cart cart = cartRepository.getById(createCart(consumer));
+        Item item = createItem(100);
+        int count = 2;
+        CartItem cartItem = createCartItem(cart, item, count);
+
+        // When
+        cart.addCartItem(cartItem);
+
+        // Then
+        assertEquals("물건 담겼는지 확인", cart.getCartItems().get(0).getItem().getId(), cartItem.getItem().getId());
     }
 
     private Consumer createConsumer() {
@@ -125,9 +162,14 @@ public class OrderServiceTest {
         return cart.getId();
     }
 
-    private void addItemToCart(Long cartId) {
-        Item item = createItem(10);
+    private CartItem createCartItem(Cart cart, Item item, int count) {
 
+        CartItem cartItem = CartItem.builder()
+                .item(item)
+                .cart(cart)
+                .count(2)
+                .build();
 
+        return cartItem;
     }
 }

@@ -4,28 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="장바구니 테스트 코드 작성&#10;- addCart 작성 완료&#10;- addItemToCart 작성 시 Optional 타입 불일치 발생">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/err/noItem.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/sample_order.html" afterDir="false" />
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/SellerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/SellerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/LikeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/CartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/CartRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postDetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +131,99 @@
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.OrderServiceTest.장바구니물건담기">
+    <configuration name="OrderServiceTest.장바구니" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.OrderServiceTest.장바구니&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderServiceTest.장바구니상품생성" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.OrderServiceTest.장바구니상품생성&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderServiceTest.장바구니물건담기" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.OrderServiceTest.장바구니물건담기&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderServiceTest.장바구니물건담기" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.OrderServiceTest.장바구니물건담기&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="StartApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="start.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.house.start.StartApplication" />
@@ -158,6 +239,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.OrderServiceTest.장바구니물건담기" />
+        <item itemvalue="Gradle.OrderServiceTest.장바구니상품생성" />
+        <item itemvalue="Gradle.OrderServiceTest.장바구니" />
         <item itemvalue="Spring Boot.StartApplication" />
       </list>
     </recent_temporary>
@@ -208,7 +292,9 @@
       <workItem from="1652610138406" duration="5000" />
       <workItem from="1652758455449" duration="16806000" />
       <workItem from="1652777028999" duration="129000" />
-      <workItem from="1652781854050" duration="5808000" />
+      <workItem from="1652781854050" duration="8984000" />
+      <workItem from="1652795608498" duration="4738000" />
+      <workItem from="1652801468169" duration="1136000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -406,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652765367616</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Thymeleaf 앞단 수정&#10;- Home.html 커뮤니티 링크 추가&#10;- 장바구니 아이콘 링크 추가&#10;- 댓글 삭제 js 함수 작성">
+      <created>1652787793864</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1652787793864</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +529,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="UploadFile 파일 병합 (sj-branch -&gt; hj-branch)" />
     <MESSAGE value="Post : 파일 경로/이름 변경" />
     <MESSAGE value="post 담을 수 있는 postForm 설정" />
     <MESSAGE value="파일 업로드 설정" />
@@ -461,6 +553,7 @@
     <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 id" />
     <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 findItemBySeller)" />
     <MESSAGE value="장바구니 테스트 코드 작성&#10;- addCart 작성 완료&#10;- addItemToCart 작성 시 Optional 타입 불일치 발생" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니 테스트 코드 작성&#10;- addCart 작성 완료&#10;- addItemToCart 작성 시 Optional 타입 불일치 발생" />
+    <MESSAGE value="Thymeleaf 앞단 수정&#10;- Home.html 커뮤니티 링크 추가&#10;- 장바구니 아이콘 링크 추가&#10;- 댓글 삭제 js 함수 작성" />
+    <option name="LAST_COMMIT_MESSAGE" value="Thymeleaf 앞단 수정&#10;- Home.html 커뮤니티 링크 추가&#10;- 장바구니 아이콘 링크 추가&#10;- 댓글 삭제 js 함수 작성" />
   </component>
 </project>

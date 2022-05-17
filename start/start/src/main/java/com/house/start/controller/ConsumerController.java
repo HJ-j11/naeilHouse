@@ -61,14 +61,17 @@ public class ConsumerController {
     }
 
     // 장바구니 담기
-    @PostMapping("/list/item/{id}/getCart")
-    public void goToCart(@PathVariable Long id, HttpServletRequest request) {
+    @PostMapping("/item/{id}/cart")
+    public String addItemToCart(@PathVariable Long id,
+                                @RequestBody Map<String, Object> map,
+                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                                HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        Long consumerId = Long.valueOf(session.getId());
-        int count = 1;
+        int count = Integer.parseInt(String.valueOf(map.get("cnt")));
 
-        consumerService.goToCart(id, consumerId, count);
+        consumerService.addItemToCart(id, loginConsumer, count);
+        return "consumer_cart";
     }
 
 
@@ -105,7 +108,8 @@ public class ConsumerController {
         model.addAttribute("post", post);
         model.addAttribute("likes", post.countLikes());
         model.addAttribute("comments", post.getComments());
-        return "post_detail";
+//        return "post_detail";
+        return "consumer_postDetail";
     }
 
 
@@ -142,8 +146,9 @@ public class ConsumerController {
      * 글 -> 좋아요 누르기
      * **/
     @PostMapping("/community/{id}/likes")
-    public String putLikes(@PathVariable String id) {
-        consumerService.putLikes(Long.valueOf(id));
+    public String putLikes(@PathVariable String id, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
+
+        consumerService.putLikes(Long.valueOf(id), loginConsumer);
         return "redirect:/community/"+id;
     }
 
@@ -153,8 +158,8 @@ public class ConsumerController {
      * **/
     // 댓글 작성
     @PostMapping("/community/{id}/comments/write")
-    public String postComment(@PathVariable String id, @RequestParam String contents) {
-        consumerService.saveComment(id, contents);
+    public String postComment(@PathVariable String id, @RequestParam String contents, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
+        consumerService.saveComment(id, contents, loginConsumer);
         return "redirect:/community/"+id;
     }
 
@@ -272,20 +277,13 @@ public class ConsumerController {
      *  장바구니 페이지
      */
     @GetMapping("/cart")
-    public String cart(HttpServletRequest request, Model model) {
+    public String cart(HttpServletRequest request,
+                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                       Model model) {
         // 로그인 전제로
-        HttpSession session = request.getSession();
-        Long consumerId = null;
 
-        if(session.getAttribute(SessionConstants.LOGIN_MEMBER)!=null && session.getAttribute(SessionConstants.ROLE)=="consumer") {
-            // 소비자인 경우
-            session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
-            session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-            consumerId = consumer.getId();
-        }
 
-        Cart cart = consumerService.findByCart(consumerId);
+        Cart cart = consumerService.findByCart(loginConsumer);
         model.addAttribute("cart", cart);
 
         return "consumer_cart";
