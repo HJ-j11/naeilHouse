@@ -43,10 +43,11 @@ public class Post {
 
 
     @Builder
-    public Post(UploadFile uploadFile, String contents, LocalDateTime postDate) {
+    public Post(UploadFile uploadFile, String contents, LocalDateTime postDate, Consumer consumer) {
         this.uploadFile = uploadFile;
         this.contents = contents;
         this.postDate = postDate;
+        this.consumer = consumer;
     }
 
 

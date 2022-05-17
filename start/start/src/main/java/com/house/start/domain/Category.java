@@ -1,7 +1,9 @@
 package com.house.start.domain;
 
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Getter @Setter
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -20,5 +23,10 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Item> items = new ArrayList<>();
+
+    @Builder
+    public Category(String name) {
+        this.name = name;
+    }
 
 }

@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="장바구니 테스트 코드 작성&#10;- addCart 작성 완료&#10;- addItemToCart 작성 시 Optional 타입 불일치 발생">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/err/noItem.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/sample_order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/SellerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/SellerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/LikeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postnew/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +61,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="HTML File" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -103,11 +120,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;b85c01361a1273e20490daf6755e66a5&quot;
   }
 }</component>
@@ -187,7 +206,9 @@
       <workItem from="1652398431210" duration="8000" />
       <workItem from="1652516253855" duration="166000" />
       <workItem from="1652610138406" duration="5000" />
-      <workItem from="1652758455449" duration="6701000" />
+      <workItem from="1652758455449" duration="16806000" />
+      <workItem from="1652777028999" duration="129000" />
+      <workItem from="1652781854050" duration="5808000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -378,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652762026421</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="장바구니 테스트 코드 작성&#10;- addCart 작성 완료&#10;- addItemToCart 작성 시 Optional 타입 불일치 발생">
+      <created>1652765367616</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1652765367616</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +436,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="저장 방식 고민&#10;- extends JpaRepository&lt;&gt;&#10;- EntityManager persist method" />
     <MESSAGE value="UploadFile 파일 병합 (sj-branch -&gt; hj-branch)" />
     <MESSAGE value="Post : 파일 경로/이름 변경" />
     <MESSAGE value="post 담을 수 있는 postForm 설정" />
@@ -433,6 +460,7 @@
     <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제" />
     <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 id" />
     <MESSAGE value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 findItemBySeller)" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니 및 배송 수정&#10;&#10;- Item Entity에 있는 itemStatus 삭제&#10;- 장바구니 담기 기능 수행 시 CartItem 생성&#10;- 회원가입 Controller에 Cart Entity 생성&#10;- 장바구니 상품 추가 시 CartItem List에 add 메소드 추가&#10;- boolean reviewYn 삭제&#10;- 기타 에러 수정(ItemRepository에 있는 findItemBySeller)" />
+    <MESSAGE value="장바구니 테스트 코드 작성&#10;- addCart 작성 완료&#10;- addItemToCart 작성 시 Optional 타입 불일치 발생" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니 테스트 코드 작성&#10;- addCart 작성 완료&#10;- addItemToCart 작성 시 Optional 타입 불일치 발생" />
   </component>
 </project>

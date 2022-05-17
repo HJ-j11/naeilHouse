@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Item Info</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -164,7 +164,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-4 text-center">
-<!--                        <img th:src="|/upload/${item.uploadFile.storeFileName}|" class="img-thumbnail" alt="...">-->
+                        <!--                        <img th:src="|/upload/${item.uploadFile.storeFileName}|" class="img-thumbnail" alt="...">-->
                     </div>
                     <div class="col-4 text-center">
                         <div class="row justify-content-center">
@@ -185,13 +185,16 @@
                         <div class="row justify-content-center">
                             <p th:text="${item.info != null} ? ${item.info} : 'null'" class="fw-bold text-center"></p>
                         </div>
-                        <a href="#" th:href="@{/list/item/{id}/getCart (id=${item.id})}" methods="post" class="btn btn-primary" role="button">장바구니 담기</a>
-                        <a href="#" th:href="@{/consumer/item/{id}/purchase (id=${item.id})}" class="btn btn-primary" role="button">바로 구매</a>
+                        <a href="#" th:href="@{/list/item/{id}/getCart (id=${item.id})}" methods="post"
+                           class="btn btn-primary" role="button">장바구니 담기</a>
+                        <a href="#" th:href="@{/consumer/item/{id}/purchase (id=${item.id})}" class="btn btn-primary"
+                           role="button">바로 구매</a>
                         <!--            <button type="button" class="btn btn-primary" style="margin-top: 10px">바로 구매</button>-->
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div id="u137" class="ax_default shape" data-label="Vector">
             <img id="u137_img" class="img " src="images/consumer_top_bar/vector_u99.svg"/>
@@ -199,7 +202,14 @@
                 <p></p>
             </div>
         </div>
+
     </div>
 </div>
 </body>
+<script>
+    function checkLogin(loginState) {
+        console.log(typeof (loginState));
+
+    }
+</script>
 </html>

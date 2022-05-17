@@ -53,11 +53,10 @@ public class ConsumerService {
     }
 
     // 장바구니 보기
-    public List<CartItem> findByCart(Long id) {
+    public Cart findByCart(Long id) {
         Cart cart = cartRepository.findCartByConsumer_Id(id);
-        List<CartItem> cartItems = cart.getCartItems();
 
-        return cartItems;
+        return cart;
     }
 
     // 장바구니 담기
