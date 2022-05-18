@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -105,6 +107,43 @@ public class OrderServiceTest {
         assertEquals("물건 담겼는지 확인", cart.getCartItems().get(0).getItem().getId(), cartItem.getItem().getId());
     }
 
+    @Test
+    public void 장바구니물건구매() {
+        //Given
+        Consumer consumer = createConsumer();
+        Cart cart = cartRepository.getById(createCart(consumer));
+
+        //When
+        List<Item> items = makeItem("소파", "의자");
+        for (Item item: items) {
+            CartItem cartItem = CartItem.builder()
+                    .item(item)
+                    .cart(cart)
+                    .build();
+            cart.addCartItem(cartItem);
+        }
+
+        Delivery delivery = Delivery
+                .builder()
+                .deliveryStatus(DeliveryStatus.PREPARING)
+                .build();
+        List<OrderItem> orderItems = new ArrayList<>();
+
+        for (CartItem cartItem: cart.getCartItems()) {
+            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getCount(), cartItem.getCount());
+            orderItems.add(orderItem);
+        }
+
+        Order order = Order.createOrders(consumer, delivery, orderItems);
+        delivery.setOrder(order);
+
+        //Then
+        assertEquals("order 생성 되었는지 확인", OrderStatus.ORDER, order.getOrderStatus());
+        assertEquals("Delivery 생성 되었는지 확인", DeliveryStatus.PREPARING, delivery.getDeliveryStatus());
+        assertEquals("cartItem -> orderitem", cart.getCartItems().size(), order.getOrderItems().size());
+    }
+
+
     private Consumer createConsumer() {
         Consumer consumer = new Consumer();
         String name= "소비자";
@@ -147,7 +186,26 @@ public class OrderServiceTest {
         itemRepository.save(item);
         return item;
     }
+    private List<Item> makeItem(String name1, String name2) {
+        List<Item> items = new ArrayList<>();
+        Seller seller = createSeller();
+        Item item1 = Item.builder()
+                .name(name1)
+                .seller(seller)
+                .price(1000)
+                .build();
+        itemRepository.save(item1);
+        items.add(item1);
+        Item item2 = Item.builder()
+                .name(name2)
+                .seller(seller)
+                .price(2000)
+                .build();
+        itemRepository.save(item2);
+        items.add(item2);
 
+        return items;
+    }
     private Long createOrder(Consumer consumer) {
         Item item = createItem(20);
         Long orderId = orderService.order(consumer.getId(), item.getId(), 3);

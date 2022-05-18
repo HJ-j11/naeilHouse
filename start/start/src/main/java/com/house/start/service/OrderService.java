@@ -21,7 +21,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class OrderService {
-    private final EntityManager em;
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
     private final OrderRepository orderRepository;

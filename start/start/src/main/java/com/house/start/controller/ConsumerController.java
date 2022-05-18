@@ -67,7 +67,6 @@ public class ConsumerController {
                                 @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                                 HttpServletRequest request) {
 
-        HttpSession session = request.getSession();
         int count = Integer.parseInt(String.valueOf(map.get("cnt")));
 
         consumerService.addItemToCart(id, loginConsumer, count);
@@ -298,22 +297,23 @@ public class ConsumerController {
         return "sample_order";
     }
     @PostMapping("/order")
-    public void createOrder(@RequestBody List<Item> carts, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Long consumerId = null;
+    public void createOrder(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer
+                            , HttpServletRequest request) {
+        Cart cart = consumerService.findByCart(loginConsumer);
+        Delivery delivery = Delivery
+                .builder()
+                .deliveryStatus(DeliveryStatus.PREPARING)
+                .build();
+        List<OrderItem> orderItems = new ArrayList<>();
 
-        if(session.getAttribute(SessionConstants.LOGIN_MEMBER)!=null && session.getAttribute(SessionConstants.ROLE)=="consumer") {
-            // 소비자인 경우
-            session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
-            session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-            consumerId = consumer.getId();
+        for (CartItem cartItem: cart.getCartItems()) {
+            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getCount(), cartItem.getCount());
+            orderItems.add(orderItem);
         }
 
-        for(Item item : carts) {
-            Long res = orderService.order(consumerId, item.getId(), item.getStockQuantity());
-            System.out.print(res+" ");
-        }
+        Order order = Order.createOrders(loginConsumer, delivery, orderItems);
+        delivery.setOrder(order);
+
     }
     // 소비자 정보 조회`
     //
