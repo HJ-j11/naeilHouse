@@ -57,20 +57,20 @@ public class ConsumerController {
     public String getOneItem(@PathVariable Long id, Model model){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
-        return "item_info";
+        return "tmp_itemInfo";
     }
 
     // 장바구니 담기
     @PostMapping("/item/{id}/cart")
-    public String addItemToCart(@PathVariable Long id,
-                                @RequestBody Map<String, Object> map,
+    public CartItem addItemToCart(@PathVariable Long id,
+                                @RequestBody String cnt,
                                 @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                                 HttpServletRequest request) {
+        int count = Integer.parseInt(cnt);
+        Item item = itemService.findItem(id);
+        Cart cart = consumerService.findByCart(loginConsumer);
 
-        int count = Integer.parseInt(String.valueOf(map.get("cnt")));
-
-        consumerService.addItemToCart(id, loginConsumer, count);
-        return "consumer_cart";
+        return consumerService.addItemToCart(item, cart, count);
     }
 
 
@@ -291,29 +291,12 @@ public class ConsumerController {
      * 장바구니 -> 구매
      * 주문 객체 생성
      * **/
-    @GetMapping("/order")
-    public String goOrderPage() {
-        // 주문 페이지로 가기
-        return "sample_order";
-    }
+
     @PostMapping("/order")
-    public void createOrder(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer
+    public String createOrder(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer
                             , HttpServletRequest request) {
-        Cart cart = consumerService.findByCart(loginConsumer);
-        Delivery delivery = Delivery
-                .builder()
-                .deliveryStatus(DeliveryStatus.PREPARING)
-                .build();
-        List<OrderItem> orderItems = new ArrayList<>();
-
-        for (CartItem cartItem: cart.getCartItems()) {
-            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getCount(), cartItem.getCount());
-            orderItems.add(orderItem);
-        }
-
-        Order order = Order.createOrders(loginConsumer, delivery, orderItems);
-        delivery.setOrder(order);
-
+        Long orderId = orderService.orders(loginConsumer);
+        return "sample_order";
     }
     // 소비자 정보 조회`
     //

@@ -59,18 +59,17 @@ public class ConsumerService {
     }
 
     // 장바구니 담기
-    @Transactional
-    public void addItemToCart(Long id, Consumer consumer, int count) {
-        Item item = itemRepository.getById(id);
-        Cart cart = cartRepository.findByConsumer(consumer);
+    public CartItem addItemToCart(Item item, Cart cart, int count) {
+
         CartItem cartItem = CartItem.builder()
                         .item(item)
                         .cart(cart)
                         .count(count).build();
-
         cart.addCartItem(cartItem);
 
         cartRepository.save(cart);
+
+        return cartItem;
 
     }
 

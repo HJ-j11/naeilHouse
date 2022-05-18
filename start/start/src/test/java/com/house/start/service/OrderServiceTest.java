@@ -80,14 +80,11 @@ public class OrderServiceTest {
         // Given
         Consumer consumer = createConsumer();
         Item itm = createItem(10);
-        Long cartId = createCart(consumer);
+        Cart cart = cartRepository.getById(createCart(consumer));
 
         //When
-        CartItem cartItem = CartItem.builder()
-                .item(itm)
-                .cart(cartRepository.getById(cartId))
-                .count(2)
-                .build();
+        int count = 2;
+        CartItem cartItem = consumerService.addItemToCart(itm, cart, 2);
         //Then
         assertEquals("상품이 생겼는지", itm.getId(), cartItem.getItem().getId());
     }

@@ -15,6 +15,7 @@ import java.util.List;
 public class Cart {
 
     @Id @GeneratedValue
+    @Column(name = "cart_id")
     private Long id;
 
     @OneToOne

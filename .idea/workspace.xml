@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/tmp_itemInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +129,7 @@
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.OrderServiceTest.장바구니물건구매 (1)">
+  <component name="RunManager" selected="Spring Boot.StartApplication">
     <configuration name="OrderServiceTest.장바구니물건구매 (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -164,6 +167,29 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;com.house.start.service.OrderServiceTest.장바구니&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderServiceTest.장바구니상품생성" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.OrderServiceTest.장바구니상품생성&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -257,9 +283,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.StartApplication" />
         <item itemvalue="Gradle.OrderServiceTest.장바구니물건구매 (1)" />
         <item itemvalue="Gradle.OrderServiceTest.장바구니" />
-        <item itemvalue="Spring Boot.StartApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -313,7 +339,8 @@
       <workItem from="1652795608498" duration="4738000" />
       <workItem from="1652801468169" duration="3305000" />
       <workItem from="1652834883851" duration="6000" />
-      <workItem from="1652846230293" duration="3126000" />
+      <workItem from="1652846230293" duration="11767000" />
+      <workItem from="1652872985175" duration="450000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -525,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652802801059</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="장바구니 구매&#10;- createOrders 임시 메소드 추가 (코드 간소화 필요)&#10;- 장바구니 여러개 상품 구매 테스트코드 작성">
+      <created>1652849790922</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1652849790922</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +592,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="파일 업로드 설정" />
     <MESSAGE value="Post @Bulider 적용" />
     <MESSAGE value="장바구니 담기 기능 추가" />
     <MESSAGE value="@Builder 변경&#10;@NoArgsConstructor 추가" />
@@ -583,6 +616,7 @@
     <MESSAGE value="Thymeleaf 앞단 수정&#10;- Home.html 커뮤니티 링크 추가&#10;- 장바구니 아이콘 링크 추가&#10;- 댓글 삭제 js 함수 작성" />
     <MESSAGE value="상품 장바구니 담기&#10;- CartItem add 메소드 추가&#10;- 장바구니 상품 추가 및 담기 기능 테스트 코드 작성" />
     <MESSAGE value="상품 장바구니 담기&#10;- CartItem add 메소드 수정(CartItem과 Cart 연관되게)&#10;- 장바구니 상품 추가 및 담기 기능 테스트 코드 작성" />
-    <option name="LAST_COMMIT_MESSAGE" value="상품 장바구니 담기&#10;- CartItem add 메소드 수정(CartItem과 Cart 연관되게)&#10;- 장바구니 상품 추가 및 담기 기능 테스트 코드 작성" />
+    <MESSAGE value="장바구니 구매&#10;- createOrders 임시 메소드 추가 (코드 간소화 필요)&#10;- 장바구니 여러개 상품 구매 테스트코드 작성" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니 구매&#10;- createOrders 임시 메소드 추가 (코드 간소화 필요)&#10;- 장바구니 여러개 상품 구매 테스트코드 작성" />
   </component>
 </project>

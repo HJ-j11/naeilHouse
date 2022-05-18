@@ -1,9 +1,7 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
-import com.house.start.repository.ConsumerRepository;
-import com.house.start.repository.ItemRepository;
-import com.house.start.repository.OrderRepository;
+import com.house.start.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,9 +9,9 @@ import com.house.start.domain.Delivery;
 import com.house.start.domain.DeliveryStatus;
 import com.house.start.domain.Order;
 import com.house.start.domain.OrderStatus;
-import com.house.start.repository.DeliveryRepository;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +23,7 @@ public class OrderService {
     private final ConsumerRepository consumerRepository;
     private final OrderRepository orderRepository;
     private final DeliveryRepository deliveryRepository;
-
+    private final CartRepository cartRepository;
     /**
      *  주문 (바로 구매)
      */
@@ -48,6 +46,28 @@ public class OrderService {
         Order order = Order.createOrder(consumer, delivery, orderItem);
 
         // 주문 저장
+        orderRepository.save(order);
+        return order.getId();
+    }
+
+    // 장바구니에 있는 상품 구매
+    @Transactional
+    public Long orders(Consumer consumer) {
+        Cart cart = cartRepository.findByConsumer(consumer);
+        Delivery delivery = Delivery
+                .builder()
+                .deliveryStatus(DeliveryStatus.PREPARING)
+                .build();
+        List<OrderItem> orderItems = new ArrayList<>();
+
+        for (CartItem cartItem: cart.getCartItems()) {
+            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getCount(), cartItem.getCount());
+            orderItems.add(orderItem);
+        }
+
+        Order order = Order.createOrders(consumer, delivery, orderItems);
+        delivery.setOrder(order);
+
         orderRepository.save(order);
         return order.getId();
     }
