@@ -33,6 +33,10 @@ public class Consumer {
     private String name; // 소비자 이름
     private int point; // 포인트 금액
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uploadfile_id")
+    private UploadFile uploadFile;
+
     @Column(name = "id")
     private String cId; // 아이디
     private String pwd; // 비밀번호
@@ -48,4 +52,12 @@ public class Consumer {
         this.name = name;
     }
     
+//    private String photo;
+
+    //==연관관계 편의 메서드==//
+    public void setUploadFile(UploadFile uploadFile) {
+        this.uploadFile = uploadFile;
+        uploadFile.setConsumer(this);
+    }
+
 }

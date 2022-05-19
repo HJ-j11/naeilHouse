@@ -3,6 +3,7 @@ package com.house.start.controller.form;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 
@@ -18,4 +19,6 @@ public class MemberJoinForm {
     String name;
     @NotBlank
     String storeName;
+    @NotBlank
+    MultipartFile image;
 }

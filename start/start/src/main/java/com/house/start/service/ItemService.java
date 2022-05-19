@@ -42,7 +42,7 @@ public class ItemService {
      *  특정 판매자의 등록 상품 조회
      */
     public List<Item> findItemsBySeller(Seller seller) {
-        return itemRepository.findItemsBySeller(seller.getId());
+        return itemRepository.findItemBySeller(seller);
     }
 
     /**
