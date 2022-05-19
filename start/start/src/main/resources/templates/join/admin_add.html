@@ -142,7 +142,7 @@
 
                 <div class="container" style="max-width: 600px">
                     <div class="row">
-                        <form th:action="@{/consumer/join}" th:object="${form}" method="post">
+                        <form th:action="@{/admin/join}" th:object="${form}" method="post">
 
                             <div th:if="${#fields.hasGlobalErrors()}">
                                 <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>

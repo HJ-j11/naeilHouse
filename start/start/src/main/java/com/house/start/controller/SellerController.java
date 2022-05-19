@@ -2,21 +2,19 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.ItemEditForm;
 import com.house.start.controller.form.ItemForm;
-import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.file.FileStore;
+import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
+import com.house.start.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -26,7 +24,9 @@ import java.util.List;
 public class SellerController {
 
     private final ItemService itemService;
+    private final SellerService sellerService;
     private final FileStore fileStore;
+    private final ConsumerService consumerService;
 
     /**
      *  상품 등록 폼 페이지
@@ -42,7 +42,7 @@ public class SellerController {
 
         log.info("seller controller - get");
         model.addAttribute("form", new ItemForm());
-        return "seller_createItemForm";
+        return "seller/seller_createItemForm";
     }
 
     /**
@@ -58,11 +58,14 @@ public class SellerController {
             return "redirect:/login";
         }
 
+        // 판매자 id 조회
+        Seller seller = sellerService.findSeller(loginSeller.getId());
+
         // 이미지 저장
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         Item item = new Item();
-        item.setSeller(loginSeller);
+        item.setSeller(seller);
         item.setName(form.getName());
         item.setPrice(form.getPrice());
         item.setStockQuantity(form.getStockQuantity());
@@ -90,13 +93,14 @@ public class SellerController {
             return "redirect:/login";
         }
 
-        List<Item> items = itemService.findItems();
+        // 판매자 조회
+        Seller seller = sellerService.findSeller(loginSeller.getId());
 
-//        List<Item> itemsBySeller = itemService.findItemsBySeller(loginSeller);
-
+        // 판매자가 등록한 상품 조회
+        List<Item> items = itemService.findItemsBySeller(seller);
 
         model.addAttribute("items", items);
-        return "seller_itemList";
+        return "seller/seller_itemList";
     }
 
     /**
@@ -113,7 +117,7 @@ public class SellerController {
 
         model.addAttribute("item", item);
         model.addAttribute("form", form);
-        return "seller_itemEdit";
+        return "seller/seller_itemEdit";
     }
 
     /**
@@ -137,6 +141,9 @@ public class SellerController {
         Item item = itemService.findItem(1L);
         model.addAttribute("item", item);
 //        model.addAttribute("form", new MemberJoinForm());
+
+        Consumer consumer = consumerService.findConsumerById(13L);
+        model.addAttribute("consumer", consumer);
 
         return "test";
     }
