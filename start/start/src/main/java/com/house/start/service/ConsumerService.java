@@ -10,6 +10,8 @@ import com.house.start.repository.ConsumerRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +27,9 @@ public class ConsumerService {
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
     private final OrderRepository orderRepository;
-
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
+    private final CartRepository cartRepository;
 
     /**
      * 상품
@@ -50,22 +52,29 @@ public class ConsumerService {
         return item;
     }
 
-//    // 장바구니 보기
-//    public List<Item> findByCart(ItemStatus status) {
-//        List<Item> items = itemRepository.findByCart(ItemStatus.CART);
-//        return items;
-//    }
+    // 장바구니 보기
+    public Cart findByCart(Consumer consumer) {
+        Cart cart = cartRepository.findByConsumer(consumer);
+        return cart;
+    }
 
     // 장바구니 담기
-    @Transactional
-    public void goToCart(Long id) {
-        Item item = itemRepository.getById(id);
-        item.setItemStatus(ItemStatus.CART);
-        itemRepository.save(item);
+    public CartItem addItemToCart(Item item, Cart cart, int count) {
+
+        CartItem cartItem = CartItem.builder()
+                        .item(item)
+                        .cart(cart)
+                        .count(count).build();
+        cart.addCartItem(cartItem);
+
+        cartRepository.save(cart);
+
+        return cartItem;
+
     }
 
     // 마이페이지
-    public Consumer getConsumerInfo(Long id) {
+    public Consumer findConsumerById(Long id) {
         Consumer user = consumerRepository.getById(id);
         return user;
     }
@@ -90,8 +99,6 @@ public class ConsumerService {
 
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);
-        //delivery.setReviewYn(true);
-
         deliveryRepository.save(delivery);
 
     }
@@ -113,11 +120,11 @@ public class ConsumerService {
 
     // 글 좋아요
     @Transactional
-    public void putLikes(Long id) {
+    public void putLikes(Long id, Consumer consumer) {
         Post post = postRepository.getById(id);
         // session 구현되면 consumer 넣기
         Like like = Like.builder()
-                .consumer(post.getConsumer())
+                .consumer(consumer)
                 .post(post)
                 .build();
 
@@ -126,7 +133,7 @@ public class ConsumerService {
     
     // 글 작성
     @Transactional
-    public void save(Post post) {
+    public void savePost(Post post) {
         postRepository.save(post);
     }
 
@@ -136,10 +143,10 @@ public class ConsumerService {
     
     // 댓글 등록
     @Transactional
-    public void saveComment(String id, String contents) {
+    public void saveComment(String id, String contents, Consumer consumer) {
         Post post = getOnePost(Long.valueOf(id));
         Comment comment = Comment.builder()
-                .consumer(post.getConsumer())
+                .consumer(consumer)
                 .post(post)
                 .content(contents)
                 .build();
@@ -162,7 +169,7 @@ public class ConsumerService {
         Comment comment = commentRepository.getById(id);
         commentRepository.delete(comment);
     }
-      /*
+    /*
      * 소비자 전체 목록 조회
      */
     public List<Consumer> findConsumers() {
@@ -174,14 +181,6 @@ public class ConsumerService {
      */
     public Consumer findConsumerBycId(String cId) {
         return consumerRepository.findBycId(cId)
-                .orElse(null);
-    }
-
-    /**
-     * 소비자 Id로 소비자 조회
-     */
-    public Consumer findConsumerById(Long consumer_id) {
-        return consumerRepository.findById(consumer_id)
                 .orElse(null);
     }
 

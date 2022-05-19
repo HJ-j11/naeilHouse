@@ -245,21 +245,6 @@ $axure.internal(function($ax) {
 
     var _exprFunctions = {};
 
-    _exprFunctions.ToLowerCase = function (value) {
-        let str = _exprFunctions.ToString(value);
-        return str.toLowerCase();
-    };
-
-    _exprFunctions.SetErrorState = function (elementIds, value) {
-        var toggle = value == 'toggle';
-        var boolValue = Boolean(value) && value != 'false';
-
-        for(var i = 0; i < elementIds.length; i++) {
-            var query = $ax('#' + elementIds[i]);
-            query.error(toggle ? !query.error() : boolValue);
-        }
-    };
-
     _exprFunctions.SetCheckState = function(elementIds, value) {
         var toggle = value == 'toggle';
         var boolValue = Boolean(value) && value != 'false';
@@ -379,130 +364,8 @@ $axure.internal(function($ax) {
             });
 
             if(!plain) $ax.style.CacheOriginalText(id, true);
-
-            autofitWidget(ids[i]);
         }
     };
-
-    var _displayHackStart = function (element) {
-        var parent = element;
-        var displays = [];
-        while (parent) {
-            if (parent.style.display == 'none') {
-                displays.push(parent);
-                //use block to overwrites default hidden objects' display
-                parent.style.display = 'block';
-            }
-            parent = parent.parentElement;
-        }
-
-        return displays;
-    };
-
-    var _displayHackEnd = function (displayChangedList) {
-        for (var i = 0; i < displayChangedList.length; i++) displayChangedList[i].style.display = 'none';
-    };
-
-    var _autoFitIds = $ax.expr.autoFitIds = {};
-
-    _setAutoFitId = $ax.expr.setAutoFitId = function (scriptId, css) {
-        _autoFitIds[scriptId] = css;
-    };
-
-    $ax.expr.clearAutoFittedIds = function (elementIds) {
-        for (var i = 0; i < elementIds.length; i++) {
-            var id = elementIds[i];
-            delete _autoFitIds[id];
-        }
-    };
-
-    $ax.expr.updateAutoFitted = function () {
-        for (var id  in _autoFitIds) {
-            autofitWidget(id);
-        }
-    }
-
-    var autofitWidget = function (id) {
-
-        var obj = $obj(id);
-        if (obj.autoFitHeight || obj.autoFitWidth) {
-
-            var display = _displayHackStart(document.getElementById(id));
-
-            var query = $ax('#' + id);
-            var size = query.size();
-            var css = {
-                width: size.width,
-                height: size.height
-            };
-
-            var textId = $ax.GetTextPanelId(id, true);
-            var style = $ax.style.computeFullStyle(id, $ax.style.generateState(id), $ax.adaptive.currentViewId);
-
-            if (obj.autoFitHeight) {
-                var newHeight = $('#' + textId).height();
-                if (style.paddingTop) newHeight += Number(style.paddingTop);
-                if (style.paddingBottom) newHeight += Number(style.paddingBottom);
-
-                if (newHeight - size.height != 0) {
-                    css.height = newHeight;
-                }
-            };
-
-            if (obj.autoFitWidth) {
-                var pars = $jobj(id).find('p');
-                var newWidth = 0;
-
-                for (var j = 0; j < pars.length; ++j) {
-                    var spans = $(pars[j]).children('span');
-                    var w = 0;
-                    for (var i = 0; i < spans.length; ++i) {
-                        w += $(spans[i]).width();
-                    }
-                    if (w > newWidth) newWidth = w;
-                }
-
-                if (style.paddingLeft) newWidth += Number(style.paddingLeft);
-                if (style.paddingRight) newWidth += Number(style.paddingRight);
-
-                if (newWidth - size.width != 0) {
-                    css.width = newWidth;
-                }
-            };
-
-            const deltaWidth = css.width - size.width;
-            const deltaHeight = css.height - size.height;
-
-            if (deltaWidth !== 0 || deltaHeight !== 0) {
-                query.resize(css, {});
-
-                const hAlign = style.horizontalAlignment;
-                const vAlign = style.verticalAlignment;
-                let dx = 0;
-                let dy = 0;
-
-                if (hAlign === "right") {
-                    dx = -deltaWidth;
-                } else if (hAlign === "center") {
-                    dx = -deltaWidth / 2;
-                }
-
-                if (vAlign === "bottom") {
-                    dy = -deltaHeight;
-                } else if (vAlign === "middle") {
-                    dy = -deltaHeight / 2;
-                }
-
-                if (dx !== 0 || dy !== 0) {
-                    $ax.move.MoveWidget(id, dx, dy, { easing: 'none', duration: 0 }, false, null, true);
-                }
-            }
-
-            _displayHackEnd(display);
-
-            _setAutoFitId(id, css);
-        }
-    }
 
     _exprFunctions.GetCheckState = function(ids) {
         return $ax('#' + ids[0]).selected();
@@ -515,10 +378,6 @@ $axure.internal(function($ax) {
     _exprFunctions.GetSelectedOption = function (ids) {
         var inputs = $jobj($ax.INPUT(ids[0]));
         return inputs.length ? inputs[0].value : '';
-    };
-
-    _exprFunctions.GetErrorState = function (ids) {
-        return $ax('#' + ids[0]).error();
     };
 
     _exprFunctions.GetNum = function(str) {

@@ -80,4 +80,27 @@ public class Order {
         return order;
     }
 
+    public static Order createOrders(Consumer consumer, Delivery delivery, List<OrderItem> orderItems) {
+
+        // 현재 소비자 포인트 - 총 주문 포인트
+        int totalOrderPoint = 0;
+
+        Order order = new Order();
+        order.setDelivery(delivery);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+            totalOrderPoint += orderItem.getOrderPrice();
+        }
+
+        // 현재 소비자 포인트 - 총 주문 포인트
+        int pointBeforeOrder = consumer.getPoint();
+        int pointAfterOrder = pointBeforeOrder - totalOrderPoint; // 예외 처리 필요
+        consumer.setPoint(pointAfterOrder);
+        order.setConsumer(consumer);
+
+        order.setOrderStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
 }

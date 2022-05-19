@@ -99,6 +99,32 @@ var BROWSER_VERSION = 5000;
     _eventNames.mouseDownName = _supports.touchstart ? 'touchstart' : _supports.pointerdown ? 'pointerdown' : 'mousedown';
     _eventNames.mouseUpName = _supports.touchend ? 'touchend' : _supports.pointerup ? 'pointerup' : 'mouseup';
     _eventNames.mouseMoveName = _supports.touchmove ? 'touchmove' : _supports.pointermove ? 'pointermove' : 'mousemove';
+
+    //Used by sitemap and variables.js getLinkUrl functions so that they know
+    //whether to embed global variables in URL as query string or hash string
+    //_shouldSendVars persists the value for sitemap instead of re-checking every time
+    var _shouldSendVars;
+    var _shouldSendVarsToServer = function(url) {
+        if(typeof _shouldSendVars != 'undefined') {
+            return _shouldSendVars;
+        }
+
+        if(SAFARI || (IE_10_AND_BELOW && BROWSER_VERSION < 10)) {
+            var urlToCheck = typeof url != 'undefined' ? url : window.location.href;
+            var serverRegex = /http:\/\/127\.0\.0\.1:[0-9]{5}/g;
+            var serverMatch = serverRegex.exec(urlToCheck);
+            var previewRegex = /[0-9]{2}\.[0-9]{2}\.[0-9]{2}/g;
+            var previewMatch = previewRegex.exec(urlToCheck);
+            if(Boolean(serverMatch) && Boolean(previewMatch)) {
+                _shouldSendVars = true;
+                return _shouldSendVars;
+            }
+        }
+
+        _shouldSendVars = false;
+        return _shouldSendVars;
+    };
+    $axure.shouldSendVarsToServer = _shouldSendVarsToServer;
 })();
 
 (function () {

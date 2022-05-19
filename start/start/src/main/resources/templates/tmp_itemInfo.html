@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>임시 상품 조회</title>
+</head>
+<body>
+    <div>
+        <div>
+            <div>
+                <p>이름 : <span th:text="${item.name != null} ? ${item.name} : 'null'"></span></p>
+                <p>가격 : <span th:text="${item.price != null} ? ${item.price} : 'null'"></span></p>
+                <p>상품 정보 : <span th:text="${item.info != null} ? ${item.info} : 'null'"></span></p>
+                <p>구매 갯수 : <span><input type="number"  name="itemNum" /></span></p>
+            </div>
+        </div>
+        <button th:attr="onclick=|addItem('${item.id}')|">장바구니</button>
+        <button>바로 구매</button>
+    </div>
+</body>
+<script>
+    function addItem(id) {
+        let loginState = "[[${session.login_state}]]";
+        let url = "/item/"+id+"/cart";
+        let cnt = document.getElementsByName("itemNum")[0].value;
+        console.log(cnt);
+        console.log(id);
+
+        fetch(url, {
+            method: "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+                "cnt" : cnt,
+            })
+        })
+            .then((response) => response.json())
+            .then(
+                alert("장바구니에 담겼습니다.")
+            );
+
+    }
+
+</script>
+</html>

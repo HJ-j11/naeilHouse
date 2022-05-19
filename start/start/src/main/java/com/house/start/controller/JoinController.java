@@ -2,8 +2,11 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.domain.Admin;
+import com.house.start.domain.Cart;
 import com.house.start.domain.Consumer;
 import com.house.start.domain.Seller;
+import com.house.start.domain.UploadFile;
+import com.house.start.file.FileStore;
 import com.house.start.service.JoinService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +16,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class JoinController {
 
     private final JoinService joinService;
+    private final FileStore fileStore;
 
     /**
      *  어느 역할(소비자 or 판매자 or 관리자)로 회원가입 할지 고르는 페이지
@@ -41,16 +48,26 @@ public class JoinController {
      *  소비자 회원가입 등록
      */
     @PostMapping("/consumer/join")
-    public String joinConsumer(@ModelAttribute MemberJoinForm form) {
+    public String joinConsumer(@ModelAttribute MemberJoinForm form,
+                               HttpServletRequest request) throws IOException {
+
+
+        // 이미지 저장
+        UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         // 소비자 객체 생성
         Consumer consumer = new Consumer();
         consumer.setCId(form.getId());
         consumer.setPwd(form.getPassword());
         consumer.setName(form.getName());
+        consumer.setUploadFile(uploadFile);
 
         // 포인트 초기화
         consumer.setPoint(500000);
+
+        Cart cart = Cart.builder()
+                        .consumer(consumer)
+                        .build();
 
         joinService.joinConsumer(consumer);
 

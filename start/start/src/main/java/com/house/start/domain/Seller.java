@@ -1,6 +1,8 @@
 package com.house.start.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Seller {
 
     @Id @GeneratedValue
@@ -24,4 +27,15 @@ public class Seller {
 
     private String storeName; // 상호명
     private Boolean isApproved; // 관리자의 승인 여부
+    /**
+     * 생성 매소드
+     * **/
+    @Builder
+    public Seller(String name, String sId, String pwd, String storeName) {
+        this.name = name;
+        this.sId = sId;
+        this.pwd = pwd;
+        this.storeName = storeName;
+    }
+
 }

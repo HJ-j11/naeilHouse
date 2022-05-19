@@ -2,6 +2,7 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
+import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
@@ -15,11 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
+
 
 @Slf4j
 @Controller
@@ -27,22 +30,22 @@ import java.util.List;
 public class ConsumerController {
     private final ConsumerService consumerService;
     private final FileStore fileStore;
-
     private final ItemService itemService;
     private final OrderService orderService;
 
     private Logger logger = LoggerFactory.getLogger(ConsumerController.class);
+    private final ServletContext servletContext;
 
     // 물건 리스트
     @GetMapping("/list")
-    public String getAllItem(Model model){
+    public String getAllItem(HttpServletRequest request, Model model){
         List<Item> items = consumerService.getAllItems();
         model.addAttribute("items", items);
         return "item_list";
     }
 
     // 물건 카테고리
-    @GetMapping("list/{category_id}")
+    @GetMapping("/list/{category_id}")
     public String getItemByCategory(@PathVariable Long category_id, Model model){
         List<Item> items = consumerService.getAllByCategory(category_id);
         model.addAttribute("items", items);
@@ -54,13 +57,20 @@ public class ConsumerController {
     public String getOneItem(@PathVariable Long id, Model model){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
-        return "item_info";
+        return "tmp_itemInfo";
     }
 
     // 장바구니 담기
-    @PutMapping("/list/item/{id}/getCart")
-    public void goToCart(@PathVariable Long id) {
-        consumerService.goToCart(id);
+    @PostMapping("/item/{id}/cart")
+    public CartItem addItemToCart(@PathVariable Long id,
+                                @RequestBody String cnt,
+                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                                HttpServletRequest request) {
+        int count = Integer.parseInt(cnt);
+        Item item = itemService.findItem(id);
+        Cart cart = consumerService.findByCart(loginConsumer);
+
+        return consumerService.addItemToCart(item, cart, count);
     }
 
 
@@ -82,6 +92,9 @@ public class ConsumerController {
     // 커뮤니티 목록
     @GetMapping("/community")
     public String getAllPost(Model model) {
+        String realPath = servletContext.getRealPath("/resources");
+        logger.info("realPath:  "+realPath);
+
         List<Post> posts = consumerService.getAllPost();
         model.addAttribute("postList", posts);
         return "post_list";
@@ -91,12 +104,11 @@ public class ConsumerController {
     public String getOnePost(@PathVariable Long id, Model model) {
         Post post = consumerService.getOnePost(id);
 
-        // 간편하게 넘기는 법 없을까?
-
         model.addAttribute("post", post);
         model.addAttribute("likes", post.countLikes());
         model.addAttribute("comments", post.getComments());
-        return "post_detail";
+//        return "post_detail";
+        return "consumer_postDetail";
     }
 
 
@@ -104,31 +116,28 @@ public class ConsumerController {
     @GetMapping("/community/new")
     public String getNewPost(Model model) {
         model.addAttribute("post", new PostForm());
-        return "new_post";
+        return "consumer_newPost";
     }
 
     // 글 작성
     @PostMapping("/community/write")
-    public String postUser(@ModelAttribute PostForm post, HttpServletRequest request) throws IOException {
+    public String postUser(@ModelAttribute PostForm post,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                           HttpServletRequest request) throws IOException {
+
         logger.info(post.getContents());
         logger.info(String.valueOf(post.getPhoto()));
 
         UploadFile uploadFile = fileStore.storeFile(post.getPhoto(), request);
 
-        try {
-            HttpSession session = request.getSession();
-            Consumer consumer = (Consumer) session.getAttribute("userInfo");
-        } catch(Exception e) {
-            logger.error("No session");
-        }
-
         Post newPost = Post.builder()
                 .contents(post.getContents())
                 .uploadFile(uploadFile)
+                .consumer(loginConsumer)
                 .postDate(LocalDateTime.now())
                 .build();
 
-        consumerService.save(newPost);
+        consumerService.savePost(newPost);
 
         return "redirect:/community";
     }
@@ -136,8 +145,9 @@ public class ConsumerController {
      * 글 -> 좋아요 누르기
      * **/
     @PostMapping("/community/{id}/likes")
-    public String putLikes(@PathVariable String id) {
-        consumerService.putLikes(Long.valueOf(id));
+    public String putLikes(@PathVariable String id, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
+
+        consumerService.putLikes(Long.valueOf(id), loginConsumer);
         return "redirect:/community/"+id;
     }
 
@@ -147,8 +157,8 @@ public class ConsumerController {
      * **/
     // 댓글 작성
     @PostMapping("/community/{id}/comments/write")
-    public String postComment(@PathVariable String id, @RequestParam String contents) {
-        consumerService.saveComment(id, contents);
+    public String postComment(@PathVariable String id, @RequestParam String contents, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
+        consumerService.saveComment(id, contents, loginConsumer);
         return "redirect:/community/"+id;
     }
 
@@ -191,28 +201,69 @@ public class ConsumerController {
     }
 
     /**
-     *  상품 상세 -> 바로 구매시
+     *  상품 상세 -> 바로 구매시 (결제 준비 페이지)
      */
     @GetMapping("/consumer/item/{id}/purchase")
-    public String purchase(@PathVariable Long id) {
+    public String beforePurchase(@PathVariable Long id,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                           Model model) {
 
-        // 배송지 정보 (주소) 조회
+        // 세션에 회원 데이터가 없으면 예외처리
+        if (loginConsumer == null) {
+            return "redirect:/list";
+        }
 
-        // 주문자 정보 조회
+        // 소비자 id 조회
+        Long consumerId = loginConsumer.getId();
+        Consumer consumer = consumerService.findConsumerById(consumerId);
 
-        // 아이템 정보 조회
+        // 상품 조회
         Item item = itemService.findItem(id);
 
-        return "comsumer_beforePurchase";
+        model.addAttribute("item", item);
+        model.addAttribute("consumer", consumer);
+
+//        orderService.order(consumerId, id, 1);
+
+        return "consumer_beforePurchase";
+    }
+
+    /**
+     *  결제 준비 페이지 -> 결제하기 (상품 1개) : 결제 완료 페이지로 이동
+     */
+    @PostMapping("/consumer/item/{id}/purchase")
+    public String afterPurchase(@PathVariable Long id,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
+                           Model model) {
+
+        // 소비자 id 조회
+        Long consumerId = loginConsumer.getId();
+
+        // 상품 id 조회
+        Long itemId = itemService.findItem(id).getId();
+        Item item = itemService.findItem(id);
+
+        // 주문 생성
+        Long orderId = orderService.order(consumerId, itemId, 1); // 주문
+        Optional<Order> completedOrder = orderService.findOrder(orderId); // 주문 완료된 객체 반환
+        List<OrderItem> orderItems = completedOrder.get().getOrderItems();
+
+        model.addAttribute(orderItems);
+        model.addAttribute(item);
+
+        // 주문 완료 페이지
+        return "consumer_afterPurchase";
     }
 
     /**
      *  상품 상세 -> 장바구니 담기
      */
     @PostMapping("/consumer/cart/{id}/add")
-    public String addItemToCart(@PathVariable Long id) {
+    public String addItemToCart(@PathVariable Long id,
+                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
 
         // 소비자 정보 조회
+        Long consumerId = loginConsumer.getId();
 
         // 아이템 정보 조회
         Item item = itemService.findItem(id);
@@ -220,15 +271,37 @@ public class ConsumerController {
         // Order 생성
         // order.setOrderStatus(OrderStatus.CART);
 
-        return "redirect:/consumer/cart/list";
+        return "redirect:/cart";
     }
+
     /**
      *  장바구니 페이지
      */
-//    @GetMapping("/consumer/cart/list")
-//    public String cart() {
+    @GetMapping("/cart")
+    public String cart(HttpServletRequest request,
+                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                       Model model) {
+        // 로그인 전제로
 
-    // 소비자 정보 조회
+
+        Cart cart = consumerService.findByCart(loginConsumer);
+        model.addAttribute("cart", cart);
+
+        return "consumer_cart";
+    }
+
+    /**
+     * 장바구니 -> 구매
+     * 주문 객체 생성
+     * **/
+
+    @PostMapping("/order")
+    public String createOrder(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer
+                            , HttpServletRequest request) {
+        Long orderId = orderService.orders(loginConsumer);
+        return "sample_order";
+    }
+    // 소비자 정보 조회`
     //
 
 //        orderService.findCartOrder(consumerId);

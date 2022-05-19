@@ -504,14 +504,15 @@
 
             for(var j = 0; j < elementIds.length; j++) {
                 var elementId = elementIds[j];
-                var oldTarget = eventInfo.targetElement;
-                eventInfo.targetElement = elementId;
                 // Need new scope for elementId and info
                 (function(elementId, stateInfo) {
-                    _addAnimation(elementId, queueTypes.setState, function () {
+                    _addAnimation(elementId, queueTypes.setState, function() {
                         var stateNumber = stateInfo.stateNumber;
                         if(stateInfo.setStateType == "value") {
+                            var oldTarget = eventInfo.targetElement;
+                            eventInfo.targetElement = elementId;
                             var stateName = $ax.expr.evaluateExpr(stateInfo.stateValue, eventInfo);
+                            eventInfo.targetElement = oldTarget;
 
                             // Try for state name first
                             var states = $ax.getObjectFromElementId(elementId).diagrams;
@@ -538,27 +539,27 @@
 
                             // Only map it, if repeat exists.
                             if(typeof (repeat) == 'number') _repeatPanelMap[elementId] = info;
-                            return _progessPanelState(elementId, info, eventInfo, info.repeatSkipFirst);
+                            return _progessPanelState(elementId, info, info.repeatSkipFirst);
                         }
                         delete _repeatPanelMap[elementId];
 
                         // If setting to current (to stop repeat) break here
                         if(stateInfo.setStateType == 'current') return _fireAnimationFromQueue(elementId, queueTypes.setState);
 
-                        $ax('#' + elementId).SetPanelState(stateNumber, stateInfo.options, eventInfo, stateInfo.showWhenSet);
+                        $ax('#' + elementId).SetPanelState(stateNumber, stateInfo.options, stateInfo.showWhenSet);
                     });
                 })(elementId, stateInfo);
-            eventInfo.targetElement = oldTarget;
             }
         }
+
         _dispatchAction(eventInfo, actions, index + 1);
     };
 
-    var _progessPanelState = function(id, stateInfo, eventInfo, skipFirst) {
-        var direction = stateInfo.setStateType;
-        var loop = stateInfo.loop;
-        var repeat = stateInfo.repeat;
-        var options = stateInfo.options;
+    var _progessPanelState = function(id, info, skipFirst) {
+        var direction = info.setStateType;
+        var loop = info.loop;
+        var repeat = info.repeat;
+        var options = info.options;
 
         var hasRepeat = typeof (repeat) == 'number';
         var currentStateId = $ax.visibility.GetPanelState(id);
@@ -587,9 +588,9 @@
                 }
             }
 
-            if(hasRepeat && _repeatPanelMap[id] != stateInfo) return _fireAnimationFromQueue(id, queueTypes.setState);
+            if(hasRepeat && _repeatPanelMap[id] != info) return _fireAnimationFromQueue(id, queueTypes.setState);
 
-            if (!skipFirst) $ax('#' + id).SetPanelState(stateNumber, options, eventInfo, stateInfo.showWhenSet);
+            if (!skipFirst) $ax('#' + id).SetPanelState(stateNumber, options, info.showWhenSet);
             else _fireAnimationFromQueue(id, queueTypes.setState);
 
             if(hasRepeat) {
@@ -600,9 +601,9 @@
 
                 window.setTimeout(function() {
                     // Either new repeat, or no repeat anymore.
-                    if(_repeatPanelMap[id] != stateInfo) return;
+                    if(_repeatPanelMap[id] != info) return;
                     _addAnimation(id, queueTypes.setState, function() {
-                        _progessPanelState(id, stateInfo, eventInfo, false);
+                        _progessPanelState(id, info, false);
                     });
                 }, repeat);
             } else delete _repeatPanelMap[id];
@@ -611,6 +612,7 @@
 
     _actionHandlers.fadeWidget = function(eventInfo, actions, index) {
         var action = actions[index];
+
         for(var i = 0; i < action.objectsToFades.length; i++) {
             var fadeInfo = action.objectsToFades[i].fadeInfo;
             var elementIds = $ax.getElementIdsFromPath(action.objectsToFades[i].objectPath, eventInfo);
@@ -619,13 +621,7 @@
                 var elementId = elementIds[j];
                 // Need new scope for elementId and info
                 (function(elementId, fadeInfo) {
-                    _addAnimation(elementId, queueTypes.fade, function () {
-                        if (fadeInfo.options.compress && fadeInfo.options.compressDistanceType == "custom") {
-                            var oldTarget = eventInfo.targetElement;
-                            eventInfo.targetElement = elementId;
-                            fadeInfo.options.compressDelta = Number($ax.expr.evaluateExpr(fadeInfo.options.compressValue, eventInfo));
-                            eventInfo.targetElement = oldTarget;
-                        }
+                    _addAnimation(elementId, queueTypes.fade, function() {
                         if(fadeInfo.fadeType == "hide") {
                             $ax('#' + elementId).hide(fadeInfo.options);
                         } else if(fadeInfo.fadeType == "show") {
@@ -671,27 +667,7 @@
         var action = actions[index];
         for(var i = 0; i < action.objectsToMoves.length; i++) {
             var moveInfo = action.objectsToMoves[i].moveInfo;
-            var objPath = action.objectsToMoves[i].objectPath;
-
-            var below = objPath == 'widgetsBelow';
-            var right = objPath == 'widgetsRight';
-            if (right || below) {
-                var isDelta = moveInfo.moveType == 'delta';
-
-                var xDelta = isDelta ? Number($ax.expr.evaluateExpr(moveInfo.xValue, eventInfo)) : NaN;
-                var yDelta = isDelta ? Number($ax.expr.evaluateExpr(moveInfo.yValue, eventInfo)) : NaN;
-
-                var srcId = eventInfo.srcElement;
-
-                var isResize = action.parentEventType == 'onResize';
-                //if it's resizing, use the old rect for the threshold and clamp; otherwise, use the current rect
-                var clampRect = isResize ? $ax.visibility.getResizingRect(srcId) : $ax('#' + srcId).offsetBoundingRect(true);
-
-                $ax.dynamicPanelManager.compressMove(srcId, below, isResize, clampRect, moveInfo.options.easing, moveInfo.options.duration, below ? yDelta : xDelta, below ? xDelta : yDelta);
-                continue;
-            }
-
-            var elementIds = $ax.getElementIdsFromPath(objPath, eventInfo);
+            var elementIds = $ax.getElementIdsFromPath(action.objectsToMoves[i].objectPath, eventInfo);
 
             for(var j = 0; j < elementIds.length; j++) {
                 var elementId = elementIds[j];
@@ -836,7 +812,6 @@
 
         var startX;
         var startY;
-        var win = ((SAFARI && IOS) || SHARE_APP) ? $('#ios-safari-html') : $(window)
 
         switch(moveInfo.moveType) {
         case "location":
@@ -870,8 +845,8 @@
                 //startX = $ax('#' + elementId).locRelativeIgnoreLayer(false);
                 //startY = $ax('#' + elementId).locRelativeIgnoreLayer(true);
                 if(jobj.css('position') == 'fixed') {
-                    startX -= win.scrollLeft();
-                    startY -= win.scrollTop();
+                    startX -= $(window).scrollLeft();
+                    startY -= $(window).scrollTop();
                 }
             }
 
@@ -932,7 +907,6 @@
             xValue = delta.x;
             yValue = delta.y;
             break;
-        //sizeDeltaX and sizeDeltaY do not pass through here
         }
 
         if (options && options.boundaryExpr) {
@@ -976,8 +950,8 @@
                         //startX = $ax('#' + elementId).locRelativeIgnoreLayer(false);
                         //startY = $ax('#' + elementId).locRelativeIgnoreLayer(true);
                         if(jobj.css('position') == 'fixed') {
-                            startX -= win.scrollLeft();
-                            startY -= win.scrollTop();
+                            startX -= $(window).scrollLeft();
+                            startY -= $(window).scrollTop();
                         }
                     }
 
@@ -1708,13 +1682,13 @@
             var id = $ax.getElementIdsFromPath(data.path, eventInfo)[0];
             if(!id) continue;
 
-            if(data.type == 'this') {
+            if(data.addType == 'this') {
                 var scriptId = $ax.repeater.getScriptIdFromElementId(eventInfo.srcElement);
                 itemId = $ax.repeater.getItemIdFromElementId(eventInfo.srcElement);
                 var repeaterId = $ax.getParentRepeaterFromScriptId(scriptId);
                 if(add) $ax.repeater.addEditItems(repeaterId, [itemId]);
                 else $ax.repeater.removeEditItems(repeaterId, [itemId]);
-            } else if(data.type == 'all') {
+            } else if(data.addType == 'all') {
                 var allItems = $ax.repeater.getAllItemIds(id);
                 if(add) $ax.repeater.addEditItems(id, allItems);
                 else $ax.repeater.removeEditItems(id, allItems);
@@ -1725,7 +1699,7 @@
                 for(var j = 0; j < itemIds.length; j++) {
                     itemId = itemIds[j];
                     eventInfo.targetElement = $ax.repeater.createElementId(id, itemId);
-                    if($ax.expr.evaluateExpr(data.rule, eventInfo) == "true") {
+                    if($ax.expr.evaluateExpr(data.query, eventInfo) == "true") {
                         itemIdsToAdd[itemIdsToAdd.length] = String(itemId);
                     }
                     eventInfo.targetElement = oldTarget;
@@ -1817,15 +1791,7 @@
             var id = $ax.getElementIdsFromPath(addFilterInfo.path, eventInfo)[0];
             if(!id || _ignoreAction(id)) continue;
 
-            $ax.repeater.addFilter(
-                id,
-                addFilterInfo.removeOtherFilters,
-                addFilterInfo.label,
-                addFilterInfo.filter,
-                addFilterInfo.condition,
-                addFilterInfo.columnName,
-                addFilterInfo.comboType,
-                eventInfo.srcElement);
+            $ax.repeater.addFilter(id, addFilterInfo.removeOtherFilters, addFilterInfo.label, addFilterInfo.filter, eventInfo.srcElement);
             _addRefresh(id);
         }
 
@@ -1861,8 +1827,8 @@
             //  or none if unplaced
             var id = $ax.getElementIdsFromPath(addSortInfo.path, eventInfo)[0];
             if(!id || _ignoreAction(id)) continue;
-            
-            $ax.repeater.addSort(id, addSortInfo.label, addSortInfo.columnName, addSortInfo.ascending, addSortInfo.toggle, addSortInfo.sortType, addSortInfo.removeAllSorts);
+
+            $ax.repeater.addSort(id, addSortInfo.label, addSortInfo.columnName, addSortInfo.ascending, addSortInfo.toggle, addSortInfo.sortType);
             _addRefresh(id);
         }
 
@@ -1958,21 +1924,15 @@
         _dispatchAction(eventInfo, actions, index + 1);
     };
 
-    
 
-    _actionHandlers.enableDisableWidgets = function (eventInfo, actions, index) {
-        let action = actions[index];
-        for(let i = 0; i < action.pathToInfo.length; i++) {
-            const elementIds = $ax.getElementIdsFromPath(action.pathToInfo[i].objectPath, eventInfo);
-            const enableAction = action.pathToInfo[i].enableDisableInfo.enableAction;
-            const isToggle = enableAction === 'Toggle';
-            const isEnabled = enableAction === 'Enable';
-            for(let j = 0; j < elementIds.length; j++) {
-                const elementId = elementIds[j];
-                const toggleValue = $ax.style.IsWidgetDisabled(elementId);
-                $ax('#' + elementId).enabled(isToggle ? toggleValue : isEnabled);
-            }
+    _actionHandlers.enableDisableWidgets = function(eventInfo, actions, index) {
+        var action = actions[index];
+        for(var i = 0; i < action.pathToInfo.length; i++) {
+            var elementIds = $ax.getElementIdsFromPath(action.pathToInfo[i].objectPath, eventInfo);
+            var enable = action.pathToInfo[i].enableDisableInfo.enable;
+            for(var j = 0; j < elementIds.length; j++) $ax('#' + elementIds[j]).enabled(enable);
         }
+
         _dispatchAction(eventInfo, actions, index + 1);
     };
 
@@ -1993,9 +1953,29 @@
 
                 eventInfo.targetElement = elementId;
                 var evaluatedImgs = _evaluateImages(imgInfo, eventInfo);
+
+                var img = evaluatedImgs.normal;
+                if($ax.style.IsWidgetDisabled(elementId)) {
+                    if(imgInfo.disabled) img = evaluatedImgs.disabled;
+                } else if($ax.style.IsWidgetSelected(elementId)) {
+                    if(imgInfo.selected) img = evaluatedImgs.selected;
+                } else if($ax.event.mouseDownObjectId == elementId && imgInfo.mouseDown) img = evaluatedImgs.mouseDown;
+                else if($ax.event.mouseOverIds.indexOf(elementId) != -1 && imgInfo.mouseOver) {
+                    img = evaluatedImgs.mouseOver;
+                    //Update mouseOverObjectId
+                    var currIndex = $ax.event.mouseOverIds.indexOf($ax.event.mouseOverObjectId);
+                    var imgIndex = $ax.event.mouseOverIds.indexOf(elementId);
+                    if(currIndex < imgIndex) $ax.event.mouseOverObjectId = elementId;
+                } else if(imgInfo.mouseOver && elementId == eventInfo.srcElement) {
+                    img = evaluatedImgs.mouseOver;
+                }
+
+                //            $('#' + $ax.repeater.applySuffixToElementId(elementId, '_img')).attr('src', img);
+                $jobj($ax.GetImageIdFromShape(elementId)).attr('src', img);
+
                 //Set up overrides
                 $ax.style.mapElementIdToImageOverrides(elementId, evaluatedImgs);
-                $ax.style.updateImage(elementId);
+                $ax.style.updateElementIdImageStyle(elementId);
 
                 if(evaluatedImgs.mouseOver || evaluatedImgs.mouseDown) $ax.event.updateIxStyleEvents(elementId);
             }

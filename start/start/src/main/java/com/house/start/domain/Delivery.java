@@ -6,9 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Delivery {
 
     @Id @GeneratedValue
@@ -21,9 +19,13 @@ public class Delivery {
     private String address;
 
     private DeliveryStatus deliveryStatus; // 배송 상태 [배송 준비중, 배송 완료]
-    
+
     // 생성 메서드
-    public void setOrder(Order order) {
+
+    @Builder
+    public Delivery(DeliveryStatus deliveryStatus, Order order) {
         this.order = order;
+        this.deliveryStatus = deliveryStatus;
     }
+
 }

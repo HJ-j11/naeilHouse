@@ -125,7 +125,33 @@
                 } else if(diagramObject.type == $ax.constants.CONNECTOR_TYPE) {
                     _setAdaptiveConnectorImages(elementId, images, '');
                 } else if(images) {
-                    $ax.style.updateImage(elementId);
+                    if (diagramObject.generateCompound) {
+
+                        if($ax.style.IsWidgetDisabled(elementId)) {
+                            disabledImage = _getImageWithTag(images, 'disabled~');
+                            if(disabledImage) $ax.style.applyImage(elementId, disabledImage, 'disabled');
+                            return;
+                        }
+                        if($ax.style.IsWidgetSelected(elementId)) {
+                            selectedImage = _getImageWithTag(images, 'selected~');
+                            if(selectedImage) $ax.style.applyImage(elementId, selectedImage, 'selected');
+                            return;
+                        }
+                        $ax.style.applyImage(elementId, _getImageWithTag(images, 'normal~'), 'normal');
+                    } else {
+                        if ($ax.style.IsWidgetDisabled(elementId)) {
+                            var disabledImage = _matchImage(elementId, images, [], 'disabled', true);                            
+                            if (disabledImage) $ax.style.applyImage(elementId, disabledImage, 'disabled');
+                            return;
+                        }
+                        if ($ax.style.IsWidgetSelected(elementId)) {
+                            var selectedImage = _matchImage(elementId, images, [], 'selected', true);  
+                            if (selectedImage) $ax.style.applyImage(elementId, selectedImage, 'selected');
+                            return;
+                        }
+                        var normalImage = _matchImage(elementId, images, [], 'normal', true);  
+                        $ax.style.applyImage(elementId, normalImage, 'normal');
+                    }
                 }
 
                 //align all text
@@ -138,7 +164,6 @@
             $ax.repeater.refreshAllRepeaters();
             $ax.dynamicPanelManager.updateParentsOfNonDefaultFitPanels();
             $ax.dynamicPanelManager.updatePercentPanelCache($ax('*'));
-            $ax.expr.updateAutoFitted();
         } else {
             $ax.visibility.clearLimboAndHidden();
             $ax.visibility.clearMovedAndResized();
@@ -146,7 +171,6 @@
             $ax.repeater.refreshAllRepeaters();
             $ax.dynamicPanelManager.updateAllLayerSizeCaches();
             $ax.dynamicPanelManager.updateParentsOfNonDefaultFitPanels();
-            $ax.expr.updateAutoFitted();
         }
 
         $ax.annotation.updateAllFootnotes();
@@ -314,35 +338,50 @@
         if(compoundStyle.visible === false) hiddenIds[scriptId] = true;
     };
 
-    var _matchImage = function (id, images, viewIdChain, state, doNotDecomposeState) {
-        const overrideState = $ax.style.highestPriorityBaseState(state);
-        const override = $ax.style.getElementImageOverride(id, overrideState);
+    var _matchImage = function(id, images, viewIdChain, state, doNotProgress) {
+        var override = $ax.style.getElementImageOverride(id, state);
         if(override) return override;
 
         if(!images) return undefined;
 
-        const scriptId = $ax.repeater.getScriptIdFromElementId(id);
+        let scriptId = $ax.repeater.getScriptIdFromElementId(id);
+        
+        if(state == 'disabled' && $ax.style.IsWidgetSelected(id) || state == 'selected' && $ax.style.IsWidgetDisabled(id)) {
+            let diagramObject = $ax.getObjectFromElementId(id);
+            if(diagramObject && $ax.public.fn.IsSelectionButton(diagramObject.type)) {
+                var selectedDisabled = $ax.constants.SELECTED_DISABLED;
+            }
+        }
 
         // first check all the images for this state
         for(let i = viewIdChain.length - 1; i >= 0; i--) {
-            const viewId = viewIdChain[i];
-            const img = findImage(images, scriptId, state, viewId);
-            if (img) return img;
+            let viewId = viewIdChain[i];
+            if(selectedDisabled) {
+                let img = findImage(images, scriptId, selectedDisabled, viewId)
+                if(img) return img;
+            } else {
+                let img = findImage(images, scriptId, state, viewId);
+                if (img) return img;
+            }
         }
         // check for the default state style
-        // try to find an image for the default state or for the highest priority state if no default was found. RP-1854
-        const defaultStateImage = findImage(images, scriptId, state) || findImage(images, scriptId, overrideState);
-        if (defaultStateImage) return defaultStateImage;
+        if(selectedDisabled) {
+            let defaultStateImage = findImage(images, scriptId, selectedDisabled)
+            if(defaultStateImage) return defaultStateImage;
+        } else {
+            let defaultStateImage = findImage(images, scriptId, state);
+            if (defaultStateImage) return defaultStateImage;
+        }
         
-        if(doNotDecomposeState) return undefined;
+        if(doNotProgress) return undefined;
 
-        state = $ax.style.decomposeState(state);
+        state = $ax.style.progessState(state);
         if (state) return _matchImage(scriptId, images, viewIdChain, state);
 
         // SHOULD NOT REACH HERE! NORMAL SHOULD ALWAYS CATCH AT THE DEFAULT!
         return images['normal~']; // this is the default
     };
-
+    
     let findImage = function(images, scriptId, state, viewId) {
         if(!images) return undefined;
 
@@ -430,7 +469,7 @@
         if (message == 'switchAdaptiveView') {
             if (!$axure.utils.isInPlayer()) return;
 
-            var href = decodeURI(window.location.href.split('#')[0]);
+            var href = window.location.href.split('#')[0];
             var lastSlash = href.lastIndexOf('/');
             href = href.substring(lastSlash + 1);
             if(href != data.src) return;
@@ -456,12 +495,12 @@
             
             var $body = $('body');
             $body.css('height', '');
-            
-            if (data.scale != 0 && data.scale != 3) {
+
+            if (data.scale != 0) {
                 var adjustScrollScale = false;
                 if ($('html').getNiceScroll().length == 0 && !MOBILE_DEVICE) {
                     //adding nicescroll so width is correct when getting scale
-                    _addNiceScroll($('html'), { emulatetouch: false, horizrailenabled: false, spacebarenabled: false }, true);
+                    _addNiceScroll($('html'), { emulatetouch: false, horizrailenabled: false });
                     adjustScrollScale = true;
                 }
                 
@@ -473,11 +512,11 @@
                 // screen width does not adjust on screen rotation for iOS (width is always shorter screen measurement)
                 var isLandscape = window.orientation != 0 && window.orientation != 180;
                 var mobileWidth = (IOS ? (isLandscape ? window.screen.height : window.screen.width) : window.screen.width) - data.panelWidthOffset;
-                var scaleN = newScaleN = (MOBILE_DEVICE ? mobileWidth : data.mainFrameWidth) / bodyWidth;
-                
+                var scaleN = newScaleN = (MOBILE_DEVICE ? mobileWidth : $(window).width()) / bodyWidth;
+
                 if (data.scale == 2) {
                     var pageSize = $ax.public.fn.getPageSize();
-                    var hScaleN = (MOBILE_DEVICE ? data.viewportHeight : data.mainFrameHeight) / Math.max(1, pageSize.bottom);
+                    var hScaleN = (MOBILE_DEVICE ? data.viewportHeight : $(window).height()) / Math.max(1, pageSize.bottom);
                     if (hScaleN < scaleN) {
                         scaleN = newScaleN = hScaleN;
                     }
@@ -490,25 +529,15 @@
                 } //else $body.css('height', $body.height() + 'px');
 
                 if (adjustScrollScale) {
-                    _removeNiceScroll($('html'), true);
-                    _addNiceScroll($('html'), { emulatetouch: false, horizrailenabled: false, spacebarenabled: false, cursorwidth: Math.ceil(6 / newScaleN) + 'px', cursorborder: 1 / newScaleN + 'px solid #fff', cursorborderradius: 5 / newScaleN + 'px' }, true);
+                    _removeNiceScroll($('html'));
+                    _addNiceScroll($('html'), { emulatetouch: false, horizrailenabled: false, cursorwidth: Math.ceil(6 / newScaleN) + 'px', cursorborder: 1 / newScaleN + 'px solid #fff', cursorborderradius: 5 / newScaleN + 'px' });
                 }
-            } else {
-                if (data.scale == 0) {
-                    scaleN = newScaleN = 1;
-                }
-                if (data.scale == 3) {
-                    const zoom = $(document).find("html").attr("zoom") ? parseInt($(document).find("html").attr("zoom"),10) : 100;
-                    scaleN = newScaleN = zoom/100;
-                }
-            }          
+            }
             var contentScale = {
                 scaleN: newScaleN,
                 prevScaleN: prevScaleN,
                 contentOriginOffset: contentOriginOffset,
                 clipToView: data.clipToView,
-                mainFrameHeight: data.mainFrameHeight,
-                mainFrameWidth: data.mainFrameWidth,
                 viewportHeight: data.viewportHeight,
                 viewportWidth: data.viewportWidth,
                 panelWidthOffset: data.panelWidthOffset,
@@ -530,7 +559,7 @@
                 
                 _removeNiceScroll($('html'), true);
                 if (!MOBILE_DEVICE) {
-                    _addNiceScroll($('html'), { emulatetouch: true, horizrailenabled: false, spacebarenabled: false }, true);
+                    _addNiceScroll($('html'), { emulatetouch: true, horizrailenabled: false }, true);
                     $('html').addClass('mobileFrameCursor');
                     $('html').css('cursor', 'url(resources/css/images/touch.cur), auto');
                     $('html').css('cursor', 'url(resources/css/images/touch.svg) 32 32, auto');
@@ -558,10 +587,7 @@
                 $(function () { _setHorizontalScroll(false); });
             } else {
                 _removeNiceScroll($('html'), true);
-                const zoom = $(document).find("html").attr("zoom") ? parseInt($(document).find("html").attr("zoom"),10) : 100;
-                if (zoom == 100){
-                    $('html').css('overflow-x', '');
-                }
+                $('html').css('overflow-x', '');
                 $('html').css('cursor', '');
                 //$('html').removeAttr('style');
                 $('body').css('margin', '');
@@ -592,7 +618,7 @@
         if (IE) $container.css({ '-ms-overflow-y': '', 'overflow-y': '', '-ms-overflow-style': '', '-ms-touch-action': '' });
         if (!emulateTouch) return; 
         if (_isHtmlQuery($container)) {
-            $('.scrollContainer').remove();
+            $('#scrollContainer').remove();
             $('#base').off('mouseleave.ax');
         } else {
             $container.off('mouseleave.ax');
@@ -601,11 +627,10 @@
 
     var _addNiceScrollExitDetector = function ($container) {
         if (_isHtmlQuery($container)) {
-            var isScrollContainerExist = $('.scrollContainer').length > 0;
-            
+
             // add a fixed div the size of the frame that will not move as we scroll like html,body,#base,children
             // so we are able to detect when the mouse leaves that frame area if there is no existing DOM element
-            var $scrollContainer = isScrollContainerExist ? $('.scrollContainer') : $("<div class='scrollContainer'></div>");
+            var $scrollContainer = $("<div id='scrollContainer'></div>");
             var $body = $('body');
             $scrollContainer.css({
                 'position': 'fixed',
@@ -624,9 +649,7 @@
             });
             // need to prepend so it is first child in DOM and doesn't block mouse events to other children which
             // would make them unable to scroll
-            if (!isScrollContainerExist){
-                $base.prepend($scrollContainer);
-            }
+            $base.prepend($scrollContainer);
         } else {
             $container.on('mouseleave.ax', function (e) {
                 var nS = $container.getNiceScroll();
