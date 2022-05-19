@@ -1,5 +1,6 @@
 #footer {
     position: relative;
+    transform : translateY(700%);
     top: 1000px;
     height: 70px;
     width: 100%;

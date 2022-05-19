@@ -147,9 +147,7 @@
                                  height="40">
                         </td>
                         <td th:if="${item.uploadFile != null}">
-                            <!--
-                            <td><img th:src="|http://localhost:8080/upload/${item.uploadFile.uploadFileName}|" width="40" height="40"></td>
-                            -->
+                            <img id="uploadFile" th:src="|http://localhost:8080/upload/${item.uploadFile.uploadFileName}|" width="40" height="40">
                         </td>
                         <td>
                             <p th:text="|판매자명: ${item.seller.name}|"></p>

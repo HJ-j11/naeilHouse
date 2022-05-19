@@ -539,4 +539,5 @@
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow: 7px 14px 30px 3px rgba(163, 174, 184, 0.7);
+  cursor: pointer;
 }
