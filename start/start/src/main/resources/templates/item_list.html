@@ -6,43 +6,43 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
   <!-- develop -->
-  <link href="css/consumer/orderlist.css" type="text/css" rel="stylesheet"/>
+  <link href="/css/consumer/orderlist.css" type="text/css" rel="stylesheet"/>
 
   <!--axure-->
-  <link href="css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-  <link href="css/consumer/styles.css" type="text/css" rel="stylesheet"/>
-  <script src="scripts/jquery-3.2.1.min.js"></script>
-  <script src="scripts/axure/axQuery.js"></script>
-  <script src="scripts/axure/globals.js"></script>
-  <script src="scripts/axutils.js"></script>
-  <script src="scripts/axure/annotation.js"></script>
-  <script src="scripts/axure/axQuery.std.js"></script>
-  <script src="scripts/axure/doc.js"></script>
-  <script src="scripts/messagecenter.js"></script>
-  <script src="scripts/axure/events.js"></script>
-  <script src="scripts/axure/recording.js"></script>
-  <script src="scripts/axure/action.js"></script>
-  <script src="scripts/axure/expr.js"></script>
-  <script src="scripts/axure/geometry.js"></script>
-  <script src="scripts/axure/flyout.js"></script>
-  <script src="scripts/axure/model.js"></script>
-  <script src="scripts/axure/repeater.js"></script>
-  <script src="scripts/axure/sto.js"></script>
-  <script src="scripts/axure/utils.temp.js"></script>
-  <script src="scripts/axure/variables.js"></script>
-  <script src="scripts/axure/drag.js"></script>
-  <script src="scripts/axure/move.js"></script>
-  <script src="scripts/axure/visibility.js"></script>
-  <script src="scripts/axure/style.js"></script>
-  <script src="scripts/axure/adaptive.js"></script>
-  <script src="scripts/axure/tree.js"></script>
-  <script src="scripts/axure/init.temp.js"></script>
-  <script src="scripts/axure/legacy.js"></script>
-  <script src="scripts/axure/viewer.js"></script>
-  <script src="scripts/axure/math.js"></script>
-  <script src="scripts/axure/jquery.nicescroll.min.js"></script>
-  <script src="javascript/document.js"></script>
-  <script src="css/consumer/data.js"></script>
+  <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+  <link href="/css/consumer/styles.css" type="text/css" rel="stylesheet"/>
+  <script src="/scripts/jquery-3.2.1.min.js"></script>
+  <script src="/scripts/axure/axQuery.js"></script>
+  <script src="/scripts/axure/globals.js"></script>
+  <script src="/scripts/axutils.js"></script>
+  <script src="/scripts/axure/annotation.js"></script>
+  <script src="/scripts/axure/axQuery.std.js"></script>
+  <script src="/scripts/axure/doc.js"></script>
+  <script src="/scripts/messagecenter.js"></script>
+  <script src="/scripts/axure/events.js"></script>
+  <script src="/scripts/axure/recording.js"></script>
+  <script src="/scripts/axure/action.js"></script>
+  <script src="/scripts/axure/expr.js"></script>
+  <script src="/scripts/axure/geometry.js"></script>
+  <script src="/scripts/axure/flyout.js"></script>
+  <script src="/scripts/axure/model.js"></script>
+  <script src="/scripts/axure/repeater.js"></script>
+  <script src="/scripts/axure/sto.js"></script>
+  <script src="/scripts/axure/utils.temp.js"></script>
+  <script src="/scripts/axure/variables.js"></script>
+  <script src="/scripts/axure/drag.js"></script>
+  <script src="/scripts/axure/move.js"></script>
+  <script src="/scripts/axure/visibility.js"></script>
+  <script src="/scripts/axure/style.js"></script>
+  <script src="/scripts/axure/adaptive.js"></script>
+  <script src="/scripts/axure/tree.js"></script>
+  <script src="/scripts/axure/init.temp.js"></script>
+  <script src="/scripts/axure/legacy.js"></script>
+  <script src="/scripts/axure/viewer.js"></script>
+  <script src="/scripts/axure/math.js"></script>
+  <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
+  <script src="/javascript/document.js"></script>
+  <script src="/css/consumer/data.js"></script>
 
 </head>
 <body>
@@ -100,7 +100,7 @@
 
       <!-- 검색창 (Text Field) -->
       <div id="u129" class="ax_default text_field" data-label="검색창">
-        <img id="u129_img" class="img " src="images/main/검색창_u8.svg"/>
+        <img id="u129_img" class="img " src="/images/main/검색창_u8.svg"/>
         <input id="u129_input" type="text" value="" class="u129_input"/>
       </div>
 
@@ -117,7 +117,7 @@
 
         <!-- icon (Shape) -->
         <div id="u132" class="ax_default shape" data-label="icon">
-          <img id="u132_img" class="img " src="images/main/icon_u11.svg"/>
+          <img id="u132_img" class="img " src="/images/main/icon_u11.svg"/>
           <div id="u132_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
@@ -151,7 +151,7 @@
 
     <!-- border (Shape) -->
     <div id="u136" class="ax_default shape" data-label="border">
-      <img id="u136_img" class="img " src="images/main/border_u14.svg"/>
+      <img id="u136_img" class="img " src="/images/main/border_u14.svg"/>
       <div id="u136_text" class="text " style="display:none; visibility: hidden">
         <p></p>
       </div>
@@ -173,7 +173,7 @@
         <tbody>
         <tr th:each="item: ${items}">
           <td>
-<!--            <img th:src="|/upload/${item.uploadFile.storeFileName}|"/>-->
+            <img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40">
           </td>
           <td>
             <a th:href="'/list/item/'+${item.id}">
@@ -191,13 +191,13 @@
 
     <!-- Vector (Shape) -->
     <div id="u137" class="ax_default shape" data-label="Vector">
-      <img id="u137_img" class="img " src="images/consumer_top_bar/vector_u99.svg"/>
+      <img id="u137_img" class="img " src="/images/consumer_top_bar/vector_u99.svg"/>
       <div id="u137_text" class="text " style="display:none; visibility: hidden">
         <p></p>
       </div>
     </div>
   </div>
 </div>
-<script src="scripts/axure/ios.js"></script>
+<script src="/scripts/axure/ios.js"></script>
 </body>
 </html>

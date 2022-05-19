@@ -1,6 +1,7 @@
 package com.house.start.domain;
 
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,10 +9,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity @Getter @Setter
+@Entity
+@Getter @Setter
 public class Category {
 
-    @Id
+    @Id @GeneratedValue
     @Column(name="category_id")
     private long id;
 
