@@ -150,13 +150,8 @@
                                  height="80">
                         </td>
                         <td th:if="${consumer.photo != null}">
-                            <img id="consumer_profile" th:src="${consumer.photo}" width="80" height="80">
+                            <img id = "consumer_profile" th:src="|http://localhost:8080/upload/${consumer.uploadFile.uploadFileName}|" width="80" height="80">
                         </td>
-                        <!--
-                      <td >
-                          <img id = "consumer_profile" th:src="|http://localhost:8080/upload/${consumer.uploadFile.uploadFileName}|" width="80" height="80">
-                      </td>
-                      -->
                         <td>
                             <p th:text="|회원명: ${consumer.name}|"> 이름</p>
                             <p th:text="|회원 id: ${consumer.cId}|"> 아이디</p>
