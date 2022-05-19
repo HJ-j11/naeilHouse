@@ -168,11 +168,12 @@
                 </tr>
                 <tr th:each="post : ${postList}">
                     <td>
-                        <img th:src="/|/upload/${post.uploadFile.storeFileName}|" width="100" height="100">
+<!--                        <img th:src="|/upload/${post.uploadFile.storeFileName}|" width="100" height="100">-->
+                        <img th:src="|/${post.uploadFile.storeFileName}|" width="100" height="100">
                     </td>
                     <td th:text="${post.id}"></td>
                     <td>
-                        <a th:href="/@{'/community/'+${post.id}}">
+                        <a th:href="@{'/community/'+${post.id}}">
                             <span th:text="${post.contents}"></span>
                         </a>
                     </td>
@@ -265,6 +266,6 @@
 <!--        </div>-->
 <!--    </div>-->
 </div>
-<script src="//scripts/axure/ios.js"></script>
+<script src="/scripts/axure/ios.js"></script>
 </body>
 </html>

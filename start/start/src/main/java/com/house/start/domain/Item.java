@@ -20,7 +20,7 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "seller_id")
     private Seller seller; // 판매자
 
@@ -28,11 +28,6 @@ public class Item {
     private int price; // 상품 가격
     private int stockQuantity; // 재고 수량
     private String info; // 상품 정보
-
-    // 상품 상태
-    @Enumerated(EnumType.STRING)
-    @Column(name="item_status")
-    private ItemStatus itemStatus;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
@@ -47,13 +42,13 @@ public class Item {
 
     // builder 패턴
     @Builder
-    public Item(Seller seller, String name, int price, int stockQuantity, String info, ItemStatus itemStatus) {
+    public Item(Seller seller, String name, int price, int stockQuantity, String info, UploadFile uploadFile) {
         this.seller = seller;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
+        this.uploadFile = uploadFile;
         this.info = info;
-        this.itemStatus = itemStatus;
     }
 
     //==연관관계 편의 메서드==//

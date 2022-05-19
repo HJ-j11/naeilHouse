@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -33,17 +34,18 @@ public class ConsumerController {
     private final OrderService orderService;
 
     private Logger logger = LoggerFactory.getLogger(ConsumerController.class);
+    private final ServletContext servletContext;
 
     // 물건 리스트
     @GetMapping("/list")
-    public String getAllItem(Model model){
+    public String getAllItem(HttpServletRequest request, Model model){
         List<Item> items = consumerService.getAllItems();
         model.addAttribute("items", items);
         return "item_list";
     }
 
     // 물건 카테고리
-    @GetMapping("list/{category_id}")
+    @GetMapping("/list/{category_id}")
     public String getItemByCategory(@PathVariable Long category_id, Model model){
         List<Item> items = consumerService.getAllByCategory(category_id);
         model.addAttribute("items", items);
@@ -55,13 +57,20 @@ public class ConsumerController {
     public String getOneItem(@PathVariable Long id, Model model){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
-        return "item_info";
+        return "tmp_itemInfo";
     }
 
     // 장바구니 담기
-    @PutMapping("/list/item/{id}/getCart")
-    public void goToCart(@PathVariable Long id) {
-        consumerService.goToCart(id);
+    @PostMapping("/item/{id}/cart")
+    public CartItem addItemToCart(@PathVariable Long id,
+                                @RequestBody String cnt,
+                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                                HttpServletRequest request) {
+        int count = Integer.parseInt(cnt);
+        Item item = itemService.findItem(id);
+        Cart cart = consumerService.findByCart(loginConsumer);
+
+        return consumerService.addItemToCart(item, cart, count);
     }
 
 
@@ -83,6 +92,9 @@ public class ConsumerController {
     // 커뮤니티 목록
     @GetMapping("/community")
     public String getAllPost(Model model) {
+        String realPath = servletContext.getRealPath("/resources");
+        logger.info("realPath:  "+realPath);
+
         List<Post> posts = consumerService.getAllPost();
         model.addAttribute("postList", posts);
         return "post_list";
@@ -95,7 +107,8 @@ public class ConsumerController {
         model.addAttribute("post", post);
         model.addAttribute("likes", post.countLikes());
         model.addAttribute("comments", post.getComments());
-        return "consumer_postdetail";
+//        return "post_detail";
+        return "consumer_postDetail";
     }
 
 
@@ -108,35 +121,33 @@ public class ConsumerController {
 
     // 글 작성
     @PostMapping("/community/write")
-    public String postUser(@ModelAttribute PostForm post, HttpServletRequest request) throws IOException {
+    public String postUser(@ModelAttribute PostForm post,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                           HttpServletRequest request) throws IOException {
+
         logger.info(post.getContents());
         logger.info(String.valueOf(post.getPhoto()));
 
         UploadFile uploadFile = fileStore.storeFile(post.getPhoto(), request);
 
-        try {
-            HttpSession session = request.getSession();
-            Consumer consumer = (Consumer) session.getAttribute("userInfo");
-        } catch(Exception e) {
-            logger.error("No session");
-        }
-
         Post newPost = Post.builder()
                 .contents(post.getContents())
                 .uploadFile(uploadFile)
+                .consumer(loginConsumer)
                 .postDate(LocalDateTime.now())
                 .build();
 
-        consumerService.save(newPost);
+        consumerService.savePost(newPost);
 
-        return "post_list";
+        return "redirect:/community";
     }
     /**
      * 글 -> 좋아요 누르기
      * **/
     @PostMapping("/community/{id}/likes")
-    public String putLikes(@PathVariable String id) {
-        consumerService.putLikes(Long.valueOf(id));
+    public String putLikes(@PathVariable String id, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
+
+        consumerService.putLikes(Long.valueOf(id), loginConsumer);
         return "redirect:/community/"+id;
     }
 
@@ -146,8 +157,8 @@ public class ConsumerController {
      * **/
     // 댓글 작성
     @PostMapping("/community/{id}/comments/write")
-    public String postComment(@PathVariable String id, @RequestParam String contents) {
-        consumerService.saveComment(id, contents);
+    public String postComment(@PathVariable String id, @RequestParam String contents, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
+        consumerService.saveComment(id, contents, loginConsumer);
         return "redirect:/community/"+id;
     }
 
@@ -267,11 +278,15 @@ public class ConsumerController {
      *  장바구니 페이지
      */
     @GetMapping("/cart")
-    public String cart(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        Long consumerId = Long.valueOf(session.getId());
-        List<Item> cartList = consumerService.findByCart(ItemStatus.CART, consumerId);
-        model.addAttribute("carts", cartList);
+    public String cart(HttpServletRequest request,
+                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                       Model model) {
+        // 로그인 전제로
+
+
+        Cart cart = consumerService.findByCart(loginConsumer);
+        model.addAttribute("cart", cart);
+
         return "consumer_cart";
     }
 
@@ -279,19 +294,14 @@ public class ConsumerController {
      * 장바구니 -> 구매
      * 주문 객체 생성
      * **/
-    @GetMapping("/orders")
-    public String createOrder(@RequestBody List<Item> carts, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Long consumerId = Long.valueOf(session.getId());
 
-        for(Item item : carts) {
-            Long res = orderService.order(consumerId, item.getId(), item.getStockQuantity());
-            System.out.print(res+" ");
-        }
-        // 주문 페이지로 가기
-        return "";
+    @PostMapping("/order")
+    public String createOrder(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer
+                            , HttpServletRequest request) {
+        Long orderId = orderService.orders(loginConsumer);
+        return "sample_order";
     }
-    // 소비자 정보 조회
+    // 소비자 정보 조회`
     //
 
 //        orderService.findCartOrder(consumerId);

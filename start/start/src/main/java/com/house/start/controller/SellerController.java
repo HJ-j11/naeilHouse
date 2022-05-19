@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -48,6 +50,7 @@ public class SellerController {
     /**
      *  상품 등록 완료 후 -> 상품 목록 페이지로
      */
+    @Transactional
     @PostMapping("/seller/item/add")
     public String createItem(@ModelAttribute ItemForm form,
                              @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller,

@@ -1,6 +1,8 @@
 package com.house.start.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Consumer {
 
     @Id @GeneratedValue
@@ -37,6 +40,18 @@ public class Consumer {
     @Column(name = "id")
     private String cId; // 아이디
     private String pwd; // 비밀번호
+    private String photo;
+    
+    /**
+     * 생성 매소드
+     * **/
+    @Builder
+    public Consumer(String cId, String pwd, String name) {
+        this.cId = cId;
+        this.pwd = pwd;
+        this.name = name;
+    }
+    
 //    private String photo;
 
     //==연관관계 편의 메서드==//
@@ -44,4 +59,5 @@ public class Consumer {
         this.uploadFile = uploadFile;
         uploadFile.setConsumer(this);
     }
+
 }

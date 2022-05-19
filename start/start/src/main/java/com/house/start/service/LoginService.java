@@ -19,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class LoginService {
-    private final EntityManager em;
     private final ConsumerRepository consumerRepository;
     private final SellerRepository sellerRepository;
     private final AdminRepository adminRepository;

@@ -1,16 +1,21 @@
 package com.house.start.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Cart {
 
     @Id @GeneratedValue
+    @Column(name = "cart_id")
     private Long id;
 
     @OneToOne
@@ -18,6 +23,16 @@ public class Cart {
     private Consumer consumer;
 
     @OneToMany(mappedBy = "cart")
-    private List<CartItem> cartItems;
+    private List<CartItem> cartItems = new ArrayList<>();
 
+    @Builder
+    public Cart(Consumer consumer) {
+        this.consumer = consumer;
+    }
+
+    // 장바구니에 상품 추가
+    public void addCartItem(CartItem cartItem) {
+        cartItems.add(cartItem);
+        cartItem.setCart(this);
+    }
 }
