@@ -1526,7 +1526,7 @@ body {
     left:0px;
     top:0px;
     width:697px;
-    height:258px;
+    /*height:258px;*/
     background:inherit;
     background-color:rgba(255, 255, 255, 1);
     box-sizing:border-box;
@@ -1544,7 +1544,7 @@ body {
     left:86px;
     top:188px;
     width:697px;
-    height:258px;
+    /*height:258px;*/
     display:flex;
 }
 #u43 .text {
@@ -1939,3 +1939,30 @@ body {
 .form_disabled {
 }
 textarea, select, input, button { outline: none; }
+
+#main_content {
+    position: absolute;
+    top: 100px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:500;
+    font-style:normal;
+    font-size:18px;
+}
+#order_data{
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:500;
+    font-style:normal;
+    font-size:18px;
+    border-bottom: 1px solid #999999;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid #999999;
+    padding: 20px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-style:normal;
+}
