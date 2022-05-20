@@ -264,9 +264,11 @@ public class ConsumerController {
      *  상품 상세 -> 장바구니 담기
      */
     @PostMapping("/consumer/cart/{id}/add")
-    public String addItemToCart(@PathVariable Long id) {
+    public String addItemToCart(@PathVariable Long id,
+                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
 
         // 소비자 정보 조회
+        Long consumerId = loginConsumer.getId();
 
         // 아이템 정보 조회
         Item item = itemService.findItem(id);
@@ -290,6 +292,7 @@ public class ConsumerController {
 
         return "consumer_cart";
     }
+
     /**
      * 장바구니 -> 구매
      * 주문 객체 생성

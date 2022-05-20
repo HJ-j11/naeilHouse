@@ -6,13 +6,12 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <!-- develop -->
-    <link href="/css/admin/show_consumers.css" type="text/css" rel="stylesheet"/>
-    <!-- develop -->
-    <link href="/css/consumer/orderlist.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/admin/show_sellers.css" type="text/css" rel="stylesheet"/>
+    <!--    <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>-->
+    <!--    <link href="http://localhost:8080/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>-->
 
-    <!--axure-->
     <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/consumer_beforePurchase/styles.css" type="text/css" rel="stylesheet"/>
     <script src="/scripts/jquery-3.2.1.min.js"></script>
     <script src="/scripts/axure/axQuery.js"></script>
     <script src="/scripts/axure/globals.js"></script>
@@ -44,170 +43,404 @@
     <script src="/scripts/axure/math.js"></script>
     <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="/javascript/document.js"></script>
-    <script src="/css/admin_default/data.js"></script>
-    <script src="/scripts/axure/ios.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link href="/css/seller/seller.css" type="text/css" rel="stylesheet"/>
-
+    <script src="/javascript/consumer_beforePurchase/data.js"></script>
+    <script type="text/javascript">
+        $axure.utils.getTransparentGifPath = function () {
+            return '/images/transparent.gif';
+        };
+        $axure.utils.getOtherPath = function () {
+            return '/Other.html';
+        };
+        $axure.utils.getReloadPath = function () {
+            return '/reload.html';
+        };
+    </script>
 </head>
 <body>
 <div id="base" class="">
 
-    <!-- Admin_default (Group) -->
-    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440"
+    <!-- Seller_상품목록 (Group) -->
+    <div id="u0" class="ax_default" data-label="Seller_상품목록" data-left="0" data-top="0" data-width="1440"
          data-height="1024">
 
-        <!-- Admin_default BG (Rectangle) -->
-        <div id="u30" class="ax_default shape" data-label="Admin_default BG">
-            <div id="u30_div" class=""></div>
-
-            <div id="u30_text" class="text " style="display:none; visibility: hidden">
+        <!-- Seller_상품목록 BG (Rectangle) -->
+        <div id="u1" class="ax_default shape" data-label="Seller_상품목록 BG">
+            <div id="u1_div" class=""></div>
+            <div id="u1_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
             </div>
         </div>
 
         <!-- Topbar (Group) -->
-        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
+        <div id="u2" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
              data-height="87">
 
+            <!--            &lt;!&ndash; logo (Rectangle) &ndash;&gt;-->
+            <!--            <div id="u3" class="ax_default shape" data-label="logo">-->
+            <!--                <div id="u3_div" class=""></div>-->
+            <!--                <div id="u3_text" class="text " style="display:none; visibility: hidden">-->
+            <!--                    <p></p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
             <!-- logo (Rectangle) -->
-            <div id="u32" class="ax_default shape" data-label="logo">
-                <div id="u32_div" class=""></div>
-                <div id="u32_text" class="text " style="display:none; visibility: hidden">
+            <div id="u001" class="ax_default shape" data-label="logo">
+                <div id="u001_div" class=""></div>
+                <div id="u001_text" class="text " style="display:none; visibility: hidden">
                     <p></p>
                 </div>
             </div>
 
             <!-- 검색 (Group) -->
-            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
+            <div id="u4" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
                  data-height="54">
 
                 <!-- 검색바 (Rectangle) -->
-                <div id="u34" class="ax_default shape" data-label="검색바">
-                    <div id="u34_div" class=""></div>
-                    <div id="u34_text" class="text " style="display:none; visibility: hidden">
+                <div id="u5" class="ax_default shape" data-label="검색바">
+                    <div id="u5_div" class=""></div>
+                    <div id="u5_text" class="text " style="display:none; visibility: hidden">
                         <p></p>
                     </div>
                 </div>
 
-                <!-- 검색창 (Text Field) -->
-                <div id="u35" class="ax_default text_field" data-label="검색창">
-                    <img id="u35_img" class="img " src="/images/main/검색창_u8.svg"/>
-                    <input id="u35_input" type="text" value="" class="u35_input"/>
+                <!-- 검색창 (Rectangle) -->
+                <div id="u6" class="ax_default shape" data-label="검색창">
+                    <div id="u6_div" class=""></div>
+                    <div id="u6_text" class="text ">
+                        <p><span>오늘의집 통합검색</span></p>
+                    </div>
                 </div>
 
                 <!-- search_icon (Group) -->
-                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
+                <div id="u7" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
                      data-height="54">
 
                     <!-- search_icon (Rectangle) -->
-                    <div id="u37" class="ax_default shape" data-label="search_icon">
-                        <div id="u37_div" class=""></div>
-                        <div id="u37_text" class="text " style="display:none; visibility: hidden">
+                    <div id="u8" class="ax_default shape" data-label="search_icon">
+                        <div id="u8_div" class=""></div>
+                        <div id="u8_text" class="text " style="display:none; visibility: hidden">
                             <p></p>
                         </div>
                     </div>
 
                     <!-- icon (Shape) -->
-                    <div id="u38" class="ax_default shape" data-label="icon">
-                        <img id="u38_img" class="img " src="/images/main/icon_u11.svg"/>
-                        <div id="u38_text" class="text " style="display:none; visibility: hidden">
+                    <div id="u9" class="ax_default shape" data-label="icon">
+                        <img id="u9_img" class="img " src="/images/consumer_beforePurchase/icon_u9.svg"/>
+                        <div id="u9_text" class="text " style="display:none; visibility: hidden">
                             <p></p>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <!-- border (Shape) -->
-            <div id="u42" class="ax_default shape" data-label="border">
-                <img id="u42_img" class="img " src="/images/main/border_u14.svg"/>
-                <div id="u42_text" class="text " style="display:none; visibility: hidden">
+            <div id="u13" class="ax_default shape" data-label="border">
+                <img id="u13_img" class="img " src="/images/consumer_beforePurchase/border_u13.svg"/>
+                <div id="u13_text" class="text " style="display:none; visibility: hidden">
                     <p></p>
                 </div>
             </div>
 
-            <div id="main_content" style="top: 150px">
-
-                <div class="container" style="height: 50px">
-                    <div class="row justify-content-center">
-                        <p class="fw-bold text-center">상품 수정하기</p>
-                    </div>
+            <!-- Vector (Shape) -->
+            <div id="u14" class="ax_default shape" data-label="Vector">
+                <img id="u14_img" class="img " src="/images/consumer_beforePurchase/vector_u14.svg"/>
+                <div id="u14_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
                 </div>
-
-                <form th:action="@{/seller/item/{id}/edit (id=${item.id})}" method="post">
-                    <div class="container">
-                        <div class="row justify-content-center" style="width: 720px">
-                            <div class="col-4 text-center">
-                                <img th:src="|/upload/${item.uploadFile.storeFileName}|" class="img-thumbnail" alt="...">
-                            </div>
-                            <div class="col-4 text-center">
-                                <div class="row justify-content-center">
-                                    <p class="fw-bold text-center bg-light">상품명</p>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <!-- <p th:text="${item.name != null} ? ${item.name} : 'null'" class="fw-bold text-center"></p>-->
-                                    <input type="text" th:field="*{item.name}" class="form-control"
-                                           placeholder="상품명을 입력하세요"/>
-                                </div>
-                                <div class="row justify-content-center" style="margin-top: 10px">
-                                    <p class="fw-bold text-center bg-light">가격</p>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <!-- <p th:text="${item.price != null} ? ${item.price} : 'null'" class="fw-bold text-center"></p>-->
-                                    <input type="text" th:field="*{item.price}" class="form-control"
-                                           placeholder="가격을 입력하세요"/>
-                                </div>
-                                <div class="row justify-content-center" style="margin-top: 10px">
-                                    <p class="fw-bold text-center bg-light">상품 정보</p>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <!-- <p th:text="${item.info != null} ? ${item.info} : 'null'" class="fw-bold text-center"></p>-->
-                                    <input type="text" th:field="*{item.info}" class="form-control"
-                                           placeholder="상품 정보를 입력하세요"/>
-                                </div>
-                                <!-- <a href="#" methods="post" class="btn btn-primary" role="button" style="margin-top: 10px">수정하기</a>-->
-                                <!-- <a href="#" th:href="@{/consumer/cart/{id}/add (id=${item.id})}" methods="post" class="btn btn-primary" role="button">수정하기</a>-->
-                                 <button type="submit" class="btn btn-primary" style="margin-top: 10px">수정하기</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
             </div>
         </div>
 
+        <!-- Unnamed (Rectangle) -->
+        <div id="u15" class="ax_default shape">
+            <div id="u15_div" class=""></div>
+            <div id="u15_text" class="text ">
+                <p><span>주문/결제</span></p>
+            </div>
+        </div>
     </div>
 
+    <!-- Group 1 (Group) -->
+    <div id="u16" class="ax_default" data-label="Group 1" data-left="939" data-top="171" data-width="395"
+         data-height="344">
+
+        <!-- Rectangle 3 (Rectangle) -->
+        <div id="u17" class="ax_default shape" data-label="Rectangle 3">
+            <div id="u17_div" class=""></div>
+            <div id="u17_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- - (Rectangle) -->
+        <div id="u18" class="ax_default shape" data-label="-">
+            <div id="u18_div" class=""></div>
+            <div id="u18_text" class="text ">
+                <p><span>-</span></p>
+            </div>
+        </div>
+
+        <!-- + (Rectangle) -->
+        <div id="u19" class="ax_default shape" data-label="+">
+            <div id="u19_div" class=""></div>
+            <div id="u19_text" class="text ">
+                <p><span>+</span></p>
+            </div>
+        </div>
+
+        <!-- 할인 액수 (Rectangle) -->
+        <div id="u20" class="ax_default shape" data-label="할인 액수">
+            <div id="u20_div" class=""></div>
+            <div id="u20_text" class="text ">
+                <p th:text="${item.price != null} ? ${item.price} : 'null'"><span>00000</span></p>
+            </div>
+        </div>
+
+        <!-- 배송비 액수 (Rectangle) -->
+        <div id="u21" class="ax_default shape" data-label="배송비 액수">
+            <div id="u21_div" class=""></div>
+            <div id="u21_text" class="text ">
+                <p><span>00000 </span></p>
+            </div>
+        </div>
+
+        <!-- 배송비 액수 (Rectangle) -->
+        <div id="u22" class="ax_default shape" data-label="배송비 액수">
+            <div id="u22_div" class=""></div>
+            <div id="u22_text" class="text ">
+                <p><span>00000 </span></p>
+            </div>
+        </div>
+
+        <!-- 상품 액수 (Rectangle) -->
+        <div id="u23" class="ax_default shape" data-label="상품 액수">
+            <div id="u23_div" class=""></div>
+            <div id="u23_text" class="text ">
+                <p th:text="${item.price != null} ? ${item.price} : 'null'"><span>00000</span></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u24" class="ax_default shape">
+            <div id="u24_div" class=""></div>
+            <div id="u24_text" class="text ">
+                <p><span>할인 금액</span></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u25" class="ax_default shape">
+            <div id="u25_div" class=""></div>
+            <div id="u25_text" class="text ">
+                <p><span>결제 금액</span></p>
+            </div>
+        </div>
+
+        <!-- 상품 금액 (Rectangle) -->
+        <div id="u26" class="ax_default shape" data-label="상품 금액">
+            <div id="u26_div" class=""></div>
+            <div id="u26_text" class="text ">
+                <p><span>상품 금액</span></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u27" class="ax_default shape">
+            <div id="u27_div" class=""></div>
+            <div id="u27_text" class="text">
+                <p><span>배송비</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- posting_button (Group) -->
+    <div id="u28" class="ax_default" data-label="posting_button" data-left="939" data-top="583" data-width="402"
+         data-height="58">
+
+        <!-- post_box (Rectangle) -->
+        <div id="u29" class="ax_default shape" data-label="post_box">
+            <!--            <form th:action="@{/consumer/item/{id}/purchase (id=${item.id})}" method="post">-->
+            <!--                <button type="submit">-->
+            <div id="u29_div" class=""></div>
+            <!--                </button>-->
+            <!--            </form>-->
+            <div id="u29_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- 구매 하기 (Rectangle) -->
+        <div id="u30" class="ax_default shape" data-label="구매하기">
+            <div id="u30_div" class=""></div>
+            <form th:action="@{/consumer/item/{id}/purchase (id=${item.id})}" method="post">
+                    <div id="u30_text" class="text">
+                        <input type="submit" th:value="구매하기" id="u30_input">
+<!--                        <p><span>구매하기</span></p>-->
+                        <!--                    <button type="submit">구매하기</button>-->
+                        <!--                    <p><span>구매하기</span></p>-->
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Group 4 (Group) -->
+    <div id="u31" class="ax_default" data-label="Group 4" data-left="83" data-top="250" data-width="697"
+         data-height="120">
+
+        <!-- Group 3 (Group) -->
+        <div id="u32" class="ax_default" data-label="Group 3" data-left="83" data-top="250" data-width="697"
+             data-height="120">
+
+            <!-- Rectangle 2 (Rectangle) -->
+            <div id="u33" class="ax_default shape" data-label="Rectangle 2">
+                <div id="u33_div" class=""></div>
+                <div id="u33_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u34" class="ax_default shape">
+            <div id="u34_div" class=""></div>
+            <div id="u34_text" class="text ">
+                <p><span>서울특별시 00시 00구 00동</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u35" class="ax_default shape">
+        <div id="u35_div" class=""></div>
+        <div id="u35_text" class="text ">
+            <p><span>배송지</span></p>
+        </div>
+    </div>
+
+    <!-- Group 6 (Group) -->
+    <div id="u36" class="ax_default" data-label="Group 6" data-left="83" data-top="390" data-width="697"
+         data-height="120">
+
+        <!-- Group 3 (Group) -->
+        <div id="u37" class="ax_default" data-label="Group 3" data-left="83" data-top="390" data-width="697"
+             data-height="120">
+
+            <!-- Rectangle 2 (Rectangle) -->
+            <div id="u38" class="ax_default shape" data-label="Rectangle 2">
+                <div id="u38_div" class=""></div>
+                <div id="u38_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u39" class="ax_default shape">
+            <div id="u39_div" class=""></div>
+            <div id="u39_text" class="text ">
+                <p th:text="${consumer.name != null} ? ${consumer.name} : 'null'"><span>아무개</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u40" class="ax_default shape">
+        <div id="u40_div" class=""></div>
+        <div id="u40_text" class="text ">
+            <p><span>주문자</span></p>
+        </div>
+    </div>
+
+    <!-- Group 7 (Group) -->
+    <div id="u41" class="ax_default" data-label="Group 7" data-left="83" data-top="530" data-width="697"
+         data-height="243">
+
+        <!-- Group 3 (Group) -->
+        <div id="u42" class="ax_default" data-label="Group 3" data-left="83" data-top="530" data-width="697"
+             data-height="243">
+
+            <!-- Rectangle 2 (Rectangle) -->
+            <div id="u43" class="ax_default shape" data-label="Rectangle 2">
+                <div id="u43_div" class=""></div>
+                <div id="u43_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u44" class="ax_default shape">
+            <div id="u44_div" class=""></div>
+            <div id="u44_text" class="text ">
+                <p><span>주문상품</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u45" class="ax_default shape">
+        <div id="u45_div" class=""></div>
+        <div id="u45_text" class="text ">
+            <p><span>상품명</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u46" class="ax_default shape">
+        <div id="u46_div" class=""></div>
+        <div id="u46_text" class="text ">
+            <p th:text="${item.name}"><span>아무거나</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u47" class="ax_default shape">
+        <div id="u47_div" class=""></div>
+        <div id="u47_text" class="text ">
+            <p><span>가격</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u48" class="ax_default shape">
+        <div id="u48_div" class=""></div>
+        <div id="u48_text" class="text ">
+            <p th:text="${item.price}"><span>100000원</span></p>
+        </div>
+    </div>
+
+    <!-- Rectangle 7 (Shape) -->
+    <div id="u49" class="ax_default shape" data-label="Rectangle 7">
+        <img id="u49_img" class="img " th:src="|/upload/${item.uploadFile.storeFileName}|"
+             src="/images/consumer_beforePurchase/rectangle_7_u49.svg"/>
+        <div id="u49_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
 </div>
-
-<!-- 네비게이션바 dropdown, dropdown-menu, dropdown-content-->
-<!--<ul id="ul_dropdown">
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">스토어</div>
-        <div class="dropdown-content-sj">
+<!-- 네비게이션바 -->
+<ul id="ul_dropdown">
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">스토어</div>
+        <div class="dropdown-content">
             <a href="#">회원 관리</a>
             <a href="#">주문 관리</a>
             <a href="#">게시판 관리</a>
         </div>
     </li>
 
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">커뮤니티</div>
-        <div class="dropdown-content-sj">
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">커뮤니티</div>
+        <div class="dropdown-content">
             <a href="#">회원 관리</a>
             <a href="#">주문 관리</a>
             <a href="#">게시판 관리</a>
         </div>
     </li>
 
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">관리자 페이지</div>
-        <div class="dropdown-content-sj">
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">관리자 페이지</div>
+        <div class="dropdown-content">
             <a href="/admin/consumers">회원 관리</a>
             <a href="/admin/sellers">판매자 관리</a>
             <a href="/admin/orders">주문 관리</a>
@@ -215,7 +448,10 @@
             <a href="/admin/posts">커뮤니티 관리</a>
         </div>
     </li>
-</ul>-->
+</ul>
+
+<script src="/scripts/axure/ios.js"></script>
+
 
 </body>
 </html>

@@ -1,0 +1,235 @@
+div {
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+#reviewSaveModal {
+    display: none;
+    position: absolute;
+    font-family: "Gothic A1 ", "Gothic A1", sans-serif;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.review-modal {
+    position: relative;
+    width: 680px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #292929;
+    padding: 40px 40px 0;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.review-modal__title {
+    line-height: 1.35;
+    font-weight: 700;
+    text-align: center;
+    font-size: 20px;
+    display: block;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.review-modal__form__product {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    margin: 20px 0 30px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.review-modal__section {
+    position: relative;
+    margin-bottom: 32px;
+    width: 100%;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.review-modal__section__title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.form-control {
+    transition: border-color .2s,box-shadow .2s,background-color .2s;
+    display: block;
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    padding: 0 15px;
+    line-height: 40px;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #424242;
+    font-size: 12px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.review-modal__form__review-input.form-control {
+    padding-bottom: 25px;
+    min-height: 110px;
+    font-size: 15px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+textarea.form-control {
+    resize: none;
+    line-height: 20px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+textarea {
+    writing-mode: horizontal-tb !important;
+    font-family: monospace;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    resize: auto;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    column-count: initial !important;
+    margin: 0em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding: 2px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+button {
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    margin: 0em;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.button {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    background: none;
+    font-family: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: color .1s,background-color .1s,border-color .1s;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}
+
+.button--color-blue {
+    background-color: #35c5f0;
+    border-color: #35c5f0;
+    color: #fff;
+}
+
+.button--size-50 {
+    padding: 11px 10px;
+    font-size: 17px;
+    line-height: 26px;
+}
+
+.review-modal__form__submit {
+    width: 100%;
+    height: 45px;
+    padding: 0;
+    line-height: 43px;
+    margin-bottom: 32px;
+}
+
+.review-modal__close {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+#reviewSaveModal .modal_layer {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0, 0, 0, 0.5);
+  z-index:-1;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+}

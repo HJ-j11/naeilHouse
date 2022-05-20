@@ -20,6 +20,9 @@ public class UploadFile {
     @OneToOne(mappedBy = "uploadFile")
     private Post post;
 
+    @OneToOne(mappedBy = "uploadFile")
+    private Consumer consumer;
+
     private String uploadFileName;
     private String storeFileName;
 

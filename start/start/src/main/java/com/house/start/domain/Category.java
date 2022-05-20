@@ -1,7 +1,9 @@
 package com.house.start.domain;
 
 
+
 import lombok.Builder;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Category {
 
-    @Id
+    @Id @GeneratedValue
     @Column(name="category_id")
     private long id;
 

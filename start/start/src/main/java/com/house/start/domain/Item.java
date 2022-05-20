@@ -53,7 +53,6 @@ public class Item {
 
     //==연관관계 편의 메서드==//
 
-
     public void setSeller(Seller seller) {
         this.seller = seller;
         seller.getItems().add(this);

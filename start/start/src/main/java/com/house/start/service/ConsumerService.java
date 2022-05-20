@@ -105,7 +105,6 @@ public class ConsumerService {
 
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);
-
         deliveryRepository.save(delivery);
 
     }
