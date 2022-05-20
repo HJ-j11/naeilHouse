@@ -22,7 +22,7 @@ public class Cart {
     @JoinColumn(name = "consumer_id")
     private Consumer consumer;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartItems = new ArrayList<>();
 
     @Builder

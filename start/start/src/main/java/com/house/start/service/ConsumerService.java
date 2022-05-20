@@ -72,11 +72,15 @@ public class ConsumerService {
                 .build();
 
         cart.addCartItem(cartItem);
-        System.out.println("cartItem id: " + cartItem.getId());
+
         cartRepository.save(cart);
 
-        return cartItem.getId();
+//        System.out.print("cartItem id: ");
+//        cart.getCartItems().forEach(cartItem1 -> System.out.print(cartItem1.getId()+","));
+        List<CartItem> cartItems = cart.getCartItems();
 
+        Long cartId = cartItems.get(cartItems.size()-1).getId();
+        return cartId;
     }
 
     // 마이페이지

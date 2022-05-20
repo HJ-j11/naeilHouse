@@ -50,6 +50,10 @@ public class OrderService {
         return order.getId();
     }
 
+    public List<Order> findOrderByConsumer (Consumer consumer) {
+        return orderRepository.findByConsumer(consumer);
+    }
+
     // 장바구니에 있는 상품 구매
     @Transactional
     public Long orders(Consumer consumer) {
@@ -72,9 +76,9 @@ public class OrderService {
         return order.getId();
     }
 
-    public List<Order> findCartOrder(Consumer consumer) {
-        return orderRepository.findByConsumer(consumer);
-    } // 나중에 이름 바꾸기
+//    public List<Order> findCartOrder(Consumer consumer) {
+//        return orderRepository.findByConsumer(consumer);
+//    } // 나중에 이름 바꾸기
 
     public List<Order> findOrders() {
         return orderRepository.findAll();

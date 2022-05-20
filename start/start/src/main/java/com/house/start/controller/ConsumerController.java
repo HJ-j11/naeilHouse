@@ -62,7 +62,7 @@ public class ConsumerController {
 
     // 장바구니 담기
     @PostMapping("/item/{id}/cart")
-    public void addItemToCart(@PathVariable Long id,
+    public String addItemToCart(@PathVariable Long id,
                                 @RequestBody HashMap<String, Object> map,
                                 @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                                 HttpServletRequest request) {
@@ -71,11 +71,9 @@ public class ConsumerController {
         Item item = itemService.findItem(id);
         Cart cart = consumerService.findByCart(loginConsumer);
 
-        Long cartItemId = consumerService.addItemToCart(item, cart, count);
-
-        System.out.println("cartItemId after:  "+cartItemId);
-
-
+        Long cartId = consumerService.addItemToCart(item, cart, count);
+        System.out.println("cartId :"+cartId);
+        return "redirect:/list";
     }
 
 
