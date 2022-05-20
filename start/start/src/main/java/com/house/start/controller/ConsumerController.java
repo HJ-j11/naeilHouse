@@ -62,15 +62,20 @@ public class ConsumerController {
 
     // 장바구니 담기
     @PostMapping("/item/{id}/cart")
-    public CartItem addItemToCart(@PathVariable Long id,
-                                @RequestBody String cnt,
+    public void addItemToCart(@PathVariable Long id,
+                                @RequestBody HashMap<String, Object> map,
                                 @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                                 HttpServletRequest request) {
-        int count = Integer.parseInt(cnt);
+
+        int count = Integer.parseInt(map.get("cnt").toString());
         Item item = itemService.findItem(id);
         Cart cart = consumerService.findByCart(loginConsumer);
 
-        return consumerService.addItemToCart(item, cart, count);
+        Long cartItemId = consumerService.addItemToCart(item, cart, count);
+
+        System.out.println("cartItemId after:  "+cartItemId);
+
+
     }
 
 
@@ -280,8 +285,6 @@ public class ConsumerController {
                        @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                        Model model) {
         // 로그인 전제로
-
-
         Cart cart = consumerService.findByCart(loginConsumer);
         model.addAttribute("cart", cart);
 

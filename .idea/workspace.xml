@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/tmp_itemInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/JoinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/JoinService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -340,7 +339,10 @@
       <workItem from="1652801468169" duration="3305000" />
       <workItem from="1652834883851" duration="6000" />
       <workItem from="1652846230293" duration="11767000" />
-      <workItem from="1652872985175" duration="450000" />
+      <workItem from="1652872985175" duration="3728000" />
+      <workItem from="1652921359493" duration="996000" />
+      <workItem from="1652922612385" duration="205000" />
+      <workItem from="1653027462775" duration="470000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -559,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652849790922</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="장바구니 상품 구매&#10;- 비즈니스 로직 Controller -&gt; Service 이전&#10;- 상품 장바구니 담기 : @RequestBody 부분 변경&#10;- 주문 객체 생성 @PostMapping 으로 간소화">
+      <created>1652873559821</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1652873559821</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +601,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Post @Bulider 적용" />
     <MESSAGE value="장바구니 담기 기능 추가" />
     <MESSAGE value="@Builder 변경&#10;@NoArgsConstructor 추가" />
     <MESSAGE value="Post 게시판 상세 조회 html 연동&#10;(thymeleaf if-else 고민)" />
@@ -617,6 +625,7 @@
     <MESSAGE value="상품 장바구니 담기&#10;- CartItem add 메소드 추가&#10;- 장바구니 상품 추가 및 담기 기능 테스트 코드 작성" />
     <MESSAGE value="상품 장바구니 담기&#10;- CartItem add 메소드 수정(CartItem과 Cart 연관되게)&#10;- 장바구니 상품 추가 및 담기 기능 테스트 코드 작성" />
     <MESSAGE value="장바구니 구매&#10;- createOrders 임시 메소드 추가 (코드 간소화 필요)&#10;- 장바구니 여러개 상품 구매 테스트코드 작성" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니 구매&#10;- createOrders 임시 메소드 추가 (코드 간소화 필요)&#10;- 장바구니 여러개 상품 구매 테스트코드 작성" />
+    <MESSAGE value="장바구니 상품 구매&#10;- 비즈니스 로직 Controller -&gt; Service 이전&#10;- 상품 장바구니 담기 : @RequestBody 부분 변경&#10;- 주문 객체 생성 @PostMapping 으로 간소화" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니 상품 구매&#10;- 비즈니스 로직 Controller -&gt; Service 이전&#10;- 상품 장바구니 담기 : @RequestBody 부분 변경&#10;- 주문 객체 생성 @PostMapping 으로 간소화" />
   </component>
 </project>

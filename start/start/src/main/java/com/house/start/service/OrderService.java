@@ -50,7 +50,10 @@ public class OrderService {
         return order.getId();
     }
 
-    // 장바구니에 있는 상품 구매
+    /**
+     * 장바구니 상품 주문
+     * **/
+
     @Transactional
     public Long orders(Consumer consumer) {
         Cart cart = cartRepository.findByConsumer(consumer);

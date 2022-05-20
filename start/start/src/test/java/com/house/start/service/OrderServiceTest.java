@@ -84,7 +84,8 @@ public class OrderServiceTest {
 
         //When
         int count = 2;
-        CartItem cartItem = consumerService.addItemToCart(itm, cart, 2);
+        Long cartItemId = consumerService.addItemToCart(itm, cart, 2);
+        CartItem cartItem = cartRepository.getById(cartItemId).getCartItems().get(0);
         //Then
         assertEquals("상품이 생겼는지", itm.getId(), cartItem.getItem().getId());
     }

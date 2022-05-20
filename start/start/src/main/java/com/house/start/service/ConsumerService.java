@@ -33,7 +33,7 @@ public class ConsumerService {
 
     /**
      * 상품
-     * **/
+     **/
 
 
     // 물건 정렬
@@ -41,11 +41,13 @@ public class ConsumerService {
         List<Item> items = itemRepository.findAll();
         return items;
     }
+
     // 카테고리 별 물건 정렬
     public List<Item> getAllByCategory(Long id) {
         List<Item> items = itemRepository.findByCategory(id);
         return items;
     }
+
     // 물건 상세
     public Item getOneItem(Long id) {
         Item item = itemRepository.getById(id);
@@ -59,17 +61,21 @@ public class ConsumerService {
     }
 
     // 장바구니 담기
-    public CartItem addItemToCart(Item item, Cart cart, int count) {
+    @Transactional
+    public Long addItemToCart(Item item, Cart cart, int count) {
+        System.out.println("cart id :  " + cart.getId());
 
         CartItem cartItem = CartItem.builder()
-                        .item(item)
-                        .cart(cart)
-                        .count(count).build();
-        cart.addCartItem(cartItem);
+                .cart(cart)
+                .item(item)
+                .count(count)
+                .build();
 
+        cart.addCartItem(cartItem);
+        System.out.println("cartItem id: " + cartItem.getId());
         cartRepository.save(cart);
 
-        return cartItem;
+        return cartItem.getId();
 
     }
 
@@ -106,13 +112,14 @@ public class ConsumerService {
 
     /**
      * 커뮤니티
-     * **/
-    
+     **/
+
     // 글 목록
     public List<Post> getAllPost() {
         List<Post> posts = postRepository.findAll();
         return posts;
     }
+
     // 글 조회
     public Post getOnePost(Long id) {
         Post post = postRepository.getById(id);
@@ -131,7 +138,7 @@ public class ConsumerService {
 
         likeRepository.save(like);
     }
-    
+
     // 글 작성
     @Transactional
     public void savePost(Post post) {
@@ -140,8 +147,8 @@ public class ConsumerService {
 
     /**
      * 댓글
-     * **/
-    
+     **/
+
     // 댓글 등록
     @Transactional
     public void saveComment(String id, String contents, Consumer consumer) {
@@ -153,7 +160,7 @@ public class ConsumerService {
                 .build();
         commentRepository.save(comment);
     }
-    
+
     // 댓글 수정
     @Transactional
     public void updateComment(Long id, String content) {
@@ -170,6 +177,7 @@ public class ConsumerService {
         Comment comment = commentRepository.getById(id);
         commentRepository.delete(comment);
     }
+
     /*
      * 소비자 전체 목록 조회
      */

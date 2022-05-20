@@ -53,10 +53,6 @@ public class JoinController {
         // 포인트 초기화
         consumer.setPoint(500000);
 
-        Cart cart = Cart.builder()
-                        .consumer(consumer)
-                        .build();
-
         joinService.joinConsumer(consumer);
 
         return "redirect:/";
