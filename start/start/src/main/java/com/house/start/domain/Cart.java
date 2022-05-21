@@ -35,4 +35,14 @@ public class Cart {
         cartItems.add(cartItem);
         cartItem.setCart(this);
     }
+
+    // 전체 가격 메소드
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (CartItem cartItem:
+             cartItems) {
+            totalPrice += cartItem.getItem().getPrice() * cartItem.getCount();
+        }
+        return totalPrice;
+    }
 }
