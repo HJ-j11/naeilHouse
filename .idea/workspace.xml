@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/CartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_newPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_newPost.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_postDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_postDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/item_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/post_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/tmp_itemInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/tmp_itemInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_newPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_newPost.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_postDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_postDetail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,9 +49,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="HTML File" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -351,7 +349,7 @@
       <workItem from="1653042232505" duration="405000" />
       <workItem from="1653047700226" duration="779000" />
       <workItem from="1653052653363" duration="13000" />
-      <workItem from="1653123237292" duration="2698000" />
+      <workItem from="1653123237292" duration="11993000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -591,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653038872456</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="소비자 화면 및 장바구니&#10;- 폴더 경로 변경에 따른 리턴 페이지 변경&#10;- 장바구니 getTotalPrice() 메소드 추가 : 기능 - 장바구니에 담긴 상품 금액 총합&#10;- LoginController에서 cart 회원만 접근하게끔 임시로 변경">
+      <created>1653126103896</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1653126103896</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -624,7 +629,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Post 게시판 상세 조회 html 연동&#10;(thymeleaf if-else 고민)" />
     <MESSAGE value="Post 글 상세 페이지 좋아요 수 카운트 고민&#10;좋아요 생성하는 fetch() 자바스크립트 작성" />
     <MESSAGE value="댓글 기능 추가&#10;- 댓글 수(후에 fetch join으로)&#10;- 댓글 등록" />
     <MESSAGE value="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌." />
@@ -649,6 +653,7 @@
     <MESSAGE value="장바구니 상품 구매&#10;- 비즈니스 로직 Controller -&gt; Service 이전&#10;- 상품 장바구니 담기 : @RequestBody 부분 변경&#10;- 주문 객체 생성 @PostMapping 으로 간소화" />
     <MESSAGE value="장바구니 상품 담기&#10;- cascade 반영" />
     <MESSAGE value="장바구니에서 구매&#10;- Order 빌더 패턴 추가 및 적용&#10;- 장바구니 페이지 Thymeleaf 연동" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니에서 구매&#10;- Order 빌더 패턴 추가 및 적용&#10;- 장바구니 페이지 Thymeleaf 연동" />
+    <MESSAGE value="소비자 화면 및 장바구니&#10;- 폴더 경로 변경에 따른 리턴 페이지 변경&#10;- 장바구니 getTotalPrice() 메소드 추가 : 기능 - 장바구니에 담긴 상품 금액 총합&#10;- LoginController에서 cart 회원만 접근하게끔 임시로 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="소비자 화면 및 장바구니&#10;- 폴더 경로 변경에 따른 리턴 페이지 변경&#10;- 장바구니 getTotalPrice() 메소드 추가 : 기능 - 장바구니에 담긴 상품 금액 총합&#10;- LoginController에서 cart 회원만 접근하게끔 임시로 변경" />
   </component>
 </project>

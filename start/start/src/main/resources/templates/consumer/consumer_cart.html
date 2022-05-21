@@ -449,7 +449,7 @@
         <div id="u40" class="ax_default shape" data-label="구매 하기">
             <div id="u40_div" class=""></div>
             <div id="u40_text" class="text ">
-                <p><span th:attr="onclick=|goOrder('${cartItem.cartId}')|">구매 하기</span></p>
+                <p><span onclick="goOrder()">구매 하기</span></p>
             </div>
         </div>
     </div>
@@ -569,12 +569,9 @@
 </div>
 <script src="/scripts/axure/ios.js"></script>
 <script>
-    function goOrder(cartId) {
-        var url = "/cart/"+cartId+"/order";
-
-        fetch(url)
-            .then((response) => response.json())
-            .then(alert("주문으로 이동합니다"));
+    function goOrder() {
+        alert("주문으로 이동합니다.");
+        location.href = "/order";
 
     }
 </script>

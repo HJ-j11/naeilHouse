@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <link href="/css/consumer/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="/data/styles.css" type="text/css" rel="stylesheet"/>
+<!--    <link href="/data/styles.css" type="text/css" rel="stylesheet"/>-->
     <link href="/css/consumer_postdetail/styles.css" type="text/css" rel="stylesheet"/>
     <script src="/scripts/jquery-3.2.1.min.js"></script>
     <script src="/scripts/axure/axQuery.js"></script>
@@ -186,14 +186,58 @@
         <!-- Rectangle 3 (Rectangle) -->
         <div id="u59" class="ax_default shape" data-label="Rectangle 3">
           <div id="u59_div" class="">
-            <div>
-              <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>
-            </div>
-            <div>
+            <!-- HEART -->
+<!--            <div id="a32" class="ax_default" data-label="HEART">-->
+<!--              <div id="a32_state0" class="panel_state" data-label="State1" style="">-->
+                <div id="a32_state0_content" class="panel_state_content">
+
+                  <!-- HEART (Shape) -->
+                  <div id="a33" class="ax_default shape" data-label="HEART">
+                    <img id="a33_img" class="img " src="/images/page_1/heart_u33.svg" th:attr="onclick=|putLikes('${post.id}')|"/>
+                    <div id="a33_text" class="text " style="display:none; visibility: hidden">
+                      <p></p>
+                    </div>
+                  </div>
+
+                  <!-- FILL (Group) -->
+                  <div id="a34" class="ax_default" data-label="FILL" data-left="-10" data-top="0"
+                       data-width="75" data-height="141">
+
+                    <!-- HEART (Group) -->
+                    <div id="a35" class="ax_default" data-label="HEART" data-left="-10" data-top="0"
+                         data-width="75" data-height="141">
+
+                      <!-- HEART (Shape) -->
+                      <div id="a36" class="ax_default shape" data-label="HEART">
+                        <img id="a36_img" class="img "
+                             src="/images/page_1/heart_u36.svg" />
+                        <div id="a36_text" class="text " style="display:none; visibility: hidden">
+                          <p></p>
+                        </div>
+                      </div>
+
+                      <!-- Vector 1 (Shape) -->
+<!--                      <div id="a37" class="ax_default shape" data-label="Vector 1">-->
+<!--                        <img id="a37_img" class="img "-->
+<!--                             src="http://localhost:8080/images/page_1/vector_1_u37.svg"/>-->
+<!--                        <div id="a37_text" class="text " style="display:none; visibility: hidden">-->
+<!--                          <p></p>-->
+<!--                        </div>-->
+<!--                      </div>-->
+                    </div>
+                  </div>
+                </div>
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>-->
+<!--            </div>-->
+            <div class="ax_default" style="position: absolute; top: 160px; left: 70px;">
               <span th:text="${likes}"></span>
             </div>
-            <div>
-              <span th:text="${comments.size()}"></span>
+            <div class="ax_default" style="position: absolute; top: 270px; left: 45px;">
+              <div>댓글 수</div>
+              <div style="top: 50px;left: 24px;position: absolute;"><span th:text="${comments.size()}">0</span></div>
             </div>
           </div>
           <div id="u59_text" class="text " style="display:none; visibility: hidden">
@@ -227,7 +271,7 @@
             <div id="u64" class="ax_default shape" data-label="글쓰기">
               <div id="u64_div" class=""></div>
               <div id="u64_text" class="text " style="text-align:center">
-                <p><span>댓글 작성</span></p>
+                <p><span id="commentBtn">댓글 작성</span></p>
 <!--                <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>-->
               </div>
             </div>
@@ -244,9 +288,27 @@
           <!-- writeComment (Text Field) -->
           <div id="u66" class="ax_default text_field" data-label="writeComment">
             <div id="u66_div" class=""></div>
-            <input id="u66_input" type="text" class="u66_input" name="contents"/>
+            <input id="u66_input" type="text" class="u66_input" name="contents" placeholder="댓글을 작성해주세요."/>
           </div>
           </form>
+        </div>
+
+        <!-- Unnamed (Repeater) -->
+        <div id="u31" class="ax_default">
+          <div th:each="comment : ${comments}">
+            <div style="border: 1px solid black;">
+              <div id="originForm">
+                <p>이름 :<span th:text="${comment.consumer.name}"></span></p>
+                <p>내용 :<span th:text="${comment.content}"></span></p>
+              </div>
+              <div id="modifyForm" style="display: none">
+                <input type="text" name="content" th:value="${comment.content}"/>
+                <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>
+              </div>
+              <div></div>
+              <span><button th:attr="onclick=|modifyComment()|">댓글 수정</button> <button th:attr="onclick=|deleteComment('${comment.id}')|">댓글 삭제</button></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -286,6 +348,19 @@
     </ul>
   </body>
 <script>
+  var commentBtn = document.getElementById("commentBtn");
+  commentBtn.addEventListener("click", function() {
+    var form = document.commentForm;
+    console.log(form.contents.value);
+    if(form.contents.value=="") {
+      alert("댓글을 작성해주세요.");
+      return false;
+    } else {
+      document.forms[0].submit();
+      alert("댓글을 작성했습니다.");
+    }
+  })
+
   function putLikes(id) {
     let putUrl = "/community/"+id+"/likes";
 
@@ -303,7 +378,8 @@
             .then((response) => response.json())
             .then(
                     alert("좋아요를 눌렀습니다.")
-            );
+            )
+            .then(location.reload());
     // console에 데이터 잘 넘어갔는지 확인 필요.
   }
 

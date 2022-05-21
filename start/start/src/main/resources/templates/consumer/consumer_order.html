@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <p>총 금액: <span th:text="${totalPrice}"></span></p>
+        <p>소비자 이름 : <span th:text="${consumer.name}"></span></p>
+        <p>보유 포인트 : <span th:text="${consumer.point}"></span></p>
+        <table>
+            <thead>
+            <tr>
+                <th>이미지</th>
+                <th>이름</th>
+                <th>갯수</th>
+                <th>총 가격</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartItem: ${items}">
+                <td>
+                    <img th:src="|/upload/${cartItem.getItem().uploadFile.storeFileName}|" width="40" height="40">
+                </td>
+                <td>
+                    <a th:href="'/list/item/'+${cartItem.getItem().id}">
+                        <span th:text="${cartItem.getItem().name}"></span>
+                    </a>
+                </td>
+                <td th:text="${cartItem.count}"></td>
+                <td th:text="${cartItem.getItem().price}*${cartItem.count}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <input type="button" value="구매 하기" onclick="makeOrder()">
+</body>
+<script>
+    function makeOrder() {
+        fetch("/order", {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+        })
+            .then((response) => response.json())
+            .then(
+                alert("Order Completed!")
+            )
+    }
+</script>
+</html>

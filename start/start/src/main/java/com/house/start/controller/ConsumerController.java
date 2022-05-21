@@ -289,6 +289,7 @@ public class ConsumerController {
         // 로그인 전제로
         Cart cart = consumerService.findByCart(loginConsumer);
         int totalPrice = cart.getTotalPrice();
+        model.addAttribute("cartId", cart.getId());
         model.addAttribute("cartItems", cart.getCartItems());
         model.addAttribute("totalPrice", totalPrice);
         return "consumer/consumer_cart";
@@ -312,16 +313,16 @@ public class ConsumerController {
         model.addAttribute("items", cart.getCartItems());
         model.addAttribute("totalPrice", cart.getTotalPrice());
         model.addAttribute("consumer", loginConsumer);
-        return "consumer_order";
+        return "consumer/consumer_order";
 //        return "consumer_beforePurchase";
     }
 
     @PostMapping("/order")
-    public String afterOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer
-                            ) {
+    public String afterOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
         Long orderId = orderService.orders(loginConsumer);
         System.out.println("new OrderId : "+orderId+" created!");
-        return "consumer_afterPurchase";
+        return "consumer/item_list";
+//        return "consumer_afterPurchase";
     }
 
     // 소비자 정보 조회`
