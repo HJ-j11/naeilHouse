@@ -45,4 +45,8 @@ public class Cart {
         }
         return totalPrice;
     }
+
+    public void removeCartItem() {
+        cartItems.clear();
+    }
 }

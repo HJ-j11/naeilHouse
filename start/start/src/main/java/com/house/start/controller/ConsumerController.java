@@ -318,9 +318,12 @@ public class ConsumerController {
     }
 
     @PostMapping("/order")
-    public String afterOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
+    public String afterOrderItems( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
         Long orderId = orderService.orders(loginConsumer);
         System.out.println("new OrderId : "+orderId+" created!");
+        // 주문을 생성한 후 장바구니에 있는 상품 비우기.
+        Cart cart = consumerService.findByCart(loginConsumer);
+        cart.removeCartItem();
         return "consumer/item_list";
 //        return "consumer_afterPurchase";
     }
