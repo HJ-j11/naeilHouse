@@ -47,6 +47,8 @@
 #### 소비자
 |Function|URL|Method|Description|
 |--------|---|------|-----------------------|
+|[바로 구매]|/consumer/item/{id}/purchase|GET|상품 상세 페이지에서 바로 구매 버튼을 누르면 결제 준비 페이지로 이동|
+|[결제하기]|/consumer/item/{id}/purchase|POST|결제 준비 페이지에서 결제하기 버튼을 누르면 결제 완료 후 결제 완료 페이지로 이동|
 |[커뮤니티]|/community|GET|소비자가 작성하는 글 게시판 이동|
 |[커뮤니티]|/community/{id}|GET|게시글 상세 페이지 이동|
 |[커뮤니티]|/community/new|GET|새로운 글 작성 페이지 이동|
@@ -61,6 +63,15 @@
 |[마이페이지/리뷰생성]|/user/{consumer_id}/orders/{orderitem_id}|POST|주문한 상품에 대해서 리뷰 생성|
 |[마이페이지/리뷰내역]|/user/{consumer_id}/reviews|GET|소비자의 리뷰 내역을 확인할 수 있는 페이지로 이동|
 |[마이페이지/좋아요내역]|/user/{consumer_id}/likes|GET|소비자의 좋아요 내역을 확인할 수 있는 페이지로 이동|
+
+#### 판매자
+|Function|URL|Method|Description|
+|--------|---|------|-----------------------|
+|[판매자 상품 목록]|/seller/item/list|GET|판매자가 등록한 상품 목록 페이지로 이동|
+|[상품 등록 폼]|/seller/item/add|GET|상품을 등록할 수 있는 페이지로 이동|
+|[상품 등록]|/seller/item/add|POST|상품 등록 후 판매자 상품 목록 페이지로 이동|
+|[상품 수정 폼]|/seller/item/edit|GET|상품을 수정할 수 있는 페이지로 이동|
+|[상품 수정]|/seller/item/edit|POST|상품 수정 후 판매자 상품 목록 페이지로 이동|
 
 #### 관리자
 |Function|URL|Method|Description|
