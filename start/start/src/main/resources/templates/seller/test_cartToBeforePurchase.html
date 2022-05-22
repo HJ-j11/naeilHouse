@@ -7,8 +7,6 @@
 
     <!-- develop -->
     <link href="http://localhost:8080/css/admin/show_sellers.css" type="text/css" rel="stylesheet"/>
-    <!--    <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>-->
-    <!--    <link href="http://localhost:8080/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>-->
 
     <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href="/css/consumer_beforePurchase/styles.css" type="text/css" rel="stylesheet"/>
@@ -75,14 +73,6 @@
         <!-- Topbar (Group) -->
         <div id="u2" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
              data-height="87">
-
-            <!--            &lt;!&ndash; logo (Rectangle) &ndash;&gt;-->
-            <!--            <div id="u3" class="ax_default shape" data-label="logo">-->
-            <!--                <div id="u3_div" class=""></div>-->
-            <!--                <div id="u3_text" class="text " style="display:none; visibility: hidden">-->
-            <!--                    <p></p>-->
-            <!--                </div>-->
-            <!--            </div>-->
 
             <!-- logo (Rectangle) -->
             <div id="u001" class="ax_default shape" data-label="logo">
@@ -192,7 +182,7 @@
         <div id="u20" class="ax_default shape" data-label="할인 액수">
             <div id="u20_div" class=""></div>
             <div id="u20_text" class="text ">
-                <p th:text="${item.price != null} ? ${item.price} : 'null'"><span>00000</span></p>
+                <p th:text="${totalPrice != null} ? ${totalPrice} : 'null'"><span>00000</span></p>
             </div>
         </div>
 
@@ -216,7 +206,7 @@
         <div id="u23" class="ax_default shape" data-label="상품 액수">
             <div id="u23_div" class=""></div>
             <div id="u23_text" class="text ">
-                <p th:text="${item.price != null} ? ${item.price} : 'null'"><span>00000</span></p>
+                <p th:text="${totalPrice != null} ? ${totalPrice} : 'null'"><span>00000</span></p>
             </div>
         </div>
 
@@ -259,11 +249,7 @@
 
         <!-- post_box (Rectangle) -->
         <div id="u29" class="ax_default shape" data-label="post_box">
-            <!--            <form th:action="@{/consumer/item/{id}/purchase (id=${item.id})}" method="post">-->
-            <!--                <button type="submit">-->
             <div id="u29_div" class=""></div>
-            <!--                </button>-->
-            <!--            </form>-->
             <div id="u29_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
             </div>
@@ -272,13 +258,10 @@
         <!-- 구매 하기 (Rectangle) -->
         <div id="u30" class="ax_default shape" data-label="구매하기">
             <div id="u30_div" class=""></div>
-            <form th:action="@{/consumer/item/{id}/purchase (id=${item.id})}" method="post">
-                    <div id="u30_text" class="text">
-                        <input type="submit" th:value="구매하기" id="u30_input">
-<!--                        <p><span>구매하기</span></p>-->
-                        <!--                    <button type="submit">구매하기</button>-->
-                        <!--                    <p><span>구매하기</span></p>-->
-                    </div>
+            <form method="post">
+                <div id="u30_text" class="text">
+                    <input type="submit" th:value="구매하기" id="u30_input" style="cursor: pointer">
+                </div>
             </form>
         </div>
     </div>
@@ -360,16 +343,16 @@
              data-height="243">
 
             <!-- Rectangle 2 (Rectangle) -->
-            <div id="u43" class="ax_default shape" data-label="Rectangle 2">
-                <div id="u43_div" class=""></div>
-                <div id="u43_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
+<!--            <div id="u43" class="ax_default shape" data-label="Rectangle 2">-->
+<!--                <div id="u43_div" class=""></div>-->
+<!--                <div id="u43_text" class="text " style="display:none; visibility: hidden">-->
+<!--                    <p></p>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u44" class="ax_default shape">
+        <div id="u44" class="ax_default shape" style="color: rgba(53, 197, 240, 1);">
             <div id="u44_div" class=""></div>
             <div id="u44_text" class="text ">
                 <p><span>주문상품</span></p>
@@ -377,76 +360,60 @@
         </div>
     </div>
 
-    <!-- Unnamed (Rectangle) -->
-    <div id="u45" class="ax_default shape">
-        <div id="u45_div" class=""></div>
-        <div id="u45_text" class="text ">
-            <p><span>상품명</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (Rectangle) -->
-    <div id="u46" class="ax_default shape">
-        <div id="u46_div" class=""></div>
-        <div id="u46_text" class="text ">
-            <p th:text="${item.name}"><span>아무거나</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (Rectangle) -->
-    <div id="u47" class="ax_default shape">
-        <div id="u47_div" class=""></div>
-        <div id="u47_text" class="text ">
-            <p><span>가격</span></p>
-        </div>
-    </div>
-
-    <!-- Unnamed (Rectangle) -->
-    <div id="u48" class="ax_default shape">
-        <div id="u48_div" class=""></div>
-        <div id="u48_text" class="text ">
-            <p th:text="${item.price}"><span>100000원</span></p>
-        </div>
-    </div>
-
-    <!-- Rectangle 7 (Shape) -->
-    <div id="u49" class="ax_default shape" data-label="Rectangle 7">
-        <img id="u49_img" class="img " th:src="|/upload/${item.uploadFile.storeFileName}|"
-             src="/images/consumer_beforePurchase/rectangle_7_u49.svg"/>
-        <div id="u49_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-        </div>
+    <!-- 메인 컨텐츠-->
+    <div id="item_list">
+        <table id="item_table" style="width: 500px">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+                <th>가격</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item: ${items}">
+                <td>
+                    <img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40">
+                </td>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.price}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
 <!-- 네비게이션바 -->
 <ul id="ul_dropdown">
     <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">스토어</div>
-        <div class="dropdown-content">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
+        <a href="/community">
+            <div class="dropdown-menu">커뮤니티</div>
+        </a>
+        <!--        <div class="dropdown-content">-->
+        <!--            <a href="#">회원 관리</a>-->
+        <!--            <a href="#">주문 관리</a>-->
+        <!--            <a href="#">게시판 관리</a>-->
+        <!--        </div>-->
     </li>
-
     <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">커뮤니티</div>
-        <div class="dropdown-content">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
+        <a href="/list">
+            <div class="dropdown-menu">스토어</div>
+        </a>
+        <!--        <div class="dropdown-content">-->
+        <!--            <a href="#">회원 관리</a>-->
+        <!--            <a href="#">주문 관리</a>-->
+        <!--            <a href="#">게시판 관리</a>-->
+        <!--        </div>-->
     </li>
-
     <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">관리자 페이지</div>
-        <div class="dropdown-content">
-            <a href="/admin/consumers">회원 관리</a>
-            <a href="/admin/sellers">판매자 관리</a>
-            <a href="/admin/orders">주문 관리</a>
-            <a href="/admin/items">상품 관리</a>
-            <a href="/admin/posts">커뮤니티 관리</a>
-        </div>
+        <div class="dropdown-menu">마이페이지</div>
+        <!--        <div class="dropdown-content">-->
+        <!--            <a href="/admin/consumers">회원 관리</a>-->
+        <!--            <a href="/admin/sellers">판매자 관리</a>-->
+        <!--            <a href="/admin/orders">주문 관리</a>-->
+        <!--            <a href="/admin/items">상품 관리</a>-->
+        <!--            <a href="/admin/posts">커뮤니티 관리</a>-->
+        <!--        </div>-->
     </li>
 </ul>
 

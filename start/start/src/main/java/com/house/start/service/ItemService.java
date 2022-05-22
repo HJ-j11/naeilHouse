@@ -1,5 +1,6 @@
 package com.house.start.service;
 
+import com.house.start.domain.Category;
 import com.house.start.domain.Item;
 import com.house.start.domain.Seller;
 import com.house.start.repository.ItemRepository;
@@ -49,10 +50,17 @@ public class ItemService {
      *  상품 수정
      */
     @Transactional
-    public void updateItem(Long id, String name, int price, String info) {
+    public void updateItem(Long id, String name, int price, String info, int stockQuantity, String category) {
         Optional<Item> item = itemRepository.findById(id);
         item.get().setName(name);
         item.get().setPrice(price);
         item.get().setInfo(info);
+        item.get().setStockQuantity(stockQuantity);
+
+        Category newCategory = new Category();
+        newCategory.setName(category);
+        item.get().setCategory(newCategory);
+
+
     }
 }

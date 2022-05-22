@@ -2,9 +2,12 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.ItemEditForm;
 import com.house.start.controller.form.ItemForm;
+import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.file.FileStore;
+import com.house.start.repository.OrderItemRepository;
+import com.house.start.repository.OrderRepository;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
 import com.house.start.service.SellerService;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class SellerController {
     private final SellerService sellerService;
     private final FileStore fileStore;
     private final ConsumerService consumerService;
+    private final OrderItemRepository orderItemRepository;
+    private final OrderRepository orderRepository;
 
     /**
      *  상품 등록 폼 페이지
@@ -103,7 +107,7 @@ public class SellerController {
         List<Item> items = itemService.findItemsBySeller(seller);
 
         model.addAttribute("items", items);
-        return "seller/seller_itemList";
+        return "/seller/seller_itemList";
     }
 
     /**
@@ -117,6 +121,8 @@ public class SellerController {
         form.setName(item.getName());
         form.setPrice(item.getPrice());
         form.setInfo(item.getInfo());
+        form.setStockQuantity(item.getStockQuantity());
+        form.setCategory(item.getCategory());
 
         model.addAttribute("item", item);
         model.addAttribute("form", form);
@@ -128,10 +134,30 @@ public class SellerController {
      */
     @PostMapping("/seller/item/{id}/edit")
     public String editItem(@PathVariable Long id, @ModelAttribute("form") ItemEditForm form) {
-        itemService.updateItem(id, form.getName(), form.getPrice(), form.getInfo());
+        itemService.updateItem(id, form.getName(), form.getPrice(), form.getInfo(), form.getStockQuantity(), form.getCategory());
 
         // 상품 목록 페이지로 이동
         return "redirect:/seller/item/list";
+    }
+
+    @RequestMapping("/seller/manage")
+    public String deliveryManage(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller) {
+
+        // 판매자 조회
+        Seller seller = sellerService.findSeller(loginSeller.getId());
+
+        // 판매자가 등록한 상품 조회
+        List<Item> itemsBySeller = itemService.findItemsBySeller(seller);
+
+        // 판매자가 등록한 상품에 해당하는 Order 조회
+        List<Order> orderItemsByItems = orderItemRepository.findOrderItemsByItems(itemsBySeller);
+        for (Order order : orderItemsByItems) {
+            log.info("order : " + order.getId());
+        }
+
+
+        return "true";
+
     }
 
 
@@ -141,14 +167,24 @@ public class SellerController {
 //        List<Item> items = itemService.findItems();
 //        model.addAttribute("items", items);
 
-        Item item = itemService.findItem(1L);
+        Item item = itemService.findItem(23L);
         model.addAttribute("item", item);
-//        model.addAttribute("form", new MemberJoinForm());
 
-        Consumer consumer = consumerService.findConsumerById(13L);
-        model.addAttribute("consumer", consumer);
+//        Seller seller = sellerService.findSeller(3L);
+//        List<Item> items = itemService.findItemsBySeller(seller);
 
-        return "test";
+//        Consumer consumer = consumerService.findConsumerById(1L);
+//        model.addAttribute("consumer", consumer);
+
+//        model.addAttribute("form", new ItemForm());
+
+//        int totalPrice = 30000;
+//        model.addAttribute("totalPrice", totalPrice);
+//        model.addAttribute("items", items);
+
+        model.addAttribute("form", new MemberJoinForm());
+
+        return "test_afterPurchase";
     }
 
 }

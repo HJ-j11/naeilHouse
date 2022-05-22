@@ -3,6 +3,7 @@ package com.house.start.service;
 import com.house.start.domain.*;
 import com.house.start.repository.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.house.start.domain.Delivery;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class OrderService {
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
@@ -32,7 +34,9 @@ public class OrderService {
 
         // 엔티티 조회 (소비자 정보 + 상품 정보)
         Consumer consumer = consumerRepository.findById(consumerId).get();
+        log.info("1 consumer id : " + consumer.getId());
         Item item = itemRepository.findById(itemId).get();
+        log.info("1 item id : " + item.getId());
 
         // 배송정보 생성
         Delivery delivery = new Delivery();
@@ -41,9 +45,12 @@ public class OrderService {
 
         // 주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
+        log.info("orderItem id : " + orderItem.getId());
 
         // 주문 생성
         Order order = Order.createOrder(consumer, delivery, orderItem);
+        log.info("order id : " + order.getId());
+
 
         // 주문 저장
         orderRepository.save(order);

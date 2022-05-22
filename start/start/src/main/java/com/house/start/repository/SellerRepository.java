@@ -16,4 +16,6 @@ public interface SellerRepository extends JpaRepository<Seller, Long> {
 
     // 판매자 아이디로 조회
     Optional<Seller> findBysId (String sId);
+
+
 }

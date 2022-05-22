@@ -223,11 +223,11 @@ public class ConsumerController {
         Item item = itemService.findItem(id);
 
         model.addAttribute("item", item);
+//        model.addAttribute("totalPrice", item.getPrice());
         model.addAttribute("consumer", consumer);
 
-//        orderService.order(consumerId, id, 1);
-
         return "consumer_beforePurchase";
+//        return "test_cartToBeforePurchase";
     }
 
     /**
@@ -247,14 +247,16 @@ public class ConsumerController {
 
         // 주문 생성
         Long orderId = orderService.order(consumerId, itemId, 1); // 주문
-        Optional<Order> completedOrder = orderService.findOrder(orderId); // 주문 완료된 객체 반환
-        List<OrderItem> orderItems = completedOrder.get().getOrderItems();
+        /*Optional<Order> completedOrder = orderService.findOrder(orderId); // 주문 완료된 객체 반환
+        List<OrderItem> orderItems = completedOrder.get().getOrderItems();*/
 
-        model.addAttribute(orderItems);
-        model.addAttribute(item);
+//        model.addAttribute("orderItems", orderItems);
+        model.addAttribute("totalPrice", item.getPrice());
+        model.addAttribute("orderItems", item);
 
         // 주문 완료 페이지
         return "consumer_afterPurchase";
+//        return "test_afterPurchase";
     }
 
     /**
@@ -299,7 +301,6 @@ public class ConsumerController {
      * 장바구니 -> 구매
      * 주문 객체 생성
      * **/
-
     @GetMapping("/order")
     public String beforeOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
                              Model model) {
@@ -315,6 +316,7 @@ public class ConsumerController {
         model.addAttribute("consumer", loginConsumer);
         return "consumer/consumer_order";
 //        return "consumer_beforePurchase";
+
     }
 
     @PostMapping("/order")

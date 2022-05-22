@@ -23,6 +23,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findItemBySeller(Seller seller);
 
 
+
+
     /*@Query("select u from User u where u.username = :name")
     List<User> methodName(@Param("name") String username);*/
 

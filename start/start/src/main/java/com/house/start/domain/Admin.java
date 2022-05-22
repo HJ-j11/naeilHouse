@@ -17,4 +17,8 @@ public class Admin {
     private String name; // 관리자 이름
     private String aId; // 아이디
     private String pwd; // 비밀번호
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uploadfile_id")
+    private UploadFile uploadFile;
 }

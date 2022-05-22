@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>내일의 집</title>
+    <title>Page 1</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-    <!-- develop -->
-    <link href="/css/admin/show_consumers.css" type="text/css" rel="stylesheet"/>
-    <!-- develop -->
-    <link href="/css/consumer/orderlist.css" type="text/css" rel="stylesheet"/>
-
-    <!--axure-->
     <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/join/consumer_add/styles.css" type="text/css" rel="stylesheet"/>
     <script src="/scripts/jquery-3.2.1.min.js"></script>
     <script src="/scripts/axure/axQuery.js"></script>
     <script src="/scripts/axure/globals.js"></script>
@@ -43,205 +36,214 @@
     <script src="/scripts/axure/viewer.js"></script>
     <script src="/scripts/axure/math.js"></script>
     <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="/javascript/document.js"></script>
-    <script src="/css/admin_default/data.js"></script>
-    <script src="/scripts/axure/ios.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link href="/css/seller/seller.css" type="text/css" rel="stylesheet"/>
-
+    <script src="/javascript/join/consumer_add/document.js"></script>
+    <script src="/javascript/join/consumer_add/data.js"></script>
+    <script type="text/javascript">
+        $axure.utils.getTransparentGifPath = function () {
+            return '/images/transparent.gif';
+        };
+        $axure.utils.getOtherPath = function () {
+            return '/Other.html';
+        };
+        $axure.utils.getReloadPath = function () {
+            return '/reload.html';
+        };
+    </script>
 </head>
 <body>
 <div id="base" class="">
 
-    <!-- Admin_default (Group) -->
-    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440"
+    <!-- 회원가입_소비자 (Group) -->
+    <div id="u0" class="ax_default" data-label="회원가입_소비자" data-left="0" data-top="0" data-width="1440"
          data-height="1024">
 
-        <!-- Admin_default BG (Rectangle) -->
-        <div id="u30" class="ax_default shape" data-label="Admin_default BG">
-            <div id="u30_div" class=""></div>
-
-            <div id="u30_text" class="text " style="display:none; visibility: hidden">
+        <!-- 회원가입_소비자 BG (Rectangle) -->
+        <div id="u1" class="ax_default shape" data-label="회원가입_소비자 BG">
+            <div id="u1_div" class=""></div>
+            <div id="u1_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
             </div>
         </div>
 
-        <!-- Topbar (Group) -->
-        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
-             data-height="87">
+        <form th:action="@{/consumer/join}" th:object="${form}" method="post" enctype="multipart/form-data">
 
-            <!-- logo (Rectangle) -->
-            <div id="u32" class="ax_default shape" data-label="logo">
-                <div id="u32_div" class=""></div>
-                <div id="u32_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
             </div>
 
-            <!-- 검색 (Group) -->
-            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
-                 data-height="54">
+            <!-- login_summit (Group) -->
+            <div id="u2" class="ax_default" data-label="login_summit" data-left="443" data-top="841" data-width="557"
+                 data-height="97">
 
-                <!-- 검색바 (Rectangle) -->
-                <div id="u34" class="ax_default shape" data-label="검색바">
-                    <div id="u34_div" class=""></div>
-                    <div id="u34_text" class="text " style="display:none; visibility: hidden">
+                <!-- login_box (Rectangle) -->
+                <div id="u3" class="ax_default shape" data-label="login_box">
+                    <div id="u3_div" class=""></div>
+                    <div id="u3_text" class="text " style="display:none; visibility: hidden">
                         <p></p>
                     </div>
                 </div>
 
-                <!-- 검색창 (Text Field) -->
-                <div id="u35" class="ax_default text_field" data-label="검색창">
-                    <img id="u35_img" class="img " src="/images/main/검색창_u8.svg"/>
-                    <input id="u35_input" type="text" value="" class="u35_input"/>
-                </div>
-
-                <!-- search_icon (Group) -->
-                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
-                     data-height="54">
-
-                    <!-- search_icon (Rectangle) -->
-                    <div id="u37" class="ax_default shape" data-label="search_icon">
-                        <div id="u37_div" class=""></div>
-                        <div id="u37_text" class="text " style="display:none; visibility: hidden">
-                            <p></p>
-                        </div>
-                    </div>
-
-                    <!-- icon (Shape) -->
-                    <div id="u38" class="ax_default shape" data-label="icon">
-                        <img id="u38_img" class="img " src="/images/main/icon_u11.svg"/>
-                        <div id="u38_text" class="text " style="display:none; visibility: hidden">
-                            <p></p>
-                        </div>
-                    </div>
+                <!-- login (Rectangle) -->
+                <div id="u4" class="ax_default shape" data-label="login">
+                    <!--                <div id="u4_div" class=""></div>-->
+                    <!--                <div id="u4_text" class="text ">-->
+                    <!--                    <p><span>회원가입</span></p>-->
+                    <!--                </div>-->
+                    <button type="submit" id="u4_div">회원가입</button>
                 </div>
             </div>
 
+            <!-- pwd_box (Group) -->
+            <div id="u5" class="ax_default" data-label="pwd_box" data-left="443" data-top="401" data-width="557"
+                 data-height="93">
 
-            <!-- border (Shape) -->
-            <div id="u42" class="ax_default shape" data-label="border">
-                <img id="u42_img" class="img " src="/images/main/border_u14.svg"/>
-                <div id="u42_text" class="text " style="display:none; visibility: hidden">
+                <!-- pwd_box (Rectangle) -->
+                <div id="u6" class="ax_default shape" data-label="pwd_box">
+                    <div id="u6_div" class=""></div>
+                    <div id="u6_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- pwd (Rectangle) -->
+                <div id="u7" class="ax_default shape" data-label="pwd">
+                    <!--                <div id="u7_div" class=""></div>-->
+                    <!--                <div id="u7_text" class="text ">-->
+                    <!--                    <p><span>비밀번호</span></p>-->
+                    <!--                </div>-->
+                    <input id="u7_div" type="text" th:field="*{password}" th:errorclass="field-error"
+                           placeholder="비밀번호"/>
+                    <div class="field-error" th:errors="*{password}"/>
+                </div>
+            </div>
+
+            <!-- pwd_box (Group) -->
+            <div id="u8" class="ax_default" data-label="pwd_box" data-left="443" data-top="502" data-width="557"
+                 data-height="93">
+
+                <!-- pwd_box (Rectangle) -->
+                <div id="u9" class="ax_default shape" data-label="pwd_box">
+                    <div id="u9_div" class=""></div>
+                    <div id="u9_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- pwd (Rectangle) -->
+                <div id="u10" class="ax_default shape" data-label="pwd">
+                    <!--                <div id="u10_div" class=""></div>-->
+                    <!--                <div id="u10_text" class="text ">-->
+                    <!--                    <p><span>이름</span></p>-->
+                    <!--                </div>-->
+                    <input id="u10_div" type="text" th:field="*{name}" th:errorclass="field-error" placeholder="이름"/>
+                    <div class="field-error" th:errors="*{name}"/>
+                </div>
+            </div>
+
+            <!-- id_button (Group) -->
+            <div id="u11" class="ax_default" data-label="id_button" data-left="442" data-top="300" data-width="557"
+                 data-height="93">
+
+                <!-- id_box (Rectangle) -->
+                <div id="u12" class="ax_default shape" data-label="id_box">
+                    <div id="u12_div" class=""></div>
+                    <div id="u12_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- id (Rectangle) -->
+                <div id="u13" class="ax_default shape" data-label="id">
+                    <!--                <div id="u13_div" class=""></div>-->
+                    <!--                <div id="u13_text" class="text ">-->
+                    <!--                    <p><span>아이디</span></p>-->
+                    <!--                </div>-->
+                    <input id="u13_div" type="text" th:field="*{id}" th:errorclass="field-error" placeholder="아이디"/>
+                    <div class="field-error" th:errors="*{id}"/>
+                </div>
+            </div>
+
+            <!-- 스토어 (Rectangle) -->
+            <div id="u14" class="ax_default shape" data-label="스토어">
+                <div id="u14_div" class=""></div>
+                <div id="u14_text" class="text ">
+                    <p><span>판매자 신청</span></p>
+                </div>
+            </div>
+
+            <!-- Rectangle 8 (Shape) -->
+            <div id="u15" class="ax_default shape" data-label="Rectangle 8">
+                <img id="u15_img" class="img " src="/images/join/consumer_add/rectangle_8_u15.svg"/>
+                <input id="file_input" type="file" th:field="*{image}" onchange="readURL(this)"
+                       style="display: none">
+                <div id="u15_text" class="text " style="display:none; visibility: hidden">
                     <p></p>
                 </div>
             </div>
 
-            <div id="main_content" style="top: 150px">
-
-                <div class="container" style="width: 500px">
-                    <div class="text-center">
-                        <!--<img class="d-block mx-auto mb-4" src="/images/main/u15_div.png" alt="" width="272" height="257">-->
-                        <p class="fw-bold text-center">회원 가입 (소비자)</p>
-                    </div>
+            <!-- Unnamed (Rectangle) -->
+            <div id="u16" class="ax_default shape">
+                <div id="u16_div" class=""></div>
+                <div id="u16_text" class="text ">
+                    <p><span>프로필 사진을 등록하세요</span></p>
                 </div>
+            </div>
 
-                <div class="container" style="max-width: 600px">
-                    <div class="row">
-                        <form th:action="@{/consumer/join}" th:object="${form}" method="post" enctype="multipart/form-data">
+            <!-- Unnamed (Rectangle) -->
+            <div id="u17" class="ax_default shape">
+                <div id="u17_div" class=""></div>
+                <div id="u17_text" class="text ">
+                    <p><span>회원가입/소비자</span></p>
+                </div>
+            </div>
 
-                            <div th:if="${#fields.hasGlobalErrors()}">
-                                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
-                            </div>
+            <!-- pwd (Rectangle) -->
+            <div id="u18" class="ax_default shape" data-label="pwd">
+                <div id="u18_div" class=""></div>
+                <div id="u18_text" class="text ">
+                    <label for="file_input">
+                        <p><span style="cursor: pointer">업로드</span></p>
+                    </label>
+                </div>
+            </div>
 
-                            <div>
-                                <label for="profile">프로필 사진</label><br>
-                                <img src="/images/profile.png" id="profile" class="img-thumbnail" alt="..." width="200px" height="200px">
-                                <input type="file" th:field="*{image}" onchange="readURL(this)">
-                            </div>
-                            <div>
-                                <label for="loginId">로그인 ID</label>
-                                <input type="text" id="loginId" th:field="*{id}" class="form-control"
-                                       th:errorclass="field-error">
-                                <div class="field-error" th:errors="*{id}"/>
-                            </div>
-                            <div>
-                                <label for="password">비밀번호</label>
-                                <input type="password" id="password" th:field="*{password}" class="form-control"
-                                       th:errorclass="field-error">
-                                <div class="field-error" th:errors="*{password}"/>
-                            </div>
-                            <div>
-                                <label for="name">이름</label>
-                                <input type="text" id="name" th:field="*{name}" class="form-control"
-                                       th:errorclass="field-error">
-                                <div class="field-error" th:errors="*{name}"/>
-                            </div>
+        </form>
 
+        <!-- Group 8 (Group) -->
+        <div id="u19" class="ax_default" data-label="Group 8" data-left="526" data-top="88" data-width="391"
+             data-height="100">
 
-                            <hr class="my-4">
+            <!-- logo_img (Rectangle) -->
+            <div id="u20" class="ax_default shape" data-label="logo_img">
+                <div id="u20_div" class=""></div>
+                <div id="u20_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <button class="w-100 btn btn-primary btn-lg" type="submit">회원 가입</button>
-                                </div>
-                                <div class="col">
-                                    <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='items.html'"
-                                            th:onclick="|location.href='@{/member/join}'|"
-                                            type="button">취소
-                                    </button>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div> <!-- /container -->
-
+            <!-- logo 1 (Rectangle) -->
+            <div id="u21" class="ax_default shape" data-label="logo 1">
+                <div id="u21_div" class=""></div>
+                <div id="u21_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
             </div>
         </div>
-
     </div>
-
 </div>
-
-<!-- 네비게이션바 dropdown, dropdown-menu, dropdown-content-->
-<!--<ul id="ul_dropdown">
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">스토어</div>
-        <div class="dropdown-content-sj">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
-
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">커뮤니티</div>
-        <div class="dropdown-content-sj">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
-
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">관리자 페이지</div>
-        <div class="dropdown-content-sj">
-            <a href="/admin/consumers">회원 관리</a>
-            <a href="/admin/sellers">판매자 관리</a>
-            <a href="/admin/orders">주문 관리</a>
-            <a href="/admin/items">상품 관리</a>
-            <a href="/admin/posts">커뮤니티 관리</a>
-        </div>
-    </li>
-</ul>-->
-
-</body>
+<script src="/scripts/axure/ios.js"></script>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                document.getElementById('profile').src = e.target.result;
+                document.getElementById('u15_img').src = e.target.result;
             };
             reader.readAsDataURL(input.files[0]);
         } else {
-            document.getElementById('profile').src = "";
+            document.getElementById('u15_img').src = "";
         }
     }
 </script>
+</body>
 </html>
