@@ -87,7 +87,11 @@ public class JoinController {
      *  판매자 회원가입 등록
      */
     @PostMapping("/seller/join")
-    public String joinSeller(@ModelAttribute MemberJoinForm form) {
+    public String joinSeller(@ModelAttribute MemberJoinForm form,
+                             HttpServletRequest request) throws IOException {
+
+        // 이미지 저장
+        UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         // 판매자 객체 생성
         Seller seller = new Seller();
@@ -95,6 +99,7 @@ public class JoinController {
         seller.setPwd(form.getPassword());
         seller.setName(form.getName());
         seller.setStoreName(form.getStoreName());
+        seller.setUploadFile(uploadFile);
 
         // 회원 신청 승인여부 false
         seller.setIsApproved(false);
@@ -117,13 +122,18 @@ public class JoinController {
      *  관리자 회원가입 등록
      */
     @PostMapping("/admin/join")
-    public String joinAdmin(@ModelAttribute MemberJoinForm form) {
+    public String joinAdmin(@ModelAttribute MemberJoinForm form,
+                            HttpServletRequest request) throws IOException {
+
+        // 이미지 저장
+        UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         // 관리자 객체 생성
         Admin admin = new Admin();
         admin.setAId(form.getId());
         admin.setPwd(form.getPassword());
         admin.setName(form.getName());
+        admin.setUploadFile(uploadFile);
 
         joinService.joinAdmin(admin);
 

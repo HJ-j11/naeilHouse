@@ -18,6 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	implementation 'org.springframework.boot:spring-boot-starter-tomcat' // 에러가 나서 추가
 
 	// db
 	implementation 'org.springframework.boot:spring-boot-devtools'

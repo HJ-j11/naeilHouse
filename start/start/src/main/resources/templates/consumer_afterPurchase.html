@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:custom="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <title>내일의 집</title>
+    <title>Page 1</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <!-- develop -->
-    <link href="/css/admin/show_consumers.css" type="text/css" rel="stylesheet"/>
-    <!-- develop -->
-    <link href="/css/consumer/orderlist.css" type="text/css" rel="stylesheet"/>
+    <link href="http://localhost:8080/css/admin/show_sellers.css" type="text/css" rel="stylesheet"/>
 
-    <!--axure-->
     <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/consumer_afterPurchase/styles.css" type="text/css" rel="stylesheet"/>
     <script src="/scripts/jquery-3.2.1.min.js"></script>
     <script src="/scripts/axure/axQuery.js"></script>
     <script src="/scripts/axure/globals.js"></script>
@@ -43,198 +40,207 @@
     <script src="/scripts/axure/viewer.js"></script>
     <script src="/scripts/axure/math.js"></script>
     <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="/javascript/document.js"></script>
-    <script src="/css/admin_default/data.js"></script>
-    <script src="/scripts/axure/ios.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link href="/css/seller/seller.css" type="text/css" rel="stylesheet"/>
-
+    <script src="/javascript/consumer_afterPurchase/document.js"></script>
+    <script src="/javascript/consumer_afterPurchase/data.js"></script>
+    <script type="text/javascript">
+        $axure.utils.getTransparentGifPath = function() { return '/images/transparent.gif'; };
+        $axure.utils.getOtherPath = function() { return '/Other.html'; };
+        $axure.utils.getReloadPath = function() { return '/reload.html'; };
+    </script>
 </head>
 <body>
 <div id="base" class="">
 
-    <!-- Admin_default (Group) -->
-    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440"
-         data-height="1024">
+    <!-- Consumer_결제 완료 페이지 (Group) -->
+    <div id="u0" class="ax_default" data-label="Consumer_결제 완료 페이지" data-left="0" data-top="0" data-width="1440" data-height="1024">
 
-        <!-- Admin_default BG (Rectangle) -->
-        <div id="u30" class="ax_default shape" data-label="Admin_default BG">
-            <div id="u30_div" class=""></div>
-
-            <div id="u30_text" class="text " style="display:none; visibility: hidden">
+        <!-- Consumer_결제 완료 페이지 BG (Rectangle) -->
+        <div id="u1" class="ax_default shape" data-label="Consumer_결제 완료 페이지 BG">
+            <div id="u1_div" class=""></div>
+            <div id="u1_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
             </div>
         </div>
 
         <!-- Topbar (Group) -->
-        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
-             data-height="87">
+        <div id="u2" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440" data-height="87">
 
             <!-- logo (Rectangle) -->
-            <div id="u32" class="ax_default shape" data-label="logo">
-                <div id="u32_div" class=""></div>
-                <div id="u32_text" class="text " style="display:none; visibility: hidden">
+            <div id="u001" class="ax_default shape" data-label="logo">
+                <div id="u001_div" class=""></div>
+                <div id="u001_text" class="text " style="display:none; visibility: hidden">
                     <p></p>
                 </div>
             </div>
 
             <!-- 검색 (Group) -->
-            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
-                 data-height="54">
+            <div id="u4" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331" data-height="54">
 
                 <!-- 검색바 (Rectangle) -->
-                <div id="u34" class="ax_default shape" data-label="검색바">
-                    <div id="u34_div" class=""></div>
-                    <div id="u34_text" class="text " style="display:none; visibility: hidden">
+                <div id="u5" class="ax_default shape" data-label="검색바">
+                    <div id="u5_div" class=""></div>
+                    <div id="u5_text" class="text " style="display:none; visibility: hidden">
                         <p></p>
                     </div>
                 </div>
 
-                <!-- 검색창 (Text Field) -->
-                <div id="u35" class="ax_default text_field" data-label="검색창">
-                    <img id="u35_img" class="img " src="/images/main/검색창_u8.svg"/>
-                    <input id="u35_input" type="text" value="" class="u35_input"/>
+                <!-- 검색창 (Rectangle) -->
+                <div id="u6" class="ax_default shape" data-label="검색창">
+                    <div id="u6_div" class=""></div>
+                    <div id="u6_text" class="text ">
+                        <p><span>오늘의집 통합검색</span></p>
+                    </div>
                 </div>
 
                 <!-- search_icon (Group) -->
-                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
-                     data-height="54">
+                <div id="u7" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53" data-height="54">
 
                     <!-- search_icon (Rectangle) -->
-                    <div id="u37" class="ax_default shape" data-label="search_icon">
-                        <div id="u37_div" class=""></div>
-                        <div id="u37_text" class="text " style="display:none; visibility: hidden">
+                    <div id="u8" class="ax_default shape" data-label="search_icon">
+                        <div id="u8_div" class=""></div>
+                        <div id="u8_text" class="text " style="display:none; visibility: hidden">
                             <p></p>
                         </div>
                     </div>
 
                     <!-- icon (Shape) -->
-                    <div id="u38" class="ax_default shape" data-label="icon">
-                        <img id="u38_img" class="img " src="/images/main/icon_u11.svg"/>
-                        <div id="u38_text" class="text " style="display:none; visibility: hidden">
+                    <div id="u9" class="ax_default shape" data-label="icon">
+                        <img id="u9_img" class="img " src="/images/consumer_afterPurchase/icon_u9.svg"/>
+                        <div id="u9_text" class="text " style="display:none; visibility: hidden">
                             <p></p>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <!-- border (Shape) -->
-            <div id="u42" class="ax_default shape" data-label="border">
-                <img id="u42_img" class="img " src="/images/main/border_u14.svg"/>
-                <div id="u42_text" class="text " style="display:none; visibility: hidden">
+            <div id="u13" class="ax_default shape" data-label="border">
+                <img id="u13_img" class="img " src="/images/consumer_afterPurchase/border_u13.svg"/>
+                <div id="u13_text" class="text " style="display:none; visibility: hidden">
                     <p></p>
                 </div>
             </div>
 
-            <div id="main_content" style="top: 50px;">
-
-                <div class="container" style="height: 100px"></div>
-
-                <div class="row mb-2" style="margin-left: 20px">
-                    <div class="col-md-6">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-                             style="width: 500px">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-primary">주문이 완료되었습니다.</strong>
-                                <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/consumer/item/list}'|">상품 목록으로</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-2" style="margin-left: 20px">
-                    <div class="col-md-6">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-                             style="width: 500px">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-primary">결제 금액</strong>
-                                <!--<p class="card-text mb-auto" th:text="${orderItems.orderPrice != null} ? ${orderItems.orderPrice} : 'null'">1000원</p>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-2" style="margin-left: 20px">
-                    <div class="col-md-6">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-                             style="width: 500px">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-primary">주문한 상품</strong>
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>상품명</th>
-                                        <th>가격</th>
-                                        <th>재고</th>
-                                        <th>카테고리</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40">
-                                        </td>
-                                        <td th:text="${item.name}" class="align-middle"></td>
-                                        <td th:text="${item.price}" class="align-middle"></td>
-                                        <td th:text="${item.stockQuantity}" class="align-middle"></td>
-                                        <td th:text="${item.category}" class="align-middle"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Vector (Shape) -->
+            <div id="u14" class="ax_default shape" data-label="Vector">
+                <img id="u14_img" class="img " src="/images/consumer_afterPurchase/vector_u14.svg"/>
+                <div id="u14_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
                 </div>
             </div>
-            <!-- 로그아웃 (Rectangle) -->
-            <a href="/logout" style="text-decoration-line: none">
-                <div id="logout" class="ax_default shape" data-label="로그인">
-                    <div id="u5_text" class="text ">
-                        <p><span>로그아웃</span></p>
-                    </div>
-            </a>
         </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u15" class="ax_default shape">
+            <div id="u15_div" class=""></div>
+            <div id="u15_text" class="text ">
+                <p><span>주문이 완료 완료되었습니다.</span></p>
+            </div>
+        </div>
+
+        <!-- posting_button (Group) -->
+        <div id="u16" class="ax_default" data-label="posting_button" data-left="91" data-top="244" data-width="402" data-height="58">
+
+            <!-- post_box (Rectangle) -->
+            <div id="u17" class="ax_default shape" data-label="post_box">
+                <div id="u17_div" class=""></div>
+                <div id="u17_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- 구매 하기 (Rectangle) -->
+            <div id="u18" class="ax_default shape" data-label="구매 하기">
+                <!--                <div id="u18_div" class=""></div>-->
+                <!--                <div id="u18_text" class="text ">-->
+                <!--                    <p><span>상품 목록으로</span></p>-->
+                <!--                </div>-->
+                <button id="u18_div" th:onclick="|location.href='@{/list}'|">상품 목록으로</button>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u19" class="ax_default shape">
+            <div id="u19_div" class=""></div>
+            <div id="u19_text" class="text ">
+                <p><span>주문 상품</span></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u20" class="ax_default shape">
+            <div id="u20_div" class=""></div>
+            <div id="u20_text" class="text ">
+                <p><span>주문 금액</span></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u21" class="ax_default shape">
+            <div id="u21_div" class=""></div>
+            <div id="u21_text" class="text ">
+                <p th:text="${totalPrice}"><span>아무개</span></p>
+            </div>
+        </div>
+
+        <!-- 메인 컨텐츠-->
+        <div id="item_list">
+            <table id="item_table" style="width: 500px">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>이름</th>
+                    <th>가격</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item: ${orderItems}">
+                    <td>
+                        <img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40">
+                    </td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
 
     </div>
-
 </div>
-
-<!-- 네비게이션바 dropdown, dropdown-menu, dropdown-content-->
-<!--<ul id="ul_dropdown">
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">스토어</div>
-        <div class="dropdown-content-sj">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
+<!-- 네비게이션바 -->
+<ul id="ul_dropdown">
+    <li id="li_dropdown" class="dropdown">
+        <a href="/community">
+            <div class="dropdown-menu">커뮤니티</div>
+        </a>
+        <!--        <div class="dropdown-content">-->
+        <!--            <a href="#">회원 관리</a>-->
+        <!--            <a href="#">주문 관리</a>-->
+        <!--            <a href="#">게시판 관리</a>-->
+        <!--        </div>-->
     </li>
-
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">커뮤니티</div>
-        <div class="dropdown-content-sj">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
+    <li id="li_dropdown" class="dropdown">
+        <a href="/list">
+            <div class="dropdown-menu">스토어</div>
+        </a>
+        <!--        <div class="dropdown-content">-->
+        <!--            <a href="#">회원 관리</a>-->
+        <!--            <a href="#">주문 관리</a>-->
+        <!--            <a href="#">게시판 관리</a>-->
+        <!--        </div>-->
     </li>
-
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">관리자 페이지</div>
-        <div class="dropdown-content-sj">
-            <a href="/admin/consumers">회원 관리</a>
-            <a href="/admin/sellers">판매자 관리</a>
-            <a href="/admin/orders">주문 관리</a>
-            <a href="/admin/items">상품 관리</a>
-            <a href="/admin/posts">커뮤니티 관리</a>
-        </div>
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">마이페이지</div>
+        <!--        <div class="dropdown-content">-->
+        <!--            <a href="/admin/consumers">회원 관리</a>-->
+        <!--            <a href="/admin/sellers">판매자 관리</a>-->
+        <!--            <a href="/admin/orders">주문 관리</a>-->
+        <!--            <a href="/admin/items">상품 관리</a>-->
+        <!--            <a href="/admin/posts">커뮤니티 관리</a>-->
+        <!--        </div>-->
     </li>
-</ul>-->
-
+</ul>
+<script src="/scripts/axure/ios.js"></script>
 </body>
 </html>

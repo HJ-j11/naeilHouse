@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>내일의 집</title>
+    <title>Page 1</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-    <!-- develop -->
-    <link href="/css/admin/show_consumers.css" type="text/css" rel="stylesheet"/>
-    <!-- develop -->
-    <link href="/css/consumer/orderlist.css" type="text/css" rel="stylesheet"/>
-
-    <!--axure-->
-    <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/join/member_select/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/join/member_select/styles.css" type="text/css" rel="stylesheet"/>
     <script src="/scripts/jquery-3.2.1.min.js"></script>
     <script src="/scripts/axure/axQuery.js"></script>
     <script src="/scripts/axure/globals.js"></script>
@@ -43,164 +36,84 @@
     <script src="/scripts/axure/viewer.js"></script>
     <script src="/scripts/axure/math.js"></script>
     <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="/javascript/document.js"></script>
-    <script src="/css/admin_default/data.js"></script>
-    <script src="/scripts/axure/ios.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link href="/css/seller/seller.css" type="text/css" rel="stylesheet"/>
-
+    <script src="/javascript/join/member_select/document.js"></script>
+    <script src="/javascript/join/member_select//data.js"></script>
+    <script type="text/javascript">
+        $axure.utils.getTransparentGifPath = function() { return '/images/transparent.gif'; };
+        $axure.utils.getOtherPath = function() { return '/Other.html'; };
+        $axure.utils.getReloadPath = function() { return '/reload.html'; };
+    </script>
 </head>
 <body>
 <div id="base" class="">
 
-    <!-- Admin_default (Group) -->
-    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440"
-         data-height="1024">
+    <!-- 회원가입_선택 (Group) -->
+    <div id="u0" class="ax_default" data-label="회원가입_선택" data-left="0" data-top="0" data-width="1440" data-height="1024">
 
-        <!-- Admin_default BG (Rectangle) -->
-        <div id="u30" class="ax_default shape" data-label="Admin_default BG">
-            <div id="u30_div" class=""></div>
-
-            <div id="u30_text" class="text " style="display:none; visibility: hidden">
+        <!-- 회원가입_선택 BG (Rectangle) -->
+        <div id="u1" class="ax_default shape" data-label="회원가입_선택 BG">
+            <div id="u1_div" class=""></div>
+            <div id="u1_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
             </div>
         </div>
 
-        <!-- Topbar (Group) -->
-        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
-             data-height="87">
-
-            <!-- logo (Rectangle) -->
-            <div id="u32" class="ax_default shape" data-label="logo">
-                <div id="u32_div" class=""></div>
-                <div id="u32_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- 검색 (Group) -->
-            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
-                 data-height="54">
-
-                <!-- 검색바 (Rectangle) -->
-                <div id="u34" class="ax_default shape" data-label="검색바">
-                    <div id="u34_div" class=""></div>
-                    <div id="u34_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- 검색창 (Text Field) -->
-                <div id="u35" class="ax_default text_field" data-label="검색창">
-                    <img id="u35_img" class="img " src="/images/main/검색창_u8.svg"/>
-                    <input id="u35_input" type="text" value="" class="u35_input"/>
-                </div>
-
-                <!-- search_icon (Group) -->
-                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
-                     data-height="54">
-
-                    <!-- search_icon (Rectangle) -->
-                    <div id="u37" class="ax_default shape" data-label="search_icon">
-                        <div id="u37_div" class=""></div>
-                        <div id="u37_text" class="text " style="display:none; visibility: hidden">
-                            <p></p>
-                        </div>
-                    </div>
-
-                    <!-- icon (Shape) -->
-                    <div id="u38" class="ax_default shape" data-label="icon">
-                        <img id="u38_img" class="img " src="/images/main/icon_u11.svg"/>
-                        <div id="u38_text" class="text " style="display:none; visibility: hidden">
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- border (Shape) -->
-            <div id="u42" class="ax_default shape" data-label="border">
-                <img id="u42_img" class="img " src="/images/main/border_u14.svg"/>
-                <div id="u42_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <div id="main_content" style="top: 50px">
-
-                <div class="container" style="height: 400px">
-                    <div class="px-4 py-5 my-5 text-center">
-                        <img class="d-block mx-auto mb-4" src="/images/main/u15_div.png" alt="" width="272" height="257">
-                        <p class="fw-bold text-center">회원 가입</p>
-                    </div>
-                </div>
-
-                <div class="container" style="max-width: 600px">
-                    <div class="row">
-                        <div class="col">
-                            <button class="w-100 btn btn-secondary btn-lg" type="button"
-                                    th:onclick="|location.href='@{/consumer/join}'|">
-                                소비자
-                            </button>
-                        </div>
-                        <div class="col">
-                            <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='items.html'"
-                                    th:onclick="|location.href='@{/seller/join}'|" type="button">
-                                판매자
-                            </button>
-                        </div>
-                        <div class="col">
-                            <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='items.html'"
-                                    th:onclick="|location.href='@{/admin/join}'|" type="button">
-                                관리자
-                            </button>
-                        </div>
-                    </div>
-                </div> <!-- /container -->
-
+        <!-- logo_img (Rectangle) -->
+        <div id="u2" class="ax_default shape" data-label="logo_img">
+            <div id="u2_div" class=""></div>
+            <div id="u2_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
             </div>
         </div>
 
+        <!-- logo (Rectangle) -->
+        <div id="u3" class="ax_default shape" data-label="logo">
+            <div id="u3_div" class=""></div>
+            <div id="u3_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- login_box (Rectangle) -->
+        <div id="u4" class="ax_default shape" data-label="login_box">
+            <div id="u4_div" class=""></div>
+            <div id="u4_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- login_box (Rectangle) -->
+        <div id="u5" class="ax_default shape" data-label="login_box">
+            <div id="u5_div" class=""></div>
+            <div id="u5_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- login_box (Rectangle) -->
+        <div id="u6" class="ax_default shape" data-label="login_box">
+            <div id="u6_div" class=""></div>
+            <div id="u6_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- login (Rectangle) -->
+        <div id="u7" class="ax_default shape" data-label="login">
+            <button th:onclick="|location.href='@{/consumer/join}'|" id="u7_div">소비자 회원가입</button>
+        </div>
+
+        <!-- login (Rectangle) -->
+        <div id="u8" class="ax_default shape" data-label="login">
+            <button th:onclick="|location.href='@{/seller/join}'|" id="u8_div">판매자 회원가입</button>
+        </div>
+
+        <!-- login (Rectangle) -->
+        <div id="u9" class="ax_default shape" data-label="login">
+            <button th:onclick="|location.href='@{/admin/join}'|" id="u9_div">관리자 회원가입</button>
+        </div>
     </div>
-
 </div>
-
-<!-- 네비게이션바 dropdown, dropdown-menu, dropdown-content-->
-<!--<ul id="ul_dropdown">
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">스토어</div>
-        <div class="dropdown-content-sj">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
-
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">커뮤니티</div>
-        <div class="dropdown-content-sj">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
-
-    <li id="li_dropdown" class="dropdown-sj">
-        <div class="dropdown-menu-sj">관리자 페이지</div>
-        <div class="dropdown-content-sj">
-            <a href="/admin/consumers">회원 관리</a>
-            <a href="/admin/sellers">판매자 관리</a>
-            <a href="/admin/orders">주문 관리</a>
-            <a href="/admin/items">상품 관리</a>
-            <a href="/admin/posts">커뮤니티 관리</a>
-        </div>
-    </li>
-</ul>-->
-
+<script src="/scripts/axure/ios.js"></script>
 </body>
 </html>

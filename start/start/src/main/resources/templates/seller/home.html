@@ -1,10 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>판매자</title>
+    <title>내일의 집</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <!-- develop -->
+    <link href="http://localhost:8080/css/admin/show_sellers.css" type="text/css" rel="stylesheet"/>
+    <!--    <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>-->
+    <!--    <link href="http://localhost:8080/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>-->
+
+    <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/consumer_beforePurchase/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="/scripts/jquery-3.2.1.min.js"></script>
+    <script src="/scripts/axure/axQuery.js"></script>
+    <script src="/scripts/axure/globals.js"></script>
+    <script src="/scripts/axutils.js"></script>
+    <script src="/scripts/axure/annotation.js"></script>
+    <script src="/scripts/axure/axQuery.std.js"></script>
+    <script src="/scripts/axure/doc.js"></script>
+    <script src="/scripts/messagecenter.js"></script>
+    <script src="/scripts/axure/events.js"></script>
+    <script src="/scripts/axure/recording.js"></script>
+    <script src="/scripts/axure/action.js"></script>
+    <script src="/scripts/axure/expr.js"></script>
+    <script src="/scripts/axure/geometry.js"></script>
+    <script src="/scripts/axure/flyout.js"></script>
+    <script src="/scripts/axure/model.js"></script>
+    <script src="/scripts/axure/repeater.js"></script>
+    <script src="/scripts/axure/sto.js"></script>
+    <script src="/scripts/axure/utils.temp.js"></script>
+    <script src="/scripts/axure/variables.js"></script>
+    <script src="/scripts/axure/drag.js"></script>
+    <script src="/scripts/axure/move.js"></script>
+    <script src="/scripts/axure/visibility.js"></script>
+    <script src="/scripts/axure/style.js"></script>
+    <script src="/scripts/axure/adaptive.js"></script>
+    <script src="/scripts/axure/tree.js"></script>
+    <script src="/scripts/axure/init.temp.js"></script>
+    <script src="/scripts/axure/legacy.js"></script>
+    <script src="/scripts/axure/viewer.js"></script>
+    <script src="/scripts/axure/math.js"></script>
+    <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="/javascript/document.js"></script>
+
+    <script src="/javascript/consumer_beforePurchase/data.js"></script>
+    <script type="text/javascript">
+        $axure.utils.getTransparentGifPath = function () {
+            return '/images/transparent.gif';
+        };
+        $axure.utils.getOtherPath = function () {
+            return '/Other.html';
+        };
+        $axure.utils.getReloadPath = function () {
+            return '/reload.html';
+        };
+    </script>
 </head>
 <body>
+<div id="base" class="">
+
+    <!-- Seller_상품목록 (Group) -->
+    <div id="u0" class="ax_default" data-label="Seller_상품목록" data-left="0" data-top="0" data-width="1440"
+         data-height="1024">
+
+        <!-- Seller_상품목록 BG (Rectangle) -->
+        <div id="u1" class="ax_default shape" data-label="Seller_상품목록 BG">
+            <div id="u1_div" class=""></div>
+            <div id="u1_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Topbar (Group) -->
+        <div id="u2" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
+             data-height="87">
+
+            <!-- logo (Rectangle) -->
+            <div id="u001" class="ax_default shape" data-label="logo">
+                <div id="u001_div" class=""></div>
+                <div id="u001_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- 검색 (Group) -->
+            <div id="u4" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
+                 data-height="54">
+
+                <!-- 검색바 (Rectangle) -->
+                <div id="u5" class="ax_default shape" data-label="검색바">
+                    <div id="u5_div" class=""></div>
+                    <div id="u5_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- 검색창 (Rectangle) -->
+                <div id="u6" class="ax_default shape" data-label="검색창">
+                    <div id="u6_div" class=""></div>
+                    <div id="u6_text" class="text ">
+                        <p><span>오늘의집 통합검색</span></p>
+                    </div>
+                </div>
+
+                <!-- search_icon (Group) -->
+                <div id="u7" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
+                     data-height="54">
+
+                    <!-- search_icon (Rectangle) -->
+                    <div id="u8" class="ax_default shape" data-label="search_icon">
+                        <div id="u8_div" class=""></div>
+                        <div id="u8_text" class="text " style="display:none; visibility: hidden">
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <!-- icon (Shape) -->
+                    <div id="u9" class="ax_default shape" data-label="icon">
+                        <img id="u9_img" class="img " src="/images/consumer_beforePurchase/icon_u9.svg"/>
+                        <div id="u9_text" class="text " style="display:none; visibility: hidden">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- border (Shape) -->
+            <div id="u13" class="ax_default shape" data-label="border">
+                <img id="u13_img" class="img " src="/images/consumer_beforePurchase/border_u13.svg"/>
+                <div id="u13_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- logo_img (Rectangle) -->
+    <div id="logo" class="ax_default shape" data-label="logo_img">
+        <div id="logo_div" class=""></div>
+        <div id="logo_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
+
+</div>
+
+<!-- 네비게이션바 -->
+<ul id="ul_dropdown">
+    <li id="li_dropdown" class="dropdown">
+        <a href="/community">
+            <div class="dropdown-menu">커뮤니티</div>
+        </a>
+        <!--        <div class="dropdown-content">-->
+        <!--            <a href="#">회원 관리</a>-->
+        <!--            <a href="#">주문 관리</a>-->
+        <!--            <a href="#">게시판 관리</a>-->
+        <!--        </div>-->
+    </li>
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">스토어</div>
+        <div class="dropdown-content">
+            <a href="/seller/item/list">상품 목록</a>
+            <a href="/seller/item/add">상품 등록</a>
+        </div>
+    </li>
+    <li id="li_dropdown" class="dropdown">
+        <div class="dropdown-menu">관리 페이지</div>
+        <div class="dropdown-content">
+            <a href="#">배송 관리</a>
+        </div>
+    </li>
+</ul>
+
+<script src="/scripts/axure/ios.js"></script>
+
 
 </body>
 </html>

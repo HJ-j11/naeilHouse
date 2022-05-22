@@ -27,6 +27,11 @@ public class Seller {
 
     private String storeName; // 상호명
     private Boolean isApproved; // 관리자의 승인 여부
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uploadfile_id")
+    private UploadFile uploadFile;
+
     /**
      * 생성 매소드
      * **/

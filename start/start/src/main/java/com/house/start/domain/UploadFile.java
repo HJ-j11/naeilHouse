@@ -23,6 +23,12 @@ public class UploadFile {
     @OneToOne(mappedBy = "uploadFile")
     private Consumer consumer;
 
+    @OneToOne(mappedBy = "uploadFile")
+    private Seller seller;
+
+    @OneToOne(mappedBy = "uploadFile")
+    private Admin admin;
+
     private String uploadFileName;
     private String storeFileName;
 
