@@ -24,16 +24,11 @@ public class Order {
     @JoinColumn(name = "consumer_id")
     private Consumer consumer;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
-
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
     private LocalDateTime orderDate; // 주문 일시
 
     private OrderStatus orderStatus; // 주문 상태 [카트, 주문, 취소, 완료]
-
 
 
     //==연관관계 편의 메서드==//
@@ -47,11 +42,6 @@ public class Order {
         orderItem.setOrder(this);
     }
 
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-        delivery.setOrder(this);
-    }
-
     //==생성 메서드==//
 
     /**
@@ -63,7 +53,7 @@ public class Order {
         int totalOrderPoint = 0;
 
         Order order = new Order();
-        order.setDelivery(delivery);
+//        order.setDelivery(delivery);
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
             totalOrderPoint += orderItem.getOrderPrice();
@@ -86,7 +76,7 @@ public class Order {
         int totalOrderPoint = 0;
 
         Order order = new Order();
-        order.setDelivery(delivery);
+//        order.setDelivery(delivery);
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
             totalOrderPoint += orderItem.getOrderPrice();
