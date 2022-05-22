@@ -1,10 +1,8 @@
 package com.house.start.service;
 
-import com.house.start.domain.Admin;
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Item;
-import com.house.start.domain.Seller;
+import com.house.start.domain.*;
 import com.house.start.repository.AdminRepository;
+import com.house.start.repository.CartRepository;
 import com.house.start.repository.ConsumerRepository;
 import com.house.start.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +16,17 @@ public class JoinService {
     private final ConsumerRepository consumerRepository;
     private final SellerRepository sellerRepository;
     private final AdminRepository adminRepository;
-
+    private final CartRepository cartRepository;
     /**
      *  소비자 회원가입
      */
     @Transactional
     public void joinConsumer(Consumer consumer) {
+        Cart cart = Cart.builder()
+                .consumer(consumer)
+                .build();
+
+        cartRepository.save(cart);
         consumerRepository.save(consumer);
     }
 

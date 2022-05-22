@@ -22,7 +22,7 @@ public class Cart {
     @JoinColumn(name = "consumer_id")
     private Consumer consumer;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartItems = new ArrayList<>();
 
     @Builder
@@ -34,5 +34,19 @@ public class Cart {
     public void addCartItem(CartItem cartItem) {
         cartItems.add(cartItem);
         cartItem.setCart(this);
+    }
+
+    // 전체 가격 메소드
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (CartItem cartItem:
+             cartItems) {
+            totalPrice += cartItem.getItem().getPrice() * cartItem.getCount();
+        }
+        return totalPrice;
+    }
+
+    public void removeCartItem() {
+        cartItems.clear();
     }
 }

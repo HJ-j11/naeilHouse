@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -41,7 +40,7 @@ public class ConsumerController {
     public String getAllItem(HttpServletRequest request, Model model){
         List<Item> items = consumerService.getAllItems();
         model.addAttribute("items", items);
-        return "item_list";
+        return "consumer/item_list";
     }
 
     // 물건 카테고리
@@ -57,20 +56,23 @@ public class ConsumerController {
     public String getOneItem(@PathVariable Long id, Model model){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
-        return "tmp_itemInfo";
+        return "consumer/tmp_itemInfo";
     }
 
     // 장바구니 담기
     @PostMapping("/item/{id}/cart")
-    public CartItem addItemToCart(@PathVariable Long id,
-                                @RequestBody String cnt,
+    public String addItemToCart(@PathVariable Long id,
+                                @RequestBody HashMap<String, Object> map,
                                 @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                                 HttpServletRequest request) {
-        int count = Integer.parseInt(cnt);
+
+        int count = Integer.parseInt(map.get("cnt").toString());
         Item item = itemService.findItem(id);
         Cart cart = consumerService.findByCart(loginConsumer);
 
-        return consumerService.addItemToCart(item, cart, count);
+        Long cartId = consumerService.addItemToCart(item, cart, count);
+        System.out.println("cartId :"+cartId);
+        return "redirect:/list";
     }
 
 
@@ -97,7 +99,7 @@ public class ConsumerController {
 
         List<Post> posts = consumerService.getAllPost();
         model.addAttribute("postList", posts);
-        return "post_list";
+        return "consumer/post_list";
     }
 
     @GetMapping("/community/{id}")
@@ -108,7 +110,7 @@ public class ConsumerController {
         model.addAttribute("likes", post.countLikes());
         model.addAttribute("comments", post.getComments());
 //        return "post_detail";
-        return "consumer_postDetail";
+        return "consumer/consumer_postDetail";
     }
 
 
@@ -116,7 +118,7 @@ public class ConsumerController {
     @GetMapping("/community/new")
     public String getNewPost(Model model) {
         model.addAttribute("post", new PostForm());
-        return "consumer_newPost";
+        return "consumer/consumer_newPost";
     }
 
     // 글 작성
@@ -281,13 +283,16 @@ public class ConsumerController {
     public String cart(HttpServletRequest request,
                        @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                        Model model) {
+        if(loginConsumer == null) {
+            return "redirect:/login";
+        }
         // 로그인 전제로
-
-
         Cart cart = consumerService.findByCart(loginConsumer);
-        model.addAttribute("cart", cart);
-
-        return "consumer_cart";
+        int totalPrice = cart.getTotalPrice();
+        model.addAttribute("cartId", cart.getId());
+        model.addAttribute("cartItems", cart.getCartItems());
+        model.addAttribute("totalPrice", totalPrice);
+        return "consumer/consumer_cart";
     }
 
     /**
@@ -295,12 +300,34 @@ public class ConsumerController {
      * 주문 객체 생성
      * **/
 
-    @PostMapping("/order")
-    public String createOrder(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer
-                            , HttpServletRequest request) {
-        Long orderId = orderService.orders(loginConsumer);
-        return "sample_order";
+    @GetMapping("/order")
+    public String beforeOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
+                             Model model) {
+        if (loginConsumer == null) {
+            return "redirect:/login";
+        }
+        // 상품 조회
+        Cart cart = consumerService.findByCart(loginConsumer);
+
+        // cart에 있는 List<cartItem> cartItems
+        model.addAttribute("items", cart.getCartItems());
+        model.addAttribute("totalPrice", cart.getTotalPrice());
+        model.addAttribute("consumer", loginConsumer);
+        return "consumer/consumer_order";
+//        return "consumer_beforePurchase";
     }
+
+    @PostMapping("/order")
+    public String afterOrderItems( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
+        Long orderId = orderService.orders(loginConsumer);
+        System.out.println("new OrderId : "+orderId+" created!");
+        // 주문을 생성한 후 장바구니에 있는 상품 비우기.
+        Cart cart = consumerService.findByCart(loginConsumer);
+        cart.removeCartItem();
+        return "consumer/item_list";
+//        return "consumer_afterPurchase";
+    }
+
     // 소비자 정보 조회`
     //
 

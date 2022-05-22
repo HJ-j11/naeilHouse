@@ -194,8 +194,8 @@
     <!-- Rectangle 2 (Rectangle) -->
     <div id="u22" class="ax_default shape" data-label="Rectangle 2">
       <div id="u22_div" class="">
-        <div style="text-align: center">
-          <input style="display: inline-block" type="file" th:field="*{photo}" name="photo"/>
+        <div style="position: absolute; top: 50%; left: 50%; text-align: center;">
+          <input style="display: inline-block" type="file" th:field="*{photo}" name="photo" onchange="readURL(this)"/>
         </div>
       </div>
       <div id="u22_text" class="text " style="display:none; visibility: hidden">
@@ -257,8 +257,20 @@
     submitForm.action = "/community/write";
     submitForm.method = "POST";
     submitForm.submit();
-
   })
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('temp').src = e.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      document.getElementById('temp').src = "";
+    }
+  }
+
 </script>
 </body>
 </html>

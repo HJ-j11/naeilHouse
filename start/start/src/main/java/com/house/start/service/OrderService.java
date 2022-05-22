@@ -50,9 +50,8 @@ public class OrderService {
         return order.getId();
     }
 
-
     public List<Order> findOrderByConsumer (Consumer consumer) {
-          return orderRepository.findByConsumer(consumer);
+        return orderRepository.findByConsumer(consumer);
     }
 
     // 장바구니에 있는 상품 구매
@@ -66,7 +65,7 @@ public class OrderService {
         List<OrderItem> orderItems = new ArrayList<>();
 
         for (CartItem cartItem: cart.getCartItems()) {
-            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getCount(), cartItem.getCount());
+            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getItem().getPrice(), cartItem.getCount());
             orderItems.add(orderItem);
         }
 
@@ -77,9 +76,9 @@ public class OrderService {
         return order.getId();
     }
 
-
-
-
+//    public List<Order> findCartOrder(Consumer consumer) {
+//        return orderRepository.findByConsumer(consumer);
+//    } // 나중에 이름 바꾸기
 
     public List<Order> findOrders() {
         return orderRepository.findAll();

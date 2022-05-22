@@ -63,6 +63,7 @@ public class LoginController {
             session.setAttribute(SessionConstants.LOGIN_MEMBER, loginConsumer);
             session.setAttribute(SessionConstants.ROLE, "consumer");
             log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
+            return "consumer/item_list";
 
         } else if (role_num == 1) {
             // 판매자 로그인
