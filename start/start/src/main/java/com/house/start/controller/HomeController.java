@@ -22,17 +22,16 @@ public class HomeController {
      */
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model) {
+        log.info("--- home controller - / -----------------------------------------");
         HttpSession session = request.getSession();
-        log.info("home controller - check session: " + session.getAttribute(SessionConstants.LOGIN_MEMBER));
 
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            session.setAttribute("login_user", false);
+            session.setAttribute("login_state", false);
             session.setAttribute("role", false);
         } else {
-            session.setAttribute("login_user", session.getAttribute(SessionConstants.LOGIN_MEMBER));
+            session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
         }
-
         return "home";
     }
 }
