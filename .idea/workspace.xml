@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,6 +110,7 @@
     "extract.method.default.visibility": "private",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications",
     "spring.configuration.checksum": "1c40dc8b3d90af0dfe17ae87bd38925d"
   }
 }]]></component>
@@ -132,7 +127,7 @@
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.StartApplication">
+  <component name="RunManager" selected="Gradle.OrderServiceTest.장바구니물건구매 (1)">
     <configuration name="OrderServiceTest.장바구니물건구매 (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -170,6 +165,29 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;com.house.start.service.OrderServiceTest.장바구니&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderServiceTest.주문완료" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/start/start" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.house.start.service.OrderServiceTest.주문완료&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -286,8 +304,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.StartApplication" />
         <item itemvalue="Gradle.OrderServiceTest.장바구니물건구매 (1)" />
+        <item itemvalue="Gradle.OrderServiceTest.주문완료" />
+        <item itemvalue="Spring Boot.StartApplication" />
         <item itemvalue="Gradle.OrderServiceTest.장바구니" />
       </list>
     </recent_temporary>
@@ -355,7 +374,7 @@
       <workItem from="1653194362123" duration="809000" />
       <workItem from="1653213440868" duration="2587000" />
       <workItem from="1653219919376" duration="170000" />
-      <workItem from="1653279288464" duration="4073000" />
+      <workItem from="1653279288464" duration="5740000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -616,7 +635,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653136672532</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="OrderItem Mapping 변경사항 수정&#10;- interface findOrderItemsByConsumer 추가&#10;- 장바구니 -&gt; 주문 객체 생성시 로직 변경&#10;- Delivery @Builder 패턴 변경&#10;- Order @Builder 패턴 변경&#10;- 배송 완료 시 Status set 변경">
+      <created>1653284901106</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1653284901106</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌." />
     <MESSAGE value="커뮤니티&#10;- 커뮤니티 리스트 디자인 thymeleaf 연동" />
     <MESSAGE value="상품 목록 &#10;- 상품 목록 html 연동" />
     <MESSAGE value="커뮤니티&#10;- 댓글 수정과 onclick none/block 기능&#10;- 댓글 수정 form url 작성." />
@@ -674,6 +699,7 @@
     <MESSAGE value="소비자 화면 및 장바구니&#10;- 폴더 경로 변경에 따른 리턴 페이지 변경&#10;- 장바구니 getTotalPrice() 메소드 추가 : 기능 - 장바구니에 담긴 상품 금액 총합&#10;- LoginController에서 cart 회원만 접근하게끔 임시로 변경" />
     <MESSAGE value="커뮤니티 댓글&#10;- Thymeleaf each를 활용한 댓글 보이기&#10;- img href 연동&#10;- 좋아요 수, 댓글 수 가져오기" />
     <MESSAGE value="주문 후 장바구니 &#10;- 주문 후 상품 목록 비우는 removeCartItem 메소드 추가 &#10;- 주문 객체 생성 후 메소드 실행" />
-    <option name="LAST_COMMIT_MESSAGE" value="주문 후 장바구니 &#10;- 주문 후 상품 목록 비우는 removeCartItem 메소드 추가 &#10;- 주문 객체 생성 후 메소드 실행" />
+    <MESSAGE value="OrderItem Mapping 변경사항 수정&#10;- interface findOrderItemsByConsumer 추가&#10;- 장바구니 -&gt; 주문 객체 생성시 로직 변경&#10;- Delivery @Builder 패턴 변경&#10;- Order @Builder 패턴 변경&#10;- 배송 완료 시 Status set 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="OrderItem Mapping 변경사항 수정&#10;- interface findOrderItemsByConsumer 추가&#10;- 장바구니 -&gt; 주문 객체 생성시 로직 변경&#10;- Delivery @Builder 패턴 변경&#10;- Order @Builder 패턴 변경&#10;- 배송 완료 시 Status set 변경" />
   </component>
 </project>

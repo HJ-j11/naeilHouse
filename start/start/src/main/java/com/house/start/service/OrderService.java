@@ -45,6 +45,7 @@ public class OrderService {
 
         // 주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
+        orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
         log.info("orderItem id : " + orderItem.getId());
 
         // 주문 생성
@@ -76,6 +77,7 @@ public class OrderService {
 
         for (CartItem cartItem: cart.getCartItems()) {
             OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getItem().getPrice(), cartItem.getCount());
+            orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
             order.addOrderItem(orderItem);
 
             Delivery delivery = Delivery.builder()
