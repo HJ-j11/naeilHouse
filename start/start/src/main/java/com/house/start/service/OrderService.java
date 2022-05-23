@@ -26,6 +26,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final DeliveryRepository deliveryRepository;
     private final CartRepository cartRepository;
+    private final OrderItemRepository orderItemRepository;
+
     /**
      *  주문 (바로 구매)
      */
@@ -63,7 +65,8 @@ public class OrderService {
 
     // 장바구니에 있는 상품 구매
     @Transactional
-    public Long orders(Consumer consumer) {
+    // 잠시 주석처리해놓습니다.
+    /*public Long orders(Consumer consumer) {
         Cart cart = cartRepository.findByConsumer(consumer);
         Delivery delivery = Delivery
                 .builder()
@@ -81,7 +84,7 @@ public class OrderService {
 
         orderRepository.save(order);
         return order.getId();
-    }
+    }*/
 
 //    public List<Order> findCartOrder(Consumer consumer) {
 //        return orderRepository.findByConsumer(consumer);
@@ -97,20 +100,19 @@ public class OrderService {
      * 주문 취소
      */
     @Transactional
-    public void cancelOrder(Long order_id){
+    public void cancelOrder(Long orderitem_id){
         // Order 정보 변경
-        Order order = orderRepository.findById(order_id).get();
-        Delivery delivery = order.getDelivery();
+        OrderItem orderItem = orderItemRepository.findById(orderitem_id)
+                .orElse(null);
+        Delivery delivery = orderItem.getDelivery();
         if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
             throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
         }
-        order.setOrderStatus(OrderStatus.CANCEL);
+        orderItem.setOrderItemStatus(OrderItemStatus.CANCELED);
 
         // Item 수량 변경
-        for (OrderItem orderItem : order.getOrderItems()) {
-            Item canceledItem = orderItem.getItem();
-            canceledItem.setStockQuantity(canceledItem.getStockQuantity() + orderItem.getCount());
-        }
+        Item canceledItem = orderItem.getItem();
+        canceledItem.setStockQuantity(canceledItem.getStockQuantity() + orderItem.getCount());
 
         // Delivery 삭제
         deliveryRepository.delete(delivery);

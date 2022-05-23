@@ -33,7 +33,8 @@ public class Order {
     @Builder
     public Order(Consumer consumer, Delivery delivery) {
         this.consumer = consumer;
-        this.delivery = delivery;
+        // 잠시 주석처리 해놓습니다.
+       // this.delivery = delivery;
         this.orderStatus = OrderStatus.ORDER;
         this.orderDate = LocalDateTime.now();
     }

@@ -20,19 +20,19 @@ public class HomeController {
     /**
      * 홈 페이지
      */
-    // SessionConstants.ROLE에 따라서 다른 페이지로 라우팅
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         log.info("home controller - check session: " + session.getAttribute(SessionConstants.LOGIN_MEMBER));
-        // 세션이 없으면 홈으로 이동
+
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "home";
+            session.setAttribute("login_user", false);
+            session.setAttribute("role", false);
+        } else {
+            session.setAttribute("login_user", session.getAttribute(SessionConstants.LOGIN_MEMBER));
+            session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
         }
 
-        // ROLE에 따라 다르게 routing
-        String role = (String) session.getAttribute(SessionConstants.ROLE);
-        model.addAttribute(role, session.getAttribute(SessionConstants.LOGIN_MEMBER));
-        return role+"/home";
+        return "home";
     }
 }
