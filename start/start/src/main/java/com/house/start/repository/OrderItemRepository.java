@@ -1,5 +1,6 @@
 package com.house.start.repository;
 
+import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
 import com.house.start.domain.Order;
 import com.house.start.domain.OrderItem;
@@ -9,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {

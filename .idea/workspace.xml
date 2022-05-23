@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,19 +105,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;b85c01361a1273e20490daf6755e66a5&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "spring.configuration.checksum": "1c40dc8b3d90af0dfe17ae87bd38925d"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images" />
@@ -343,7 +350,12 @@
       <workItem from="1653042232505" duration="405000" />
       <workItem from="1653047700226" duration="779000" />
       <workItem from="1653052653363" duration="13000" />
-      <workItem from="1653123237292" duration="12629000" />
+      <workItem from="1653123237292" duration="12718000" />
+      <workItem from="1653193219355" duration="717000" />
+      <workItem from="1653194362123" duration="809000" />
+      <workItem from="1653213440868" duration="2587000" />
+      <workItem from="1653219919376" duration="170000" />
+      <workItem from="1653279288464" duration="4073000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -597,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653136048309</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="주문 후 장바구니 &#10;- 주문 후 상품 목록 비우는 removeCartItem 메소드 추가 &#10;- 주문 객체 생성 후 메소드 실행">
+      <created>1653136672532</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1653136672532</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +649,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="댓글 기능 추가&#10;- 댓글 수(후에 fetch join으로)&#10;- 댓글 등록" />
     <MESSAGE value="댓글 기능 &#10;- 댓글 작성&#10;- 댓글 작성 후 thymeleaf로 보여줌." />
     <MESSAGE value="커뮤니티&#10;- 커뮤니티 리스트 디자인 thymeleaf 연동" />
     <MESSAGE value="상품 목록 &#10;- 상품 목록 html 연동" />
@@ -655,6 +673,7 @@
     <MESSAGE value="장바구니에서 구매&#10;- Order 빌더 패턴 추가 및 적용&#10;- 장바구니 페이지 Thymeleaf 연동" />
     <MESSAGE value="소비자 화면 및 장바구니&#10;- 폴더 경로 변경에 따른 리턴 페이지 변경&#10;- 장바구니 getTotalPrice() 메소드 추가 : 기능 - 장바구니에 담긴 상품 금액 총합&#10;- LoginController에서 cart 회원만 접근하게끔 임시로 변경" />
     <MESSAGE value="커뮤니티 댓글&#10;- Thymeleaf each를 활용한 댓글 보이기&#10;- img href 연동&#10;- 좋아요 수, 댓글 수 가져오기" />
-    <option name="LAST_COMMIT_MESSAGE" value="커뮤니티 댓글&#10;- Thymeleaf each를 활용한 댓글 보이기&#10;- img href 연동&#10;- 좋아요 수, 댓글 수 가져오기" />
+    <MESSAGE value="주문 후 장바구니 &#10;- 주문 후 상품 목록 비우는 removeCartItem 메소드 추가 &#10;- 주문 객체 생성 후 메소드 실행" />
+    <option name="LAST_COMMIT_MESSAGE" value="주문 후 장바구니 &#10;- 주문 후 상품 목록 비우는 removeCartItem 메소드 추가 &#10;- 주문 객체 생성 후 메소드 실행" />
   </component>
 </project>

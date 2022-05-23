@@ -21,11 +21,11 @@ public class Delivery {
     private DeliveryStatus deliveryStatus; // 배송 상태 [배송 준비중, 배송 완료]
 
     // 생성 메서드
-    // 잠시 주석 처리 해놨습니다!
-    /*@Builder
-    public Delivery(DeliveryStatus deliveryStatus, Order order) {
-        this.order = order;
+    @Builder
+    public Delivery(OrderItem orderItem, String address, DeliveryStatus deliveryStatus) {
+        this.orderItem = orderItem;
+        this.address = address;
         this.deliveryStatus = deliveryStatus;
-    }*/
+    }
 
 }

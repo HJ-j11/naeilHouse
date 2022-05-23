@@ -31,9 +31,8 @@ public class Order {
     private OrderStatus orderStatus; // 주문 상태 [카트, 주문, 취소, 완료]
 
     @Builder
-    public Order(Consumer consumer, Delivery delivery) {
+    public Order(Consumer consumer) {
         this.consumer = consumer;
-        this.delivery = delivery;
         this.orderStatus = OrderStatus.ORDER;
         this.orderDate = LocalDateTime.now();
     }
@@ -77,13 +76,13 @@ public class Order {
         return order;
     }
 
-    public static Order createOrders(Consumer consumer, Delivery delivery, List<OrderItem> orderItems) {
+    public static Order createOrders(Consumer consumer, List<OrderItem> orderItems) {
 
         // 현재 소비자 포인트 - 총 주문 포인트
         int totalOrderPoint = 0;
 
         Order order = Order.builder()
-                        .delivery(delivery)
+                .consumer(consumer)
                         .build();
 
         for (OrderItem orderItem : orderItems) {

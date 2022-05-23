@@ -17,4 +17,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Long countByOrderStatus(OrderStatus orderStatus);
 
+    @Query("SELECT o.orderItems FROM Order o WHERE o.consumer = (:consumer)")
+    List<OrderItem> findOrderItemsByConsumer(Consumer consumer);
+
 }

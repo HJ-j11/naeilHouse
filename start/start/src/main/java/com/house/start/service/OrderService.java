@@ -61,23 +61,29 @@ public class OrderService {
         return orderRepository.findByConsumer(consumer);
     }
 
+    public List<OrderItem> findOrderItemByConsumer(Consumer consumer) {
+        return orderRepository.findOrderItemsByConsumer(consumer);
+    }
+
     // 장바구니에 있는 상품 구매
     @Transactional
     public Long orders(Consumer consumer) {
         Cart cart = cartRepository.findByConsumer(consumer);
-        Delivery delivery = Delivery
-                .builder()
-                .deliveryStatus(DeliveryStatus.PREPARING)
+
+        Order order = Order.builder()
+                .consumer(consumer)
                 .build();
-        List<OrderItem> orderItems = new ArrayList<>();
 
         for (CartItem cartItem: cart.getCartItems()) {
             OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getItem().getPrice(), cartItem.getCount());
-            orderItems.add(orderItem);
-        }
+            order.addOrderItem(orderItem);
 
-        Order order = Order.createOrders(consumer, delivery, orderItems);
-        delivery.setOrder(order);
+            Delivery delivery = Delivery.builder()
+                    .deliveryStatus(DeliveryStatus.PREPARING)
+                    .build();
+            orderItem.setDelivery(delivery);
+
+        }
 
         orderRepository.save(order);
         return order.getId();
@@ -96,25 +102,25 @@ public class OrderService {
     /**
      * 주문 취소
      */
-    @Transactional
-    public void cancelOrder(Long order_id){
-        // Order 정보 변경
-        Order order = orderRepository.findById(order_id).get();
-        Delivery delivery = order.getDelivery();
-        if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
-            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
-        }
-        order.setOrderStatus(OrderStatus.CANCEL);
-
-        // Item 수량 변경
-        for (OrderItem orderItem : order.getOrderItems()) {
-            Item canceledItem = orderItem.getItem();
-            canceledItem.setStockQuantity(canceledItem.getStockQuantity() + orderItem.getCount());
-        }
-
-        // Delivery 삭제
-        deliveryRepository.delete(delivery);
-    }
+//    @Transactional
+//    public void cancelOrder(Long order_id){
+//        // Order 정보 변경
+//        Order order = orderRepository.findById(order_id).get();
+//        Delivery delivery = order.getDelivery();
+//        if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
+//            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
+//        }
+//        order.setOrderStatus(OrderStatus.CANCEL);
+//
+//        // Item 수량 변경
+//        for (OrderItem orderItem : order.getOrderItems()) {
+//            Item canceledItem = orderItem.getItem();
+//            canceledItem.setStockQuantity(canceledItem.getStockQuantity() + orderItem.getCount());
+//        }
+//
+//        // Delivery 삭제
+//        deliveryRepository.delete(delivery);
+//    }
 
     public Long countOrderStaus() {
         OrderStatus orderStatus = OrderStatus.COMPLETE;
