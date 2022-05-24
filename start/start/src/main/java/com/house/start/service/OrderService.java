@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-@Slf4j
 public class OrderService {
     private final ItemRepository itemRepository;
     private final ConsumerRepository consumerRepository;
@@ -118,12 +118,25 @@ public class OrderService {
         deliveryRepository.delete(delivery);
     }
 
-    public Long countOrderStaus() {
-        OrderStatus orderStatus = OrderStatus.COMPLETE;
-        return orderRepository.countByOrderStatus(OrderStatus.ORDER);
-    }
-
-    public Long countCompleteStaus() {
-        return orderRepository.countByOrderStatus(OrderStatus.COMPLETE);
+    public List<Long> countStatus(List<Order> orders) {
+        List<Long> statusList = new ArrayList<>();
+        Long completeStatus = 0L;
+        Long orderStatus = 0L;
+        for(Order order: orders){
+            List<OrderItem> orderItems = order.getOrderItems();
+            for (OrderItem orderItem: orderItems) {
+                if (orderItem.getOrderItemStatus() == OrderItemStatus.COMPLETED) {
+                    completeStatus = completeStatus + 1L;
+                }
+                else if (orderItem.getOrderItemStatus() == OrderItemStatus.ORDER) {
+                    orderStatus = orderStatus + 1L;
+                }
+            }
+        }
+        log.info("--------------------"+ completeStatus);
+        log.info("--------------------"+ orderStatus);
+        statusList.add(completeStatus);
+        statusList.add(orderStatus);
+        return statusList;
     }
 }

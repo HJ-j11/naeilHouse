@@ -53,11 +53,10 @@
             <div th:each="order: ${orderList}">
                 <div id="orderData" style="margin-top: 3%;">
                     <ul id="orderDate" th:text="${order.orderDate}"> 날짜</ul>
-                    <ul id="orderStatus"
-                        th:text="|주문 상태: ${order.orderStatus} / 배송 상태: ${order.delivery.deliveryStatus}|"> 주문/ 배송상태
-                    </ul>
                     <ul th:each="orderitem: ${order.orderItems}" style="padding-top: 2%;">
-
+                        <ul id="orderStatus"
+                            th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.delivery.deliveryStatus}|"> 주문/ 배송상태
+                        </ul>
                         <ul th:if="${orderitem.item.uploadFile == null}" style="float: left; margin-right: 5%;">
                             <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
                                  height="80">
@@ -79,13 +78,14 @@
                             <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
                         </ul>
 
-                        <ul th:if="${orderitem.reviewYn == false}" style="padding-bottom: 10%;">
+                        <!-- 변경예정  -->
+                        <ul th:if="${orderitem == false}" style="padding-bottom: 10%;">
                             <button id="goReview"
                                     type="button">리뷰하기
                             </button>
                         </ul>
 
-                        <ul th:if="${orderitem.reviewYn == true}" style="padding-bottom: 10%;">
+                        <ul th:if="${orderitem == true}" style="padding-bottom: 10%;">
                             <button id="notReview"
                                     type="button">
                             </button>

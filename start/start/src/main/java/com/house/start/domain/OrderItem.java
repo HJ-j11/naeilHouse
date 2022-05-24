@@ -26,12 +26,9 @@ public class OrderItem {
     private int orderPrice; // 주문 당시 가격
     private int count; // 주문 수량
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
-
-    @Column(name="review_yn")
-    private boolean reviewYn = false;
 
     private OrderItemStatus orderItemStatus;
 

@@ -75,8 +75,10 @@ public class ConsumerMypageController {
             // orders 데이터
             List<Order> orderList = orderService.findOrderByConsumer(consumer);
             model.addAttribute("orderList", orderList);
-            Long orderStatus = orderService.countOrderStaus();
-            Long completeStatus = orderService.countCompleteStaus();
+            List<Long> statusList = orderService.countStatus(orderList);
+            Long orderStatus = statusList.get(1);
+            Long completeStatus = statusList.get(0);
+
             model.addAttribute("orderStatus", orderStatus);
             model.addAttribute("completeStatus", completeStatus);
             model.addAttribute("paidStatus", orderStatus + completeStatus);
@@ -105,7 +107,6 @@ public class ConsumerMypageController {
         OrderItem orderItem = orderItemService.findOrderItemById(orderitem_id);
         Item item = orderItem.getItem();
         Review review = reviewService.saveReview(consumer, item, content);
-        orderItem = orderItemService.changeRevieYn(orderItem);
         return "redirect:";
     }
 
