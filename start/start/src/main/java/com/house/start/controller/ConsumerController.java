@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -103,20 +104,40 @@ public class ConsumerController {
     }
 
     @GetMapping("/community/{id}")
-    public String getOnePost(@PathVariable Long id, Model model) {
+    public String getOnePost(@PathVariable Long id,
+                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                             Model model, HttpServletRequest  request) {
         Post post = consumerService.getOnePost(id);
+        List<Like> likes = post.getLikes();
+
+        if(loginConsumer!=null) {
+            Boolean flag = false;
+            for(Like like : likes) {
+                if(like.getConsumer().getId()==loginConsumer.getId()) {
+                    flag = true;
+                    break;
+                }
+            }
+            model.addAttribute("liked", flag);
+        }
 
         model.addAttribute("post", post);
-        model.addAttribute("likes", post.countLikes());
+        model.addAttribute("likes", likes);
         model.addAttribute("comments", post.getComments());
-//        return "post_detail";
+        HttpSession session = request.getSession();
+
+
         return "consumer/consumer_postDetail";
     }
 
 
     // 글 작성 페이지
     @GetMapping("/community/new")
-    public String getNewPost(Model model) {
+    public String getNewPost(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                             Model model) {
+        if(loginConsumer == null) {
+            return "redirect:/login";
+        }
         model.addAttribute("post", new PostForm());
         return "consumer/consumer_newPost";
     }
@@ -148,8 +169,14 @@ public class ConsumerController {
      * **/
     @PostMapping("/community/{id}/likes")
     public String putLikes(@PathVariable String id, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
+        if(loginConsumer == null) {
+            return "redirect:/login";
+        }
 
-        consumerService.putLikes(Long.valueOf(id), loginConsumer);
+        Long likeId = consumerService.putLikes(Long.valueOf(id), loginConsumer);
+        System.out.println("Like Create No: "+likeId);
+
+
         return "redirect:/community/"+id;
     }
 

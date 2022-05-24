@@ -135,15 +135,16 @@ public class ConsumerService {
 
     // 글 좋아요
     @Transactional
-    public void putLikes(Long id, Consumer consumer) {
+    public Long putLikes(Long id, Consumer consumer) {
         Post post = postRepository.getById(id);
-        // session 구현되면 consumer 넣기
         Like like = Like.builder()
                 .consumer(consumer)
                 .post(post)
                 .build();
 
         likeRepository.save(like);
+        return like.getId();
+
     }
 
     // 글 작성
