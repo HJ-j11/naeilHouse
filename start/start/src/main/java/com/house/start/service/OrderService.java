@@ -133,8 +133,6 @@ public class OrderService {
                 }
             }
         }
-        log.info("--------------------"+ completeStatus);
-        log.info("--------------------"+ orderStatus);
         statusList.add(completeStatus);
         statusList.add(orderStatus);
         return statusList;

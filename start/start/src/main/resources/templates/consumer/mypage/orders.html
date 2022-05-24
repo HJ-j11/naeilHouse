@@ -16,6 +16,7 @@
     }
 
 
+
     </script>
 </head>
 
@@ -52,44 +53,47 @@
         <table class="Data">
             <div th:each="order: ${orderList}">
                 <div id="orderData" style="margin-top: 3%;">
-                    <ul id="orderDate" th:text="${order.orderDate}"> 날짜</ul>
-                    <ul th:each="orderitem: ${order.orderItems}" style="padding-top: 2%;">
-                        <ul id="orderStatus"
-                            th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.delivery.deliveryStatus}|"> 주문/ 배송상태
+                    <h3 id="orderDate" th:text="${order.orderDate}"> 날짜</h3>
+                    <div th:each="orderitem: ${order.orderItems}" style="madding-top: 2%; display: inline-block; width:1000px; margin-bottom: 2%";">
+                        <ul id="orderStatus">
+                            <h3 th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.delivery.deliveryStatus}|">
+                                주문/ 배송상태 </h3>
                         </ul>
-                        <ul th:if="${orderitem.item.uploadFile == null}" style="float: left; margin-right: 5%;">
-                            <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
-                                 height="80">
-                        </ul>
+                        <div>
+                            <ul th:if="${orderitem.item.uploadFile == null}" style="float: left; margin-right: 5%;">
+                                <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
+                                     height="80">
+                            </ul>
 
-                        <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 5%;">
-                            <img id="uploadFile"
-                                 th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|"
-                                 width="80" height="80">
-                        </ul>
+                            <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 5%;">
+                                <img id="uploadFile"
+                                     th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|"
+                                     width="80" height="80">
+                            </ul>
 
-                        <ul style="float: left; margin-right: 10%;">
-                            <p th:text="|상호명: ${orderitem.item.seller.storeName}|"> 상호명</p>
-                            <p th:text="|상품명: ${orderitem.item.name}|"> 상품 이름</p>
-                        </ul>
+                            <ul style="float: left; margin-right: 10%;">
+                                <p th:text="|상호명: ${orderitem.item.seller.storeName}|"> 상호명</p>
+                                <p th:text="|상품명: ${orderitem.item.name}|"> 상품 이름</p>
+                            </ul>
 
-                        <ul style="float: left; margin-right: 30%;">
-                            <p th:text="|가격: ${orderitem.orderPrice} 원|">가격</p>
-                            <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
-                        </ul>
+                            <ul style="float: left; margin-right: 30%;">
+                                <p th:text="|가격: ${orderitem.orderPrice} 원|">가격</p>
+                                <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
+                            </ul>
 
-                        <!-- 변경예정  -->
-                        <ul th:if="${orderitem == false}" style="padding-bottom: 10%;">
-                            <button id="goReview"
-                                    type="button">리뷰하기
-                            </button>
-                        </ul>
+                            <!-- 변경예정  -->
+                            <ul th:if="${orderitem == false}" style="padding-bottom: 10%;">
+                                <button id="goReview"
+                                        type="button">리뷰하기
+                                </button>
+                            </ul>
 
-                        <ul th:if="${orderitem == true}" style="padding-bottom: 10%;">
-                            <button id="notReview"
-                                    type="button">
-                            </button>
-                        </ul>
+                            <ul th:if="${orderitem == true}" style="padding-bottom: 10%;">
+                                <button id="notReview"
+                                        type="button">
+                                </button>
+                            </ul>
+                        </div>
 
                         <div id="reviewSaveModal">
                             <div class="modal fade" id="mentoringSaveModal" data-bs-backdrop="static" tabindex="-1"
@@ -143,7 +147,7 @@
                             </div>
                             <div class="modal_layer"></div>
                         </div>
-                    </ul>
+                    </div>
 
                 </div>
             </div>
@@ -158,6 +162,7 @@
         document.getElementById("modal_close_btn").onclick = function() {
             document.getElementById("reviewSaveModal").style.display="none";
         }
+
 
 
     </script>
