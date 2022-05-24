@@ -128,6 +128,7 @@ public class ConsumerMypageController {
 
             // review 데이터
             List<Review> reviewList = reviewService.findReviewsByConsumer(consumer);
+            log.info("check-----------------"+reviewList.toString());
             model.addAttribute("reviewList", reviewList);
             return "consumer/mypage/reviews";
         } else {

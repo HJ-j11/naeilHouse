@@ -54,7 +54,7 @@
             <div th:each="order: ${orderList}">
                 <div id="orderData" style="margin-top: 3%;">
                     <h3 id="orderDate" th:text="${order.orderDate}"> 날짜</h3>
-                    <div th:each="orderitem: ${order.orderItems}" style="madding-top: 2%; display: inline-block; width:1000px; margin-bottom: 2%";">
+                    <div th:each="orderitem: ${order.orderItems}" style="madding-top: 2%; display: inline-block; width:1000px; margin-bottom: 2%">
                         <ul id="orderStatus">
                             <h3 th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.delivery.deliveryStatus}|">
                                 주문/ 배송상태 </h3>

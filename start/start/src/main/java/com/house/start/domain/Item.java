@@ -17,7 +17,7 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -29,7 +29,7 @@ public class Item {
     private int stockQuantity; // 재고 수량
     private String info; // 상품 정보
 
-    @OneToOne( cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
     private UploadFile uploadFile;
 

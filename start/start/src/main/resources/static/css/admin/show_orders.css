@@ -7,9 +7,16 @@
   font-size:16px;
 }
 
-#orderStatus {
- color:#35C5F0;
-}
+ #orderStatus {
+   line-height: 24px;
+   margin-bottom: 12px;
+   padding: 4px 8px;
+   background-color: #F7F9FA;
+   display: inline-block;
+   border-radius: 4px;
+   font-weight: 700;
+   color: #35C5F0;
+  }
 
 #orderData {
   font-family:"Gothic A1 ", "Gothic A1", sans-serif;
