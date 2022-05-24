@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="댓글 작성&#10;- 댓글 수정 시 input Toggle 추가&#10;-">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_detail/itemdata.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_detail/itemstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/images/page_1/icon_u13.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/images/page_1/u3_div.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_itemInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/JoinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/file/FileStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/static/css/consumer_postdetail/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_postDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/consumer_postDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/item_info.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,25 +105,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;b85c01361a1273e20490daf6755e66a5&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelOrder2": "2",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RequestMappingsPanelWidth2": "75",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "D:/JPA/naeilHouse/start/start/src/main/resources/static/images/page_1",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications",
+    "spring.configuration.checksum": "b85c01361a1273e20490daf6755e66a5"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images\page_1" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\css" />
     </key>
@@ -387,7 +390,7 @@
       <workItem from="1653312285793" duration="513000" />
       <workItem from="1653313045258" duration="38000" />
       <workItem from="1653382842775" duration="1528000" />
-      <workItem from="1653384574084" duration="7747000" />
+      <workItem from="1653384574084" duration="13941000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -662,7 +665,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653286534220</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="댓글 작성&#10;- 댓글 수정 시 input Toggle 추가&#10;- form 전송하는 js 함수 작성">
+      <created>1653393184610</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1653393184610</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="상품 목록 &#10;- 상품 목록 html 연동" />
     <MESSAGE value="커뮤니티&#10;- 댓글 수정과 onclick none/block 기능&#10;- 댓글 수정 form url 작성." />
     <MESSAGE value="커뮤니티 &#10;- 댓글 수정 display none/block 지정" />
     <MESSAGE value="커뮤니티 &#10;- 댓글 수정 Controlle구현 완료&#10;상품&#10;- 상품 장바구니 담기 주소 매핑 중" />
@@ -720,6 +729,7 @@
     <MESSAGE value="주문 후 장바구니 &#10;- 주문 후 상품 목록 비우는 removeCartItem 메소드 추가 &#10;- 주문 객체 생성 후 메소드 실행" />
     <MESSAGE value="OrderItem Mapping 변경사항 수정&#10;- interface findOrderItemsByConsumer 추가&#10;- 장바구니 -&gt; 주문 객체 생성시 로직 변경&#10;- Delivery @Builder 패턴 변경&#10;- Order @Builder 패턴 변경&#10;- 배송 완료 시 Status set 변경" />
     <MESSAGE value="OrderItem 변경 사항 테스트 코드 작성&#10;- OrderService.orders &#10;- OrderServiceTest.장바구니물건구매" />
-    <option name="LAST_COMMIT_MESSAGE" value="OrderItem 변경 사항 테스트 코드 작성&#10;- OrderService.orders &#10;- OrderServiceTest.장바구니물건구매" />
+    <MESSAGE value="댓글 작성&#10;- 댓글 수정 시 input Toggle 추가&#10;- form 전송하는 js 함수 작성" />
+    <option name="LAST_COMMIT_MESSAGE" value="댓글 작성&#10;- 댓글 수정 시 input Toggle 추가&#10;- form 전송하는 js 함수 작성" />
   </component>
 </project>

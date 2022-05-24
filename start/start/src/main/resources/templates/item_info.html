@@ -164,7 +164,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-4 text-center">
-                        <!--                        <img th:src="|/upload/${item.uploadFile.storeFileName}|" class="img-thumbnail" alt="...">-->
+                        <img th:src="|/upload/${item.uploadFile.storeFileName}|" class="img-thumbnail" alt="...">
                     </div>
                     <div class="col-4 text-center">
                         <div class="row justify-content-center">
@@ -188,7 +188,7 @@
                         <div class="row justify-content-center">
                             <p><input type="number" name="itemNum"/></p>
                         </div>
-                        <button th:attr="onclick=|addItem('${item.id}')|"></button>
+                        <button th:attr="onclick=|addItem('${item.id}')|">장바구니</button>
                         <a href="#" th:href="@{/consumer/item/{id}/purchase (id=${item.id})}" class="btn btn-primary"
                            role="button">바로 구매</a>
                         <!--            <button type="button" class="btn btn-primary" style="margin-top: 10px">바로 구매</button>-->
