@@ -21,7 +21,7 @@ public class Consumer {
     @OneToMany(mappedBy = "consumer")
     private List<Order> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "consumer")
+    @OneToMany(mappedBy = "consumer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "consumer")

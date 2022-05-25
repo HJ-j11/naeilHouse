@@ -22,8 +22,4 @@ public class OrderItemService {
                 .orElse(null);
     }
 
-    public OrderItem changeRevieYn(OrderItem orderItem) {
-        orderItem.setReviewYn(true);
-        return orderItem;
-    }
 }

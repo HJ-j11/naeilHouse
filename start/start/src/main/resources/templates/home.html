@@ -1,164 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/main-layout}">
 <head>
-    <title>내일의 집</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-    <!--axure-->
-    <link href="css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="css/main/styles.css" type="text/css" rel="stylesheet"/>
-    <script src="/scripts/jquery-3.2.1.min.js"></script>
-    <script src="/scripts/axure/axQuery.js"></script>
-    <script src="/scripts/axure/globals.js"></script>
-    <script src="/scripts/axutils.js"></script>
-    <script src="/scripts/axure/annotation.js"></script>
-    <script src="/scripts/axure/axQuery.std.js"></script>
-    <script src="/scripts/axure/doc.js"></script>
-    <script src="/scripts/messagecenter.js"></script>
-    <script src="/scripts/axure/events.js"></script>
-    <script src="/scripts/axure/recording.js"></script>
-    <script src="/scripts/axure/action.js"></script>
-    <script src="/scripts/axure/expr.js"></script>
-    <script src="/scripts/axure/geometry.js"></script>
-    <script src="/scripts/axure/flyout.js"></script>
-    <script src="/scripts/axure/model.js"></script>
-    <script src="/scripts/axure/repeater.js"></script>
-    <script src="/scripts/axure/sto.js"></script>
-    <script src="/scripts/axure/utils.temp.js"></script>
-    <script src="/scripts/axure/variables.js"></script>
-    <script src="/scripts/axure/drag.js"></script>
-    <script src="/scripts/axure/move.js"></script>
-    <script src="/scripts/axure/visibility.js"></script>
-    <script src="/scripts/axure/style.js"></script>
-    <script src="/scripts/axure/adaptive.js"></script>
-    <script src="/scripts/axure/tree.js"></script>
-    <script src="/scripts/axure/init.temp.js"></script>
-    <script src="/scripts/axure/legacy.js"></script>
-    <script src="/scripts/axure/viewer.js"></script>
-    <script src="/scripts/axure/math.js"></script>
-    <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="/javascript/document.js"></script>
-    <script src="/css/main/data.js"></script>
-    <script src="/scripts/axure/ios.js"></script>
-
+    <link href="http://localhost:8080/css/home.css" type="text/css" rel="stylesheet"/>
 </head>
-<body>
-<div id="base" class="">
 
-    <!-- Topbar (Group) -->
-    <div id="u0" class="ax_default" data-label="Topbar" data-left="0" data-top="0" data-width="1440" data-height="87">
-
-        <!-- logo (Rectangle) -->
-        <div id="u1" class="ax_default shape" data-label="logo">
-            <div id="u1_div" class=""></div>
-            <div id="u1_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
-            </div>
-        </div>
-
-        <!-- 회원가입 (Rectangle) -->
-        <a href="/member/join">
-            <div id="signin" class="ax_default shape" data-label="회원가입">
-                <div id="u2_div" class=""></div>
-                <div id="u2_text" class="text ">
-                    <p><span>회원가입</span></p>
-                </div>
-            </div>
-        </a>
-
-        <!-- Line 2 (Shape) -->
-        <div id="u3" class="ax_default shape ax_default_hidden" data-label="Line 2" style="display:none; visibility: hidden">
-            <img id="u3_img" class="img " src="images/main/line_2_u3.svg"/>
-            <div id="u3_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
-            </div>
-        </div>
-
-        <!-- Line 1 (Shape) -->
-        <div id="u4" class="ax_default shape" data-label="Line 1">
-            <img id="u4_img" class="img " src="images/main/line_2_u3.svg"/>
-            <div id="u4_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
-            </div>
-        </div>
-
-        <!-- 로그인 (Rectangle) -->
-        <a href="/login">
-            <div id="login" class="ax_default shape" data-label="로그인">
-                <div id="u5_div" class=""></div>
-                <div id="u5_text" class="text ">
-                    <p><span>로그인</span></p>
-                </div>
-            </div>
-        </a>
-
-        <!-- 검색 (Group) -->
-        <div id="u6" class="ax_default" data-label="검색" data-left="637" data-top="15" data-width="331" data-height="54">
-
-            <!-- 검색바 (Rectangle) -->
-            <div id="u7" class="ax_default shape" data-label="검색바">
-                <div id="u7_div" class=""></div>
-                <div id="u7_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- 검색창 (Text Field) -->
-            <div id="u8" class="ax_default text_field" data-label="검색창">
-                <img id="u8_img" class="img " src="images/main/검색창_u8.svg"/>
-                <input id="u8_input" type="text" value="" class="u8_input"/>
-            </div>
-
-            <!-- search_icon (Group) -->
-            <div id="u9" class="ax_default" data-label="search_icon" data-left="637" data-top="15" data-width="53" data-height="54">
-
-                <!-- search_icon (Rectangle) -->
-                <div id="u10" class="ax_default shape" data-label="search_icon">
-                    <div id="u10_div" class=""></div>
-                    <div id="u10_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- icon (Shape) -->
-                <div id="u11" class="ax_default shape" data-label="icon">
-                    <img id="u11_img" class="img " src="images/main/icon_u11.svg"/>
-                    <div id="u11_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 스토어 (Rectangle) -->
-        <a href="/list">
-            <div id="u12" class="ax_default shape" data-label="스토어">
-                <div id="u12_div" class=""></div>
-                <div id="u12_text" class="text ">
-                    <p><span>스토어</span></p>
-                </div>
-            </div>
-        </a>
-
-        <!-- Unnamed (Rectangle) -->
-        <a href="/community">
-            <div id="u13" class="ax_default shape">
-                <div id="u13_div" class=""></div>
-                <div id="u13_text" class="text ">
-                    <p><span>커뮤니티</span></p>
-                </div>
-            </div>
-        </a>
-
-        <!-- border (Shape) -->
-        <div id="u14" class="ax_default shape" data-label="border">
-            <img id="u14_img" class="img " src="images/main/border_u14.svg"/>
-            <div id="u14_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
-            </div>
-        </div>
-    </div>
+<div layout:fragment="content">
 
     <!-- logo_img (Rectangle) -->
     <div id="u15" class="ax_default shape" data-label="logo_img">
@@ -167,7 +16,6 @@
             <p></p>
         </div>
     </div>
-</div>
 
-</body>
+</div>
 </html>

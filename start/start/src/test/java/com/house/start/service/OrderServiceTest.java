@@ -30,23 +30,27 @@ public class OrderServiceTest {
     @Autowired ItemRepository itemRepository;
     @Autowired CategoryRepository categoryRepository;
     @Autowired CartRepository cartRepository;
+    @Autowired OrderItemRepository orderItemRepository;
+    @Autowired DeliveryRepository deliveryRepository;
 
-//    @Test
-//    public void 주문취소() throws Exception {
-//        //Given
-//        Consumer consumer = createConsumer();
-//        Item item = createItem(10);
-//        int orderCount = 2;
-//        Long orderId = orderService.order(consumer.getId(), item.getId(), orderCount);
-//
-//        //When
-//        orderService.cancelOrder(orderId);
-//
-//        //Then
-//        Order order = orderRepository.findById(orderId).get();
-//        assertEquals("주문 취소시 상태는 CANCEL 이다.", OrderStatus.CANCEL, order.getOrderStatus());
-//        assertEquals("주문이 취소된 상품은 그만큼 재고가 증가해야 한다.", 10, item.getStockQuantity());
-//    }
+    @Test
+    public void 주문취소() throws Exception {
+        //Given -> 나중에 order 부분 수정 후 그 부분으로 바꿀 예정
+        Consumer consumer = createConsumer();
+        Item item = createItem(10);
+        int orderCount = 2;
+        Delivery delivery = createDelivery();
+        OrderItem orderItem = createOrderItem(item, delivery, orderCount);
+
+        //When
+        Long orderItemId = orderItem.getId();
+        orderService.cancelOrder(orderItemId);
+
+        //Then
+        OrderItem testOrderItem = orderItemRepository.findById(orderItemId).get();
+        assertEquals("주문 취소시 상태는 CANCEL 이다.", OrderItemStatus.CANCELED, testOrderItem.getOrderItemStatus());
+        assertEquals("주문이 취소된 상품은 그만큼 재고가 증가해야 한다.", 10, item.getStockQuantity());
+    }
 
     @Test
     public void 주문완료() throws Exception {
@@ -55,6 +59,7 @@ public class OrderServiceTest {
         Item item = createItem(100);
         int count = 2;
         // when
+
         Long orderId = orderService.order(consumer.getId(), item.getId(), count);
 
         //Then
@@ -65,6 +70,8 @@ public class OrderServiceTest {
             assertEquals("orderItem Status", OrderItemStatus.COMPLETED, orderItem.getOrderItemStatus());
             assertEquals("Delivery Status", DeliveryStatus.PREPARING, orderItem.getDelivery().getDeliveryStatus());
         }
+
+
     }
 
     @Test
@@ -138,6 +145,8 @@ public class OrderServiceTest {
             assertEquals("상품 status 확인", OrderItemStatus.COMPLETED, orderInItem.getOrderItemStatus());
             assertEquals("Delivery status", DeliveryStatus.PREPARING, orderInItem.getDelivery().getDeliveryStatus());
         }
+
+        Order order = Order.createOrders(consumer, delivery, orderItems);
 
 
     }
@@ -220,13 +229,30 @@ public class OrderServiceTest {
     }
 
     private CartItem createCartItem(Cart cart, Item item, int count) {
-
         CartItem cartItem = CartItem.builder()
                 .item(item)
                 .cart(cart)
                 .count(2)
                 .build();
-
         return cartItem;
+    }
+
+    private OrderItem createOrderItem(Item item, Delivery delivery, int ordercount) {
+        OrderItem orderItem = OrderItem.builder()
+                .item(item)
+                .delivery(delivery)
+                .count(ordercount)
+                .orderItemStatus(OrderItemStatus.ORDER)
+                .build();
+        orderItemRepository.save(orderItem);
+        return orderItem;
+    }
+
+    private Delivery createDelivery() {
+        Delivery delivery = Delivery.builder()
+                .deliveryStatus(DeliveryStatus.DELIVERING)
+                .build();
+        deliveryRepository.save(delivery);
+        return delivery;
     }
 }

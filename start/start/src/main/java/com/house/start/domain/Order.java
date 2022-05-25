@@ -28,10 +28,9 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
     private LocalDateTime orderDate; // 주문 일시
 
-    private OrderStatus orderStatus; // 주문 상태 [카트, 주문, 취소, 완료]
 
     @Builder
-    public Order(Consumer consumer) {
+    public Order(Consumer consumer, OrderStatus orderStatus, LocalDateTime orderDate) {
         this.consumer = consumer;
         this.orderStatus = OrderStatus.ORDER;
         this.orderDate = LocalDateTime.now();
@@ -71,7 +70,6 @@ public class Order {
         consumer.setPoint(pointAfterOrder);
         order.setConsumer(consumer);
 
-        order.setOrderStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
         return order;
     }

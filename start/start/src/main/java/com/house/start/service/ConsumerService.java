@@ -106,9 +106,9 @@ public class ConsumerService {
     public void completeDelivery(Long id) {
         Delivery delivery = deliveryRepository.getById(id);
         OrderItem orderItem = delivery.getOrderItem();
-        Order order = orderItem.getOrder();
 
-        // STATUS 변경
+        Order order = delivery.getOrderItem().getOrder(); // -> 수정
+
         orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
         order.setOrderStatus(OrderStatus.COMPLETE);

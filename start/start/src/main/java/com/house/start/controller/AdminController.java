@@ -2,6 +2,8 @@ package com.house.start.controller;
 
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.dto.Order.OrderAdminDTO;
+import com.house.start.domain.dto.Order.OrderItem.OrderOrderItemAdminDTO;
 import com.house.start.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -150,7 +152,23 @@ public class AdminController {
         } else if (session.getAttribute(SessionConstants.ROLE) == "admin") {
             // 관리자인 경우
             List<Order> orderList = orderService.findOrders();
-            model.addAttribute("orderList", orderList);
+            List<OrderAdminDTO> orderDTOList = new ArrayList<>();
+            for (Order order: orderList) {
+                List<OrderItem> orderItemList = order.getOrderItems();
+                List<OrderOrderItemAdminDTO> orderOrderItemDTOList = new ArrayList<>();
+                for (OrderItem orderItem: orderItemList) {
+                    OrderOrderItemAdminDTO orderOrderItemDTO = OrderOrderItemAdminDTO.builder()
+                                                            .orderItem(orderItem)
+                                                            .build();
+                    orderOrderItemDTOList.add(orderOrderItemDTO);
+                }
+                OrderAdminDTO orderDTO = OrderAdminDTO.builder()
+                        .order(order)
+                        .orderItems(orderOrderItemDTOList)
+                        .build();
+                orderDTOList.add(orderDTO);
+            }
+            model.addAttribute("orderList", orderDTOList);
             return "admin/show_orders";
         } else {
             // 소비자나 판매자인 경우
