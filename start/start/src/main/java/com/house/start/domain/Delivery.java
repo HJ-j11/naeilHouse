@@ -22,10 +22,10 @@ public class Delivery {
 
     // 생성 메서드
     // 잠시 주석 처리 해놨습니다!
-    /*@Builder
-    public Delivery(DeliveryStatus deliveryStatus, Order order) {
-        this.order = order;
+    @Builder
+    public Delivery(DeliveryStatus deliveryStatus, OrderItem orderItem) {
+        this.orderItem = orderItem;
         this.deliveryStatus = deliveryStatus;
-    }*/
+    }
 
 }

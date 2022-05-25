@@ -9,9 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.house.start.domain.Delivery;
 import com.house.start.domain.DeliveryStatus;
 import com.house.start.domain.Order;
-import com.house.start.domain.OrderStatus;
 
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -118,6 +116,11 @@ public class OrderService {
         deliveryRepository.delete(delivery);
     }
 
+    /**
+     * Order과 연결된 OrderItem의 상태 갯수 반환
+     * @param orders Order객체의 리스트
+     * @return COMPLETED, ORDER 순의 Orderitem 객체의 갯수
+     */
     public List<Long> countStatus(List<Order> orders) {
         List<Long> statusList = new ArrayList<>();
         Long completeStatus = 0L;
