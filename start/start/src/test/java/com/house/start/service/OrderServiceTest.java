@@ -56,14 +56,22 @@ public class OrderServiceTest {
     public void 주문완료() throws Exception {
         //Given
         Consumer consumer = createConsumer();
-
+        Item item = createItem(100);
+        int count = 2;
         // when
-        //Long orderId = createOrder(consumer);
+
+        Long orderId = orderService.order(consumer.getId(), item.getId(), count);
 
         //Then
-        //Order order = orderRepository.findById(orderId).get();
-        //assertEquals("주문 완료 시  orderStatus", OrderStatus.ORDER, order.getOrderStatus());
-        //assertEquals("주문 완료 시 deliveryStatus", DeliveryStatus.PREPARING, order.getDelivery().getDeliveryStatus());
+        Order order = orderRepository.findById(orderId).get();
+        List<OrderItem> orderItems = order.getOrderItems();
+        assertEquals("주문 완료 시  orderStatus", OrderStatus.ORDER, order.getOrderStatus());
+        for(OrderItem orderItem : orderItems) {
+            assertEquals("orderItem Status", OrderItemStatus.COMPLETED, orderItem.getOrderItemStatus());
+            assertEquals("Delivery Status", DeliveryStatus.PREPARING, orderItem.getDelivery().getDeliveryStatus());
+        }
+
+
     }
 
     @Test
@@ -125,24 +133,22 @@ public class OrderServiceTest {
             cart.addCartItem(cartItem);
         }
 
-        Delivery delivery = Delivery
-                .builder()
-                .deliveryStatus(DeliveryStatus.PREPARING)
-                .build();
-        List<OrderItem> orderItems = new ArrayList<>();
+        Long orderId = orderService.orders(consumer);
 
-        for (CartItem cartItem: cart.getCartItems()) {
-            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getCount(), cartItem.getCount());
-            orderItems.add(orderItem);
+        //Then
+        Order order = orderRepository.getById(orderId);
+
+        for (int i = 0; i < order.getOrderItems().size(); i++) {
+            Item cartInItem = cart.getCartItems().get(i).getItem();
+            OrderItem orderInItem = order.getOrderItems().get(i);
+            assertEquals("장바구니 구매 상품 확인", cartInItem.getName(), orderInItem.getItem().getName());
+            assertEquals("상품 status 확인", OrderItemStatus.COMPLETED, orderInItem.getOrderItemStatus());
+            assertEquals("Delivery status", DeliveryStatus.PREPARING, orderInItem.getDelivery().getDeliveryStatus());
         }
 
         Order order = Order.createOrders(consumer, delivery, orderItems);
-        //delivery.setOrder(order);
 
-        //Then
-        assertEquals("order 생성 되었는지 확인", OrderStatus.ORDER, order.getOrderStatus());
-        assertEquals("Delivery 생성 되었는지 확인", DeliveryStatus.PREPARING, delivery.getDeliveryStatus());
-        assertEquals("cartItem -> orderitem", cart.getCartItems().size(), order.getOrderItems().size());
+
     }
 
 

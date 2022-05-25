@@ -105,9 +105,14 @@ public class ConsumerService {
     @Transactional
     public void completeDelivery(Long id) {
         Delivery delivery = deliveryRepository.getById(id);
+        OrderItem orderItem = delivery.getOrderItem();
+
         Order order = delivery.getOrderItem().getOrder(); // -> 수정
 
+        orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
+        order.setOrderStatus(OrderStatus.COMPLETE);
+
         deliveryRepository.save(delivery);
 
     }
@@ -130,15 +135,16 @@ public class ConsumerService {
 
     // 글 좋아요
     @Transactional
-    public void putLikes(Long id, Consumer consumer) {
+    public Long putLikes(Long id, Consumer consumer) {
         Post post = postRepository.getById(id);
-        // session 구현되면 consumer 넣기
         Like like = Like.builder()
                 .consumer(consumer)
                 .post(post)
                 .build();
 
         likeRepository.save(like);
+        return like.getId();
+
     }
 
     // 글 작성

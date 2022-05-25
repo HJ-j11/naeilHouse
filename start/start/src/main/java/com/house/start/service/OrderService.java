@@ -45,6 +45,7 @@ public class OrderService {
 
         // 주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
+        orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
         log.info("orderItem id : " + orderItem.getId());
 
         // 주문 생성
@@ -61,24 +62,32 @@ public class OrderService {
         return orderRepository.findByConsumer(consumer);
     }
 
+    public List<OrderItem> findOrderItemByConsumer(Consumer consumer) {
+        return orderRepository.findOrderItemsByConsumer(consumer);
+    }
+
     // 장바구니에 있는 상품 구매
     @Transactional
     // 잠시 주석처리해놓습니다.
     /*public Long orders(Consumer consumer) {
         Cart cart = cartRepository.findByConsumer(consumer);
-        Delivery delivery = Delivery
-                .builder()
-                .deliveryStatus(DeliveryStatus.PREPARING)
+
+        Order order = Order.builder()
+                .consumer(consumer)
                 .build();
-        List<OrderItem> orderItems = new ArrayList<>();
 
         for (CartItem cartItem: cart.getCartItems()) {
-            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getItem().getPrice(), cartItem.getCount());
-            orderItems.add(orderItem);
-        }
+            Item itemInCart = cartItem.getItem();
+            OrderItem orderItem = OrderItem.createOrderItem(itemInCart, itemInCart.getPrice(), cartItem.getCount());
+            orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
+            order.addOrderItem(orderItem);
 
-        Order order = Order.createOrders(consumer, delivery, orderItems);
-        delivery.setOrder(order);
+            Delivery delivery = Delivery.builder()
+                    .deliveryStatus(DeliveryStatus.PREPARING)
+                    .build();
+            orderItem.setDelivery(delivery);
+
+        }
 
         orderRepository.save(order);
         return order.getId();
@@ -115,7 +124,6 @@ public class OrderService {
         // Delivery 삭제
         deliveryRepository.delete(delivery);
     }
-
     /**
      * Order과 연결된 OrderItem의 상태 갯수 반환
      * @param orders Order객체의 리스트

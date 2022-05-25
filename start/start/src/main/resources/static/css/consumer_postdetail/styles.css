@@ -10,7 +10,7 @@
 }
 .ax_default {
   font-family: 'Gothic A1 ', 'Gothic A1', sans-serif;
-  font-weight:400;
+  font-weight:800;
   font-style:normal;
   font-size:20px;
   letter-spacing:normal;
@@ -31,8 +31,7 @@
 .u32 {
   border-width:0px;
   position:absolute;
-  left:0px;
-  top:0px;
+  left:386px;
   width:0px;
   height:0px;
 }
@@ -185,6 +184,23 @@
   height:49px;
   background:inherit;
   background-color:rgba(53, 197, 240, 1);
+  border:none;
+  border-radius:5px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-size:20px;
+  color:#FFFFFF;
+}
+.u38-1_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:125px;
+  height:49px;
+  background:inherit;
+  background-color: orangered;
   border:none;
   border-radius:5px;
   -moz-box-shadow:none;
@@ -1161,6 +1177,25 @@
   word-wrap:break-word;
   text-transform:none;
   visibility:hidden;
+}
+.u66_input {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:982px;
+  height:49px;
+  padding:2px 2px 2px 2px;
+  font-family:'Arial Normal', 'Arial', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:15px;
+  letter-spacing:normal;
+  color:#000000;
+  vertical-align:none;
+  text-align:left;
+  text-transform:none;
+  background-color:transparent;
+  border-color:transparent;
 }
 #u66_input {
   position:absolute;

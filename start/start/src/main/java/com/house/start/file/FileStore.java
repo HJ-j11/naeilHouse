@@ -35,8 +35,8 @@ public class FileStore {
 
         // 서버 저장 경로 탐색
         ServletContext servletContext = request.getServletContext();
-        String realPath = servletContext.getRealPath("/upload"); // 절대 경로 탐색
-//        String realPath  = "D:\\JPA\\naeilHouse\\start\\start\\src\\main\\webapp\\upload";
+//        String realPath = servletContext.getRealPath("/upload"); // 절대 경로 탐색
+        String realPath  = "D:\\JPA\\naeilHouse\\start\\start\\src\\main\\webapp\\upload";
 //        log.info("realPath={}", realPath);
 
         // webapp/upload/{storeFileName}.png 경로로 저장됨

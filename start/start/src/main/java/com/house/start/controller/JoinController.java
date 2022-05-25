@@ -60,7 +60,7 @@ public class JoinController {
         consumer.setCId(form.getId());
         consumer.setPwd(form.getPassword());
         consumer.setName(form.getName());
-        consumer.setUploadFile(uploadFile);
+//        consumer.setUploadFile(uploadFile);
 
         // 포인트 초기화
         consumer.setPoint(500000);

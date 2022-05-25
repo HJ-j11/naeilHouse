@@ -30,10 +30,9 @@ public class Order {
 
 
     @Builder
-    public Order(Consumer consumer, Delivery delivery) {
+    public Order(Consumer consumer, OrderStatus orderStatus, LocalDateTime orderDate) {
         this.consumer = consumer;
-        // 잠시 주석처리 해놓습니다.
-       // this.delivery = delivery;
+        this.orderStatus = OrderStatus.ORDER;
         this.orderDate = LocalDateTime.now();
     }
 
@@ -75,13 +74,13 @@ public class Order {
         return order;
     }
 
-    public static Order createOrders(Consumer consumer, Delivery delivery, List<OrderItem> orderItems) {
+    public static Order createOrders(Consumer consumer, List<OrderItem> orderItems) {
 
         // 현재 소비자 포인트 - 총 주문 포인트
         int totalOrderPoint = 0;
 
         Order order = Order.builder()
-                        .delivery(delivery)
+                .consumer(consumer)
                         .build();
 
         for (OrderItem orderItem : orderItems) {

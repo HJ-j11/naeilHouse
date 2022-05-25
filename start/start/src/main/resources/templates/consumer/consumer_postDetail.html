@@ -193,7 +193,7 @@
 
                   <!-- HEART (Shape) -->
                   <div id="a33" class="ax_default shape" data-label="HEART">
-                    <img id="a33_img" class="img " src="/images/page_1/heart_u33.svg" th:attr="onclick=|putLikes('${post.id}')|"/>
+                    <img id="a33_img" class="img " src="/images/page_1/heart_u33.svg" th:onclick="|putLikes('${post.id}', '${liked}' ? '${liked}' : null)|" />
                     <div id="a33_text" class="text " style="display:none; visibility: hidden">
                       <p></p>
                     </div>
@@ -233,7 +233,7 @@
 <!--              <button id="likes" th:attr="onclick=|putLikes('${post.id}')|">좋아요</button>-->
 <!--            </div>-->
             <div class="ax_default" style="position: absolute; top: 160px; left: 70px;">
-              <span th:text="${likes}"></span>
+              <span th:text="${likes.size()}">0</span>
             </div>
             <div class="ax_default" style="position: absolute; top: 270px; left: 45px;">
               <div>댓글 수</div>
@@ -271,7 +271,10 @@
             <div id="u64" class="ax_default shape" data-label="글쓰기">
               <div id="u64_div" class=""></div>
               <div id="u64_text" class="text " style="text-align:center">
-                <p><span id="commentBtn">댓글 작성</span></p>
+                <p>
+                  <span th:if="${not #strings.isEmpty(session.loginMember)}" th:onclick="|addComment(${session.loginMember.id})|">댓글 작성</span>
+                  <span th:unless="${not #strings.isEmpty(session.loginMember)}" th:onclick="|addComment(null)|">댓글 작성</span>
+                </p>
 <!--                <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>-->
               </div>
             </div>
@@ -296,21 +299,94 @@
         <!-- Unnamed (Repeater) -->
         <div id="u31" class="ax_default">
           <div th:each="comment : ${comments}">
-            <div style="border: 1px solid black;">
-              <div id="originForm">
-                <p>이름 :<span th:text="${comment.consumer.name}"></span></p>
-                <p>내용 :<span th:text="${comment.content}"></span></p>
+            <div class="parent_div preeval" style="width: 798px; height: 100px;">
+
+              <!-- 댓글 박스 (Group) -->
+              <div class="ax_default u32" style="visibility: inherit" data-top="0" data-width="1182" data-height="100">
+
+                <!-- Card (Group) -->
+                <div  class="ax_default u33" data-label="Card" style="visibility: inherit" data-top="16" data-width="956" data-height="69">
+
+                  <!-- Paragraph (Rectangle) -->
+                  <div class="originForm">
+                    <div  class="ax_default paragraph u34" data-label="Paragraph" style="width: 948px; height: 35px; top: 50px;visibility: inherit">
+                      <div  class="u34_div" style="width: 948px; height: 35px;visibility: inherit"></div>
+                      <div  class="text u34_text" style="visibility: inherit">
+                        <p><span th:text="${comment.content}">댓글1</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Heading (Rectangle) -->
+                    <div  class="ax_default heading_2 u35" data-label="Heading" style="width: 351px; height: 23px; top: 5px;visibility: inherit">
+                      <div  class="u35_div" style="width: 351px; height: 23px;visibility: inherit"></div>
+                      <div  class="text u35_text" style="visibility: inherit">
+                        <p><span th:text="${comment.consumer.name}">작성자1</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ax_default paragraph u34 modifyForm" style="width: 948px; height: 35px; top: 38px; visibility: hidden; z-index: 1;" >
+                    <input type="text" name="content" th:value="${comment.content}" style="width: 80%"/>
+                    <button th:if="${not #strings.isEmpty(session.loginMember)}" th:onclick="|putComments(${session.loginMember.id}, ${comment.id}, ${comment.consumer.id})|">확인</button>
+                    <button th:unless="${not #strings.isEmpty(session.loginMember)}" th:onclick="|putComments(null, ${comment.id}, ${comment.consumer.id})|">확인</button>
+                  </div>
+
+                </div>
+
+                <!-- Unnamed (Group) -->
+                <div  class="ax_default u36" style="visibility: inherit" data-top="0" data-width="1182" data-height="100">
+
+                  <!-- Card Background (Rectangle) -->
+                  <div  class="ax_default shape u37" data-label="Card Background" style="width: 1182px; height: 100px; top: 0px;visibility: inherit">
+                    <div  class="u37_div" style="width: 1182px; height: 100px;visibility: inherit"></div>
+                    <div class="text u37_text" style="display:none; visibility: hidden">
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- post_box (Rectangle) -->
+                <div class="ax_default shape u38" data-label="post_box" style="width: 125px; height: 49px; left: 500px; top: 26px;visibility: inherit">
+                  <div  class="u38_div" style="width: 125px; height: 49px;visibility: inherit"></div>
+                  <div  class="text u38_text" style="visibility: inherit">
+                    <p><span class="updateBtn">댓글 수정</span></p>
+                  </div>
+                </div>
+
+                <div class="ax_default shape u38" data-label="post_box" style="width: 125px; height: 49px; left: 646px; top: 26px;visibility: inherit">
+                  <div  class="u38-1_div" style="width: 125px; height: 49px;visibility: inherit"></div>
+                  <div  class="text u38_text" style="visibility: inherit">
+                    <p><span th:if="${not #strings.isEmpty(session.loginMember)}" th:onclick="|deleteComment(${comment.id}, ${comment.consumer.id}, ${session.loginMember.id})|">삭제</span></p>
+                    <p><span th:unless="${not #strings.isEmpty(session.loginMember)}" th:onclick="|deleteComment(${comment.id}, ${comment.consumer.id}, null)|">삭제</span></p>
+                  </div>
+                </div>
+
               </div>
-              <div id="modifyForm" style="display: none">
-                <input type="text" name="content" th:value="${comment.content}"/>
-                <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>
-              </div>
-              <div></div>
-              <span><button th:attr="onclick=|modifyComment()|">댓글 수정</button> <button th:attr="onclick=|deleteComment('${comment.id}')|">댓글 삭제</button></span>
             </div>
           </div>
-        </div>
+
+          <!--          <div th:each="comment : ${comments}">-->
+<!--            <div style="border: 1px solid black;">-->
+<!--              <div id="originForm">-->
+<!--                <p>이름 :<span th:text="${comment.consumer.name}"></span></p>-->
+<!--                <p>내용 :<span th:text="${comment.content}"></span></p>-->
+<!--              </div>-->
+<!--              <div id="modifyForm" style="display: none">-->
+<!--                <input type="text" name="content" th:value="${comment.content}"/>-->
+<!--                <button th:attr="onclick=|putComments('${comment.id}', '${post.id}')|">확인</button>-->
+<!--              </div>-->
+<!--              <div></div>-->
+<!--              <div class="ax_default shape u38" data-label="post_box" style="width: 125px; height: 49px; left: 646px; top: 26px;visibility: inherit">-->
+<!--                <div class="u38_div" style="width: 125px; height: 49px;visibility: inherit"></div>-->
+<!--                <div class="text u38_text" style="visibility: inherit">-->
+<!--                  <p><span>댓글 수정</span></p>-->
+<!--                </div>-->
+<!--&lt;!&ndash;              <span><button th:attr="onclick=|modifyComment()|">댓글 수정</button> <button th:attr="onclick=|deleteComment('${comment.id}')|">댓글 삭제</button></span>&ndash;&gt;-->
+<!--            </div>-->
+<!--          </div>-->
+`<!--        </div>-->
       </div>
+
     </div>
     <script src="/scripts/axure/ios.js"></script>
 
@@ -348,72 +424,112 @@
     </ul>
   </body>
 <script>
-  var commentBtn = document.getElementById("commentBtn");
-  commentBtn.addEventListener("click", function() {
+  $(document).on('click', '.updateBtn', function() {
+    var parentDiv = $(this).closest('.parent_div');
+    $(parentDiv).find('.u34_text').css({"visibility":"hidden"});
+    $(parentDiv).find('.modifyForm').css({"visibility":"visible"});
+  })
+
+  function addComment(session) {
     var form = document.commentForm;
-    console.log(form.contents.value);
-    if(form.contents.value=="") {
+
+    console.log(session);
+
+    if(session == null) {
+      alert("로그인을 해주세요.");
+      return false;
+    } else if(form.contents.value=="") {
       alert("댓글을 작성해주세요.");
       return false;
     } else {
       document.forms[0].submit();
       alert("댓글을 작성했습니다.");
     }
-  })
-
-  function putLikes(id) {
-    let putUrl = "/community/"+id+"/likes";
-
-    fetch(putUrl, {
-      method : "POST",
-      headers: {
-        "Content-Type" : "application/json",
-      },
-      body : JSON.stringify({
-        id : id
-        // session에서 값 넣어줄 것.
-        // consumerId : consumerId
-      }),
-    })
-            .then((response) => response.json())
-            .then(
-                    alert("좋아요를 눌렀습니다.")
-            )
-            .then(location.reload());
-    // console에 데이터 잘 넘어갔는지 확인 필요.
   }
 
-  function modifyComment() {
-    var x = document.getElementById("modifyForm");
-    var y = document.getElementById("originForm");
 
-    if(x.style.display === "none") {
-      x.style.display = "block";
-      y.style.display = "none";
+  function putLikes(id, liked) {
+    if(liked == null) {
+
+      alert("이미 좋아요를 눌렀습니다.");
+
+    } else if(liked==null) {
+
+      alert("로그인을 해주세요.");
+
+    } else {
+      let putUrl = "/community/"+id+"/likes";
+
+      fetch(putUrl, {
+        method : "POST",
+        headers: {
+          "Content-Type" : "application/json",
+        },
+        body : JSON.stringify({
+          id : id
+          // session에서 값 넣어줄 것.
+          // consumerId : consumerId
+        }),
+      })
+              .then((response) => response.json())
+              .then(
+                      alert("좋아요를 눌렀습니다.")
+              )
+              .then(location.reload());
     }
   }
 
-  function putComments(id, postId) {
-    let putUrl = "/comments/"+id+"/put";
-    var content = document.getElementsByName("content")[0].value;
+  function putComments(session, id, commentId) {
+    if (session == null) {
+      alert("로그인을 해주세요.");
+    } else if (session != commentId) {
+      alert("권한이 없습니다.");
+    } else {
+      let putUrl = "/comments/" + id + "/put";
+      var content = document.getElementsByName("content")[0].value;
 
-    console.log(content);
+      console.log(content);
 
-    fetch(putUrl, {
-      method : "PUT",
-      headers: {
-        "Content-Type" : "application/json",
-      },
-      body : JSON.stringify({
-        id: id,
-        postId : postId,
-        content : content
-      }),
-    })
-            .then((response) => response.json())
-            .then(
-                    alert("댓글을 수정했습니다.")
-            );
+      fetch(putUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          postId: postId,
+          content: content
+        }),
+      })
+              .then((response) => response.json())
+              .then(
+                      alert("댓글을 수정했습니다.")
+              ).then(location.reload());
+    }
+  }
+  function deleteComment(id, commentId, consumerId) {
+    if (consumerId == null) {
+      alert("로그인을 해주세요.");
+    } else if (commentId != consumerId) {
+      alert("권한이 없습니다.");
+    } else {
+      let url = "/comments/" + id + "/delete";
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      })
+              .then((response) => response.json())
+              .then(
+                      alert("댓글을 삭제했습니다.")
+              ).then(
+              location.reload()
+      );
+    }
   }
 </script>
 </html>
