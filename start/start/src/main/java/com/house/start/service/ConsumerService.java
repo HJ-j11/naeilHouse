@@ -105,10 +105,9 @@ public class ConsumerService {
     @Transactional
     public void completeDelivery(Long id) {
         Delivery delivery = deliveryRepository.getById(id);
-        Order order = delivery.getOrder();
+        Order order = delivery.getOrderItem().getOrder(); // -> 수정
 
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
-        order.setOrderStatus(OrderStatus.COMPLETE);
         deliveryRepository.save(delivery);
 
     }

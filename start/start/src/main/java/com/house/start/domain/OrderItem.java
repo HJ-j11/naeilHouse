@@ -1,12 +1,15 @@
 package com.house.start.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -26,14 +29,21 @@ public class OrderItem {
     private int orderPrice; // 주문 당시 가격
     private int count; // 주문 수량
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
-    @Column(name="review_yn")
-    private boolean reviewYn = false;
-
     private OrderItemStatus orderItemStatus;
+
+    @Builder
+    public OrderItem (Order order, Item item, int orderPrice, int count, Delivery delivery, OrderItemStatus orderItemStatus) {
+        this.order = order;
+        this.item = item;
+        this.orderPrice = orderPrice;
+        this.count = count;
+        this.delivery = delivery;
+        this. orderItemStatus = orderItemStatus;
+    }
 
     //==생성 메서드==//
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) {

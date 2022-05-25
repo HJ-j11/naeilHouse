@@ -319,7 +319,8 @@ public class ConsumerController {
 
     }
 
-    @PostMapping("/order")
+    // 잠시 주석 처리해놓습니다.
+    /*@PostMapping("/order")
     public String afterOrderItems( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
         Long orderId = orderService.orders(loginConsumer);
         System.out.println("new OrderId : "+orderId+" created!");
@@ -328,7 +329,7 @@ public class ConsumerController {
         cart.removeCartItem();
         return "consumer/item_list";
 //        return "consumer_afterPurchase";
-    }
+    }*/
 
     // 소비자 정보 조회`
     //
