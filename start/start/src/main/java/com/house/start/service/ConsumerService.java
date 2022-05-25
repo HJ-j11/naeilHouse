@@ -108,7 +108,6 @@ public class ConsumerService {
         Order order = delivery.getOrderItem().getOrder(); // -> 수정
 
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
-        order.setOrderStatus(OrderStatus.COMPLETE);
         deliveryRepository.save(delivery);
 
     }

@@ -29,7 +29,7 @@ public class Item {
     private int stockQuantity; // 재고 수량
     private String info; // 상품 정보
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
     private UploadFile uploadFile;
 

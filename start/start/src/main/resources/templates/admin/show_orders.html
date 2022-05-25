@@ -1,224 +1,68 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/main-layout}">
 <head>
-    <title>내일의 집</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-    <!-- develop -->
     <link href="http://localhost:8080/css/admin/show_orders.css" type="text/css" rel="stylesheet"/>
-
-    <!--axure-->
-    <link href="http://localhost:8080/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="http://localhost:8080/css/admin_default/styles.css" type="text/css" rel="stylesheet"/>
-    <script src="http://localhost:8080/scripts/jquery-3.2.1.min.js"></script>
-    <script src="http://localhost:8080/scripts/axure/axQuery.js"></script>
-    <script src="http://localhost:8080/scripts/axure/globals.js"></script>
-    <script src="http://localhost:8080/scripts/axutils.js"></script>
-    <script src="http://localhost:8080/scripts/axure/annotation.js"></script>
-    <script src="http://localhost:8080/scripts/axure/axQuery.std.js"></script>
-    <script src="http://localhost:8080/scripts/axure/doc.js"></script>
-    <script src="http://localhost:8080/scripts/messagecenter.js"></script>
-    <script src="http://localhost:8080/scripts/axure/events.js"></script>
-    <script src="http://localhost:8080/scripts/axure/recording.js"></script>
-    <script src="http://localhost:8080/scripts/axure/action.js"></script>
-    <script src="http://localhost:8080/scripts/axure/expr.js"></script>
-    <script src="http://localhost:8080/scripts/axure/geometry.js"></script>
-    <script src="http://localhost:8080/scripts/axure/flyout.js"></script>
-    <script src="http://localhost:8080/scripts/axure/model.js"></script>
-    <script src="http://localhost:8080/scripts/axure/repeater.js"></script>
-    <script src="http://localhost:8080/scripts/axure/sto.js"></script>
-    <script src="http://localhost:8080/scripts/axure/utils.temp.js"></script>
-    <script src="http://localhost:8080/scripts/axure/variables.js"></script>
-    <script src="http://localhost:8080/scripts/axure/drag.js"></script>
-    <script src="http://localhost:8080/scripts/axure/move.js"></script>
-    <script src="http://localhost:8080/scripts/axure/visibility.js"></script>
-    <script src="http://localhost:8080/scripts/axure/style.js"></script>
-    <script src="http://localhost:8080/scripts/axure/adaptive.js"></script>
-    <script src="http://localhost:8080/scripts/axure/tree.js"></script>
-    <script src="http://localhost:8080/scripts/axure/init.temp.js"></script>
-    <script src="http://localhost:8080/scripts/axure/legacy.js"></script>
-    <script src="http://localhost:8080/scripts/axure/viewer.js"></script>
-    <script src="http://localhost:8080/scripts/axure/math.js"></script>
-    <script src="http://localhost:8080/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="http://localhost:8080/javascript/document.js"></script>
-    <script src="http://localhost:8080/css/admin_default/data.js"></script>
-    <script src="http://localhost:8080/scripts/axure/ios.js"></script>
 </head>
-<body>
-<div id="base" class="">
 
-    <!-- Admin_default (Group) -->
-    <div id="u29" class="ax_default" data-label="Admin_default" data-left="0" data-top="0" data-width="1440"
-         data-height="1024">
+<div layout:fragment="content">
 
-        <!-- Admin_default BG (Rectangle) -->
-        <div id="u30" class="ax_default shape" data-label="Admin_default BG">
-            <div id="u30_div" class=""></div>
+    <div id="routing_info" class="text">
+        <p><span>관리자 페이지/판매자 관리</span></p>
 
-            <div id="u30_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
+        <!-- border -->
+        <div id="border_middle" class="ax_default shape" data-label="border">
+            <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
+            <div class="text " style="display:none; visibility: hidden">
             </div>
-        </div>
-
-        <!-- Topbar (Group) -->
-        <div id="u31" class="ax_default" data-label="Topbar" data-left="0" data-top="6" data-width="1440"
-             data-height="87">
-
-            <!-- logo (Rectangle) -->
-            <div id="u32" class="ax_default shape" data-label="logo">
-                <div id="u32_div" class=""></div>
-                <div id="u32_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- 검색 (Group) -->
-            <div id="u33" class="ax_default" data-label="검색" data-left="637" data-top="21" data-width="331"
-                 data-height="54">
-
-                <!-- 검색바 (Rectangle) -->
-                <div id="u34" class="ax_default shape" data-label="검색바">
-                    <div id="u34_div" class=""></div>
-                    <div id="u34_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- 검색창 (Text Field) -->
-                <div id="u35" class="ax_default text_field" data-label="검색창">
-                    <img id="u35_img" class="img " src="http://localhost:8080/images/main/검색창_u8.svg"/>
-                    <input id="u35_input" type="text" value="" class="u35_input"/>
-                </div>
-
-                <!-- search_icon (Group) -->
-                <div id="u36" class="ax_default" data-label="search_icon" data-left="637" data-top="21" data-width="53"
-                     data-height="54">
-
-                    <!-- search_icon (Rectangle) -->
-                    <div id="u37" class="ax_default shape" data-label="search_icon">
-                        <div id="u37_div" class=""></div>
-                        <div id="u37_text" class="text " style="display:none; visibility: hidden">
-                            <p></p>
-                        </div>
-                    </div>
-
-                    <!-- icon (Shape) -->
-                    <div id="u38" class="ax_default shape" data-label="icon">
-                        <img id="u38_img" class="img " src="http://localhost:8080/images/main/icon_u11.svg"/>
-                        <div id="u38_text" class="text " style="display:none; visibility: hidden">
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- border (Shape) -->
-            <div id="u42" class="ax_default shape" data-label="border">
-                <img id="u42_img" class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
-                <div id="u42_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <div id="routing_info" class="text">
-                <p><span>관리자 페이지/주문 관리</span></p>
-
-                <!-- border -->
-                <div id="border_middle" class="ax_default shape" data-label="border">
-                    <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
-                    <div class="text " style="display:none; visibility: hidden">
-                    </div>
-                </div>
-            </div>
-
-            <div id="main_content">
-                <table class="posts" width="1440">
-                    <div id="orderData" th:each="order: ${orderList}" style="margin-top: 1%;">
-                        <ul id="orderDate" th:text="${order.orderDate}"> 날짜</ul>
-                        <ul th:text="|구매자 id: ${order.consumer.cId}|"> 구매자 id</ul>
-
-                        <ul th:each="orderitem: ${order.orderItems}"
-                            style="madding-top: 2%; display: inline-block; width:1000px; margin-bottom: 2%">
-
-                            <ul id="orderStatus">
-                                <h3 th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.delivery.deliveryStatus}|">
-                                    주문/ 배송상태 </h3>
-                            </ul>
-                            <div>
-                                <ul th:if="${orderitem.item.uploadFile == null}"
-                                    style="float: left; margin-right: 10%;">
-                                    <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
-                                         height="80">
-                                </ul>
-                                <ul th:if="${orderitem.item.uploadFile != null}"
-                                    style="float: left; margin-right: 10%;">
-                                    <img id="uploadFile"
-                                         th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|"
-                                         width="80" height="80">
-                                </ul>
-
-
-                                <ul style="float: left; margin-right: 40%;">
-                                    <p th:text="|상호명: ${orderitem.item.seller.storeName}|"> 상호명</p>
-                                    <p th:text="|상품명: ${orderitem.item.name}|">
-                                        상품 이름</p>
-                                </ul>
-                                <ul style="margin-bottom: 7%;" ;>
-                                    <p th:text="|가격: ${orderitem.orderPrice} 원|">가격</p>
-                                    <!-- <p th:text="|주문 수량: ${orderitem.count}| 개"> 개수</p> -->
-                                </ul>
-                            </div>
-                        </ul>
-                    </div>
-
-
-                </table>
-            </div>
-
-            <!-- 로그아웃 (Rectangle) -->
-            <a href="/logout">
-                <div id="logout" class="ax_default shape" data-label="로그인">
-                    <div id="u5_text" class="text ">
-                        <p><span>로그아웃</span></p>
-                    </div>
-            </a>
         </div>
     </div>
 
+    <div id="main_content">
+        <table class="posts" width="1440">
+            <div id="orderData" th:each="order: ${orderList}" style="margin-top: 1%;">
+                <div style="border-bottom: 2px solid rgb(237, 237, 237); padding-left: 20px; padding-bottom: 12px; ">
+                <ul id="orderDate" th:text="${order.orderDate}"> 날짜</ul>
+                <ul th:text="|구매자 id: ${order.cId}|"> 구매자 id</ul>
+                </div>
+
+                <ul th:each="orderitem: ${order.orderItems}" id="orderItemData">
+
+                    <ul id="orderStatus">
+                        <h3 th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.delivery.deliveryStatus}|">
+                            주문/ 배송상태 </h3>
+                    </ul>
+                    <div>
+                        <ul th:if="${orderitem.item.uploadFile == null}"
+                            style="float: left; margin-right: 10%;">
+                            <img id="uploadFile" src="http://localhost:8080/upload/default_img.png" width="80"
+                                 height="80">
+                        </ul>
+                        <ul th:if="${orderitem.item.uploadFile != null}"
+                            style="float: left; margin-right: 10%;">
+                            <img id="uploadFile"
+                                 th:src="|http://localhost:8080/upload/${orderitem.item.uploadFile.uploadFileName}.png|"
+                                 width="80" height="80">
+                        </ul>
+
+
+                        <ul style="float: left; margin-right: 40%;">
+                            <p class="css-1hnr1vy" th:text="|상호명: ${orderitem.item.seller.storeName}|"> 상호명</p>
+                            <p class="css-g5ex4y" th:text="|상품명: ${orderitem.item.name}|">
+                                상품 이름</p>
+                        </ul>
+
+                        <ul style="margin-bottom: 3%;">
+                            <p class="css-13mg6pb" th:text="|가격: ${orderitem.orderPrice} 원|">가격</p>
+                            <p class="css-13mg6pb" th:text="|주문 수량: ${orderitem.orderCount} 개|"> 개수</p>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+
+        </table>
+    </div>
 </div>
-
-<!-- 네비게이션바 -->
-<ul id="ul_dropdown">
-    <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">스토어</div>
-        <div class="dropdown-content">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
-
-    <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">커뮤니티</div>
-        <div class="dropdown-content">
-            <a href="#">회원 관리</a>
-            <a href="#">주문 관리</a>
-            <a href="#">게시판 관리</a>
-        </div>
-    </li>
-
-    <li id="li_dropdown" class="dropdown">
-        <div class="dropdown-menu">관리자 페이지</div>
-        <div class="dropdown-content">
-            <a href="/admin/consumers">회원 관리</a>
-            <a href="/admin/sellers">판매자 관리</a>
-            <a href="/admin/orders">주문 관리</a>
-            <a href="/admin/items">상품 관리</a>
-            <a href="/admin/posts">커뮤니티 관리</a>
-        </div>
-    </li>
-</ul>
-
-</body>
 </html>

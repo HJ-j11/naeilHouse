@@ -15,6 +15,4 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByConsumer(Consumer consumer);
 
-    Long countByOrderStatus(OrderStatus orderStatus);
-
 }
