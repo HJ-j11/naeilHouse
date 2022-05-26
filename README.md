@@ -66,10 +66,10 @@
 |[주문 취소]|/orderlist/{order_id}|GET|배송 완료가 되지 않은 주문 취소|
 |[배송 완료]|/user/deliveries/{id}/completed|PUT| 배송 완료|
 |[마이페이지]|/user/{consumer_id}|GET|소비자의 정보(좋아요, 프로필이미지, 주문, 리뷰, 좋아요)를 확인할 수 있는 마이페이지로 이동|
-|[마이페이지/주문내역]|/user/{consumer_id}/orders|GET|소비자의 주문내역을 확인할 수 있는 페이지로 이동|
-|[마이페이지/리뷰생성]|/user/{consumer_id}/orders/{orderitem_id}|POST|주문한 상품에 대해서 리뷰 생성|
-|[마이페이지/리뷰내역]|/user/{consumer_id}/reviews|GET|소비자의 리뷰 내역을 확인할 수 있는 페이지로 이동|
-|[마이페이지/좋아요내역]|/user/{consumer_id}/likes|GET|소비자의 좋아요 내역을 확인할 수 있는 페이지로 이동|
+|[마이페이지/주문내역]|/user/orders|GET|소비자의 주문내역을 확인할 수 있는 페이지로 이동|
+|[마이페이지/리뷰생성]|/user/orders/{orderitem_id}|POST|주문한 상품에 대해서 리뷰 생성|
+|[마이페이지/리뷰내역]|/user/reviews|GET|소비자의 리뷰 내역을 확인할 수 있는 페이지로 이동|
+|[마이페이지/좋아요내역]|/user/likes|GET|소비자의 좋아요 내역을 확인할 수 있는 페이지로 이동|
 |
 
 #### 판매자
@@ -86,8 +86,8 @@
 |--------|---|------|-----------------------|
 |[소비자 관리 목록]|/admin/consumers|GET|소비자 정보를 관리할 수 있는 페이지로 이동|
 |[판매자 관리 목록]|/admin/sellers|GET|판매자 정보를 관리할 수 있는 페이지로 이동|
-|[판매자 관리 목록/판매자 승인]|/admin/sellers/approved/{seller_id}|GET|판매자를 승인 처리|
-|[판매자 관리 목록/판매자 승인]|/admin/sellers/notapproved/{seller_id}|GET|판매자를 승인 철회|
+|[판매자 관리 목록/판매자 승인]|/admin/sellers/{seller_id}/approved|GET|판매자를 승인 처리|
+|[판매자 관리 목록/판매자 승인]|/admin/sellers/{seller_id}/notapproved|GET|판매자를 승인 철회|
 |[커뮤니티 관리 목록]|/admin/posts|GET|커뮤니티 정보를 관리할 수 있는 페이지로 이동|
 |[상품 관리 목록]|/admin/items|GET|상품 정보를 관리할 수 있는 페이지로 이동|
 |[주문 관리 목록]|/admin/orders|GET|주문 정보를 관리할 수 있는 페이지로 이동|
