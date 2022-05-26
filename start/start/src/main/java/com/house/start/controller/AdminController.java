@@ -77,7 +77,7 @@ public class AdminController {
     /**
      * 판매자 승인 처리
      */
-    @GetMapping("/sellers/approved/{seller_id}")
+    @GetMapping("/sellers/{seller_id}/approved")
     public String approvedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers approved -----------------------------------------");
         sellerService.approveSeller(seller_id);
@@ -87,7 +87,7 @@ public class AdminController {
     /**
      * 판매자 승인 철회
      */
-    @GetMapping("/sellers/notapproved/{seller_id}")
+    @GetMapping("/sellers/{seller_id}/notapproved")
     public String notapprovedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);

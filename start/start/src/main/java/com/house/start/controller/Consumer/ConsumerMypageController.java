@@ -57,8 +57,8 @@ public class ConsumerMypageController {
     /**
      * 마이페이지에서 주문 보기
      */
-    @GetMapping("/{consumer_id}/orders")
-    public String getAllOrders(@ModelAttribute ReviewForm reviewForm, @PathVariable Long consumer_id, HttpServletRequest request, Model model) {
+    @GetMapping("/orders")
+    public String getAllOrders(@ModelAttribute ReviewForm reviewForm, HttpServletRequest request, Model model) {
         log.info("--- consumer mypage controller - show user info -> order -----------------------------------------");
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
@@ -69,7 +69,8 @@ public class ConsumerMypageController {
             // mypage 기본 필수 데이터
             session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = consumerService.findConsumerById(consumer_id);
+            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+            consumer = consumerService.findConsumerById(consumer.getId());
             model.addAttribute("consumer", consumer);
 
             // orders 데이터
@@ -98,12 +99,14 @@ public class ConsumerMypageController {
                                HttpServletRequest request,
                                @PathVariable Long consumer_id, @PathVariable Long orderitem_id) {
         log.info("--- consumer mypage controller - post review data");
+        HttpSession session = request.getSession();
         if (bindingResult.hasErrors()) { // 입력한 reviewForm 형식이 안맞는 경우
             return "consumer/mypage/order";
         }
         String content = reviewForm.getContent();
-
-        Consumer consumer = consumerService.findConsumerById(consumer_id);
+        
+        Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+        consumer = consumerService.findConsumerById(consumer.getId());
         OrderItem orderItem = orderItemService.findOrderItemById(orderitem_id);
         Item item = orderItem.getItem();
         Review review = reviewService.saveReview(consumer, item, content);
@@ -111,8 +114,8 @@ public class ConsumerMypageController {
     }
 
     // 리뷰 보기
-    @GetMapping("/{consumer_id}/reviews")
-    public String getAllReviews(@PathVariable Long consumer_id, HttpServletRequest request, Model model) {
+    @GetMapping("/reviews")
+    public String getAllReviews(HttpServletRequest request, Model model) {
         log.info("--- consumer mypage controller - show user info -> reviews -----------------------------------------");
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
@@ -123,7 +126,8 @@ public class ConsumerMypageController {
             // mypage 기본 필수 데이터
             session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = consumerService.findConsumerById(consumer_id);
+            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+            consumer = consumerService.findConsumerById(consumer.getId());
             model.addAttribute("consumer", consumer);
 
             // review 데이터
@@ -138,8 +142,8 @@ public class ConsumerMypageController {
     }
 
     // 좋아요 보기
-    @GetMapping("/{consumer_id}/likes")
-    public String getAllLikes(@PathVariable Long consumer_id, HttpServletRequest request, Model model) {
+    @GetMapping("/likes")
+    public String getAllLikes(HttpServletRequest request, Model model) {
         log.info("--- consumer mypage controller - show user info -> likes -----------------------------------------");
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
@@ -150,7 +154,8 @@ public class ConsumerMypageController {
             // mypage 기본 필수 데이터
             session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = consumerService.findConsumerById(consumer_id);
+            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+            consumer = consumerService.findConsumerById(consumer.getId());
             model.addAttribute("consumer", consumer);
 
             // likes 데이터
