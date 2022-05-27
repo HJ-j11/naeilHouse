@@ -87,7 +87,7 @@ public class ConsumerController {
 
 
     // 배송 완료
-    @PutMapping("/user/deliveries/{id}/completed")
+    @PutMapping("/seller/deliveries/{id}/completed")
     public void getAllDelivery(@PathVariable Long id){
         consumerService.completeDelivery(id);
     }
