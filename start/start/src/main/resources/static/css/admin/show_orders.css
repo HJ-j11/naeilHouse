@@ -1,0 +1,90 @@
+#main_content {
+  position: absolute;
+  top: 170px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:1300;
+  font-style:normal;
+  font-size:16px;
+}
+
+ #orderStatus {
+   line-height: 24px;
+   margin-bottom: 12px;
+   padding: 4px 8px;
+   background-color: #F7F9FA;
+   display: inline-block;
+   border-radius: 4px;
+   font-weight: 700;
+   color: #35C5F0;
+  }
+
+#orderData {
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:900;
+  font-style:normal;
+  font-size:15px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 1px 4px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#routing_info {
+position: absolute;
+width:300px;
+top:115px;
+font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+font-weight:800;
+font-style:normal;
+font-size:19px;
+text-decoration: underline;
+}
+
+#order_data{
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 160px;
+    font-weight: 700;
+}
+
+#orderDate{
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-style:normal;
+  font-size:17px;
+}
+
+#orderItemData {
+    madding-top: 2%;
+    display: inline-block;
+    width:1000px;
+    padding: 15px 10px;
+}
+
+#uploadFile{
+  border:none;
+  border-radius:8px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+}
+
+.css-1hnr1vy {
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.css-g5ex4y {
+    display: block;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.css-13mg6pb {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}

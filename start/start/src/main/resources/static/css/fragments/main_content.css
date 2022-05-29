@@ -1,0 +1,66 @@
+#main_content {
+    position: absolute;
+    top: 180px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:1300;
+    font-style:normal;
+    font-size:16px;
+  }
+  #sellerData {
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:900;
+    font-style:normal;
+    font-size:15px;
+  }
+
+
+#routing_info {
+    position: absolute;
+    width:300px;
+    top:115px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:800;
+    font-style:normal;
+    font-size:19px;
+    text-decoration: underline;
+    }
+
+    #approved {
+    width:150px;
+    height:45px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:800;
+    font-style:normal;
+    font-size:18px;
+    color:#ffffff;
+    text-align: center;
+    line-height: 50px;
+    background:inherit;
+    background-color:rgba(53, 197, 240, 1);
+    border: 2px solid #ffffff;;
+    border-radius:5px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    display: block;
+    text-decoration: none;
+
+    }
+
+    #notapproved {
+    width:150px;
+    height:45px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:800;
+    font-style:normal;
+    font-size:18px;
+    color:#35C5F0;
+    text-align: center;
+    line-height: 50px;
+    background-color: #ffffff;
+    border: 2px solid #35C5F0;
+    border-radius:5px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    display: block;
+    text-decoration: none;
+    }

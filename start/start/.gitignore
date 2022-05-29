@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+## upload img
+**/src/main/webapp/uplaod/*.png

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <!--                    <th>#</th>-->
+            <th>상품명</th>
+            <th>가격</th>
+            <th>#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td><img th:src="|/upload/${item.uploadFileName.storeFileName}|" width="40" height="40"></td>
+            <td th:text="${item.name}" class="align-middle"></td>
+            <td th:text="${item.price}" class="align-middle"></td>
+            <td>
+                <a th:href="@{/consumer/item/{id}/info (id=${item.id})}" class="btn btn-primary" role="button">상세 정보</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>가격</th>
+                <th>정보</th>
+                <th>카테고리</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item: ${itemList}">
+                <td th:text="${item.name}" th:href="/list/${item.item_id}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.info}"></td>
+                <td th:text="${item.category}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
