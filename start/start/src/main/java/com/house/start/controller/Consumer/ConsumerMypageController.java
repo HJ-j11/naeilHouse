@@ -104,7 +104,7 @@ public class ConsumerMypageController {
             return "consumer/mypage/order";
         }
         String content = reviewForm.getContent();
-        
+
         Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
         consumer = consumerService.findConsumerById(consumer.getId());
         OrderItem orderItem = orderItemService.findOrderItemById(orderitem_id);
