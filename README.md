@@ -6,7 +6,7 @@
 ### Flowchart
 - 주문 및 배송
 
-<img src="./img/flowchart/OrderAndDelivery.png" width="500px">
+<img src="./img/flowchart/OrderToDelivery.png" width="500px">
 
 - 결제
 
