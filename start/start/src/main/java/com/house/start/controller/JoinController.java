@@ -51,7 +51,6 @@ public class JoinController {
     public String joinConsumer(@ModelAttribute MemberJoinForm form,
                                HttpServletRequest request) throws IOException {
 
-
         // 이미지 저장
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
