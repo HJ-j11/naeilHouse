@@ -18,5 +18,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("SELECT COUNT(p2.id) FROM Post p1 LEFT OUTER JOIN p1.comments p2 where p1.id = :ID")
     Long countByComments(@Param(value="ID") Long id);
 
+    @Query("UPDATE Post p SET p.view = p.view + 1 WHERE p.id=: ID")
+    Long updateView(@Param(value="ID") Long id);
 
 }

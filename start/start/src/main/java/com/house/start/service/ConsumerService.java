@@ -131,6 +131,11 @@ public class ConsumerService {
         Post post = postRepository.getById(id);
         return post;
     }
+    // 글 조회 수 카운트
+    @Transactional
+    public Long updateView(Long id) {
+        return postRepository.updateView(id);
+    }
 
     // 글 좋아요
     @Transactional

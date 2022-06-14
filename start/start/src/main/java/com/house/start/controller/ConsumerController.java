@@ -103,12 +103,15 @@ public class ConsumerController {
         return "consumer/post_list";
     }
 
+    // 글 조회
     @GetMapping("/community/{id}")
     public String getOnePost(@PathVariable Long id,
                              @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
                              Model model, HttpServletRequest  request) {
         Post post = consumerService.getOnePost(id);
         List<Like> likes = post.getLikes();
+        // 글 조회수 update
+        consumerService.updateView(id);
 
         if(loginConsumer!=null) {
             Boolean flag = false;
@@ -124,8 +127,6 @@ public class ConsumerController {
         model.addAttribute("post", post);
         model.addAttribute("likes", likes);
         model.addAttribute("comments", post.getComments());
-        HttpSession session = request.getSession();
-
 
         return "consumer/consumer_postDetail";
     }

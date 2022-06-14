@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="feat : 글 조회수 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/post_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -390,7 +394,10 @@
       <workItem from="1653451545337" duration="590000" />
       <workItem from="1653465526307" duration="1504000" />
       <workItem from="1653484353700" duration="649000" />
-      <workItem from="1653623155689" duration="1252000" />
+      <workItem from="1653623155689" duration="2518000" />
+      <workItem from="1653632561263" duration="1452000" />
+      <workItem from="1653634252156" duration="8000" />
+      <workItem from="1655190141129" duration="792000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -679,7 +686,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653399783876</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Order - Item 엔티티 연관관계 변경&#10;- OrderItem 변경 사항에 따른 status 수정">
+      <created>1653628056125</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1653628056126</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +726,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="커뮤니티 &#10;- 댓글 수정 display none/block 지정" />
     <MESSAGE value="커뮤니티 &#10;- 댓글 수정 Controlle구현 완료&#10;상품&#10;- 상품 장바구니 담기 주소 매핑 중" />
     <MESSAGE value="댓글 등록&#10;- ModelAttribute로 getter,setter를 통해 데이터 가져오기.&#10;- 완료 후 이전 페이지로 돌아가기 위해 post id 함께 전송" />
     <MESSAGE value="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현." />
@@ -737,6 +750,7 @@
     <MESSAGE value="OrderItem 변경 사항 테스트 코드 작성&#10;- OrderService.orders &#10;- OrderServiceTest.장바구니물건구매" />
     <MESSAGE value="댓글 작성&#10;- 댓글 수정 시 input Toggle 추가&#10;- form 전송하는 js 함수 작성" />
     <MESSAGE value="상품 상세 조회&#10;- Axure 디자인 적용&#10;- Thymeleaf 연동&#10;- Login true/false 활용한 onclick 작성" />
-    <option name="LAST_COMMIT_MESSAGE" value="상품 상세 조회&#10;- Axure 디자인 적용&#10;- Thymeleaf 연동&#10;- Login true/false 활용한 onclick 작성" />
+    <MESSAGE value="Order - Item 엔티티 연관관계 변경&#10;- OrderItem 변경 사항에 따른 status 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="Order - Item 엔티티 연관관계 변경&#10;- OrderItem 변경 사항에 따른 status 수정" />
   </component>
 </project>
