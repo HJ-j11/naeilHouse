@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/config/SpringSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,11 +125,11 @@
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JPA\naeilHouse" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\templates\consumer" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\templates" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main" />
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static" />
-      <recent name="D:\JPA\naeilHouse\start\start\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.StartApplication">
@@ -397,7 +394,7 @@
       <workItem from="1653634252156" duration="8000" />
       <workItem from="1655190141129" duration="1628000" />
       <workItem from="1655191822927" duration="245000" />
-      <workItem from="1655192076717" duration="359000" />
+      <workItem from="1655192076717" duration="651000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -700,7 +697,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655190971367</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="feat: spring Security gradle and SpringSecurityConfig file added">
+      <created>1655192490723</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1655192490723</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,7 +737,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="댓글 등록&#10;- ModelAttribute로 getter,setter를 통해 데이터 가져오기.&#10;- 완료 후 이전 페이지로 돌아가기 위해 post id 함께 전송" />
     <MESSAGE value="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현." />
     <MESSAGE value="Entity Cart Created&#10;- N:N item : cart" />
     <MESSAGE value="FindByID Name changed" />
@@ -758,6 +761,7 @@
     <MESSAGE value="상품 상세 조회&#10;- Axure 디자인 적용&#10;- Thymeleaf 연동&#10;- Login true/false 활용한 onclick 작성" />
     <MESSAGE value="Order - Item 엔티티 연관관계 변경&#10;- OrderItem 변경 사항에 따른 status 수정" />
     <MESSAGE value="feat : 글 조회수 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : 글 조회수 추가" />
+    <MESSAGE value="feat: spring Security gradle and SpringSecurityConfig file added" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: spring Security gradle and SpringSecurityConfig file added" />
   </component>
 </project>
