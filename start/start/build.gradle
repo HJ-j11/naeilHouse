@@ -39,6 +39,11 @@ dependencies {
 	//session
 	implementation 'org.springframework.session:spring-session-core'
 
+
+	// Spring Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+
 }
 
 tasks.named('test') {

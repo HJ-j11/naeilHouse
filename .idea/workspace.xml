@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="feat : 글 조회수 추가">
+    <list default="true" id="534f1935-2c08-45e4-998b-d1f0943264ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/config/SpringSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/controller/ConsumerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/domain/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/java/com/house/start/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/main/resources/templates/consumer/post_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/src/test/java/com/house/start/service/OrderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start/start/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/start/start/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +44,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -105,24 +100,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/JPA/naeilHouse/start/start/src/main/resources/static/images/page_1&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;b85c01361a1273e20490daf6755e66a5&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelOrder2": "2",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RequestMappingsPanelWidth2": "75",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "D:/JPA/naeilHouse/start/start/src/main/resources/static/images/page_1",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications",
+    "spring.configuration.checksum": "b85c01361a1273e20490daf6755e66a5"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JPA\naeilHouse\start\start\src\main\resources\static\images\page_1" />
@@ -397,7 +395,9 @@
       <workItem from="1653623155689" duration="2518000" />
       <workItem from="1653632561263" duration="1452000" />
       <workItem from="1653634252156" duration="8000" />
-      <workItem from="1655190141129" duration="792000" />
+      <workItem from="1655190141129" duration="1628000" />
+      <workItem from="1655191822927" duration="245000" />
+      <workItem from="1655192076717" duration="359000" />
     </task>
     <task id="LOCAL-00001" summary="Model 충돌 발생 &#10;develop branch로 reset">
       <created>1649316728791</created>
@@ -693,7 +693,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653628056126</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="feat : 글 조회수 추가">
+      <created>1655190971367</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1655190971367</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,7 +733,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="커뮤니티 &#10;- 댓글 수정 Controlle구현 완료&#10;상품&#10;- 상품 장바구니 담기 주소 매핑 중" />
     <MESSAGE value="댓글 등록&#10;- ModelAttribute로 getter,setter를 통해 데이터 가져오기.&#10;- 완료 후 이전 페이지로 돌아가기 위해 post id 함께 전송" />
     <MESSAGE value="댓글 수정&#10;- ModelAttribute -&gt; RequestBody를 통해 데이터 가져오기 -&gt; 저장 기능 구현." />
     <MESSAGE value="Entity Cart Created&#10;- N:N item : cart" />
@@ -751,6 +757,7 @@
     <MESSAGE value="댓글 작성&#10;- 댓글 수정 시 input Toggle 추가&#10;- form 전송하는 js 함수 작성" />
     <MESSAGE value="상품 상세 조회&#10;- Axure 디자인 적용&#10;- Thymeleaf 연동&#10;- Login true/false 활용한 onclick 작성" />
     <MESSAGE value="Order - Item 엔티티 연관관계 변경&#10;- OrderItem 변경 사항에 따른 status 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="Order - Item 엔티티 연관관계 변경&#10;- OrderItem 변경 사항에 따른 status 수정" />
+    <MESSAGE value="feat : 글 조회수 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 글 조회수 추가" />
   </component>
 </project>
