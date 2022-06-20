@@ -3,6 +3,7 @@ package com.house.start.repository;
 import static com.house.start.domain.QPost.*;
 import static com.house.start.domain.QItem.*;
 
+import com.house.start.domain.Item;
 import com.house.start.domain.Post;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -21,4 +22,9 @@ public class QueryDslRepository {
                 .fetch();
     }
 
+    public List<Item> findItemsByName(String word) {
+        return jpaQueryFactory.select(item)
+                .where(item.name.like(word))
+                .fetch();
+    }
 }
