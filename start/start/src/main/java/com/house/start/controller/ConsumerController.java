@@ -363,7 +363,21 @@ public class ConsumerController {
     //
 
 //        orderService.findCartOrder(consumerId);
+    /**
+     * 상품 검색
+     * **/
+    @GetMapping("/search")
+    public String findItemAndPost(@RequestParam(required = false) String word, Model model) {
+        String param = word.trim();
 
+        if(param.length()==0) {
+            return "errPage";
+        }
+
+        model.addAttribute("items", consumerService.findItemByName(param));
+        model.addAttribute("posts", consumerService.findPostByContents(param));
+        return "searchResult";
+    }
 
 }
 

@@ -21,4 +21,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("UPDATE Post p SET p.view = p.view + 1 WHERE p.id=: ID")
     Long updateView(@Param(value="ID") Long id);
 
+    List<Post> findPostsByContentsLike(String contents);
+
 }

@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -203,6 +204,20 @@ public class ConsumerService {
     public Consumer findConsumerBycId(String cId) {
         return consumerRepository.findBycId(cId)
                 .orElse(null);
+    }
+
+    /**
+     * 검색 기능
+     * **/
+
+    // 상품 검색
+    public List<Item> findItemByName(String name) {
+        return itemRepository.findItemsByNameLike(name);
+    }
+
+    // 글 검색
+    public List<Post> findPostByContents(String contents) {
+        return postRepository.findPostsByContentsLike(contents);
     }
 
 }
