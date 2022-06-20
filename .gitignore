@@ -1,6 +1,7 @@
 HELP.md
 start/start/.gradle
 build/
+start/start/$buildDir
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -37,4 +38,4 @@ out/
 .vscode/
 
 ## upload img
-**/src/main/webapp/uplaod/*.png
+**/src/main/webapp/upload/*.png
