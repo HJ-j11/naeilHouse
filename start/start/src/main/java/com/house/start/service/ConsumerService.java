@@ -206,18 +206,4 @@ public class ConsumerService {
                 .orElse(null);
     }
 
-    /**
-     * 검색 기능
-     * **/
-
-    // 상품 검색
-    public List<Item> findItemByName(String name) {
-        return itemRepository.findItemsByNameLike(name);
-    }
-
-    // 글 검색
-    public List<Post> findPostByContents(String contents) {
-        return postRepository.findPostsByContentsLike(contents);
-    }
-
 }
