@@ -126,7 +126,10 @@ public class ConsumerService {
         List<Post> posts = postRepository.findAll();
         return posts;
     }
-
+    // 좋아요 갯수
+    public long countByLikes(Long id) {
+        return postRepository.countByLikes(id);
+    }
     // 글 조회
     public Post getOnePost(Long id) {
         Post post = postRepository.getById(id);

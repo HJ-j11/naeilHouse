@@ -2,7 +2,10 @@ package com.house.start.repository;
 
 import static com.house.start.domain.QPost.*;
 import static com.house.start.domain.QItem.*;
+import static com.house.start.domain.QComment.*;
+import static com.house.start.domain.QPost.*;
 
+import com.house.start.domain.Comment;
 import com.house.start.domain.Item;
 import com.house.start.domain.Post;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -16,6 +19,10 @@ import java.util.List;
 public class QueryDslRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
+    /**
+     * 검색 기능
+     * **/
+
     public List<Post> findPostsByContent(String word) {
         return jpaQueryFactory.select(post)
                 .where(post.contents.like(word))
@@ -27,4 +34,5 @@ public class QueryDslRepository {
                 .where(item.name.like(word))
                 .fetch();
     }
+
 }
