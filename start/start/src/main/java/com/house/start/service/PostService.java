@@ -20,4 +20,8 @@ public class PostService {
     public List<Post> findPosts(){
         return postRepository.findAll();
     }
+
+    /**
+     * 전체 게시글 수
+     */
 }
