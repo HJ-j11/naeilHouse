@@ -68,8 +68,7 @@ public class OrderService {
 
     // 장바구니에 있는 상품 구매
     @Transactional
-    // 잠시 주석처리해놓습니다.
-    /*public Long orders(Consumer consumer) {
+    public Long orders(Consumer consumer) {
         Cart cart = cartRepository.findByConsumer(consumer);
 
         Order order = Order.builder()
@@ -91,7 +90,7 @@ public class OrderService {
 
         orderRepository.save(order);
         return order.getId();
-    }*/
+    }
 
 //    public List<Order> findCartOrder(Consumer consumer) {
 //        return orderRepository.findByConsumer(consumer);

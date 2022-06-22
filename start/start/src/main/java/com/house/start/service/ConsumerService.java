@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,7 +112,6 @@ public class ConsumerService {
 
         orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
-        order.setOrderStatus(OrderStatus.COMPLETE);
 
         deliveryRepository.save(delivery);
 
@@ -126,11 +126,19 @@ public class ConsumerService {
         List<Post> posts = postRepository.findAll();
         return posts;
     }
-
+    // 좋아요 갯수
+    public long countByLikes(Long id) {
+        return postRepository.countByLikes(id);
+    }
     // 글 조회
     public Post getOnePost(Long id) {
         Post post = postRepository.getById(id);
         return post;
+    }
+    // 글 조회 수 카운트
+    @Transactional
+    public Long updateView(Long id) {
+        return postRepository.updateView(id);
     }
 
     // 글 좋아요

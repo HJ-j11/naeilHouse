@@ -65,7 +65,6 @@ public class OrderServiceTest {
         //Then
         Order order = orderRepository.findById(orderId).get();
         List<OrderItem> orderItems = order.getOrderItems();
-        assertEquals("주문 완료 시  orderStatus", OrderStatus.ORDER, order.getOrderStatus());
         for(OrderItem orderItem : orderItems) {
             assertEquals("orderItem Status", OrderItemStatus.COMPLETED, orderItem.getOrderItemStatus());
             assertEquals("Delivery Status", DeliveryStatus.PREPARING, orderItem.getDelivery().getDeliveryStatus());
@@ -108,13 +107,11 @@ public class OrderServiceTest {
         Cart cart = cartRepository.getById(createCart(consumer));
         Item item = createItem(100);
         int count = 2;
-        CartItem cartItem = createCartItem(cart, item, count);
-
-        // When
-        cart.addCartItem(cartItem);
+        //when
+        List<CartItem> cartItems = createCartItem(cart, item, count);
 
         // Then
-        assertEquals("물건 담겼는지 확인", cart.getCartItems().get(0).getItem().getId(), cartItem.getItem().getId());
+        assertEquals("item to Cart", item.getId(), cartItems.get(0).getItem().getId());
     }
 
     @Test
@@ -126,11 +123,7 @@ public class OrderServiceTest {
         //When
         List<Item> items = makeItem("소파", "의자");
         for (Item item: items) {
-            CartItem cartItem = CartItem.builder()
-                    .item(item)
-                    .cart(cart)
-                    .build();
-            cart.addCartItem(cartItem);
+            createCartItem(cart, item, 2);
         }
 
         Long orderId = orderService.orders(consumer);
@@ -145,9 +138,6 @@ public class OrderServiceTest {
             assertEquals("상품 status 확인", OrderItemStatus.COMPLETED, orderInItem.getOrderItemStatus());
             assertEquals("Delivery status", DeliveryStatus.PREPARING, orderInItem.getDelivery().getDeliveryStatus());
         }
-
-        Order order = Order.createOrders(consumer, delivery, orderItems);
-
 
     }
 
@@ -228,13 +218,14 @@ public class OrderServiceTest {
         return cart.getId();
     }
 
-    private CartItem createCartItem(Cart cart, Item item, int count) {
+    private List<CartItem> createCartItem(Cart cart, Item item, int count) {
         CartItem cartItem = CartItem.builder()
                 .item(item)
                 .cart(cart)
-                .count(2)
+                .count(count)
                 .build();
-        return cartItem;
+        cart.addCartItem(cartItem);
+        return cart.getCartItems();
     }
 
     private OrderItem createOrderItem(Item item, Delivery delivery, int ordercount) {
