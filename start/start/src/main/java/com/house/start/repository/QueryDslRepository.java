@@ -8,6 +8,8 @@ import static com.house.start.domain.QPost.*;
 import com.house.start.domain.Comment;
 import com.house.start.domain.Item;
 import com.house.start.domain.Post;
+import com.house.start.domain.dto.Post.PostDto;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -23,8 +25,9 @@ public class QueryDslRepository {
      * 검색 기능
      * **/
 
-    public List<Post> findPostsByContent(String word) {
-        return jpaQueryFactory.selectFrom(post)
+    public List<PostDto> findPostsByContent(String word) {
+        return jpaQueryFactory.from(post)
+                .select(Projections.bean(PostDto.class, post.contents, post.uploadFile, post.postDate))
                 .where(post.contents.like(word))
                 .fetch();
     }

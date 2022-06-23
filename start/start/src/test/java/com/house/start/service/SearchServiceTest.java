@@ -1,7 +1,10 @@
 package com.house.start.service;
 
+import static org.junit.Assert.*;
+
 import com.house.start.domain.Item;
 import com.house.start.domain.Post;
+import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.repository.QueryDslRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,14 +37,17 @@ public class SearchServiceTest {
 
     @Test
     public void 게시글_검색() throws Exception {
+        //Given
         String word = createWord();
-        List<Post> posts = dslRepository.findPostsByContent(word);
-        for(Post post: posts) {
 
-        }
+        // When
+        List<PostDto> posts = dslRepository.findPostsByContent(word);
+
+        //Then
+        assertNotNull(posts);
     }
 
     private String createWord() {
-        return "소파";
+        return "dd";
     }
 }
