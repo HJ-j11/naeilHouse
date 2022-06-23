@@ -3,11 +3,19 @@
 ### 설명
 오늘의 집(<a href="http://ohou.se">ohou.se</a>)을 차용한 쇼핑몰 만들기 
 
+### 개발 환경
+
+- 개발 언어 및 프레임워크 : Java 8,  Spring Boot 
+- 기타 개발 툴 : Thymeleaf, IntelliJ
+- 배포 : AWS EC2 
+- 데이터베이스 : H2, MariaDB (배포용)
+
 ### 기간
 2022.03.14 ~ 진행 중 
 
 ### 인원
 3명 (백엔드 3명) 
+
 
 <br/>
 
