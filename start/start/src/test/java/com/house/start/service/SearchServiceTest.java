@@ -20,21 +20,21 @@ class SearchServiceTest {
     @Autowired
     QueryDslRepository dslRepository;
 
-    @Test
-    void 상품_검색() {
-        String word = "소파";
-        List<Item> items = dslRepository.findItemsByName(word);
-        for (Item item: items) {
-
-        }
-    }
-
-    @Test
-    void 게시글_검색() {
-        String word = "소파";
-        List<Post> posts = dslRepository.findPostsByContent(word);
-        for(Post post: posts) {
-
-        }
-    }
+//    @Test
+//    void 상품_검색() {
+//        String word = "소파";
+//        List<Item> items = dslRepository.findItemsByName(word);
+//        for (Item item: items) {
+//
+//        }
+//    }
+//
+//    @Test
+//    void 게시글_검색() {
+//        String word = "소파";
+//        List<Post> posts = dslRepository.findPostsByContent(word);
+//        for(Post post: posts) {
+//
+//        }
+//    }
 }
