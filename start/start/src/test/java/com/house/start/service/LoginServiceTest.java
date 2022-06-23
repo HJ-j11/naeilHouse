@@ -1,31 +1,31 @@
-package com.house.start.service;
-
-import static org.junit.Assert.*;
-
-import com.house.start.domain.Admin;
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Seller;
-import com.house.start.repository.AdminRepository;
-import com.house.start.repository.CategoryRepository;
-import com.house.start.repository.ConsumerRepository;
-import com.house.start.repository.SellerRepository;
-import lombok.RequiredArgsConstructor;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
-public class LoginServiceTest {
-    @Autowired LoginService loginService;
-    @Autowired ConsumerRepository consumerRepository;
-    @Autowired SellerRepository sellerRepository;
-    @Autowired AdminRepository adminRepository;
-
+//package com.house.start.service;
+//
+//import static org.junit.Assert.*;
+//
+//import com.house.start.domain.Admin;
+//import com.house.start.domain.Consumer;
+//import com.house.start.domain.Seller;
+//import com.house.start.repository.AdminRepository;
+//import com.house.start.repository.CategoryRepository;
+//import com.house.start.repository.ConsumerRepository;
+//import com.house.start.repository.SellerRepository;
+//import lombok.RequiredArgsConstructor;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.junit4.SpringRunner;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@Transactional
+//public class LoginServiceTest {
+//    @Autowired LoginService loginService;
+//    @Autowired ConsumerRepository consumerRepository;
+//    @Autowired SellerRepository sellerRepository;
+//    @Autowired AdminRepository adminRepository;
+//
 //    @Test
 //    public void 소비자_로그인() throws Exception {
 //        //Given
@@ -94,6 +94,6 @@ public class LoginServiceTest {
 //        assertNull(test_noneID);
 //        assertNull(test_nonePWD);
 //    }
-
-
-}
+//
+//
+//}
