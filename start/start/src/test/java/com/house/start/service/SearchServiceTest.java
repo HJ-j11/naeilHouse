@@ -16,25 +16,32 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-class SearchServiceTest {
+public class SearchServiceTest {
     @Autowired
     QueryDslRepository dslRepository;
 
     @Test
-    void 상품_검색() {
-        String word = "소파";
-        List<Item> items = dslRepository.findItemsByName(word);
-        for (Item item: items) {
+    public void 상품_검색() throws Exception {
+        //Given
+        String word = createWord();
 
-        }
+        //When
+        List<Item> items = dslRepository.findItemsByName(word);
+
+        //Then
+
     }
 
     @Test
-    void 게시글_검색() {
-        String word = "소파";
+    public void 게시글_검색() throws Exception {
+        String word = createWord();
         List<Post> posts = dslRepository.findPostsByContent(word);
         for(Post post: posts) {
 
         }
+    }
+
+    private String createWord() {
+        return "소파";
     }
 }

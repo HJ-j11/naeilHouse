@@ -24,13 +24,13 @@ public class QueryDslRepository {
      * **/
 
     public List<Post> findPostsByContent(String word) {
-        return jpaQueryFactory.select(post)
+        return jpaQueryFactory.selectFrom(post)
                 .where(post.contents.like(word))
                 .fetch();
     }
 
     public List<Item> findItemsByName(String word) {
-        return jpaQueryFactory.select(item)
+        return jpaQueryFactory.selectFrom(item)
                 .where(item.name.like(word))
                 .fetch();
     }
