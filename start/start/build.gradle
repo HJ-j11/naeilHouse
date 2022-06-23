@@ -60,6 +60,8 @@ dependencies {
 	//Querydsl
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+	compile("org.mariadb.jdbc:mariadb-java-client")
 }
 
 tasks.named('test') {
