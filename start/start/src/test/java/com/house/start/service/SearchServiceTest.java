@@ -3,8 +3,8 @@ package com.house.start.service;
 import static org.junit.Assert.*;
 
 import com.house.start.domain.Item;
-import com.house.start.domain.Post;
-import com.house.start.domain.dto.Post.PostDto;
+import com.house.start.domain.dto.Item.ItemDTO;
+import com.house.start.domain.dto.Post.PostDTO;
 import com.house.start.repository.QueryDslRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +29,7 @@ public class SearchServiceTest {
         String word = createWord();
 
         //When
-        List<Item> items = dslRepository.findItemsByName(word);
+        List<ItemDTO> items = dslRepository.findItemsByName(word);
 
         //Then
 
@@ -41,7 +41,7 @@ public class SearchServiceTest {
         String word = createWord();
 
         // When
-        List<PostDto> posts = dslRepository.findPostsByContent(word);
+        List<PostDTO> posts = dslRepository.findPostsByContent(word);
 
         //Then
         assertNotNull(posts);

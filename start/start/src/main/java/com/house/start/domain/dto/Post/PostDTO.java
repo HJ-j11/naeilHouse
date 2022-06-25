@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class PostDto {
+public class PostDTO {
     private String contents;
     private UploadFile uploadFile;
     private LocalDateTime postDate;

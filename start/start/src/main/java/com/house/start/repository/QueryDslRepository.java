@@ -2,13 +2,10 @@ package com.house.start.repository;
 
 import static com.house.start.domain.QPost.*;
 import static com.house.start.domain.QItem.*;
-import static com.house.start.domain.QComment.*;
-import static com.house.start.domain.QPost.*;
 
-import com.house.start.domain.Comment;
 import com.house.start.domain.Item;
-import com.house.start.domain.Post;
-import com.house.start.domain.dto.Post.PostDto;
+import com.house.start.domain.dto.Item.ItemDTO;
+import com.house.start.domain.dto.Post.PostDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -25,15 +22,16 @@ public class QueryDslRepository {
      * 검색 기능
      * **/
 
-    public List<PostDto> findPostsByContent(String word) {
+    public List<PostDTO> findPostsByContent(String word) {
         return jpaQueryFactory.from(post)
-                .select(Projections.bean(PostDto.class, post.contents, post.uploadFile, post.postDate))
+                .select(Projections.bean(PostDTO.class, post.contents, post.uploadFile, post.postDate))
                 .where(post.contents.like(word))
                 .fetch();
     }
 
-    public List<Item> findItemsByName(String word) {
-        return jpaQueryFactory.selectFrom(item)
+    public List<ItemDTO> findItemsByName(String word) {
+        return jpaQueryFactory.from(item)
+                .select(Projections.bean(ItemDTO.class, item.name, item.price))
                 .where(item.name.like(word))
                 .fetch();
     }
