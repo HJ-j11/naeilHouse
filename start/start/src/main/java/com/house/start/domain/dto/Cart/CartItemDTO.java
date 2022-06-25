@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class CartItemDto {
-
+public class CartItemDTO {
+    private String name;
+    private String count;
+    private long price;
 }
