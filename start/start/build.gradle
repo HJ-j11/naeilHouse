@@ -61,6 +61,8 @@ dependencies {
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 
+	//mariadb (AWS 배포용 DB)
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client'
 	compile("org.mariadb.jdbc:mariadb-java-client")
 }
 
