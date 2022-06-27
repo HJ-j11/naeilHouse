@@ -13,7 +13,7 @@ plugins {
 
 group = 'com.house'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 configurations {
 	compileOnly {
@@ -51,6 +51,7 @@ dependencies {
 
 	//session
 	implementation 'org.springframework.session:spring-session-core'
+	implementation 'org.springframework.session:spring-session-jdbc'
 
 
 	// Spring Security
@@ -60,6 +61,10 @@ dependencies {
 	//Querydsl
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+	//mariadb (AWS 배포용 DB)
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client'
+	compile("org.mariadb.jdbc:mariadb-java-client")
 }
 
 tasks.named('test') {

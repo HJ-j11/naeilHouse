@@ -114,7 +114,6 @@ public class ConsumerService {
         delivery.setDeliveryStatus(DeliveryStatus.COMPLETE);
 
         deliveryRepository.save(delivery);
-
     }
 
     /**

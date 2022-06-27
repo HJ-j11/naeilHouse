@@ -52,7 +52,6 @@ public class OrderService {
         Order order = Order.createOrder(consumer, delivery, orderItem);
         log.info("order id : " + order.getId());
 
-
         // 주문 저장
         orderRepository.save(order);
         return order.getId();
@@ -91,10 +90,6 @@ public class OrderService {
         orderRepository.save(order);
         return order.getId();
     }
-
-//    public List<Order> findCartOrder(Consumer consumer) {
-//        return orderRepository.findByConsumer(consumer);
-//    } // 나중에 이름 바꾸기
 
     public List<Order> findOrders() {
         return orderRepository.findAll();
