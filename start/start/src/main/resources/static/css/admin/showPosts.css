@@ -1,0 +1,33 @@
+#main_content {
+    position: absolute;
+    top: 170px;
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:1300;
+    font-style:normal;
+    font-size:16px;
+  }
+  #postData {
+    font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+    font-weight:900;
+    font-style:normal;
+    font-size:15px;
+  }
+
+  #uploadFile{
+    border:none;
+    border-radius:8px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+  }
+
+#routing_info {
+  position: absolute;
+  width:300px;
+  top:115px;
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:19px;
+  text-decoration: underline;
+}

@@ -51,6 +51,7 @@ dependencies {
 
 	//session
 	implementation 'org.springframework.session:spring-session-core'
+	implementation 'org.springframework.session:spring-session-jdbc'
 
 
 	// Spring Security

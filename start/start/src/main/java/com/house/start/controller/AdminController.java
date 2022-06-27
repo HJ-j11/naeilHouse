@@ -44,7 +44,7 @@ public class AdminController {
             // 관리자인 경우
             List<Consumer> consumerList = consumerService.findConsumers();
             model.addAttribute("consumerList", consumerList);
-            return "admin/show_consumers";
+            return "admin/showConsumers";
         } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
@@ -66,7 +66,7 @@ public class AdminController {
             // 관리자인 경우
             List<Seller> sellerList = sellerService.findSellers();
             model.addAttribute("sellerList", sellerList);
-            return "admin/show_sellers";
+            return "admin/showSellers";
         } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
@@ -77,7 +77,7 @@ public class AdminController {
     /**
      * 판매자 승인 처리
      */
-    @GetMapping("/sellers/approved/{seller_id}")
+    @GetMapping("/sellers/{seller_id}/approved")
     public String approvedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers approved -----------------------------------------");
         sellerService.approveSeller(seller_id);
@@ -87,7 +87,7 @@ public class AdminController {
     /**
      * 판매자 승인 철회
      */
-    @GetMapping("/sellers/notapproved/{seller_id}")
+    @GetMapping("/sellers/{seller_id}/notapproved")
     public String notapprovedSeller(@PathVariable Long seller_id) {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);
@@ -109,7 +109,7 @@ public class AdminController {
             // 관리자인 경우
             List<Post> postList = postService.findPosts();
             model.addAttribute("postList", postList);
-            return "admin/show_posts";
+            return "admin/showPosts";
         } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
@@ -131,7 +131,7 @@ public class AdminController {
             // 관리자인 경우
             List<Item> itemList = itemService.findItems();
             model.addAttribute("itemList", itemList);
-            return "admin/show_items";
+            return "admin/showItems";
         } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";
@@ -169,7 +169,7 @@ public class AdminController {
                 orderDTOList.add(orderDTO);
             }
             model.addAttribute("orderList", orderDTOList);
-            return "admin/show_orders";
+            return "admin/showOrders";
         } else {
             // 소비자나 판매자인 경우
             return "err/denyPage";

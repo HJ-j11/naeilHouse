@@ -1,4 +1,4 @@
-﻿$axure.loadCurrentPage(
+$axure.loadCurrentPage(
     (function () {
         var _ = function () {
             var r = {}, a = arguments;
