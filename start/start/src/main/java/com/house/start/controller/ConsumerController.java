@@ -193,7 +193,6 @@ public class ConsumerController {
         // 로그인 전제로
         Cart cart = consumerService.findByCart(loginConsumer);
         int totalPrice = cart.getTotalPrice();
-        model.addAttribute("cartId", cart.getId());
         model.addAttribute("cartItems", cart.getCartItems());
         model.addAttribute("totalPrice", totalPrice);
         return "consumer/consumer_cart";
