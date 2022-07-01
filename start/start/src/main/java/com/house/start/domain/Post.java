@@ -31,12 +31,13 @@ public class Post {
 
     // 글 작성
     private String contents;
-
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
-
     private LocalDateTime postDate; // 게시물 작성일시
-
+    
+    // 조회수
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int view;
     public Long countLikes() {
         return Long.valueOf(this.likes.size());
     }
