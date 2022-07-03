@@ -27,7 +27,7 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class ConsumerController {
+public class  ConsumerController {
     private final ConsumerService consumerService;
     private final FileStore fileStore;
     private final ItemService itemService;
