@@ -1,7 +1,15 @@
 # 내일의 집(naeilHouse)
 
 ### 설명
-오늘의 집(<a href="http://ohou.se" target="_blank">ohou.se</a>)을 차용한 쇼핑몰 만들기 
+
+오늘의 집(<a href="http://ohou.se">ohou.se</a>)을 차용한 쇼핑몰 만들기 
+
+### 개발 환경
+
+- 개발 언어 및 프레임워크 : Java 8,  Spring Boot 
+- 기타 개발 툴 : Thymeleaf, IntelliJ
+- 배포 : AWS EC2 
+- 데이터베이스 : H2, MariaDB (배포용)
 
 ### 기간
 2022.03.14 ~ 진행 중 
@@ -43,7 +51,7 @@
 |--------|---------|
 |구혜지| - 통합 검색 기능|
 |박성준| - 진행사항작성 </br> - 진행사항작성|
-|이채영| - 진행사항작성 </br>|
+|이채영| - 페이징 처리  </br>|
 
 ### API 명세서
 
