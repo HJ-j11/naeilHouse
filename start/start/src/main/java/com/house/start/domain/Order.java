@@ -30,9 +30,8 @@ public class Order {
 
 
     @Builder
-    public Order(Consumer consumer, OrderStatus orderStatus, LocalDateTime orderDate) {
+    public Order(Consumer consumer, LocalDateTime orderDate) {
         this.consumer = consumer;
-        this.orderStatus = OrderStatus.ORDER;
         this.orderDate = LocalDateTime.now();
     }
 

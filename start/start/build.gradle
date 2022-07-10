@@ -1,12 +1,26 @@
+buildscript {
+	ext {
+		queryDslVersion = '5.0.0'
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.6.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	id 'java'
 }
 
 group = 'com.house'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
 
 repositories {
 	mavenCentral()
@@ -18,11 +32,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-	implementation 'org.springframework.boot:spring-boot-starter-tomcat' // 에러가 나서 추가
+	implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 
 	// db
 	implementation 'org.springframework.boot:spring-boot-devtools'
-    implementation 'org.projectlombok:lombok:1.18.20'
+    implementation 'org.projectlombok:lombok:1.18.24'
     runtimeOnly 'com.h2database:h2'
 
 	//JUnit4 추가
@@ -38,9 +52,42 @@ dependencies {
 
 	//session
 	implementation 'org.springframework.session:spring-session-core'
+	implementation 'org.springframework.session:spring-session-jdbc'
 
+
+	// Spring Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+
+	//Querydsl
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+	//mariadb (AWS 배포용 DB)
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client'
+	compile("org.mariadb.jdbc:mariadb-java-client")
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+//querydsl 추가 시작
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+	jpa = true
+	querydslSourcesDir = querydslDir
+}
+sourceSets {
+	main.java.srcDir querydslDir
+}
+compileQuerydsl{
+	options.annotationProcessorPath = configurations.querydsl
+}
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	querydsl.extendsFrom compileClasspath
 }
