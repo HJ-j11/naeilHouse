@@ -1,14 +1,16 @@
 package com.house.start.repository;
 
-import com.house.start.domain.Cart;
 import com.house.start.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, Long> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Cart findByMember(Member member);
+    Member findByUsername(String username);
+
+    Member findMemberById(Long id);
 
 }

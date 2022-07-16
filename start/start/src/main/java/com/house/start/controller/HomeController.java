@@ -1,7 +1,6 @@
 package com.house.start.controller;
 
 import com.house.start.controller.session.SessionConstants;
-import com.house.start.domain.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

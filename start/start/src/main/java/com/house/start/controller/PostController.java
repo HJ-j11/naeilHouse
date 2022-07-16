@@ -4,10 +4,7 @@ package com.house.start.controller;
 import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
 import com.house.start.controller.session.SessionConstants;
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Like;
-import com.house.start.domain.Post;
-import com.house.start.domain.UploadFile;
+import com.house.start.domain.*;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +46,7 @@ public class PostController {
     // 작성 글 조회
     @GetMapping("/community/{id}")
     public String getOnePost(@PathVariable Long id,
-                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                              Model model, HttpServletRequest request) {
 
         Post post = consumerService.getOnePost(id);
@@ -57,10 +54,10 @@ public class PostController {
         // 글 조회수 update
         consumerService.updateView(id);
 
-        if(loginConsumer!=null) {
+        if(loginMember!=null) {
             Boolean flag = false;
             for(Like like : likes) {
-                if(like.getConsumer().getId()==loginConsumer.getId()) {
+                if(like.getMember().getId()==loginMember.getId()) {
                     flag = true;
                     break;
                 }
@@ -78,9 +75,9 @@ public class PostController {
 
     // 글 작성 페이지
     @GetMapping("/community/new")
-    public String getNewPost(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+    public String getNewPost(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                              Model model) {
-        if(loginConsumer == null) {
+        if(loginMember == null) {
             return "redirect:/login";
         }
         model.addAttribute("post", new PostForm());
@@ -90,7 +87,7 @@ public class PostController {
     // 글 작성
     @PostMapping("/community/write")
     public String postUser(@ModelAttribute PostForm post,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                            HttpServletRequest request) throws IOException {
 
         logger.info(post.getContents());
@@ -101,7 +98,7 @@ public class PostController {
         Post newPost = Post.builder()
                 .contents(post.getContents())
                 .uploadFile(uploadFile)
-                .consumer(loginConsumer)
+                .member(loginMember)
                 .postDate(LocalDateTime.now())
                 .build();
 
@@ -113,12 +110,12 @@ public class PostController {
      * 글 -> 좋아요 누르기
      * **/
     @PostMapping("/community/{id}/likes")
-    public String putLikes(@PathVariable String id, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
-        if(loginConsumer == null) {
+    public String putLikes(@PathVariable String id, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember) {
+        if(loginMember == null) {
             return "redirect:/login";
         }
 
-        Long likeId = consumerService.putLikes(Long.valueOf(id), loginConsumer);
+        Long likeId = consumerService.putLikes(Long.valueOf(id), loginMember);
         System.out.println("Like Create No: "+likeId);
 
 
@@ -131,8 +128,8 @@ public class PostController {
      * **/
     // 댓글 작성
     @PostMapping("/community/{id}/comments/write")
-    public String postComment(@PathVariable String id, @RequestParam String contents, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer) {
-        consumerService.saveComment(id, contents, loginConsumer);
+    public String postComment(@PathVariable String id, @RequestParam String contents, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember) {
+        consumerService.saveComment(id, contents, loginMember);
         return "redirect:/community/"+id;
     }
 
