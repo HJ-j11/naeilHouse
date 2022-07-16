@@ -38,6 +38,7 @@
     <script src="resources/scripts/axure/viewer.js"></script>
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="resources/scripts/axure/ios.js"></script>
     <script src="javascript/document.js"></script>
     <script src="css/login/data.js"></script>
 
@@ -65,13 +66,12 @@
             </div>
         </div>
 
-        <form th:action="@{/login_proc}" th:object="${loginForm}" method="post">
+        <form th:action="@{/login_proc}" method="post">
 
             <!-- 로그인 에러 메세지 -->
-            <div id="login-error-msg" th:if="${#fields.hasGlobalErrors()}">
-                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
-
-            </div>
+<!--            <div id="login-error-msg" th:if="${#fields.hasGlobalErrors()}">-->
+<!--                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>-->
+<!--            </div>-->
 
             <!-- pwd_box (Group) -->
             <div id="u22" class="ax_default" data-label="pwd_box" data-left="440" data-top="399" data-width="557"
@@ -86,9 +86,8 @@
                 <!-- 비밀번호 (Text Field) -->
                 <div id="u24" class="ax_default text_field" data-label="비밀번호">
                     <img id="u24_img" class="img " src="images/login/비밀번호_u24.svg"/>
-                    <input id="u24_input" type="password" th:field="*{pwd}" th:errorclass="field-error" value=""
-                           class="u24_input"/>
-                    <div class="field-error" th:errors="*{pwd}"/>
+                    <input id="u24_input" type="password" th:name="password" class="u24_input"/>
+<!--                    <div class="field-error" th:errors="*{password}"/>-->
                 </div>
 
             </div>
@@ -106,26 +105,25 @@
                 <!-- 이메일 (Text Field) -->
                 <div id="u27" class="ax_default text_field" data-label="이메일">
                     <img id="u27_img" class="img " src="images/login/비밀번호_u24.svg"/>
-                    <input id="u27_input" type="text" th:field="*{loginId}" th:errorclass="field-error" value=""
-                           class="u27_input"/>
-                    <div class="field-error" th:errors="*{loginId}"/>
+                    <input id="u27_input" type="text" th:name="username" class="u27_input"/>
+<!--                    <div class="field-error" th:errors="*{username}"/>-->
                 </div>
 
             </div>
 
             <!-- 소비자, 판매자, 관리자 중 선택-->
-            <div id="user-type">
-                <input type="radio" id="role" name="role" value="0" th:field="*{role}" th:errorclass="field-error">
-                <label for="role">회원</label>
+<!--            <div id="user-type">-->
+<!--                <input type="radio" id="role" name="role" value="0" th:field="*{role}" th:errorclass="field-error">-->
+<!--                <label for="role">회원</label>-->
 
-                <input type="radio" id="role" name="role" value="1" th:field="*{role}" th:errorclass="field-error">
-                <label for="role">판매자</label>
+<!--                <input type="radio" id="role" name="role" value="1" th:field="*{role}" th:errorclass="field-error">-->
+<!--                <label for="role">판매자</label>-->
 
-                <input type="radio" id="role" name="role" value="2" th:field="*{role}" th:errorclass="field-error">
-                <label for="role">관리자</label>
+<!--                <input type="radio" id="role" name="role" value="2" th:field="*{role}" th:errorclass="field-error">-->
+<!--                <label for="role">관리자</label>-->
 
-                <div class="field-error" th:errors="*{role}"/>
-            </div>
+<!--                <div class="field-error" th:errors="*{role}"/>-->
+<!--            </div>-->
 
             <!-- login_summit (Group) -->
             <button id="login-summit" type="submit">로그인</button>
@@ -142,6 +140,6 @@
 
     </div>
 </div>
-<script src="resources/scripts/axure/ios.js"></script>
+
 </body>
 </html>

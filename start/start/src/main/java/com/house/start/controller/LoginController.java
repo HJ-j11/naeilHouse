@@ -25,7 +25,7 @@ public class LoginController {
       */
     @GetMapping("/login")
     public String login(@ModelAttribute LoginForm loginForm, Model model) {
-        log.info("login controller - do login");
+//        log.info("login controller - do login");
         return "login/loginForm";
     }
 
@@ -34,10 +34,10 @@ public class LoginController {
      * @param loginForm role, loginId, pwd로 이루어진 데이터
      * @param bindingResult 입력한 loginForm 형식이 올바른지에 대한 결과
      */
-    @GetMapping("/login_proc")
-    public String loginUser(@ModelAttribute @Validated LoginForm loginForm,
-                            BindingResult bindingResult,
-                            HttpServletRequest request) {
+//    @GetMapping("/login_proc")
+//    public String loginUser(@ModelAttribute @Validated LoginForm loginForm,
+//                            BindingResult bindingResult,
+//                            HttpServletRequest request) {
 //        log.info("login controller - post login data");
 //        if (bindingResult.hasErrors()) { // 입력한 loginForm 형식이 안맞는 경우
 //            return "login/loginForm";
@@ -90,8 +90,8 @@ public class LoginController {
 //            session.setAttribute(SessionConstants.ROLE, "admin");
 //            log.info("login controller - success login id: " + session.getAttribute(SessionConstants.ROLE));
 //        }
-        return "redirect:/";
-    }
+//        return "redirect:/";
+//    }
 
     /**
      * 로그아웃

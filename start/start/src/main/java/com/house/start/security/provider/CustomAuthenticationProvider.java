@@ -1,6 +1,7 @@
 package com.house.start.security.provider;
 
 import com.house.start.security.service.AccountContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
@@ -12,7 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -23,7 +27,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         AccountContext accountContext = (AccountContext) userDetailsService.loadUserByUsername(username);
 
-        if (!passwordEncoder.matches(password, accountContext.getMember().getPwd())) {
+        if (!passwordEncoder.matches(password, accountContext.getMember().getPassword())) {
             throw new BadCredentialsException("BadCredentialException");
         }
 

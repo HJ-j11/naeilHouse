@@ -13,4 +13,5 @@ public class ReviewForm {
 
     @NotBlank
     private String content; // 댓글내용
+
 }

@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
-public class Member {
+public class Member implements Serializable {
 
     @Id
     @GeneratedValue
@@ -18,7 +19,7 @@ public class Member {
 
     private String name; // 이름
     private String username; // 아이디
-    private String pwd; // 비밀번호
+    private String password; // 비밀번호
     private String role; // 권한
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

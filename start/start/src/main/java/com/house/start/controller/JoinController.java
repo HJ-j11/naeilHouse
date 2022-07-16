@@ -4,8 +4,10 @@ import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.domain.*;
 import com.house.start.file.FileStore;
 import com.house.start.service.JoinService;
+import com.house.start.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ public class JoinController {
 
     private final JoinService joinService;
     private final FileStore fileStore;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      *  어느 역할(소비자 or 판매자 or 관리자)로 회원가입 할지 고르는 페이지
@@ -53,7 +56,7 @@ public class JoinController {
         // 소비자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPwd(form.getPassword());
+        member.setPassword(form.getPassword());
         member.setName(form.getName());
 //        consumer.setUploadFile(uploadFile);
 
@@ -87,7 +90,7 @@ public class JoinController {
         // 판매자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPwd(form.getPassword());
+        member.setPassword(passwordEncoder.encode(form.getPassword()));
         member.setName(form.getName());
         member.setStoreName(form.getStoreName());
 //        seller.setUploadFile(uploadFile);
@@ -123,7 +126,7 @@ public class JoinController {
         // 관리자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPwd(form.getPassword());
+        member.setPassword(form.getPassword());
         member.setName(form.getName());
         member.setUploadFile(uploadFile);
 
