@@ -13,14 +13,13 @@ plugins {
 
 group = 'com.house'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
 }
-
 
 repositories {
 	mavenCentral()
@@ -32,6 +31,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 
 	// db
 	implementation 'org.springframework.boot:spring-boot-devtools'
@@ -51,21 +51,19 @@ dependencies {
 
 	//session
 	implementation 'org.springframework.session:spring-session-core'
-	implementation 'org.springframework.session:spring-session-jdbc'
 
 
 	// Spring Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-test'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	// OAuth2
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.7.0'
+
 
 	//Querydsl
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
-
-	//mariadb (AWS 배포용 DB)
-	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client'
-	compile("org.mariadb.jdbc:mariadb-java-client")
 }
 
 tasks.named('test') {
