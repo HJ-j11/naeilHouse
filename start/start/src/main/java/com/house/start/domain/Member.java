@@ -1,8 +1,6 @@
 package com.house.start.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -12,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Member implements Serializable {
 
     @Id
@@ -23,6 +22,7 @@ public class Member implements Serializable {
     private String username; // 아이디
     private String password; // 비밀번호
     private String role; // 권한
+    private String email; // 이메일
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
@@ -49,6 +49,19 @@ public class Member implements Serializable {
     private Boolean isApproved; // <판매자> 관리자의 승인 여부
 
 
+    /**
+     * Builder 패턴 추가
+     * **/
+
+    @Builder
+    public Member( String name, String username, String password, String role, String email, UploadFile uploadFile) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.email = email;
+        this.uploadFile = uploadFile;
+    }
 
 
 

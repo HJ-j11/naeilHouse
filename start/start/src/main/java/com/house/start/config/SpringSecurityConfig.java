@@ -1,5 +1,6 @@
 package com.house.start.config;
 
+import com.house.start.auth.PrincipalOAuth2UserService;
 import com.house.start.security.provider.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -21,6 +22,8 @@ import org.springframework.security.web.firewall.HttpFirewall;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired private PrincipalOAuth2UserService principalOauth2UserService;
 
     @Autowired
     private AuthenticationSuccessHandler customAuthenticationSuccessHandler;
@@ -76,6 +79,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
+
+        .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .failureHandler(customAuthenticationFailureHandler)
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);
         ;
     }
 
