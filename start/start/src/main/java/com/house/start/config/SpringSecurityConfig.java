@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
@@ -23,6 +24,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
+    @Autowired
+    private AuthenticationFailureHandler customAuthenticationFailureHandler;
 
     @Bean
     public HttpFirewall defaultHttpFirewall() {
@@ -39,18 +43,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomAuthenticationProvider();
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     /**
-     *  정적 파일은 보안필터를 거치지 않고 통과됨 (보안필터 범위 밖)
+     *  정적 파일은 보안필터를 거치지 않고 통과됨
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+        web.ignoring().antMatchers("/scripts/**", "/javascript/**", "/error");
         web.httpFirewall(defaultHttpFirewall());
     }
 
@@ -58,7 +62,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected  void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login").permitAll()
+                .antMatchers("/", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login", "/static/**").permitAll()
                 .antMatchers("/sellers/**", "/consumers", "/posts", "/items", "orders").hasRole("ADMIN")
                 .antMatchers("/seller/**").hasRole("SELLER")
                 .anyRequest().authenticated()
@@ -70,8 +74,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .successHandler(customAuthenticationSuccessHandler)
                 .permitAll()
-//                .successHandler(customAuthentictaionSuccessHandler)
-//                .failureHandler(customAuthenticationFailureHandler)
+                .successHandler(customAuthenticationSuccessHandler)
+                .failureHandler(customAuthenticationFailureHandler)
         ;
     }
 

@@ -1,5 +1,6 @@
 package com.house.start.security.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@Slf4j
 public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
@@ -25,10 +27,12 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         setDefaultTargetUrl("/");
+        log.info("defaultTargetUrl = " + getDefaultTargetUrl());
 
         SavedRequest savedRequest = requestCache.getRequest(request, response);
         if (savedRequest != null) {
             String targetUrl = savedRequest.getRedirectUrl();
+            log.info("targetUrl = " + targetUrl);
             redirectStrategy.sendRedirect(request, response, targetUrl);
         } else {
             redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());

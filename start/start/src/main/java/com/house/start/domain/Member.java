@@ -2,6 +2,8 @@ package com.house.start.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;

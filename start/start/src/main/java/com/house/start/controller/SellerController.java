@@ -14,6 +14,9 @@ import com.house.start.service.MemberService;
 import com.house.start.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -96,13 +99,7 @@ public class SellerController {
      *  등록된 상품 목록 페이지
      */
     @GetMapping("/seller/item/list")
-    public String itemList(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
-                           Model model) {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginMember == null) {
-            return "redirect:/login";
-        }
+    public String itemList(@AuthenticationPrincipal Member loginMember, Model model) {
 
         // 판매자 조회
         Member member = memberService.findMemberById(loginMember.getId());
