@@ -57,7 +57,7 @@ public class AdminController {
 
         List<Member> sellerList = memberService.findSellers();
         model.addAttribute("sellerList", sellerList);
-        
+
         return "admin/showSellers";
 
     }
@@ -66,7 +66,7 @@ public class AdminController {
      * 판매자 승인 처리
      */
     @GetMapping("/sellers/{seller_id}/approved")
-    public String approvedSeller(@PathVariable Long seller_id) {
+    public String approvedSeller(@PathVariable Long seller_id) throws Exception {
         log.info("--- admin controller - show sellers approved -----------------------------------------");
         sellerService.approveSeller(seller_id);
         return "redirect:/admin/sellers";
@@ -76,7 +76,7 @@ public class AdminController {
      * 판매자 승인 철회
      */
     @GetMapping("/sellers/{seller_id}/notapproved")
-    public String notapprovedSeller(@PathVariable Long seller_id) {
+    public String notapprovedSeller(@PathVariable Long seller_id) throws Exception {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);
         return "redirect:/admin/sellers";
