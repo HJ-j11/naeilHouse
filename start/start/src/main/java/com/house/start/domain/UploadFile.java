@@ -21,13 +21,7 @@ public class UploadFile {
     private Post post;
 
     @OneToOne(mappedBy = "uploadFile")
-    private Consumer consumer;
-
-    @OneToOne(mappedBy = "uploadFile")
-    private Seller seller;
-
-    @OneToOne(mappedBy = "uploadFile")
-    private Admin admin;
+    private Member member;
 
     private String uploadFileName;
     private String storeFileName;

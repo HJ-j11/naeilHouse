@@ -1,7 +1,7 @@
 package com.house.start.service;
 
-import com.house.start.domain.Consumer;
 import com.house.start.domain.Item;
+import com.house.start.domain.Member;
 import com.house.start.domain.Review;
 import com.house.start.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,16 +19,16 @@ public class ReviewService {
     /**
      * 소비자로 모든 review 조회
      */
-    public List<Review> findReviewsByConsumer (Consumer consumer) {
-        return reviewRepository.findByConsumer(consumer);
+    public List<Review> findReviewsByConsumer (Member member) {
+        return reviewRepository.findByMember(member);
     }
 
     /**
      * review 저장
      */
-    public Review saveReview(Consumer consumer, Item item, String content) {
+    public Review saveReview(Member member, Item item, String content) {
         Review review = new Review();
-        review.setConsumer(consumer);
+        review.setMember(member);
         review.setItem(item);
         review.setContent(content);
         reviewRepository.save(review);

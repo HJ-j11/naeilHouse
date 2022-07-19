@@ -45,8 +45,8 @@ public class AdminController {
             return "err/notLogin";
         }else if (session.getAttribute(ROLE).toString().equals("admin")) {
             // 관리자인 경우
-            List<Consumer> consumerList = consumerService.findConsumers();
-            model.addAttribute("consumerList", consumerList);
+//            List<Consumer> consumerList = consumerService.findConsumers();
+//            model.addAttribute("consumerList", consumerList);
             return "admin/showConsumers";
         } else {
             // 소비자나 판매자인 경우
@@ -67,8 +67,8 @@ public class AdminController {
             return "err/notLogin";
         } else if (session.getAttribute(ROLE).toString().equals("admin")) {
             // 관리자인 경우
-            List<Seller> sellerList = sellerService.findSellers();
-            model.addAttribute("sellerList", sellerList);
+//            List<Seller> sellerList = sellerService.findSellers();
+//            model.addAttribute("sellerList", sellerList);
             return "admin/showSellers";
         } else {
             // 소비자나 판매자인 경우

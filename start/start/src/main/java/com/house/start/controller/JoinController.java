@@ -1,15 +1,13 @@
 package com.house.start.controller;
 
 import com.house.start.controller.form.MemberJoinForm;
-import com.house.start.domain.Admin;
-import com.house.start.domain.Cart;
-import com.house.start.domain.Consumer;
-import com.house.start.domain.Seller;
-import com.house.start.domain.UploadFile;
+import com.house.start.domain.*;
 import com.house.start.file.FileStore;
 import com.house.start.service.JoinService;
+import com.house.start.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +24,7 @@ public class JoinController {
 
     private final JoinService joinService;
     private final FileStore fileStore;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      *  어느 역할(소비자 or 판매자 or 관리자)로 회원가입 할지 고르는 페이지
@@ -55,16 +54,16 @@ public class JoinController {
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         // 소비자 객체 생성
-        Consumer consumer = new Consumer();
-        consumer.setCId(form.getId());
-        consumer.setPwd(form.getPassword());
-        consumer.setName(form.getName());
+        Member member = new Member();
+        member.setUsername(form.getId());
+        member.setPassword(form.getPassword());
+        member.setName(form.getName());
 //        consumer.setUploadFile(uploadFile);
 
         // 포인트 초기화
-        consumer.setPoint(500000);
+        member.setPoint(500000);
 
-        joinService.joinConsumer(consumer);
+        joinService.joinConsumer(member);
 
         return "redirect:/";
     }
@@ -89,17 +88,18 @@ public class JoinController {
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         // 판매자 객체 생성
-        Seller seller = new Seller();
-        seller.setSId(form.getId());
-        seller.setPwd(form.getPassword());
-        seller.setName(form.getName());
-        seller.setStoreName(form.getStoreName());
-        seller.setUploadFile(uploadFile);
+        Member member = new Member();
+        member.setUsername(form.getId());
+        member.setPassword(passwordEncoder.encode(form.getPassword()));
+        member.setName(form.getName());
+        member.setStoreName(form.getStoreName());
+//        seller.setUploadFile(uploadFile);
 
         // 회원 신청 승인여부 false
-        seller.setIsApproved(false);
+        member.setIsApproved(false);
+        member.setRole("ROLE_SELLER");
 
-        joinService.joinSeller(seller);
+        joinService.joinMember(member);
 
         return "redirect:/";
     }
@@ -124,13 +124,13 @@ public class JoinController {
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         // 관리자 객체 생성
-        Admin admin = new Admin();
-        admin.setAId(form.getId());
-        admin.setPwd(form.getPassword());
-        admin.setName(form.getName());
-        admin.setUploadFile(uploadFile);
+        Member member = new Member();
+        member.setUsername(form.getId());
+        member.setPassword(form.getPassword());
+        member.setName(form.getName());
+        member.setUploadFile(uploadFile);
 
-        joinService.joinAdmin(admin);
+        joinService.joinMember(member);
 
         return "redirect:/";
     }

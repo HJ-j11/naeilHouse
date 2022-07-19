@@ -18,8 +18,8 @@ public class Post {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "consumer_id")
-    private Consumer consumer;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @OneToMany(mappedBy = "post")
     private List<Like> likes = new ArrayList<>();
@@ -44,11 +44,11 @@ public class Post {
 
 
     @Builder
-    public Post(UploadFile uploadFile, String contents, LocalDateTime postDate, Consumer consumer) {
+    public Post(UploadFile uploadFile, String contents, LocalDateTime postDate, Member member) {
         this.uploadFile = uploadFile;
         this.contents = contents;
         this.postDate = postDate;
-        this.consumer = consumer;
+        this.member = member;
     }
 
 

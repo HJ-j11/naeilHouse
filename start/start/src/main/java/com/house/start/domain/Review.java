@@ -17,8 +17,8 @@ public class Review {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "consumer_id")
-    private Consumer consumer;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
@@ -28,8 +28,8 @@ public class Review {
     private LocalDateTime reviewDate; // 리뷰 작성 일시
 
     //==연관관계 편의 메서드==//
-    public void setConsumer(Consumer consumer) {
-        this.consumer = consumer;
-        consumer.getReviews().add(this);
+    public void setConsumer(Member member) {
+        this.member = member;
+        member.getReviews().add(this);
     }
 }

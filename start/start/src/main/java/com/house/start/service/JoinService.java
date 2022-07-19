@@ -1,10 +1,7 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
-import com.house.start.repository.AdminRepository;
-import com.house.start.repository.CartRepository;
-import com.house.start.repository.ConsumerRepository;
-import com.house.start.repository.SellerRepository;
+import com.house.start.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,36 +10,23 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class JoinService {
 
-    private final ConsumerRepository consumerRepository;
-    private final SellerRepository sellerRepository;
-    private final AdminRepository adminRepository;
+    private final MemberRepository memberRepository;
     private final CartRepository cartRepository;
     /**
      *  소비자 회원가입
      */
     @Transactional
-    public void joinConsumer(Consumer consumer) {
+    public void joinConsumer(Member member) {
         Cart cart = Cart.builder()
-                .consumer(consumer)
+                .member(member)
                 .build();
 
         cartRepository.save(cart);
-        consumerRepository.save(consumer);
+        memberRepository.save(member);
     }
 
-    /**
-     *  판매자 회원가입
-     */
     @Transactional
-    public void joinSeller(Seller seller) {
-        sellerRepository.save(seller);
-    }
-
-    /**
-     *  판매자 회원가입
-     */
-    @Transactional
-    public void joinAdmin(Admin admin) {
-        adminRepository.save(admin);
+    public void joinMember(Member member) {
+        memberRepository.save(member);
     }
 }

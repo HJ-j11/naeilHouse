@@ -19,15 +19,15 @@ public class Cart {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "consumer_id")
-    private Consumer consumer;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartItems = new ArrayList<>();
 
     @Builder
-    public Cart(Consumer consumer) {
-        this.consumer = consumer;
+    public Cart(Member member) {
+        this.member = member;
     }
 
     // 장바구니에 상품 추가

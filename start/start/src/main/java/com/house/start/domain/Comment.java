@@ -24,14 +24,14 @@ public class Comment {
      * 단방향
      */
     @ManyToOne
-    @JoinColumn(name = "consumer_id")
-    private Consumer consumer; // 작성자
+    @JoinColumn(name = "member_id")
+    private Member member; // 작성자
 
     private String content; // 댓글 내용
 
     @Builder
-    public Comment(Consumer consumer, String content, Post post) {
-        this.consumer = consumer;
+    public Comment(Member member, String content, Post post) {
+        this.member = member;
         this.content = content;
         this.post = post;
     }

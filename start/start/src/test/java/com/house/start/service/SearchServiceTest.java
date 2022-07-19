@@ -1,7 +1,11 @@
+//
 //package com.house.start.service;
 //
+//import static org.junit.Assert.*;
+//
 //import com.house.start.domain.Item;
-//import com.house.start.domain.Post;
+//import com.house.start.domain.dto.Item.ItemDTO;
+//import com.house.start.domain.dto.Post.PostDTO;
 //import com.house.start.repository.QueryDslRepository;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -16,25 +20,35 @@
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
 //@Transactional
-//class SearchServiceTest {
+//public class SearchServiceTest {
 //    @Autowired
 //    QueryDslRepository dslRepository;
 //
 //    @Test
-//    void 상품_검색() {
-//        String word = "소파";
-//        List<Item> items = dslRepository.findItemsByName(word);
-//        for (Item item: items) {
+//    public void 상품_검색() throws Exception {
+//        //Given
+//        String word = createWord();
 //
-//        }
+//        //When
+//        List<ItemDTO> items = dslRepository.findItemsByName(word);
+//
+//        //Then
+//
 //    }
 //
 //    @Test
-//    void 게시글_검색() {
-//        String word = "소파";
-//        List<Post> posts = dslRepository.findPostsByContent(word);
-//        for(Post post: posts) {
+//    public void 게시글_검색() throws Exception {
+//        //Given
+//        String word = createWord();
 //
-//        }
+//        // When
+//        List<PostDTO> posts = dslRepository.findPostsByContent(word);
+//
+//        //Then
+//        assertNotNull(posts);
+//    }
+//
+//    private String createWord() {
+//        return "dd";
 //    }
 //}
