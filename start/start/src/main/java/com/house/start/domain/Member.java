@@ -21,9 +21,12 @@ public class Member implements Serializable {
     private String name; // 이름
     private String username; // 아이디
     private String password; // 비밀번호
-    private String role; // 권한
-    private String email; // 이메일
 
+    @Enumerated(EnumType.STRING)
+    private Role role; // 권한
+
+    private String email; // 이메일
+    
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
     private UploadFile uploadFile;

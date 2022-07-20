@@ -25,19 +25,13 @@ public class SellerService {
         return memberRepository.findById(id).get();
     }
 
-//    /**
-//     * 전체 판매자 조회
-//     */
-//    public List<Seller> findSellers() {
-//        return sellerRepository.findAll();
-//    }
 
     /**
      * 판매자 승인
      */
-    @Transactional
-    public void approveSeller(Long seller_id) {
-        Member member = memberRepository.findById(seller_id).get();
+    public void approveSeller(Long seller_id) throws Exception {
+        Member member = memberRepository.findById(seller_id)
+                .orElseThrow(() -> new Exception("판매자 정보에 문제가 있습니다."));
         member.setIsApproved(true);
 
     }
@@ -45,9 +39,9 @@ public class SellerService {
     /**
      * 판매자 승인 취소
      */
-    @Transactional
-    public void notapproveSeller(Long seller_id) {
-        Member member = memberRepository.findById(seller_id).get();
+    public void notapproveSeller(Long seller_id) throws Exception {
+        Member member = memberRepository.findById(seller_id)
+                .orElseThrow(() -> new Exception("판매자 정보에 문제가 있습니다."));
         member.setIsApproved(false);
     }
 }
