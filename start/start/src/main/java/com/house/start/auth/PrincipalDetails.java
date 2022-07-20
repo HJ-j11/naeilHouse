@@ -1,5 +1,6 @@
 package com.house.start.auth;
 
+import com.house.start.domain.Member;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,18 @@ import java.util.Map;
 
 @Getter
 public class PrincipalDetails implements UserDetails, OAuth2User {
+
+    private Member member;
+    private Map<String, Object> attributes;
+
+    public PrincipalDetails(Member member) {
+        this.member = member;
+    }
+
+    public PrincipalDetails(Member member, Map<String, Object> attributes) {
+        this.member = member;
+        this.attributes = attributes;
+    }
 
     @Override
     public Map<String, Object> getAttributes() {

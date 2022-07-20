@@ -63,6 +63,14 @@ public class Member implements Serializable {
         this.uploadFile = uploadFile;
     }
 
-
+    //Oauth Login
+    @Builder(builderClassName = "Oauth2Register", builderMethodName = "OauthRegister")
+    public Member(String username, String password, String email, String role, UploadFile uploadFile) {
+        this.name = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.uploadFile = uploadFile;
+    }
 
 }
