@@ -26,7 +26,7 @@ import static com.house.start.controller.session.SessionConstants.ROLE;
 @RequiredArgsConstructor
 @RequestMapping("admin")
 public class AdminController {
-    private final ConsumerService consumerService;
+    private final MemberService memberService;
     private final SellerService sellerService;
     private final PostService postService;
     private final ItemService itemService;
@@ -40,18 +40,11 @@ public class AdminController {
         log.info("--- admin controller - show consumers info -----------------------------------------");
         HttpSession session = request.getSession();
 
-        // 세션이 없으면 홈으로 이동
-        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "err/notLogin";
-        }else if (session.getAttribute(ROLE).toString().equals("admin")) {
-            // 관리자인 경우
-//            List<Consumer> consumerList = consumerService.findConsumers();
-//            model.addAttribute("consumerList", consumerList);
-            return "admin/showConsumers";
-        } else {
-            // 소비자나 판매자인 경우
-            return "err/denyPage";
-        }
+        //소비자 정보 조회하기
+        List<Member> consumerList = memberService.findConsumers();
+        model.addAttribute("consumerList", consumerList);
+
+        return "admin/showConsumers";
     }
 
     /**
@@ -62,18 +55,10 @@ public class AdminController {
         log.info("--- admin controller - show sellers info -----------------------------------------");
         HttpSession session = request.getSession();
 
-        // 세션이 없으면 홈으로 이동
-        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "err/notLogin";
-        } else if (session.getAttribute(ROLE).toString().equals("admin")) {
-            // 관리자인 경우
-//            List<Seller> sellerList = sellerService.findSellers();
-//            model.addAttribute("sellerList", sellerList);
-            return "admin/showSellers";
-        } else {
-            // 소비자나 판매자인 경우
-            return "err/denyPage";
-        }
+        List<Member> sellerList = memberService.findSellers();
+        model.addAttribute("sellerList", sellerList);
+
+        return "admin/showSellers";
 
     }
 
@@ -81,7 +66,7 @@ public class AdminController {
      * 판매자 승인 처리
      */
     @GetMapping("/sellers/{seller_id}/approved")
-    public String approvedSeller(@PathVariable Long seller_id) {
+    public String approvedSeller(@PathVariable Long seller_id) throws Exception {
         log.info("--- admin controller - show sellers approved -----------------------------------------");
         sellerService.approveSeller(seller_id);
         return "redirect:/admin/sellers";
@@ -91,7 +76,7 @@ public class AdminController {
      * 판매자 승인 철회
      */
     @GetMapping("/sellers/{seller_id}/notapproved")
-    public String notapprovedSeller(@PathVariable Long seller_id) {
+    public String notapprovedSeller(@PathVariable Long seller_id) throws Exception {
         log.info("--- admin controller - show sellers not approved -----------------------------------------");
         sellerService.notapproveSeller(seller_id);
         return "redirect:/admin/sellers";

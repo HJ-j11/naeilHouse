@@ -188,13 +188,6 @@ public class ConsumerService {
         commentRepository.delete(comment);
     }
 
-    /*
-     * 소비자 전체 목록 조회
-     */
-//    public List<Consumer> findConsumers() {
-//        return consumerRepository.findAll();
-//    }
-
     /**
      * 소비자 cId로 소비자 조회
      */

@@ -22,7 +22,9 @@ public class Member implements Serializable {
     private String name; // 이름
     private String username; // 아이디
     private String password; // 비밀번호
-    private String role; // 권한
+
+    @Enumerated(EnumType.STRING)
+    private Role role; // 권한
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
@@ -47,9 +49,6 @@ public class Member implements Serializable {
 
     private String storeName; // <판매자> 상호명
     private Boolean isApproved; // <판매자> 관리자의 승인 여부
-
-
-
 
 
 }
