@@ -17,7 +17,8 @@ public class MemberService {
         return memberRepository.findByUsername(mId);
     }
 
-    public Member findMemberById(Long id) { return memberRepository.findMemberById(id); }
+    public Member findMemberById(Long id) {
+        return memberRepository.findMemberById(id); }
 
     /*
      * 소비자 전체 목록 조회
@@ -32,6 +33,5 @@ public class MemberService {
     public List<Member> findSellers() {
         return memberRepository.findByRole(Role.SELLER);
     }
-
 
 }

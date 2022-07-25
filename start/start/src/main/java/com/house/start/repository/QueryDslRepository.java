@@ -21,7 +21,6 @@ public class QueryDslRepository {
     /**
      * 검색 기능
      * **/
-
     public List<PostDTO> findPostsByContent(String word) {
         return jpaQueryFactory.from(post)
                 .select(Projections.bean(PostDTO.class, post.contents, post.uploadFile, post.postDate))

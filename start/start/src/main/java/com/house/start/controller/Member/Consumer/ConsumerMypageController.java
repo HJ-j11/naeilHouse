@@ -1,4 +1,4 @@
-package com.house.start.controller.Consumer;
+package com.house.start.controller.Member.Consumer;
 
 import com.house.start.controller.form.LoginForm;
 import com.house.start.controller.form.ReviewForm;

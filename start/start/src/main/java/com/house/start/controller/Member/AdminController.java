@@ -1,4 +1,4 @@
-package com.house.start.controller;
+package com.house.start.controller.Member;
 
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
