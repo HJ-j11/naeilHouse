@@ -195,8 +195,11 @@
 
         <!-- Rectangle 2 (Rectangle) -->
         <div id="u22" class="ax_default shape" data-label="Rectangle 2">
-            <div id="u22_div" class="">
+            <div  th:if="${not #strings.isEmpty(item.uploadFile)}" id="u22_div" class="">
                 <img th:src="|/upload/${item.uploadFile.storeFileName}|" class="img-thumbnail" alt="...">
+            </div>
+            <div  th:unless="${not #strings.isEmpty(item.uploadFile)}" id="u22_div" class="">
+                <img src="/images/house.svg" class="img-thumbnail" alt="...">
             </div>
             <div id="u22_text" class="text " style="display:none; visibility: hidden">
                 <p></p>

@@ -56,7 +56,7 @@ public class JoinController {
         // 소비자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPassword(form.getPassword());
+        member.setPassword(passwordEncoder.encode(form.getPassword()));
         member.setName(form.getName());
 //        consumer.setUploadFile(uploadFile);
 
@@ -126,7 +126,7 @@ public class JoinController {
         // 관리자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPassword(form.getPassword());
+        member.setPassword(passwordEncoder.encode(form.getPassword()));
         member.setName(form.getName());
         member.setUploadFile(uploadFile);
 
