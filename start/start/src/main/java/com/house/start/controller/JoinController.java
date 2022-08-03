@@ -97,7 +97,7 @@ public class JoinController {
 
         // 회원 신청 승인여부 false
         member.setIsApproved(false);
-        member.setRole("ROLE_SELLER");
+        member.setRole(Role.SELLER);
 
         joinService.joinMember(member);
 

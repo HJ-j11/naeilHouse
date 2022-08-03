@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(member.getRole()));
+        roles.add(new SimpleGrantedAuthority(String.valueOf(member.getRole())));
 
         // UserDetails 타입으로 변환
         AccountContext accountContext = new AccountContext(member, roles);
