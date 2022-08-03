@@ -1,8 +1,7 @@
 package com.house.start.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.house.start.controller.form.MemberJoinForm;
+import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -12,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Member implements Serializable {
 
     @Id
@@ -48,8 +48,27 @@ public class Member implements Serializable {
     private String storeName; // <판매자> 상호명
     private Boolean isApproved; // <판매자> 관리자의 승인 여부
 
+    @Builder
+    public Member(String name, String username, String password, String storeName, String role, UploadFile uploadFile) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.storeName = storeName;
+        this.role = role;
+        this.uploadFile = uploadFile;
+    }
 
+    public Member createMember(MemberJoinForm joinForm, String role, UploadFile uploadFile) {
+        Member newMember = Member.builder()
+                .name(joinForm.getName())
+                .username(joinForm.getId())
+                .password(joinForm.getPassword())
+                .storeName(joinForm.getStoreName())
+                .role(role)
+                .uploadFile(uploadFile)
+                .build();
 
-
+        return newMember;
+    }
 
 }
