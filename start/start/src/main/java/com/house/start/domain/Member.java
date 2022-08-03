@@ -22,7 +22,7 @@ public class Member implements Serializable {
     private String name; // 이름
     private String username; // 아이디
     private String password; // 비밀번호
-    private String role; // 권한
+    private Role role; // 권한
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
@@ -49,7 +49,7 @@ public class Member implements Serializable {
     private Boolean isApproved; // <판매자> 관리자의 승인 여부
 
     @Builder
-    public Member(String name, String username, String password, String storeName, String role, UploadFile uploadFile) {
+    public Member(String name, String username, String password, String storeName, Role role, UploadFile uploadFile) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -58,7 +58,7 @@ public class Member implements Serializable {
         this.uploadFile = uploadFile;
     }
 
-    public Member createMember(MemberJoinForm joinForm, String role, UploadFile uploadFile) {
+    public Member createMember(MemberJoinForm joinForm, Role role, UploadFile uploadFile) {
         Member newMember = Member.builder()
                 .name(joinForm.getName())
                 .username(joinForm.getId())
