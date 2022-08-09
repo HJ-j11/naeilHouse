@@ -17,7 +17,7 @@
 ### 인원
 3명 (백엔드 3명) 
 
-### [화면 정의](./doc/wireframe.md)
+### [화면 정의](https://github.com/HJ-j11/naeilHouse/wiki/%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%A0%95%EB%A6%AC)
 
 <br/>
 
