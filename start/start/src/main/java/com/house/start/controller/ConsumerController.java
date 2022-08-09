@@ -191,9 +191,12 @@ public class  ConsumerController {
     public String cart(HttpServletRequest request,
                        @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                        Model model) {
-        if(loginMember == null) {
-            return "redirect:/login";
-        }
+
+        System.out.println("------ Member Id: "+ loginMember + "-------");
+
+//        if(loginMember == null) {
+//            return "redirect:/login";
+//        }
         // 로그인 전제로
         Cart cart = consumerService.findByCart(loginMember);
         int totalPrice = cart.getTotalPrice();
