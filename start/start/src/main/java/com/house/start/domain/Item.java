@@ -1,4 +1,5 @@
 package com.house.start.domain;
+import com.house.start.domain.entity.Member;
 import com.house.start.exception.NotEnoughStockException;
 import lombok.Builder;
 import lombok.Getter;

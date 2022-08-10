@@ -2,7 +2,7 @@ package com.house.start.service;
 
 import com.house.start.domain.Category;
 import com.house.start.domain.Item;
-import com.house.start.domain.Member;
+import com.house.start.domain.entity.Member;
 import com.house.start.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

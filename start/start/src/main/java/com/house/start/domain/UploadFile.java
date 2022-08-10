@@ -1,6 +1,6 @@
 package com.house.start.domain;
 
-import lombok.Data;
+import com.house.start.domain.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 
