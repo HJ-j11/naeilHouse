@@ -1,6 +1,6 @@
 package com.house.start.security.service;
 
-import com.house.start.domain.Member;
+import com.house.start.domain.entity.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 

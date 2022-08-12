@@ -2,9 +2,9 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.JoinService;
-import com.house.start.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -97,7 +97,7 @@ public class JoinController {
 
         // 회원 신청 승인여부 false
         member.setIsApproved(false);
-        member.setRole("ROLE_SELLER");
+//        member.setRole("ROLE_SELLER");
 
         joinService.joinMember(member);
 

@@ -5,6 +5,7 @@ import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import lombok.RequiredArgsConstructor;

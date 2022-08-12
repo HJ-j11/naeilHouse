@@ -1,5 +1,6 @@
 package com.house.start.domain;
 
+import com.house.start.domain.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;

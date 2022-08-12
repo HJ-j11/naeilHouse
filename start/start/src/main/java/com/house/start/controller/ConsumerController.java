@@ -1,27 +1,20 @@
 package com.house.start.controller;
 
-import com.house.start.controller.form.CommentForm;
-import com.house.start.controller.form.PostForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
-import com.house.start.service.MemberService;
+import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -30,7 +23,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class  ConsumerController {
     private final ConsumerService consumerService;
-    private final MemberService memberService;
+    private final MemberServiceImpl memberService;
     private final FileStore fileStore;
     private final ItemService itemService;
     private final OrderService orderService;
