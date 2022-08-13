@@ -1,11 +1,13 @@
 package com.house.start.domain.entity;
 
 import com.house.start.domain.*;
+import com.house.start.security.oauth.ProviderType;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +28,15 @@ public class Member implements Serializable {
     private String name; // 이름
     private String username; // 아이디
     private String password; // 비밀번호
+
+    @Column(name = "CREATED_AT")
+    private LocalDateTime createdAt; // 생성 일자
+
+    @Column(name = "MODIFIED_AT")
+    private LocalDateTime modifiedAt; // 수정 일자
+
+    @Column(name = "provider_type")
+    private ProviderType providerType;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
