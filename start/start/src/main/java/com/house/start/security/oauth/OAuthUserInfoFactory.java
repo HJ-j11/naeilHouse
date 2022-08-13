@@ -1,5 +1,6 @@
 package com.house.start.security.oauth;
 
+import com.house.start.domain.entity.ProviderType;
 import com.house.start.security.oauth.userInfo.GoogleOAuthUserInfo;
 import com.house.start.security.oauth.userInfo.KakaoOAuthUserInfo;
 import com.house.start.security.oauth.userInfo.NaverOAuthUserInfo;

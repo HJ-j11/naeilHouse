@@ -69,6 +69,7 @@ dependencies {
 
 	// oauth2
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'com.auth0:java-jwt:4.0.0'
 
 	// ModelMapper
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'

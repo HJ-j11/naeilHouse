@@ -1,9 +1,7 @@
 package com.house.start.domain.entity;
 
 import com.house.start.domain.*;
-import com.house.start.security.oauth.ProviderType;
 import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -4,7 +4,7 @@ import com.house.start.security.factory.UrlResourcesMapFactoryBean;
 import com.house.start.security.filter.PermitAllFilter;
 import com.house.start.security.handler.CustomAccessDeniedHandler;
 import com.house.start.security.metadatasource.UrlFilterInvocationSecurityMetadataSource;
-import com.house.start.security.oauth.CustomOAuthUserService;
+import com.house.start.security.service.CustomOAuthUserService;
 import com.house.start.security.provider.CustomAuthenticationProvider;
 import com.house.start.service.SecurityResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +97,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
         .and()
                 .oauth2Login()
+                .defaultSuccessUrl("/")
                 .userInfoEndpoint()
                 .userService(customOAuthUserService)
         .and()
@@ -107,11 +108,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler())
         .and()
-                .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class)
-
-
-
-        ;
+                .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
     }
 
     @Bean

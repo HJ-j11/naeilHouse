@@ -1,4 +1,4 @@
-package com.house.start.security.oauth;
+package com.house.start.domain.entity;
 
 import lombok.Getter;
 
