@@ -36,7 +36,7 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
-        String registrationId = userRequest.getClientRegistration().getRegistrationId(); // 로그인 진행 서비스 구분 코드
+        String registrationId = userRequest.getClientRegistration().getRegistrationId(); // 로그인 진행 서비스 구분 코드 - "Google", "Naver", "Kakao"
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName(); // 로그인 진행 필드 값 - 구글 "sub"
 
