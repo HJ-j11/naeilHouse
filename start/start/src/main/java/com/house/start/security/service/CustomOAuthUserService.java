@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -32,6 +33,7 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
     private final RoleRepository roleRepository;
 
     @Override
+    @Transactional
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
@@ -41,7 +43,7 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
                 .getUserInfoEndpoint().getUserNameAttributeName(); // 로그인 진행 필드 값 - 구글 "sub"
 
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
-        Member member = saveOrUpdate(attributes);
+        Member member = saveOAuth(attributes);
 
         Set<String> userRoles = member.getUserRoles()
                 .stream()
@@ -57,23 +59,22 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
         );
     };
 
-    private Member saveOrUpdate(OAuthAttributes oAuthAttributes) {
+    @Transactional
+    public Member saveOAuth(OAuthAttributes oAuthAttributes) {
         String name = oAuthAttributes.getName();
         String email = oAuthAttributes.getEmail();
-        Member checkMember = memberRepository.findByUsername(email);
 
-        if(checkMember == null) {
-            checkMember = Member.builder()
-                    .username(email)
-                    .name(name)
-                    .build();
-        } else {
-            checkMember.setName(name);
-        }
+        Set<Role> userRoles = new HashSet<>();
+        Role role = roleRepository.findByRoleName("ROLE_CONSUMER");
+        userRoles.add(role);
 
-        memberRepository.save(checkMember);
+        Member member = Member.builder()
+                .name(name)
+                .username(email)
+                .userRoles(userRoles)
+                .build();
 
-        return checkMember;
+        return memberRepository.save(member);
     }
 
 

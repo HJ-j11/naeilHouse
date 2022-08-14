@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member implements Serializable {
+public class Member extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue
@@ -26,12 +26,6 @@ public class Member implements Serializable {
     private String name; // 이름
     private String username; // 아이디
     private String password; // 비밀번호
-
-    @Column(name = "CREATED_AT")
-    private LocalDateTime createdAt; // 생성 일자
-
-    @Column(name = "MODIFIED_AT")
-    private LocalDateTime modifiedAt; // 수정 일자
 
     @Column(name = "provider_type")
     private ProviderType providerType;
