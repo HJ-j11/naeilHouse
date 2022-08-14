@@ -4,8 +4,7 @@ import com.house.start.domain.entity.Member;
 import com.house.start.domain.entity.Role;
 import com.house.start.repository.MemberRepository;
 import com.house.start.repository.RoleRepository;
-import com.house.start.security.listener.SetupDataLoader;
-import com.house.start.security.oauth.OAuthAttributes;
+import com.house.start.domain.dto.Member.OAuthAttributes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,7 +17,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

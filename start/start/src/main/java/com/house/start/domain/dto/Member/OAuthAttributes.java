@@ -1,6 +1,5 @@
-package com.house.start.security.oauth;
+package com.house.start.domain.dto.Member;
 
-import com.house.start.domain.entity.Member;
 import lombok.Builder;
 import lombok.Getter;
 
