@@ -67,8 +67,12 @@ dependencies {
 	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client'
 	compile("org.mariadb.jdbc:mariadb-java-client")
 
+	// oauth2
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'com.auth0:java-jwt:4.0.0'
+
 	// ModelMapper
-	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.0.0'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
 }
 
 tasks.named('test') {
