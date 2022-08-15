@@ -1,26 +1,20 @@
 package com.house.start.controller;
 
-import com.house.start.controller.form.CommentForm;
-import com.house.start.controller.form.PostForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
+import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -29,6 +23,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class  ConsumerController {
     private final ConsumerService consumerService;
+    private final MemberServiceImpl memberService;
     private final FileStore fileStore;
     private final ItemService itemService;
     private final OrderService orderService;
@@ -63,12 +58,12 @@ public class  ConsumerController {
     @PostMapping("/item/{id}/cart")
     public String addItemToCart(@PathVariable Long id,
                                 @RequestBody HashMap<String, Object> map,
-                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                                 HttpServletRequest request) {
 
         int count = Integer.parseInt(map.get("cnt").toString());
         Item item = itemService.findItem(id);
-        Cart cart = consumerService.findByCart(loginConsumer);
+        Cart cart = consumerService.findByCart(loginMember);
 
         Long cartId = consumerService.addItemToCart(item, cart, count);
         System.out.println("cartId :"+cartId);
@@ -109,24 +104,25 @@ public class  ConsumerController {
      */
     @GetMapping("/consumer/item/{id}/purchase")
     public String beforePurchase(@PathVariable Long id,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                            Model model) {
 
         // 세션에 회원 데이터가 없으면 예외처리
-        if (loginConsumer == null) {
+        if (loginMember == null) {
             return "redirect:/list";
         }
 
         // 소비자 id 조회
-        Long consumerId = loginConsumer.getId();
-        Consumer consumer = consumerService.findConsumerById(consumerId);
+        Long memberId = loginMember.getId();
+        Member member = memberService.findMemberById(memberId);
+
 
         // 상품 조회
         Item item = itemService.findItem(id);
 
         model.addAttribute("item", item);
 //        model.addAttribute("totalPrice", item.getPrice());
-        model.addAttribute("consumer", consumer);
+        model.addAttribute("consumer", member);
 
         return "consumer_beforePurchase";
 //        return "test_cartToBeforePurchase";
@@ -137,11 +133,11 @@ public class  ConsumerController {
      */
     @PostMapping("/consumer/item/{id}/purchase")
     public String afterPurchase(@PathVariable Long id,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
+                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Member loginMember,
                            Model model) {
 
         // 소비자 id 조회
-        Long consumerId = loginConsumer.getId();
+        Long consumerId = loginMember.getId();
 
         // 상품 id 조회
         Long itemId = itemService.findItem(id).getId();
@@ -166,10 +162,10 @@ public class  ConsumerController {
      */
     @PostMapping("/consumer/cart/{id}/add")
     public String addItemToCart(@PathVariable Long id,
-                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
+                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Member loginMember) {
 
         // 소비자 정보 조회
-        Long consumerId = loginConsumer.getId();
+        Long consumerId = loginMember.getId();
 
         // 아이템 정보 조회
         Item item = itemService.findItem(id);
@@ -185,13 +181,13 @@ public class  ConsumerController {
      */
     @GetMapping("/cart")
     public String cart(HttpServletRequest request,
-                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                        Model model) {
-        if(loginConsumer == null) {
+        if(loginMember == null) {
             return "redirect:/login";
         }
         // 로그인 전제로
-        Cart cart = consumerService.findByCart(loginConsumer);
+        Cart cart = consumerService.findByCart(loginMember);
         int totalPrice = cart.getTotalPrice();
         model.addAttribute("cartItems", cart.getCartItems());
         model.addAttribute("totalPrice", totalPrice);
@@ -203,18 +199,18 @@ public class  ConsumerController {
      * 주문 객체 생성
      * **/
     @GetMapping("/order")
-    public String beforeOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
+    public String beforeOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Member loginMember,
                              Model model) {
-        if (loginConsumer == null) {
+        if (loginMember == null) {
             return "redirect:/login";
         }
         // 상품 조회
-        Cart cart = consumerService.findByCart(loginConsumer);
+        Cart cart = consumerService.findByCart(loginMember);
 
         // cart에 있는 List<cartItem> cartItems
         model.addAttribute("items", cart.getCartItems());
         model.addAttribute("totalPrice", cart.getTotalPrice());
-        model.addAttribute("consumer", loginConsumer);
+        model.addAttribute("consumer", loginMember);
         return "consumer/consumer_order";
 //        return "consumer_beforePurchase";
 

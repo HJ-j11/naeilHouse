@@ -1,10 +1,11 @@
 package com.house.start.controller.Consumer;
 
-import com.house.start.controller.form.LoginForm;
 import com.house.start.controller.form.ReviewForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.service.*;
+import com.house.start.service.impl.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import java.util.List;
 @RequestMapping("user")
 public class ConsumerMypageController {
     private final ConsumerService consumerService;
+    private final MemberServiceImpl memberService;
     private final OrderService orderService;
     private final ReviewService reviewService;
     private final LikeService likeService;
@@ -44,9 +46,9 @@ public class ConsumerMypageController {
             // 소비자인 경우
             session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-            consumer = consumerService.findConsumerBycId(consumer.getCId());
-            model.addAttribute("consumer", consumer);
+            Member member = (Member) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+            member = memberService.findMemberById(member.getId());
+            model.addAttribute("consumer", member);
             return "consumer/mypage/user";
         } else {
             // 판매자나 관리자인 경우
@@ -69,12 +71,12 @@ public class ConsumerMypageController {
             // mypage 기본 필수 데이터
             session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-            consumer = consumerService.findConsumerById(consumer.getId());
-            model.addAttribute("consumer", consumer);
+            Member member = (Member) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+            member = memberService.findMemberById(member.getId());
+            model.addAttribute("consumer", member);
 
             // orders 데이터
-            List<Order> orderList = orderService.findOrderByConsumer(consumer);
+            List<Order> orderList = orderService.findOrderByConsumer(member);
             model.addAttribute("orderList", orderList);
             List<Long> statusList = orderService.countStatus(orderList);
             Long orderStatus = statusList.get(1);
@@ -105,11 +107,11 @@ public class ConsumerMypageController {
         }
         String content = reviewForm.getContent();
 
-        Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-        consumer = consumerService.findConsumerById(consumer.getId());
+        Member member = (Member) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+        member = memberService.findMemberById(member.getId());
         OrderItem orderItem = orderItemService.findOrderItemById(orderitem_id);
         Item item = orderItem.getItem();
-        Review review = reviewService.saveReview(consumer, item, content);
+        Review review = reviewService.saveReview(member, item, content);
         return "redirect:";
     }
 
@@ -126,12 +128,12 @@ public class ConsumerMypageController {
             // mypage 기본 필수 데이터
             session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-            consumer = consumerService.findConsumerById(consumer.getId());
-            model.addAttribute("consumer", consumer);
+            Member member = (Member) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+            member = memberService.findMemberById(member.getId());
+            model.addAttribute("consumer", member);
 
             // review 데이터
-            List<Review> reviewList = reviewService.findReviewsByConsumer(consumer);
+            List<Review> reviewList = reviewService.findReviewsByConsumer(member);
             log.info("check-----------------"+reviewList.toString());
             model.addAttribute("reviewList", reviewList);
             return "consumer/mypage/reviews";
@@ -154,12 +156,12 @@ public class ConsumerMypageController {
             // mypage 기본 필수 데이터
             session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
             session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Consumer consumer = (Consumer) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-            consumer = consumerService.findConsumerById(consumer.getId());
-            model.addAttribute("consumer", consumer);
+            Member member = (Member) session.getAttribute(SessionConstants.LOGIN_MEMBER);
+            member = memberService.findMemberById(member.getId());
+            model.addAttribute("consumer", member);
 
             // likes 데이터
-            List<Like> likesList = likeService.findLikesByConsumer(consumer);
+            List<Like> likesList = likeService.findLikesByConsumer(member);
             log.info("--- consumer mypage controller - show user info -> likes -----------------------------------------"+ likesList.size());
             model.addAttribute("likesList", likesList);
             return "consumer/mypage/likes";

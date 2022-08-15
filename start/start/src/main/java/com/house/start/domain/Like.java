@@ -1,5 +1,6 @@
 package com.house.start.domain;
 
+import com.house.start.domain.entity.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +22,12 @@ public class Like {
     private Post post; // 게시물
 
     @ManyToOne
-    @JoinColumn(name = "consumer_id")
-    private Consumer consumer; // 작성자
+    @JoinColumn(name = "member_id")
+    private Member member; // 작성자
 
     @Builder
-    public Like(Consumer consumer, Post post) {
-        this.consumer = consumer;
+    public Like(Member member, Post post) {
+        this.member = member;
         this.post = post;
     }
 }

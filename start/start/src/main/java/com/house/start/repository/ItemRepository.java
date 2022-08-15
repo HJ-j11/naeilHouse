@@ -1,7 +1,7 @@
 package com.house.start.repository;
 
 import com.house.start.domain.Item;
-import com.house.start.domain.Seller;
+import com.house.start.domain.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,11 +16,12 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
 
 
-    @Query("select i from Item i where i.seller.id = :id")
+    @Query("select i from Item i where i.member.id = :id")
     List<Item> findItemsBySeller(@Param(value = "id") Long id);
 
 
-    List<Item> findItemBySeller(Seller seller);
+    List<Item> findItemByMember(Member member);
+
 
     List<Item> findItemsByNameLike(String name);
 

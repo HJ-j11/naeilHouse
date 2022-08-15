@@ -1,6 +1,7 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class OrderService {
     private final ItemRepository itemRepository;
-    private final ConsumerRepository consumerRepository;
+    private final MemberRepository memberRepository;
     private final OrderRepository orderRepository;
     private final DeliveryRepository deliveryRepository;
     private final CartRepository cartRepository;
@@ -30,11 +31,13 @@ public class OrderService {
      *  주문 (바로 구매)
      */
     @Transactional
-    public Long order(Long consumerId, Long itemId, int count) {
+    public Long order(Long memberId, Long itemId, int count) {
 
         // 엔티티 조회 (소비자 정보 + 상품 정보)
-        Consumer consumer = consumerRepository.findById(consumerId).get();
-        log.info("1 consumer id : " + consumer.getId());
+//        Consumer consumer = consumerRepository.findById(consumerId).get();
+        Member member = memberRepository.findById(memberId).get();
+
+        log.info("1 consumer id : " + member.getId());
         Item item = itemRepository.findById(itemId).get();
         log.info("1 item id : " + item.getId());
 
@@ -49,7 +52,7 @@ public class OrderService {
         log.info("orderItem id : " + orderItem.getId());
 
         // 주문 생성
-        Order order = Order.createOrder(consumer, delivery, orderItem);
+        Order order = Order.createOrder(member, delivery, orderItem);
         log.info("order id : " + order.getId());
 
         // 주문 저장
@@ -57,21 +60,21 @@ public class OrderService {
         return order.getId();
     }
 
-    public List<Order> findOrderByConsumer (Consumer consumer) {
-        return orderRepository.findByConsumer(consumer);
+    public List<Order> findOrderByConsumer (Member member) {
+        return orderRepository.findByMember(member);
     }
 
-    public List<OrderItem> findOrderItemByConsumer(Consumer consumer) {
-        return orderRepository.findOrderItemsByConsumer(consumer);
+    public List<OrderItem> findOrderItemByConsumer(Member member) {
+        return orderRepository.findOrderItemsByConsumer(member);
     }
 
     // 장바구니에 있는 상품 구매
     @Transactional
-    public Long orders(Consumer consumer) {
-        Cart cart = cartRepository.findByConsumer(consumer);
+    public Long orders(Member member) {
+        Cart cart = cartRepository.findByMember(member);
 
         Order order = Order.builder()
-                .consumer(consumer)
+                .member(member)
                 .build();
 
         for (CartItem cartItem: cart.getCartItems()) {

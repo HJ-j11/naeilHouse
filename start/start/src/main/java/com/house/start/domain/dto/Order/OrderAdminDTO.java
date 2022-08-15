@@ -20,7 +20,7 @@ public class OrderAdminDTO {
     @Builder
     public OrderAdminDTO(Order order, List<OrderOrderItemAdminDTO> orderItems) {
         this.id = order.getId();
-        this.cId = order.getConsumer().getCId();
+        this.cId = order.getMember().getUsername();
         this.orderDate = order.getOrderDate();
         this.orderItems = orderItems;
     }

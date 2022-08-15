@@ -5,14 +5,17 @@ import com.house.start.controller.form.ItemForm;
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.repository.OrderItemRepository;
 import com.house.start.repository.OrderRepository;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
+import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +32,7 @@ public class SellerController {
 
     private final ItemService itemService;
     private final SellerService sellerService;
+    private final MemberServiceImpl memberService;
     private final FileStore fileStore;
     private final ConsumerService consumerService;
     private final OrderItemRepository orderItemRepository;
@@ -38,15 +42,8 @@ public class SellerController {
      *  상품 등록 폼 페이지
      */
     @GetMapping("/seller/item/add")
-    public String addItem( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller,
-                           Model model) {
+    public String addItem(Model model) {
 
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginSeller == null) {
-            return "redirect:/login";
-        }
-
-        log.info("seller controller - get");
         model.addAttribute("form", new ItemForm());
         return "seller/seller_createItemForm";
     }
@@ -57,22 +54,14 @@ public class SellerController {
     @Transactional
     @PostMapping("/seller/item/add")
     public String createItem(@ModelAttribute ItemForm form,
-                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller,
+                             @AuthenticationPrincipal Member member,
                              HttpServletRequest request) throws IOException {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginSeller == null) {
-            return "redirect:/login";
-        }
-
-        // 판매자 id 조회
-        Seller seller = sellerService.findSeller(loginSeller.getId());
 
         // 이미지 저장
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
         Item item = new Item();
-        item.setSeller(seller);
+        item.setMember(member);
         item.setName(form.getName());
         item.setPrice(form.getPrice());
         item.setStockQuantity(form.getStockQuantity());
@@ -92,19 +81,10 @@ public class SellerController {
      *  등록된 상품 목록 페이지
      */
     @GetMapping("/seller/item/list")
-    public String itemList(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller,
-                           Model model) {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginSeller == null) {
-            return "redirect:/login";
-        }
-
-        // 판매자 조회
-        Seller seller = sellerService.findSeller(loginSeller.getId());
+    public String itemList(@AuthenticationPrincipal Member member, Model model) {
 
         // 판매자가 등록한 상품 조회
-        List<Item> items = itemService.findItemsBySeller(seller);
+        List<Item> items = itemService.findItemsByMember(member);
 
         model.addAttribute("items", items);
         return "/seller/seller_itemList";
@@ -141,19 +121,19 @@ public class SellerController {
     }
 
     @RequestMapping("/seller/manage")
-    public String deliveryManage(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller) {
+    public String deliveryManage(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember) {
 
         // 판매자 조회
-        Seller seller = sellerService.findSeller(loginSeller.getId());
+        Member member = memberService.findMemberById(loginMember.getId());
 
         // 판매자가 등록한 상품 조회
-        List<Item> itemsBySeller = itemService.findItemsBySeller(seller);
+//        List<Item> itemsBySeller = itemService.findItemsBySeller(member);
 
         // 판매자가 등록한 상품에 해당하는 Order 조회
-        List<Order> orderItemsByItems = orderItemRepository.findOrderItemsByItems(itemsBySeller);
-        for (Order order : orderItemsByItems) {
-            log.info("order : " + order.getId());
-        }
+//        List<Order> orderItemsByItems = orderItemRepository.findOrderItemsByItems(itemsBySeller);
+//        for (Order order : orderItemsByItems) {
+//            log.info("order : " + order.getId());
+//        }
 
 
         return "true";

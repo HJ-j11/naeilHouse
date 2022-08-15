@@ -2,7 +2,7 @@ package com.house.start.service;
 
 import com.house.start.domain.Category;
 import com.house.start.domain.Item;
-import com.house.start.domain.Seller;
+import com.house.start.domain.entity.Member;
 import com.house.start.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,8 +42,8 @@ public class ItemService {
     /**
      *  특정 판매자의 등록 상품 조회
      */
-    public List<Item> findItemsBySeller(Seller seller) {
-        return itemRepository.findItemBySeller(seller);
+    public List<Item> findItemsByMember(Member member) {
+        return itemRepository.findItemByMember(member);
     }
 
     /**

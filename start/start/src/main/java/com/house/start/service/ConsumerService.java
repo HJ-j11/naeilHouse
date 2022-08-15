@@ -1,21 +1,14 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.house.start.domain.Consumer;
-import com.house.start.repository.ConsumerRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Transactional
@@ -26,7 +19,7 @@ public class ConsumerService {
     private final PostRepository postRepository;
     private final DeliveryRepository deliveryRepository;
     private final ItemRepository itemRepository;
-    private final ConsumerRepository consumerRepository;
+    private final MemberRepository memberRepository;
     private final OrderRepository orderRepository;
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
@@ -56,8 +49,8 @@ public class ConsumerService {
     }
 
     // 장바구니 보기
-    public Cart findByCart(Consumer consumer) {
-        Cart cart = cartRepository.findByConsumer(consumer);
+    public Cart findByCart(Member member) {
+        Cart cart = cartRepository.findByMember(member);
         return cart;
     }
 
@@ -85,9 +78,9 @@ public class ConsumerService {
     }
 
     // 마이페이지
-    public Consumer findConsumerById(Long id) {
-        Consumer user = consumerRepository.getById(id);
-        return user;
+    public Member findMemberById(Long id) {
+        Member member = memberRepository.findById(id).get();
+        return member;
     }
 
     // 주문 목록
@@ -142,10 +135,10 @@ public class ConsumerService {
 
     // 글 좋아요
     @Transactional
-    public Long putLikes(Long id, Consumer consumer) {
+    public Long putLikes(Long id, Member member) {
         Post post = postRepository.getById(id);
         Like like = Like.builder()
-                .consumer(consumer)
+                .member(member)
                 .post(post)
                 .build();
 
@@ -166,10 +159,10 @@ public class ConsumerService {
 
     // 댓글 등록
     @Transactional
-    public void saveComment(String id, String contents, Consumer consumer) {
+    public void saveComment(String id, String contents, Member member) {
         Post post = getOnePost(Long.valueOf(id));
         Comment comment = Comment.builder()
-                .consumer(consumer)
+                .member(member)
                 .post(post)
                 .content(contents)
                 .build();
@@ -196,16 +189,18 @@ public class ConsumerService {
     /*
      * 소비자 전체 목록 조회
      */
-    public List<Consumer> findConsumers() {
-        return consumerRepository.findAll();
-    }
+//    public List<Consumer> findConsumers() {
+//        return consumerRepository.findAll();
+//    }
 
     /**
      * 소비자 cId로 소비자 조회
      */
-    public Consumer findConsumerBycId(String cId) {
-        return consumerRepository.findBycId(cId)
-                .orElse(null);
+    public Member findConsumerBycId(String mId) {
+        return memberRepository.findByUsername(mId);
     }
+
+
+
 
 }
