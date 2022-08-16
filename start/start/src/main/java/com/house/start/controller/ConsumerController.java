@@ -48,7 +48,8 @@ public class  ConsumerController {
 
     // 물건 상세
     @GetMapping("/list/item/{id}")
-    public String getOneItem(@PathVariable Long id, Model model){
+    public String getOneItem(@PathVariable Long id, Model model,
+                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
         return "consumer/consumer_itemInfo";
@@ -183,9 +184,12 @@ public class  ConsumerController {
     public String cart(HttpServletRequest request,
                        @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
                        Model model) {
-        if(loginMember == null) {
-            return "redirect:/login";
-        }
+
+        System.out.println("------ Member Id: "+ loginMember + "-------");
+
+//        if(loginMember == null) {
+//            return "redirect:/login";
+//        }
         // 로그인 전제로
         Cart cart = consumerService.findByCart(loginMember);
         int totalPrice = cart.getTotalPrice();

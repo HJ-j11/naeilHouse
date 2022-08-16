@@ -11,6 +11,11 @@ body {
 a {
     text-decoration-line: none;
 }
+
+img {
+    width: 100%;
+    height: 100%;
+}
 .ax_default {
     font-family:"Arial Normal", "Arial", sans-serif;
     font-weight:400;
@@ -184,43 +189,6 @@ textarea, select, input, button { outline: none; }
     top:0px;
     width:0px;
     height:0px;
-}
-#u5_div {
-    border-width:0px;
-    position:absolute;
-    left:0px;
-    top:0px;
-    width:125px;
-    height:49px;
-    background:inherit;
-    background-color:rgba(53, 197, 240, 1);
-    border:none;
-    border-radius:5px;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
-    box-shadow:none;
-}
-#u5 {
-    border-width:0px;
-    position:absolute;
-    left:1295px;
-    top:21px;
-    width:125px;
-    height:49px;
-    display:flex;
-}
-#u5 .text {
-    position:absolute;
-    align-self:center;
-    padding:0px 0px 0px 0px;
-    box-sizing:border-box;
-    width:100%;
-}
-#u5_text {
-    border-width:0px;
-    word-wrap:break-word;
-    text-transform:none;
-    visibility:hidden;
 }
 #u6_div {
     border-width:0px;
@@ -760,7 +728,7 @@ textarea, select, input, button { outline: none; }
     word-wrap:break-word;
     text-transform:none;
 }
-#u22_div {
+.u22_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -965,7 +933,7 @@ textarea, select, input, button { outline: none; }
     position:absolute;
     left:965px;
     top:415px;
-    width:65px;
+    width:80px;
     height:19px;
     display:flex;
     font-family:"Gothic A1", sans-serif;
@@ -1083,7 +1051,7 @@ textarea, select, input, button { outline: none; }
     word-wrap:break-word;
     text-transform:none;
 }
-#u31_div {
+#u31_1_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1104,12 +1072,12 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u31 {
+#u31_1 {
     border-width:0px;
     position:absolute;
     left:965px;
     top:365px;
-    width:65px;
+    width:80px;
     height:19px;
     display:flex;
     font-family:"Gothic A1", sans-serif;
@@ -1119,19 +1087,19 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u31 .text {
+#u31_1 .text {
     position:absolute;
     align-self:flex-start;
     padding:0px 0px 0px 0px;
     box-sizing:border-box;
     width:100%;
 }
-#u31_text {
+#u31_1_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
 }
-#u32_div {
+#u32_1_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1152,7 +1120,7 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u32 {
+#u32_1 {
     border-width:0px;
     position:absolute;
     left:1209px;
@@ -1167,19 +1135,19 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u32 .text {
+#u32_1 .text {
     position:absolute;
     align-self:flex-start;
     padding:0px 0px 0px 0px;
     box-sizing:border-box;
     width:100%;
 }
-#u32_text {
+#u32_1_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
 }
-#u33 {
+#a33 {
     border-width:0px;
     position:absolute;
     left:843px;
@@ -1187,7 +1155,7 @@ textarea, select, input, button { outline: none; }
     width:100px;
     height:100px;
 }
-#u33_state0 {
+#a33_state0 {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1205,7 +1173,7 @@ textarea, select, input, button { outline: none; }
     -webkit-box-shadow:none;
     box-shadow:none;
 }
-#u33_state0_content {
+#a33_state0_content {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1213,7 +1181,7 @@ textarea, select, input, button { outline: none; }
     width:1px;
     height:1px;
 }
-#u34_div {
+#a34_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1234,12 +1202,12 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u34 {
+#a34 {
     border-width:0px;
     position:absolute;
     left:965px;
     top:315px;
-    width:65px;
+    width:80px;
     height:19px;
     display:flex;
     font-family:"Gothic A1", sans-serif;
@@ -1249,19 +1217,19 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u34 .text {
+#a34 .text {
     position:absolute;
     align-self:flex-start;
     padding:0px 0px 0px 0px;
     box-sizing:border-box;
     width:100%;
 }
-#u34_text {
+#a34_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
 }
-#u35_div {
+#a35_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1282,7 +1250,7 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u35 {
+#a35 {
     border-width:0px;
     position:absolute;
     left:1100px;
@@ -1297,19 +1265,19 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:right;
 }
-#u35 .text {
+#a35 .text {
     position:absolute;
     align-self:flex-start;
     padding:0px 0px 0px 0px;
     box-sizing:border-box;
     width:100%;
 }
-#u35_text {
+#a35_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
 }
-#u36_div {
+#a36_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1330,12 +1298,12 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u36 {
+#a36 {
     border-width:0px;
     position:absolute;
     left:965px;
     top:245px;
-    width:65px;
+    width:80px;
     height:19px;
     display:flex;
     font-family:"Gothic A1", sans-serif;
@@ -1345,19 +1313,19 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u36 .text {
+#a36 .text {
     position:absolute;
     align-self:flex-start;
     padding:0px 0px 0px 0px;
     box-sizing:border-box;
     width:100%;
 }
-#u36_text {
+#a36_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
 }
-#u37_div {
+#a37_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1378,7 +1346,7 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:left;
 }
-#u37 {
+#a37 {
     border-width:0px;
     position:absolute;
     left:1140px;
@@ -1393,19 +1361,19 @@ textarea, select, input, button { outline: none; }
     color:#000000;
     text-align:right;
 }
-#u37 .text {
+#a37 .text {
     position:absolute;
     align-self:flex-start;
     padding:0px 0px 0px 0px;
     box-sizing:border-box;
     width:100%;
 }
-#u37_text {
+#a37_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
 }
-#u38 {
+#a38 {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1504,7 +1472,7 @@ textarea, select, input, button { outline: none; }
     width:0px;
     height:0px;
 }
-#u42_div {
+#a42_div {
     border-width:0px;
     position:absolute;
     left:0px;
@@ -1519,7 +1487,7 @@ textarea, select, input, button { outline: none; }
     -webkit-box-shadow:none;
     box-shadow:none;
 }
-#u42 {
+#a42 {
     border-width:0px;
     position:absolute;
     left:926px;
@@ -1528,14 +1496,14 @@ textarea, select, input, button { outline: none; }
     height:49px;
     display:flex;
 }
-#u42 .text {
+#a42 .text {
     position:absolute;
     align-self:center;
     padding:0px 0px 0px 0px;
     box-sizing:border-box;
     width:100%;
 }
-#u42_text {
+#a42_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
