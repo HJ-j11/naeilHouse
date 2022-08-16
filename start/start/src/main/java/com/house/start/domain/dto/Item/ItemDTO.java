@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ItemDTO {
+public class ItemDto {
     private String name;
     private String price;
 }

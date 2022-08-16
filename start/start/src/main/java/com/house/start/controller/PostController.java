@@ -5,6 +5,7 @@ import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
@@ -27,19 +28,15 @@ public class PostController {
     private final ConsumerService consumerService;
     private final FileStore fileStore;
     private Logger logger = LoggerFactory.getLogger(ConsumerController.class);
-    private final ServletContext servletContext;
     
     /**
      * 포스트
      * **/
     
-    //포스트 목록
+    //게시글 목록
     @GetMapping("/community")
     public String getAllPost(Model model) {
-        String realPath = servletContext.getRealPath("/resources");
-        logger.info("realPath:  "+realPath);
-
-        List<Post> posts = consumerService.getAllPost();
+        List<PostDto> posts = consumerService.getAllPost();
         model.addAttribute("postList", posts);
         return "consumer/post_list";
     }

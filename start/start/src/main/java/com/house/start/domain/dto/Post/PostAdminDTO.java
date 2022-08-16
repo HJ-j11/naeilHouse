@@ -21,7 +21,7 @@ public class PostAdminDTO {
     public PostAdminDTO (Post post) {
         this.id = post.getId();
         this.cId = post.getMember().getUsername();
-        this.postDate = post.getPostDate();
+//        this.postDate = post.getPostDate();
         this.contents = post.getContents();
         this.like_size = post.getLikes().size();
         this.comments_size = post.getComments().size();
