@@ -1,7 +1,7 @@
 package com.house.start.service;
 
 import com.house.start.domain.Item;
-import com.house.start.domain.Member;
+import com.house.start.domain.entity.Member;
 import com.house.start.domain.Review;
 import com.house.start.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;

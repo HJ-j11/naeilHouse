@@ -2,9 +2,9 @@ package com.house.start.controller;
 
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.JoinService;
-import com.house.start.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -56,7 +56,7 @@ public class JoinController {
         // 소비자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPassword(passwordEncoder.encode(form.getPassword()));
+        member.setPassword(form.getPassword());
         member.setName(form.getName());
 //        consumer.setUploadFile(uploadFile);
 
@@ -97,7 +97,7 @@ public class JoinController {
 
         // 회원 신청 승인여부 false
         member.setIsApproved(false);
-        member.setRole(Role.SELLER);
+//        member.setRole("ROLE_SELLER");
 
         joinService.joinMember(member);
 
@@ -126,7 +126,7 @@ public class JoinController {
         // 관리자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPassword(passwordEncoder.encode(form.getPassword()));
+        member.setPassword(form.getPassword());
         member.setName(form.getName());
         member.setUploadFile(uploadFile);
 

@@ -1,22 +1,16 @@
 package com.house.start.service;
 
-import com.house.start.domain.Member;
-import com.house.start.repository.MemberRepository;
-import org.springframework.stereotype.Service;
+import com.house.start.domain.dto.Member.MemberDto;
+import com.house.start.domain.entity.Member;
 
-import java.util.Optional;
+import java.util.List;
 
-@Service
-public class MemberService {
+public interface MemberService {
 
-    private MemberRepository memberRepository;
-
-    public Member findMemberByMId(String mId) {
-        return memberRepository.findByUsername(mId);
-    }
-
-    public Member findMemberById(Long id) { return memberRepository.findMemberById(id); }
-
+    List<Member> getUsers();
+    MemberDto getUser(Long id);
+    void createUser(Member member);
+    void deleteUser(Long idx);
 
 
 }

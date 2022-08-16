@@ -5,18 +5,17 @@ import com.house.start.controller.form.ItemForm;
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.repository.OrderItemRepository;
 import com.house.start.repository.OrderRepository;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
-import com.house.start.service.MemberService;
+import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -34,7 +32,7 @@ public class SellerController {
 
     private final ItemService itemService;
     private final SellerService sellerService;
-    private final MemberService memberService;
+    private final MemberServiceImpl memberService;
     private final FileStore fileStore;
     private final ConsumerService consumerService;
     private final OrderItemRepository orderItemRepository;
@@ -44,15 +42,8 @@ public class SellerController {
      *  상품 등록 폼 페이지
      */
     @GetMapping("/seller/item/add")
-    public String addItem( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
-                           Model model) {
+    public String addItem(Model model) {
 
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginMember == null) {
-            return "redirect:/login";
-        }
-
-        log.info("seller controller - get");
         model.addAttribute("form", new ItemForm());
         return "seller/seller_createItemForm";
     }
@@ -63,17 +54,8 @@ public class SellerController {
     @Transactional
     @PostMapping("/seller/item/add")
     public String createItem(@ModelAttribute ItemForm form,
-                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
+                             @AuthenticationPrincipal Member member,
                              HttpServletRequest request) throws IOException {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginMember == null) {
-            return "redirect:/login";
-        }
-
-        // 판매자 id 조회
-//        Seller seller = sellerService.findSeller(loginSeller.getId());
-        Member member = memberService.findMemberById(loginMember.getId());
 
         // 이미지 저장
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
@@ -99,10 +81,7 @@ public class SellerController {
      *  등록된 상품 목록 페이지
      */
     @GetMapping("/seller/item/list")
-    public String itemList(@AuthenticationPrincipal Member loginMember, Model model) {
-
-        // 판매자 조회
-        Member member = memberService.findMemberById(loginMember.getId());
+    public String itemList(@AuthenticationPrincipal Member member, Model model) {
 
         // 판매자가 등록한 상품 조회
         List<Item> items = itemService.findItemsByMember(member);

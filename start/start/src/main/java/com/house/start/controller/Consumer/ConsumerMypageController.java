@@ -1,10 +1,11 @@
 package com.house.start.controller.Consumer;
 
-import com.house.start.controller.form.LoginForm;
 import com.house.start.controller.form.ReviewForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.service.*;
+import com.house.start.service.impl.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ import java.util.List;
 @RequestMapping("user")
 public class ConsumerMypageController {
     private final ConsumerService consumerService;
-    private final MemberService memberService;
+    private final MemberServiceImpl memberService;
     private final OrderService orderService;
     private final ReviewService reviewService;
     private final LikeService likeService;

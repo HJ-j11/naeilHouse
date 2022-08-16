@@ -1,7 +1,7 @@
 package com.house.start.repository;
 
 import com.house.start.domain.Item;
-import com.house.start.domain.Member;
+import com.house.start.domain.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,9 +1,7 @@
 package com.house.start.repository;
 
 import com.house.start.domain.Like;
-import com.house.start.domain.Member;
-import com.house.start.domain.Review;
-import org.springframework.data.jpa.repository.EntityGraph;
+import com.house.start.domain.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
