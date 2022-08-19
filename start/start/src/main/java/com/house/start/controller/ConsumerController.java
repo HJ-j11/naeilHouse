@@ -2,6 +2,8 @@ package com.house.start.controller;
 
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.dto.Cart.CartDto;
+import com.house.start.domain.dto.Item.ItemDto;
 import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
@@ -10,6 +12,7 @@ import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +36,7 @@ public class  ConsumerController {
     // 물건 리스트
     @GetMapping("/list")
     public String getAllItem(HttpServletRequest request, Model model){
-        List<Item> items = consumerService.getAllItems();
+        List<ItemDto> items = consumerService.getAllItems();
         model.addAttribute("items", items);
         return "consumer/item_list";
     }
@@ -48,9 +51,8 @@ public class  ConsumerController {
 
     // 상품 상세
     @GetMapping("/list/item/{id}")
-    public String getOneItem(@PathVariable Long id, Model model,
-                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember){
-        Item item = consumerService.getOneItem(id);
+    public String getOneItem(@PathVariable Long id, Model model, @AuthenticationPrincipal Member member){
+        ItemDto item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
         return "consumer/consumer_itemInfo";
     }
@@ -59,8 +61,7 @@ public class  ConsumerController {
     @PostMapping("/item/{id}/cart")
     public String addItemToCart(@PathVariable Long id,
                                 @RequestBody HashMap<String, Object> map,
-                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
-                                HttpServletRequest request) {
+                                @AuthenticationPrincipal Member loginMember) {
 
         int count = Integer.parseInt(map.get("cnt").toString());
         Item item = itemService.findItem(id);
@@ -182,7 +183,7 @@ public class  ConsumerController {
      */
     @GetMapping("/cart")
     public String cart(HttpServletRequest request,
-                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
+                       @AuthenticationPrincipal Member loginMember,
                        Model model) {
 
         System.out.println("------ Member Id: "+ loginMember + "-------");
@@ -191,7 +192,7 @@ public class  ConsumerController {
             return "redirect:/login";
         }
         // 로그인 전제로
-        Cart cart = consumerService.findByCart(loginMember);
+        CartDto cart = consumerService.getCartDto(loginMember);
         int totalPrice = cart.getTotalPrice();
         model.addAttribute("cartItems", cart.getCartItems());
         model.addAttribute("totalPrice", totalPrice);
@@ -203,7 +204,7 @@ public class  ConsumerController {
      * 주문 객체 생성
      * **/
     @GetMapping("/order")
-    public String beforeOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Member loginMember,
+    public String beforeOrderItems(@AuthenticationPrincipal Member loginMember,
                              Model model) {
         if (loginMember == null) {
             return "redirect:/login";
@@ -216,27 +217,8 @@ public class  ConsumerController {
         model.addAttribute("totalPrice", cart.getTotalPrice());
         model.addAttribute("consumer", loginMember);
         return "consumer/consumer_order";
-//        return "consumer_beforePurchase";
 
     }
-
-    // 잠시 주석 처리해놓습니다.
-    /*@PostMapping("/order")
-    public String afterOrderItems( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
-        Long orderId = orderService.orders(loginConsumer);
-        System.out.println("new OrderId : "+orderId+" created!");
-        // 주문을 생성한 후 장바구니에 있는 상품 비우기.
-        Cart cart = consumerService.findByCart(loginConsumer);
-        cart.removeCartItem();
-        return "consumer/item_list";
-//        return "consumer_afterPurchase";
-    }*/
-
-    // 소비자 정보 조회`
-    //
-
-//        orderService.findCartOrder(consumerId);
-
 
 }
 

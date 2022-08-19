@@ -1,6 +1,8 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
+import com.house.start.domain.dto.Cart.CartDto;
+import com.house.start.domain.dto.Item.ItemDto;
 import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.domain.entity.Member;
 import com.house.start.repository.*;
@@ -34,10 +36,13 @@ public class ConsumerService {
      **/
 
 
-    // 물건 정렬
-    public List<Item> getAllItems() {
+    // 상품 정렬
+    public List<ItemDto> getAllItems() {
         List<Item> items = itemRepository.findAll();
-        return items;
+        List<ItemDto> itemDto = items.stream()
+                .map(item -> modelMapper.map(item, ItemDto.class))
+                .collect(Collectors.toList());
+        return itemDto;
     }
 
     // 카테고리 별 물건 정렬
@@ -47,15 +52,22 @@ public class ConsumerService {
     }
 
     // 물건 상세
-    public Item getOneItem(Long id) {
+    public ItemDto getOneItem(Long id) {
         Item item = itemRepository.getById(id);
-        return item;
+        ItemDto itemDto =  modelMapper.map(item, ItemDto.class);
+        return itemDto;
     }
 
     // 장바구니 보기
     public Cart findByCart(Member member) {
         Cart cart = cartRepository.findByMember(member);
         return cart;
+    }
+
+    public CartDto getCartDto(Member member) {
+        Cart cart = cartRepository.findByMember(member);
+        CartDto cartDto = modelMapper.map(cart, CartDto.class);
+        return cartDto;
     }
 
     // 장바구니 담기
@@ -130,9 +142,10 @@ public class ConsumerService {
         return postRepository.countByLikes(id);
     }
     // 글 조회
-    public Post getOnePost(Long id) {
+    public PostDto getOnePost(Long id) {
         Post post = postRepository.getById(id);
-        return post;
+        PostDto postDto = modelMapper.map(post, PostDto.class);
+        return postDto;
     }
     // 글 조회 수 카운트
     @Transactional
@@ -167,7 +180,7 @@ public class ConsumerService {
     // 댓글 등록
     @Transactional
     public void saveComment(String id, String contents, Member member) {
-        Post post = getOnePost(Long.valueOf(id));
+        Post post = postRepository.getById(Long.valueOf(id));
         Comment comment = Comment.builder()
                 .member(member)
                 .post(post)
