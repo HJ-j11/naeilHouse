@@ -2,6 +2,7 @@ package com.house.start.service;
 
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Cart.CartDto;
+import com.house.start.domain.dto.Cart.CartItemDto;
 import com.house.start.domain.dto.Item.ItemDto;
 import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.domain.entity.Member;
@@ -64,11 +65,13 @@ public class ConsumerService {
         return cart;
     }
 
-    public CartDto getCartDto(Member member) {
-        Cart cart = cartRepository.findByMember(member);
-        CartDto cartDto = modelMapper.map(cart, CartDto.class);
-        return cartDto;
+    public List<CartItemDto> getCartItemDto(Cart cart) {
+        List<CartItemDto> cartItemDto = cart.getCartItems().stream()
+                .map(cartItem -> modelMapper.map(cartItem, CartItemDto.class))
+                .collect(Collectors.toList());
+        return cartItemDto;
     }
+
 
     // 장바구니 담기
     @Transactional

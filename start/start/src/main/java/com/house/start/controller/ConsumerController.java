@@ -3,6 +3,7 @@ package com.house.start.controller;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Cart.CartDto;
+import com.house.start.domain.dto.Cart.CartItemDto;
 import com.house.start.domain.dto.Item.ItemDto;
 import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
@@ -192,9 +193,10 @@ public class  ConsumerController {
             return "redirect:/login";
         }
         // 로그인 전제로
-        CartDto cart = consumerService.getCartDto(loginMember);
+        Cart cart = consumerService.findByCart(loginMember);
+        List<CartItemDto> cartItem = consumerService.getCartItemDto(cart);
         int totalPrice = cart.getTotalPrice();
-        model.addAttribute("cartItems", cart.getCartItems());
+        model.addAttribute("cartItems", cartItem);
         model.addAttribute("totalPrice", totalPrice);
         return "consumer/consumer_cart";
     }
