@@ -95,13 +95,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .loginProcessingUrl("/login_proc")
                 .defaultSuccessUrl("/")
-        .and()
-                .oauth2Login()
-                .loginPage("/oauth/login")
-                .defaultSuccessUrl("/")
-                .userInfoEndpoint()
-                .userService(customOAuthUserService)
-        .and()
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
                 .permitAll()
@@ -110,6 +103,23 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler())
         .and()
                 .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
+
+        http
+                .oauth2Login()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .userInfoEndpoint()
+                .userService(customOAuthUserService)
+            .and()
+                .successHandler(customAuthenticationSuccessHandler)
+                .failureHandler(customAuthenticationFailureHandler)
+                .permitAll()
+            .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
+            .and()
+                .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);;
+
     }
 
     @Bean
