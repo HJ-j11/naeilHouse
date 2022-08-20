@@ -81,15 +81,10 @@ public class AdminController {
      * 게시글 정보 조회
      */
     @GetMapping("/posts")
-    public String showPosts(Model model) {
+    public String showPosts(@PageableDefault(size = 7) Pageable pageable, Model model) {
         log.info("--- admin controller - show posts info -----------------------------------------");
         // 관리자인 경우
-        List<PostAdminDTO> postAdminDTOS = new ArrayList<>();
-        List<Post> postList = postService.findPosts();
-        for (Post post: postList) {
-            PostAdminDTO postAdminDTO = new PostAdminDTO(post);
-            postAdminDTOS.add(postAdminDTO);
-        }
+        List<PostAdminDTO> postAdminDTOS = postService.findPostDTO(pageable).getContent();
         model.addAttribute("postList", postAdminDTOS);
         return "admin/showPosts";
     }
