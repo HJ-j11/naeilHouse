@@ -9,6 +9,9 @@ import com.house.start.domain.dto.Post.PostAdminDTO;
 import com.house.start.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.house.start.controller.session.SessionConstants.ROLE;
 
 @Slf4j
 @Controller
@@ -91,6 +92,14 @@ public class AdminController {
         }
         model.addAttribute("postList", postAdminDTOS);
         return "admin/showPosts";
+    }
+
+    @GetMapping("/posts_data")
+    public ResponseEntity<?> findPostPage(@PageableDefault(size = 7) Pageable pageable) {
+        log.info("--- admin controller - find postAdminDTO info -----------------------------------------");
+        List<PostAdminDTO> addd = postService.findPostDTO(pageable).getContent();
+        log.info(addd.toString());
+        return ResponseEntity.ok(addd);
     }
 
     /**

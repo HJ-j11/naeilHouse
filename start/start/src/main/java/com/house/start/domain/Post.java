@@ -1,6 +1,7 @@
 package com.house.start.domain;
 
 import com.house.start.domain.entity.Member;
+import jdk.internal.jline.internal.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Post {
     private List<Like> likes = new ArrayList<>();
 
     // 이미지 업로드
+    @Nullable
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "uploadfile_id")
     private UploadFile uploadFile;

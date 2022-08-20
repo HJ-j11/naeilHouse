@@ -2,6 +2,8 @@ package com.house.start.repository;
 
 
 import com.house.start.domain.Post;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,5 +24,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Long updateView(@Param(value="ID") Long id);
 
     List<Post> findPostsByContentsLike(String contents);
+
+    //Pagind
+    Page<Post> findByOrderByIdDesc(Pageable pageable);
 
 }

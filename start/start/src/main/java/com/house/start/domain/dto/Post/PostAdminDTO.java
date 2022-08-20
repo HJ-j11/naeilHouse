@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 
 @Getter
@@ -25,6 +26,10 @@ public class PostAdminDTO {
         this.contents = post.getContents();
         this.like_size = post.getLikes().size();
         this.comments_size = post.getComments().size();
-        this.uploadFileName = post.getUploadFile().getUploadFileName();
+        if (post.getUploadFile() == null) {
+            this.uploadFileName = null;
+        }else{
+            this.uploadFileName = post.getUploadFile().getUploadFileName();
+        }
     }
 }
