@@ -34,20 +34,12 @@ public class  ConsumerController {
 
 
 
-    // 물건 리스트
+    // 상품 리스트
     @GetMapping("/list")
     public String getAllItem(HttpServletRequest request, Model model){
         List<ItemDto> items = consumerService.getAllItems();
         model.addAttribute("items", items);
         return "consumer/item_list";
-    }
-
-    // 물건 카테고리
-    @GetMapping("/list/{category_id}")
-    public String getItemByCategory(@PathVariable Long category_id, Model model){
-        List<Item> items = consumerService.getAllByCategory(category_id);
-        model.addAttribute("items", items);
-        return "";
     }
 
     // 상품 상세
@@ -183,8 +175,7 @@ public class  ConsumerController {
      *  장바구니 페이지
      */
     @GetMapping("/cart")
-    public String cart(HttpServletRequest request,
-                       @AuthenticationPrincipal Member loginMember,
+    public String cart(@AuthenticationPrincipal Member loginMember,
                        Model model) {
 
         System.out.println("------ Member Id: "+ loginMember + "-------");
