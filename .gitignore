@@ -38,3 +38,6 @@ out/
 
 ## upload img
 **/src/main/webapp/uplaod/*.png
+
+## application
+**/src/main/resources/application-mysql.properties
