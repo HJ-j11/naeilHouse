@@ -33,6 +33,12 @@ public class LoginController {
         return "login/loginForm";
     }
 
+    @GetMapping("/oauth/login")
+    public String oAuthLogin() {
+        log.info("---- oauth login entered ----");
+        return "login/OAUthLoginForm";
+    }
+
     /**
      * 로그인 데이터 입력 시, 로직 처리
      * @param loginForm role, loginId, pwd로 이루어진 데이터

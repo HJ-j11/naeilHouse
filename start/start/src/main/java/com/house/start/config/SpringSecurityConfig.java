@@ -4,6 +4,7 @@ import com.house.start.security.factory.UrlResourcesMapFactoryBean;
 import com.house.start.security.filter.PermitAllFilter;
 import com.house.start.security.handler.CustomAccessDeniedHandler;
 import com.house.start.security.metadatasource.UrlFilterInvocationSecurityMetadataSource;
+import com.house.start.security.service.CustomOAuthUserService;
 import com.house.start.security.provider.CustomAuthenticationProvider;
 import com.house.start.service.SecurityResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private String[] permitAllResources = {"/", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login", "/static/**"};
+    private String[] permitAllResources = {"/", "/oauth/**", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login", "/static/**"};
 
     @Autowired
     private AuthenticationSuccessHandler customAuthenticationSuccessHandler;
@@ -47,6 +48,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SecurityResourceService securityResourceService;
+
+    @Autowired
+    private CustomOAuthUserService customOAuthUserService;
 
     @Bean
     public HttpFirewall defaultHttpFirewall() {
@@ -86,12 +90,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/sellers/**", "/consumers", "/posts", "/items", "/orders").hasRole("ADMIN")
 //                .antMatchers("/seller/**").hasRole("SELLER")
                 .anyRequest().authenticated()
-
         .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login_proc")
                 .defaultSuccessUrl("/")
+        .and()
+                .oauth2Login()
+                .loginPage("/oauth/login")
+                .defaultSuccessUrl("/")
+                .userInfoEndpoint()
+                .userService(customOAuthUserService)
+        .and()
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
                 .permitAll()
@@ -99,9 +109,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler())
         .and()
-                .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class)
-
-        ;
+                .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
     }
 
     @Bean
@@ -141,7 +149,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return urlResourcesMapFactoryBean;
     }
-
 
 
 }
