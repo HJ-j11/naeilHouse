@@ -2,13 +2,13 @@ INSERT INTO UPLOAD_FILE (UPLOADFILE_ID , STORE_FILE_NAME , UPLOAD_FILE_NAME ) va
 
 INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (1, '1234', '홍길동', '1234', 123);
 INSERT INTO consumer (consumer_id, id, name, pwd, point) VALUES (2, '12345', '홍길동', '1234', 123);
-INSERT INTO post (id, member_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (2, 7, '게시글 내용1', '20221012', 1);
-INSERT INTO post (id, member_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (3, 7, '게시글 내용1', '20221012', 1);
-INSERT INTO post (id, member_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (4, 7, '게시글 내용1', '20221012', 1);
-INSERT INTO post (id, member_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (5, 7, '게시글 내용1', '20221012', 1);
-INSERT INTO post (id, member_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (6, 7, '게시글 내용1', '20221012', 1);
-INSERT INTO post (id, member_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (7, 7, '게시글 내용1', '20221012', 1);
-INSERT INTO post (id, member_id, CONTENTS , POST_DATE, UPLOADFILE_ID) VALUES (8, 7, '게시글 내용1', '20221012', 1);
+INSERT INTO post (id, member_id, CONTENTS , POST_DATE, View) VALUES (12, 7, '게시글 내용1', '20221012', 1);
+INSERT INTO post (id, member_id, CONTENTS , POST_DATE, View) VALUES (13, 7, '게시글 내용1', '20221012', 1);
+INSERT INTO post (id, member_id, CONTENTS , POST_DATE, View) VALUES (14, 7, '게시글 내용1', '20221012', 1);
+INSERT INTO post (id, member_id, CONTENTS , POST_DATE,View) VALUES (15, 7, '게시글 내용1', '20221012', 1);
+INSERT INTO post (id, member_id, CONTENTS , POST_DATE, View) VALUES (16, 7, '게시글 내용1', '20221012', 1);
+INSERT INTO post (id, member_id, CONTENTS , POST_DATE, View) VALUES (17, 7, '게시글 내용1', '20221012', 1);
+INSERT INTO post (id, member_id, CONTENTS , POST_DATE, v) VALUES (18, 7, '게시글 내용1', '20221012', 1);
 INSERT INTO Likes (id, consumer_id, post_id) VALUES (1, 1, 1);
 
 INSERT INTO Seller (seller_id, name, s_Id, pwd, store_Name, IS_APPROVED ) values (1, '판매자1', '1234', '1234','내일의 집', TRUE);
