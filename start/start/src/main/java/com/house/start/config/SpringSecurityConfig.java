@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AffirmativeBased;
@@ -36,6 +37,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@Order(0)
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private String[] permitAllResources = {"/", "/oauth/**", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login", "/static/**"};
@@ -48,9 +50,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SecurityResourceService securityResourceService;
-
-    @Autowired
-    private CustomOAuthUserService customOAuthUserService;
 
     @Bean
     public HttpFirewall defaultHttpFirewall() {
@@ -86,9 +85,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected  void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-//                .antMatchers("/", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login", "/static/**").permitAll()
-//                .antMatchers("/sellers/**", "/consumers", "/posts", "/items", "/orders").hasRole("ADMIN")
-//                .antMatchers("/seller/**").hasRole("SELLER")
                 .anyRequest().authenticated()
         .and()
                 .formLogin()
@@ -103,22 +99,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler())
         .and()
                 .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
-
-        http
-                .oauth2Login()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .userInfoEndpoint()
-                .userService(customOAuthUserService)
-            .and()
-                .successHandler(customAuthenticationSuccessHandler)
-                .failureHandler(customAuthenticationFailureHandler)
-                .permitAll()
-            .and()
-                .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler())
-            .and()
-                .addFilterBefore(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);;
 
     }
 

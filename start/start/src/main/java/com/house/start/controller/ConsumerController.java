@@ -10,6 +10,7 @@ import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -182,7 +183,7 @@ public class  ConsumerController {
      */
     @GetMapping("/cart")
     public String cart(HttpServletRequest request,
-                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
+                       @AuthenticationPrincipal Member loginMember,
                        Model model) {
 
         System.out.println("------ Member Id: "+ loginMember + "-------");
