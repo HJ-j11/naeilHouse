@@ -18,7 +18,7 @@
 ### 인원
 | 구혜지  | 박성준 | 이채영 |
 | :----: | :----: | :----: | 
-| [@HJ-j11](https://github.com/HJ-j11) | [@SJP03](https://github.com/SJP03) | @chea-young](https://github.com/chea-young) |
+| [@HJ-j11](https://github.com/HJ-j11) | [@SJP03](https://github.com/SJP03) | [@chea-young](https://github.com/chea-young) |
 
 <br/>
 
