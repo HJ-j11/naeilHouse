@@ -6,6 +6,7 @@ import com.house.start.domain.dto.Item.ItemDTO;
 import com.house.start.domain.dto.Order.OrderAdminDTO;
 import com.house.start.domain.dto.Order.OrderItem.OrderOrderItemAdminDTO;
 import com.house.start.domain.dto.Post.PostAdminDTO;
+import com.house.start.domain.entity.Member;
 import com.house.start.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,9 +40,8 @@ public class AdminController {
     @GetMapping("/consumers")
     public String showConsumer(Model model) {
         log.info("--- admin controller - show consumers info -----------------------------------------");
-
-//            List<Consumer> consumerList = consumerService.findConsumers();
-//            model.addAttribute("consumerList", consumerList);
+            List<Member> consumerList = consumerService.findConsumers();
+            model.addAttribute("consumerList", consumerList);
         return "admin/showConsumers";
     }
 

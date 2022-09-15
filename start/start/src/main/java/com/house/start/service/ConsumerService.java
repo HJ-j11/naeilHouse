@@ -2,6 +2,7 @@ package com.house.start.service;
 
 import com.house.start.domain.*;
 import com.house.start.domain.entity.Member;
+import com.house.start.domain.entity.Role;
 import com.house.start.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class ConsumerService {
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
     private final CartRepository cartRepository;
+    private final RoleRepository roleRepository;
 
     /**
      * 상품
@@ -186,13 +188,6 @@ public class ConsumerService {
         commentRepository.delete(comment);
     }
 
-    /*
-     * 소비자 전체 목록 조회
-     */
-//    public List<Consumer> findConsumers() {
-//        return consumerRepository.findAll();
-//    }
-
     /**
      * 소비자 cId로 소비자 조회
      */
@@ -200,7 +195,11 @@ public class ConsumerService {
         return memberRepository.findByUsername(mId);
     }
 
-
-
-
+    /*
+     * 소비자 전체 목록 조회
+     */
+    public List<Member> findConsumers() {
+        Role role = roleRepository.getById(11L);
+        return memberRepository.findByUserRoles(role);
+    }
 }

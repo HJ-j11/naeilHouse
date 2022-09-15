@@ -32,9 +32,11 @@ public class Role implements Serializable {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roleSet")
     @OrderBy("orderNum desc")
+    @Builder.Default
     private Set<Resources> resourcesSet = new LinkedHashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userRoles")
+    @Builder.Default
     private Set<Member> accounts = new HashSet<>();
 
 }

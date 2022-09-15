@@ -4,8 +4,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout/mypage-layout}">
 <head>
-    <link href="http://localhost:8080/css/consumer/mypage/orders.css" type="text/css" rel="stylesheet"/>
-    <link href="http://localhost:8080/css/consumer/mypage/reviewSaveModal.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/consumer/mypage/orders.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/consumer/mypage/reviewSaveModal.css" type="text/css" rel="stylesheet"/>
     <script>
     document.getElementById("goReview").onclick = function() {
         document.getElementById("reviewSaveModal").style.display="block";
@@ -82,6 +82,12 @@
                             </ul>
 
                             <!-- 변경예정  -->
+                            <ul th:if="${orderitem.orderItemStatus == "ORDER"}" style="padding-bottom: 10%;">
+                                <button
+                                        type="button">배송취소
+                                </button>
+                            </ul>
+
                             <ul th:if="${orderitem == false}" style="padding-bottom: 10%;">
                                 <button id="goReview"
                                         type="button">리뷰하기

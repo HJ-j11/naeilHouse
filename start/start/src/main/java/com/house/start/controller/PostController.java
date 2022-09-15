@@ -1,6 +1,5 @@
 package com.house.start.controller;
 
-
 import com.house.start.controller.form.CommentForm;
 import com.house.start.controller.form.PostForm;
 import com.house.start.controller.session.SessionConstants;
@@ -8,9 +7,11 @@ import com.house.start.domain.*;
 import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
+import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class PostController {
@@ -36,6 +39,8 @@ public class PostController {
     //포스트 목록
     @GetMapping("/community")
     public String getAllPost(Model model) {
+        log.info("--- PostController - /community -----------------------------------------");
+
         String realPath = servletContext.getRealPath("/resources");
         logger.info("realPath:  "+realPath);
 
@@ -76,37 +81,44 @@ public class PostController {
 
     // 글 작성 페이지
     @GetMapping("/community/new")
-    public String getNewPost(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
+    public String getNewPost(@AuthenticationPrincipal Member member,
                              Model model) {
-        if(loginMember == null) {
+        log.info("--- PostController - /community/new -----------------------------------------");
+
+        // 세션에 회원 데이터가 없으면 예외처리
+        if(member == null) {
             return "redirect:/login";
         }
+
         model.addAttribute("post", new PostForm());
         return "consumer/consumer_newPost";
     }
 
+
     // 글 작성
     @PostMapping("/community/write")
     public String postUser(@ModelAttribute PostForm post,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
+                           @AuthenticationPrincipal Member member,
                            HttpServletRequest request) throws IOException {
+        log.info("--- PostController - /community/write -----------------------------------------");
 
-        logger.info(post.getContents());
-        logger.info(String.valueOf(post.getPhoto()));
+        log.info(post.getContents());
+        log.info(String.valueOf(post.getPhoto()));
 
         UploadFile uploadFile = fileStore.storeFile(post.getPhoto(), request);
 
         Post newPost = Post.builder()
                 .contents(post.getContents())
                 .uploadFile(uploadFile)
-                .member(loginMember)
+                .member(member)
                 .postDate(LocalDateTime.now())
                 .build();
 
         consumerService.savePost(newPost);
-
         return "redirect:/community";
     }
+
+
     /**
      * 글 -> 좋아요 누르기
      * **/
@@ -134,6 +146,7 @@ public class PostController {
         return "redirect:/community/"+id;
     }
 
+
     // 댓글 수정
     @PutMapping("/comments/{id}/put")
     public String putComment(@PathVariable String id, @RequestBody CommentForm commentForm, Model model) {
@@ -141,6 +154,7 @@ public class PostController {
         model.addAttribute("ACCESS", "SUCCESS");
         return "redirect:/community/"+commentForm.getPostId();
     }
+
 
     // 댓글 삭제
     @DeleteMapping("/comments/{id}/delete")

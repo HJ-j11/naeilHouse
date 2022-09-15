@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout/main-layout}">
 <head>
-    <link href="http://localhost:8080/css/admin/showConsumers.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/admin/showConsumers.css" type="text/css" rel="stylesheet"/>
 </head>
 
 <div layout:fragment="content">
@@ -14,7 +14,7 @@
 
         <!-- border -->
         <div id="border_middle" class="ax_default shape" data-label="border">
-            <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
+            <img class="img " src="/images/main/border_u14.svg"/>
             <div class="text " style="display:none; visibility: hidden">
             </div>
         </div>
@@ -32,13 +32,13 @@
             </tr>
 
             <tr id="consumerData" th:each="consumer: ${consumerList}">
-                <td th:if="${consumer.photo == null}">
-                    <img id="consumer_profile" src="http://localhost:8080/upload/default_img.png" width="80"
+                <td th:if="${consumer.uploadFile == null}">
+                    <img id="consumer_profile" src="/upload/default_img.png" width="80"
                          height="80">
                 </td>
-                <td th:if="${consumer.photo != null}">
+                <td th:if="${consumer.uploadFile != null}">
                     <img id="consumer_profile"
-                         th:src="|http://localhost:8080/upload/${consumer.uploadFile.uploadFileName}|" width="80"
+                         th:src="|/upload/${consumer.uploadFile.uploadFileName}|" width="80"
                          height="80">
                 </td>
                 <td>

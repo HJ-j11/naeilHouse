@@ -8,6 +8,7 @@ import com.house.start.service.*;
 import com.house.start.service.impl.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,23 +38,18 @@ public class ConsumerMypageController {
      * 마이페이지 처음 페이지
      */
     @GetMapping("")
-    public String getUserInfo(HttpServletRequest request, Model model) {
+    public String getUserInfo(HttpServletRequest request, Model model,
+                              @AuthenticationPrincipal Member member) {
         log.info("--- consumer mypage controller - show user info -----------------------------------------");
-        HttpSession session = request.getSession();
-        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
+
+        if (member == null ) {
             return "err/notLogin";
-        } else if (session.getAttribute(SessionConstants.ROLE) == "consumer") {
-            // 소비자인 경우
-            session.setAttribute("login_state", session.getAttribute(SessionConstants.LOGIN_MEMBER));
-            session.setAttribute("role", session.getAttribute(SessionConstants.ROLE));
-            Member member = (Member) session.getAttribute(SessionConstants.LOGIN_MEMBER);
-            member = memberService.findMemberById(member.getId());
-            model.addAttribute("consumer", member);
-            return "consumer/mypage/user";
-        } else {
-            // 판매자나 관리자인 경우
-            return "err/denyPage";
         }
+
+        // 소비자인 경우
+        member = memberService.findMemberById(member.getId());
+        model.addAttribute("consumer", member);
+        return "consumer/mypage/user";
     }
 
     /**
