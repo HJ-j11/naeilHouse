@@ -83,9 +83,8 @@
 
                             <!-- 변경예정  -->
                             <ul th:if="${orderitem.orderItemStatus == "ORDER"}" style="padding-bottom: 10%;">
-                                <button
-                                        type="button">배송취소
-                                </button>
+                            <a href="#" th:href="@{/orderlist/{orderitem_id}/cancel (orderitem_id=${orderitem.id})}"
+                               role="button" id="approved">배송취소</a>
                             </ul>
 
                             <ul th:if="${orderitem == false}" style="padding-bottom: 10%;">
