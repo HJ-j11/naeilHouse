@@ -51,8 +51,8 @@ public class AdminController {
     @GetMapping("/sellers")
     public String showSellers( Model model) {
         log.info("--- admin controller - show sellers info -----------------------------------------");
-//            List<Seller> sellerList = sellerService.findSellers();
-//            model.addAttribute("sellerList", sellerList);
+        List<Member> sellerList = sellerService.findSellers();
+        model.addAttribute("sellerList", sellerList);
         return "admin/showSellers";
 
     }

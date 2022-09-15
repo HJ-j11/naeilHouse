@@ -199,7 +199,9 @@ public class ConsumerService {
      * 소비자 전체 목록 조회
      */
     public List<Member> findConsumers() {
-        Role role = roleRepository.getById(11L);
+        Role role = roleRepository.findByRoleName("ROLE_CONSUMER");
         return memberRepository.findByUserRoles(role);
     }
+
+
 }
