@@ -39,7 +39,8 @@ public List<Member> findSellers() {
      */
     @Transactional
     public void approveSeller(Long seller_id) {
-        Member member = memberRepository.findById(seller_id).get();
+        Member member = memberRepository.findById(seller_id)
+                .orElse(null);
         member.setIsApproved(true);
 
     }
@@ -49,7 +50,8 @@ public List<Member> findSellers() {
      */
     @Transactional
     public void notapproveSeller(Long seller_id) {
-        Member member = memberRepository.findById(seller_id).get();
+        Member member = memberRepository.findById(seller_id)
+                .orElse(null);
         member.setIsApproved(false);
     }
 }
