@@ -18,6 +18,7 @@ public class HomeController {
      */
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model) {
+
         log.info("--- home controller - / -----------------------------------------");
 
         return "home";

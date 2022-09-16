@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/main-layout}">
+<head>
+    <link href="/css/admin/showPosts.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/seller_itemList/styles.css" type="text/css" rel="stylesheet"/>
+
+
+</head>
+
+<div layout:fragment="content">
+    <div id="routing_info" class="text">
+        <p><span>판매자 배송관리</span></p>
+
+        <!-- border -->
+        <div id="border_middle" class="ax_default shape" data-label="border">
+            <img class="img " src="/images/main/border_u14.svg"/>
+            <div class="text " style="display:none; visibility: hidden">
+            </div>
+        </div>
+    </div>
+
+    <div id="main_content">
+        <table class="posts" width="1440">
+            <tr width="300">
+                <th>#</th>
+                <th>상품이름</th>
+                <th>주문가격</th>
+                <th>주문자</th>
+                <th>주문수량</th>
+                <th>주문일자</th>
+                <th>배송현황</th>
+                <th>배송현황 변경</th>
+            </tr>
+
+            <tr id="postData" th:each="orderItem: ${orderItems}">
+                <td>
+                    <img th:src="|/upload/${orderItem.item.uploadFile.storeFileName}|" width="40" height="40">
+                </td>
+                <td th:text="${orderItem.item.name}"></td>
+                <td th:text="${orderItem.orderPrice}"></td>
+                <td th:text="${orderItem.order.member.name}"></td>
+                <td th:text="${orderItem.count}"></td>
+                <td th:text="${orderItem.order.orderDate}"></td>
+                <td th:text="${orderItem.delivery.deliveryStatus}"></td>
+                <form th:action="@{/seller/manage/{id} (id=${orderItem.id})}" method="post">
+                    <td>
+                        <select th:name="deliverySelected" onchange="this.form.submit()">
+                            <option th:value="${orderItem.delivery.deliveryStatus}"
+                                    th:text="${orderItem.delivery.deliveryStatus}"></option>
+                            <option th:each="delivery :${deliveryStatus}" th:value="${delivery}"
+                                    th:text="${delivery}"></option>
+                        </select>
+                    </td>
+                </form>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</html>

@@ -25,7 +25,7 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class  ConsumerController {
+public class ConsumerController {
     private final ConsumerService consumerService;
     private final MemberServiceImpl memberService;
     private final FileStore fileStore;
@@ -42,7 +42,7 @@ public class  ConsumerController {
         return "consumer/item_list";
     }
 
-    // 상품 상세
+   // 상품 상세
     @GetMapping("/list/item/{id}")
     public String getOneItem(@PathVariable Long id, Model model, @AuthenticationPrincipal Member member){
         ItemDto item = consumerService.getOneItem(id);
@@ -61,19 +61,19 @@ public class  ConsumerController {
         Cart cart = consumerService.findByCart(loginMember);
 
         Long cartId = consumerService.addItemToCart(item, cart, count);
-        System.out.println("cartId :"+cartId);
+        System.out.println("cartId :" + cartId);
         return "redirect:/list";
     }
 
     // 배송 완료
     @PutMapping("/seller/deliveries/{id}/completed")
-    public void getAllDelivery(@PathVariable Long id){
+    public void getAllDelivery(@PathVariable Long id) {
         consumerService.completeDelivery(id);
     }
 
 
     /**
-     *  상품 목록 페이지
+     * 상품 목록 페이지
      */
     @GetMapping("/consumer/item/list")
     public String itemList(Model model) {
@@ -83,7 +83,7 @@ public class  ConsumerController {
     }
 
     /**
-     *  상품 상세 페이지
+     * 상품 상세 페이지
      */
     @GetMapping("/consumer/item/{id}/info")
     public String itemInfo(@PathVariable Long id, Model model) {
@@ -95,22 +95,12 @@ public class  ConsumerController {
     }
 
     /**
-     *  상품 상세 -> 바로 구매시 (결제 준비 페이지)
+     * 상품 상세 -> 바로 구매시 (결제 준비 페이지)
      */
     @GetMapping("/consumer/item/{id}/purchase")
     public String beforePurchase(@PathVariable Long id,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
-                           Model model) {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginMember == null) {
-            return "redirect:/list";
-        }
-
-        // 소비자 id 조회
-        Long memberId = loginMember.getId();
-        Member member = memberService.findMemberById(memberId);
-
+                                 @AuthenticationPrincipal Member member,
+                                 Model model) {
 
         // 상품 조회
         Item item = itemService.findItem(id);
@@ -119,27 +109,24 @@ public class  ConsumerController {
 //        model.addAttribute("totalPrice", item.getPrice());
         model.addAttribute("consumer", member);
 
-        return "consumer_beforePurchase";
+        return "consumer_beforePurchaseTmp";
 //        return "test_cartToBeforePurchase";
     }
 
     /**
-     *  결제 준비 페이지 -> 결제하기 (상품 1개) : 결제 완료 페이지로 이동
+     * 결제 준비 페이지 -> 결제하기 (상품 1개) : 결제 완료 페이지로 이동
      */
     @PostMapping("/consumer/item/{id}/purchase")
     public String afterPurchase(@PathVariable Long id,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Member loginMember,
-                           Model model) {
-
-        // 소비자 id 조회
-        Long consumerId = loginMember.getId();
+                                @AuthenticationPrincipal Member member,
+                                Model model) {
 
         // 상품 id 조회
         Long itemId = itemService.findItem(id).getId();
         Item item = itemService.findItem(id);
 
         // 주문 생성
-        Long orderId = orderService.order(consumerId, itemId, 1); // 주문
+        Long orderId = orderService.order(member.getId(), id, 1); // 주문
         /*Optional<Order> completedOrder = orderService.findOrder(orderId); // 주문 완료된 객체 반환
         List<OrderItem> orderItems = completedOrder.get().getOrderItems();*/
 
@@ -148,31 +135,11 @@ public class  ConsumerController {
         model.addAttribute("orderItems", item);
 
         // 주문 완료 페이지
-        return "consumer_afterPurchase";
-//        return "test_afterPurchase";
+        return "consumer_afterPurchaseTmp";
     }
 
     /**
-     *  상품 상세 -> 장바구니 담기
-     */
-    @PostMapping("/consumer/cart/{id}/add")
-    public String addItemToCart(@PathVariable Long id,
-                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Member loginMember) {
-
-        // 소비자 정보 조회
-        Long consumerId = loginMember.getId();
-
-        // 아이템 정보 조회
-        Item item = itemService.findItem(id);
-
-        // Order 생성
-        // order.setOrderStatus(OrderStatus.CART);
-
-        return "redirect:/cart";
-    }
-
-    /**
-     *  장바구니 페이지
+     * 장바구니 페이지
      */
     @GetMapping("/cart")
     public String cart(@AuthenticationPrincipal Member loginMember,
@@ -183,6 +150,7 @@ public class  ConsumerController {
         if(loginMember == null) {
             return "redirect:/login";
         }
+
         // 로그인 전제로
         Cart cart = consumerService.findByCart(loginMember);
         List<CartItemDto> cartItem = consumerService.getCartItemDto(cart);
@@ -195,7 +163,7 @@ public class  ConsumerController {
     /**
      * 장바구니 -> 구매
      * 주문 객체 생성
-     * **/
+     **/
     @GetMapping("/order")
     public String beforeOrderItems(@AuthenticationPrincipal Member loginMember,
                              Model model) {
