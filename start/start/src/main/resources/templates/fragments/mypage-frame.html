@@ -9,13 +9,14 @@
              data-height="31">
             <!-- border (Shape) -->
             <div id="a17" class="ax_default shape" data-label="border">
-                <td th:if="${member.uploadFileName == null}">
+                <td th:if="${member.uploadFile != null}">
+                    <img id="a17_img" th:src="${member.uploadFileName}" width="80" height="80">
+                </td>
+                <td th:if="${member.uploadFile == null}">
                     <img id="a17_img" class="img " src="/images/page_1/border_u17.svg"/>
                 </td>
 
-                <td th:if="${member.uploadFileName != null}">
-                    <img id="a17_img" th:src="${member.uploadFileName}" width="80" height="80">
-                </td>
+
             </div>
 
             <!-- nav-mypage (Group) -->
@@ -123,7 +124,7 @@
                                     <!-- HEART (Shape) -->
                                     <div id="a36" class="ax_default shape" data-label="HEART">
                                         <img id="a36_img" class="img "
-                                             src="http://localhost:8080/images/page_1/heart_u36.svg"/>
+                                             src="/images/page_1/heart_u36.svg"/>
                                         <div id="a36_text" class="text " style="display:none; visibility: hidden">
                                             <p></p>
                                         </div>
@@ -132,7 +133,7 @@
                                     <!-- Vector 1 (Shape) -->
                                     <div id="a37" class="ax_default shape" data-label="Vector 1">
                                         <img id="a37_img" class="img "
-                                             src="http://localhost:8080/images/page_1/vector_1_u37.svg"/>
+                                             src="/images/page_1/vector_1_u37.svg"/>
                                         <div id="a37_text" class="text " style="display:none; visibility: hidden">
                                             <p></p>
                                         </div>

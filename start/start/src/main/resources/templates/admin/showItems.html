@@ -22,18 +22,17 @@
     <div id="main_content">
         <table class="items" width="1440">
             <tr width="300">
-                <th width="150">상품 사진</th>
-                <th width="500">info</th>
+                <th width="200">상품 사진</th>
+                <th width="400">info</th>
                 <th width="500">상품 내용</th>
                 <th width="150">리뷰수</th>
-                <th width="150">주문 량</th>
             </tr>
             <tr id="itemData" th:each="item : ${itemList}">
-                <td th:if="${item.uploadFile == null}">
+                <td th:if="${item.item_uploadFileName == null}">
                     <img id="uploadFile" src="/upload/default_img.png" width="40"
                          height="40">
                 </td>
-                <td th:if="${item.uploadFile != null}">
+                <td th:if="${item.item_uploadFileName != null}">
                     <img id="uploadFile" th:src="|/upload/${item.item_uploadFileName}|"
                          width="40" height="40">
                 </td>
@@ -45,7 +44,7 @@
                     <p th:text="|재고 수량: ${item.stockQuantity} 개|">개</p>
                 </td>
                 <td th:text="${item.info}"></td>
-                <td th:text="|리뷰 수: ${item.reviews.reviews_cnt} 개|">개</td>
+                <td th:text="|리뷰 수: ${item.reviews_cnt} 개|">개</td>
             </tr>
         </table>
     </div>
