@@ -40,7 +40,7 @@ import java.util.List;
 @Order(0)
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private String[] permitAllResources = {"/", "/oauth/**", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login", "/static/**"};
+    private String[] permitAllResources = {"/", "/logout", "/oauth/**", "/member/join", "/consumer/join", "/seller/join", "/admin/join", "/login", "/static/**"};
 
     @Autowired
     private AuthenticationSuccessHandler customAuthenticationSuccessHandler;
@@ -72,7 +72,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     *  정적 파일은 보안필터를 거치지 않고 통과됨
+     * 정적 파일은 보안필터를 거치지 않고 통과됨
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -82,7 +82,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected  void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -95,6 +95,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
                 .permitAll()
+        .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
         .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler())
