@@ -30,4 +30,11 @@ public class JoinService {
     public void joinMember(Member member) {
         memberRepository.save(member);
     }
+
+    public void checkDuplicate(Member member) {
+        Member checkMember = memberRepository.findByUsername(member.getUsername());
+        if(checkMember != null) {
+            throw new IllegalStateException("이미 가입하였습니다.");
+        }
+    }
 }

@@ -41,18 +41,13 @@ public class OrderService {
         Item item = itemRepository.findById(itemId).get();
         log.info("1 item id : " + item.getId());
 
-        // 배송정보 생성
-        Delivery delivery = new Delivery();
-        delivery.setAddress("서울");
-        delivery.setDeliveryStatus(DeliveryStatus.PREPARING);
-
         // 주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
-        orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
+        orderItem.setOrderItemStatus(OrderItemStatus.ORDER);
         log.info("orderItem id : " + orderItem.getId());
 
         // 주문 생성
-        Order order = Order.createOrder(member, delivery, orderItem);
+        Order order = Order.createOrder(member, orderItem);
         log.info("order id : " + order.getId());
 
         // 주문 저장

@@ -3,8 +3,10 @@ package com.house.start.controller;
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.domain.*;
 import com.house.start.domain.entity.Member;
+import com.house.start.domain.entity.Role;
 import com.house.start.file.FileStore;
 import com.house.start.service.JoinService;
+import com.house.start.service.impl.RoleServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @Slf4j
 @Controller
@@ -25,6 +29,7 @@ public class JoinController {
     private final JoinService joinService;
     private final FileStore fileStore;
     private final PasswordEncoder passwordEncoder;
+    private final RoleServiceImpl roleService;
 
     /**
      *  어느 역할(소비자 or 판매자 or 관리자)로 회원가입 할지 고르는 페이지
@@ -56,12 +61,17 @@ public class JoinController {
         // 소비자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPassword(form.getPassword());
+        member.setPassword(passwordEncoder.encode(form.getPassword()));
         member.setName(form.getName());
-//        consumer.setUploadFile(uploadFile);
+        member.setUploadFile(uploadFile);
 
         // 포인트 초기화
         member.setPoint(500000);
+
+        Set<Role> roles = new HashSet<>();
+        Role sellerRole = roleService.createRoleIfNotFound("ROLE_CONSUMER", "소비자");
+        roles.add(sellerRole);
+        member.setUserRoles(roles);
 
         joinService.joinConsumer(member);
 
@@ -93,11 +103,15 @@ public class JoinController {
         member.setPassword(passwordEncoder.encode(form.getPassword()));
         member.setName(form.getName());
         member.setStoreName(form.getStoreName());
-//        seller.setUploadFile(uploadFile);
+        member.setUploadFile(uploadFile);
+
+        Set<Role> roles = new HashSet<>();
+        Role sellerRole = roleService.createRoleIfNotFound("ROLE_SELLER", "판매자");
+        roles.add(sellerRole);
+        member.setUserRoles(roles);
 
         // 회원 신청 승인여부 false
         member.setIsApproved(false);
-//        member.setRole("ROLE_SELLER");
 
         joinService.joinMember(member);
 
@@ -126,9 +140,14 @@ public class JoinController {
         // 관리자 객체 생성
         Member member = new Member();
         member.setUsername(form.getId());
-        member.setPassword(form.getPassword());
+        member.setPassword(passwordEncoder.encode(form.getPassword()));
         member.setName(form.getName());
         member.setUploadFile(uploadFile);
+
+        Set<Role> roles = new HashSet<>();
+        Role sellerRole = roleService.createRoleIfNotFound("ROLE_ADMIN", "관리자");
+        roles.add(sellerRole);
+        member.setUserRoles(roles);
 
         joinService.joinMember(member);
 
