@@ -2,8 +2,8 @@ package com.house.start.service;
 
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Cart.CartDto;
-import com.house.start.domain.dto.Cart.CartItemDto;
-import com.house.start.domain.dto.Item.ItemDto;
+import com.house.start.domain.dto.Cart.CartItemDTO;
+import com.house.start.domain.dto.Item.ItemDTO;
 import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.domain.entity.Member;
 import com.house.start.domain.entity.Role;
@@ -40,12 +40,12 @@ public class ConsumerService {
 
 
     // 상품 정렬
-    public List<ItemDto> getAllItems() {
+    public List<ItemDTO> getAllItems() {
         List<Item> items = itemRepository.findAll();
-        List<ItemDto> itemDto = items.stream()
-                .map(item -> modelMapper.map(item, ItemDto.class))
+        List<ItemDTO> ItemDTO = items.stream()
+                .map(item -> modelMapper.map(item, ItemDTO.class))
                 .collect(Collectors.toList());
-        return itemDto;
+        return ItemDTO;
     }
 
     // 카테고리 별 물건 정렬
@@ -55,10 +55,10 @@ public class ConsumerService {
     }
 
     // 물건 상세
-    public ItemDto getOneItem(Long id) {
+    public ItemDTO getOneItem(Long id) {
         Item item = itemRepository.getById(id);
-        ItemDto itemDto =  modelMapper.map(item, ItemDto.class);
-        return itemDto;
+        ItemDTO ItemDTO =  modelMapper.map(item, ItemDTO.class);
+        return ItemDTO;
     }
 
     // 장바구니 보기
@@ -67,11 +67,11 @@ public class ConsumerService {
         return cart;
     }
 
-    public List<CartItemDto> getCartItemDto(Cart cart) {
-        List<CartItemDto> cartItemDto = cart.getCartItems().stream()
-                .map(cartItem -> modelMapper.map(cartItem, CartItemDto.class))
+    public List<CartItemDTO> getCartItemDTO(Cart cart) {
+        List<CartItemDTO> CartItemDTO = cart.getCartItems().stream()
+                .map(cartItem -> modelMapper.map(cartItem, CartItemDTO.class))
                 .collect(Collectors.toList());
-        return cartItemDto;
+        return CartItemDTO;
     }
 
 

@@ -6,7 +6,7 @@ import static com.house.start.domain.QLike.*;
 import static com.house.start.domain.entity.QMember.*;
 
 import com.house.start.domain.Like;
-import com.house.start.domain.dto.Item.ItemDto;
+import com.house.start.domain.dto.Item.ItemDTO;
 import com.house.start.domain.dto.Post.PostDto;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -31,9 +31,9 @@ public class QueryDslRepository {
                 .fetch();
     }
 
-    public List<ItemDto> findItemsByName(String word) {
+    public List<ItemDTO> findItemsByName(String word) {
         return jpaQueryFactory.from(item)
-                .select(Projections.bean(ItemDto.class, item.name, item.price))
+                .select(Projections.bean(ItemDTO.class, item.name, item.price))
                 .where(item.name.like(word))
                 .fetch();
     }

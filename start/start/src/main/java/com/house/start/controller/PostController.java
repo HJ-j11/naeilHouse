@@ -18,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -42,9 +41,6 @@ public class PostController {
     @GetMapping("/community")
     public String getAllPost(Model model) {
         log.info("--- PostController - /community -----------------------------------------");
-
-        String realPath = servletContext.getRealPath("/resources");
-        logger.info("realPath:  "+realPath);
 
         List<PostDto> posts = consumerService.getAllPost();
         model.addAttribute("postList", posts);

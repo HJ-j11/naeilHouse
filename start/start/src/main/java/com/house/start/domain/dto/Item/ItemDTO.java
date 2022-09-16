@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class ItemDto {
+public class ItemDTO {
     private Long id;
     private String name;
     private String price;
