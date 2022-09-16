@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/main-layout}">
+<head>
+    <link href="/css/consumer_beforePurchase/styles_tmp.css" type="text/css" rel="stylesheet"/>
+    <script src="/javascript/consumer_beforePurchase/data.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div id="u15_a" class="ax_default shape">
+        <div id="u15_div_a" class=""></div>
+        <div id="u15_text_a" class="text ">
+            <p><span>주문/결제</span></p>
+        </div>
+    </div>
+
+    <div id="u17_a" class="ax_default shape" data-label="Rectangle 3">
+        <div id="u17_div_a" class=""></div>
+        <div id="u17_text_a" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
+
+    <div id="u18_a" class="ax_default shape" data-label="-">
+        <div id="u18_div_a" class=""></div>
+        <div id="u18_text_a" class="text ">
+            <p><span>-</span></p>
+        </div>
+    </div>
+
+    <div id="u19_a" class="ax_default shape" data-label="+">
+        <div id="u19_div_a" class=""></div>
+        <div id="u19_text_a" class="text ">
+            <p><span>+</span></p>
+        </div>
+    </div>
+
+    <div id="u20_a" class="ax_default shape" data-label="할인 액수">
+        <div id="u20_div_a" class=""></div>
+        <div id="u20_text_a" class="text ">
+            <p th:text="${item.price != null} ? ${item.price} : 'null'"><span>00000</span></p>
+        </div>
+    </div>
+
+    <div id="u21_a" class="ax_default shape" data-label="배송비 액수">
+        <div id="u21_div_a" class=""></div>
+        <div id="u21_text_a" class="text ">
+            <p><span>00000 </span></p>
+        </div>
+    </div>
+
+    <div id="u22_a" class="ax_default shape" data-label="배송비 액수">
+        <div id="u22_div_a" class=""></div>
+        <div id="u22_text_a" class="text ">
+            <p><span>00000 </span></p>
+        </div>
+    </div>
+
+    <div id="u23_a" class="ax_default shape" data-label="상품 액수">
+        <div id="u23_div_a" class=""></div>
+        <div id="u23_text_a" class="text ">
+            <p th:text="${item.price != null} ? ${item.price} : 'null'"><span>00000</span></p>
+        </div>
+    </div>
+
+    <div id="u24_a" class="ax_default shape">
+        <div id="u24_div_a" class=""></div>
+        <div id="u24_text_a" class="text ">
+            <p><span>할인 금액</span></p>
+        </div>
+    </div>
+
+    <div id="u25_a" class="ax_default shape">
+        <div id="u25_div_a" class=""></div>
+        <div id="u25_text_a" class="text ">
+            <p><span>결제 금액</span></p>
+        </div>
+    </div>
+
+    <div id="u26_a" class="ax_default shape" data-label="상품 금액">
+        <div id="u26_div_a" class=""></div>
+        <div id="u26_text_a" class="text ">
+            <p><span>상품 금액</span></p>
+        </div>
+    </div>
+
+    <div id="u27_a" class="ax_default shape">
+        <div id="u27_div_a" class=""></div>
+        <div id="u27_text_a" class="text">
+            <p><span>배송비</span></p>
+        </div>
+    </div>
+
+    <div id="u29_a" class="ax_default shape" data-label="post_box">
+        <div id="u29_div_a" class=""></div>
+        <div id="u29_text_a" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
+
+    <div id="u30_a" class="ax_default shape" data-label="구매하기">
+        <div id="u30_div_a" class=""></div>
+        <form th:action="@{/consumer/item/{id}/purchase (id=${item.id})}" method="post">
+            <div id="u30_text_a" class="text">
+                <input type="submit" th:value="구매하기" id="u30_input_a" style="cursor: pointer">
+            </div>
+        </form>
+    </div>
+
+    <div id="u33_a" class="ax_default shape" data-label="Rectangle 2">
+        <div id="u33_div_a" class=""></div>
+        <div id="u33_text_a" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
+
+    <div id="u34_a" class="ax_default shape">
+        <div id="u34_div_a" class=""></div>
+        <div id="u34_text_a" class="text ">
+            <p><span>서울특별시 00시 00구 00동</span></p>
+        </div>
+    </div>
+
+    <div id="u35_a" class="ax_default shape">
+        <div id="u35_div_a" class=""></div>
+        <div id="u35_text_a" class="text ">
+            <p><span>배송지</span></p>
+        </div>
+    </div>
+
+    <div id="u38_a" class="ax_default shape" data-label="Rectangle 2">
+        <div id="u38_div_a" class=""></div>
+        <div id="u38_text_a" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
+
+    <div id="u39_a" class="ax_default shape">
+        <div id="u39_div_a" class=""></div>
+        <div id="u39_text_a" class="text ">
+            <p th:text="${consumer.name != null} ? ${consumer.name} : 'null'"><span>아무개</span></p>
+        </div>
+    </div>
+
+    <div id="u40_a" class="ax_default shape">
+        <div id="u40_div_a" class=""></div>
+        <div id="u40_text_a" class="text ">
+            <p><span>주문자</span></p>
+        </div>
+    </div>
+
+    <div id="u44_a" class="ax_default shape">
+        <div id="u44_div_a" class=""></div>
+        <div id="u44_text_a" class="text ">
+            <p style="color: rgba(53, 197, 240, 1);"><span>주문상품</span></p>
+        </div>
+    </div>
+
+    <div id="u45_a" class="ax_default shape">
+        <div id="u45_div_a" class=""></div>
+        <div id="u45_text_a" class="text ">
+            <p><span>상품명</span></p>
+        </div>
+    </div>
+
+    <div id="u46_a" class="ax_default shape">
+        <div id="u46_div_a" class=""></div>
+        <div id="u46_text_a" class="text ">
+            <p th:text="${item.name}"><span>아무거나</span></p>
+        </div>
+    </div>
+
+    <div id="u47_a" class="ax_default shape">
+        <div id="u47_div_a" class=""></div>
+        <div id="u47_text_a" class="text ">
+            <p><span>가격</span></p>
+        </div>
+    </div>
+
+    <div id="u48_a" class="ax_default shape">
+        <div id="u48_div_a" class=""></div>
+        <div id="u48_text_a" class="text ">
+            <p th:text="${item.price}"><span>100000원</span></p>
+        </div>
+    </div>
+
+    <div id="u49_a" class="ax_default shape" data-label="Rectangle 7">
+        <img id="u49_img_a" class="img " th:src="|/upload/${item.uploadFile.storeFileName}|"
+             src="/images/consumer_beforePurchase/rectangle_7_u49.svg"/>
+        <div id="u49_text_a" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
+
+
+</div>
+</body>
+<script src="/scripts/axure/ios.js"></script>
+</html>

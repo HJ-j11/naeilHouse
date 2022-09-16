@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member; // 판매자
 
@@ -43,13 +44,14 @@ public class Item {
 
     // builder 패턴
     @Builder
-    public Item(Member member, String name, int price, int stockQuantity, String info, UploadFile uploadFile) {
+    public Item(Member member, String name, int price, int stockQuantity, String info, UploadFile uploadFile, Category category) {
         this.member = member;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.uploadFile = uploadFile;
         this.info = info;
+        this.category = category;
     }
 
     //==연관관계 편의 메서드==//

@@ -33,4 +33,18 @@ public class RoleServiceImpl implements RoleService {
 
         roleRepository.save(role);
     }
+
+    @Transactional
+    public Role createRoleIfNotFound(String roleName, String roleDesc) {
+
+        Role role = roleRepository.findByRoleName(roleName);
+
+        if (role == null) {
+            role = Role.builder()
+                    .roleName(roleName)
+                    .roleDesc(roleDesc)
+                    .build();
+        }
+        return roleRepository.save(role);
+    }
 }
