@@ -116,6 +116,7 @@ public class OrderService {
         // Delivery 삭제
         deliveryRepository.delete(delivery);
     }
+
     /**
      * Order과 연결된 OrderItem의 상태 갯수 반환
      * @param orders Order객체의 리스트

@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout/main-layout}">
 <head>
-    <link href="http://localhost:8080/css/admin/showSellers.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/admin/showSellers.css" type="text/css" rel="stylesheet"/>
 </head>
 
 <div layout:fragment="content">
@@ -14,7 +14,7 @@
 
         <!-- border -->
         <div id="border_middle" class="ax_default shape" data-label="border">
-            <img class="img " src="http://localhost:8080/images/main/border_u14.svg"/>
+            <img class="img " src="/images/main/border_u14.svg"/>
             <div class="text " style="display:none; visibility: hidden">
             </div>
         </div>
@@ -30,13 +30,13 @@
             <tr id="sellerData" th:each="seller : ${sellerList}">
                 <td>
                     <p th:text="|판매자명: ${seller.name} 님|">이름</p>
-                    <p th:text="|판매자 id: ${seller.sId}|">id</p>
+                    <p th:text="|판매자 id: ${seller.id}|">id</p>
                     <p th:text="|상호명: ${seller.storeName}|">상호명</p>
                 </td>
 
                 <td th:text="|판매 물품 갯수: ${seller.items.size}개|">개</td>
 
-                <td th:if="${seller.isApproved == false}">
+                <td th:if="${seller.isApproved != true}">
                     <a href="#" th:href="@{/admin/sellers/{seller_id}/approved (seller_id=${seller.id})}"
                        role="button" id="approved">승인하기</a>
                 </td>

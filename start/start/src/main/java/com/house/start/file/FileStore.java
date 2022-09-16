@@ -17,7 +17,6 @@ import java.util.UUID;
 @Component
 @Slf4j
 public class FileStore {
-
     public UploadFile storeFile(MultipartFile multipartFile, HttpServletRequest request) throws IOException {
 
         // 업로드 한 이미지가 없을 때

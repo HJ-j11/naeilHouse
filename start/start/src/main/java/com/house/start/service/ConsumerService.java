@@ -6,6 +6,7 @@ import com.house.start.domain.dto.Cart.CartItemDto;
 import com.house.start.domain.dto.Item.ItemDto;
 import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.domain.entity.Member;
+import com.house.start.domain.entity.Role;
 import com.house.start.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class ConsumerService {
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
     private final CartRepository cartRepository;
+    private final RoleRepository roleRepository;
 
     private final ModelMapper modelMapper;
     /**
@@ -209,13 +211,6 @@ public class ConsumerService {
         commentRepository.delete(comment);
     }
 
-    /*
-     * 소비자 전체 목록 조회
-     */
-//    public List<Consumer> findConsumers() {
-//        return consumerRepository.findAll();
-//    }
-
     /**
      * 소비자 cId로 소비자 조회
      */
@@ -223,7 +218,13 @@ public class ConsumerService {
         return memberRepository.findByUsername(mId);
     }
 
-
+    /*
+     * 소비자 전체 목록 조회
+     */
+    public List<Member> findConsumers() {
+        Role role = roleRepository.findByRoleName("ROLE_CONSUMER");
+        return memberRepository.findByUserRoles(role);
+    }
 
 
 }

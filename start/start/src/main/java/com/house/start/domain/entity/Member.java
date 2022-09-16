@@ -35,28 +35,34 @@ public class Member extends BaseTimeEntity implements Serializable {
     private UploadFile uploadFile;
 
     @OneToMany(mappedBy = "member")
+    @Builder.Default
     private List<Order> orders = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
+    @Builder.Default
     private List<Post> posts = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
+    @Builder.Default
     private List<Like> likes = new ArrayList<>();
 
     private int point; // <소비자> 포인트 금액
 
     @OneToMany(mappedBy = "member")
+    @Builder.Default
     private List<Item> items = new ArrayList<>();
 
     private String storeName; // <판매자> 상호명
-    private Boolean isApproved; // <판매자> 관리자의 승인 여부
+    private Boolean isApproved = false; // <판매자> 관리자의 승인 여부
 
     @ManyToMany(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
     @JoinTable(name = "member_roles", joinColumns = { @JoinColumn(name = "member_id") }, inverseJoinColumns = {
             @JoinColumn(name = "role_id") })
+    @Builder.Default
     private Set<Role> userRoles = new HashSet<>();
 
 }
