@@ -43,7 +43,7 @@
 |ROLE|접근 가능 URL|역할 설명|
 |--------|---------|-------------|
 |Consumer| | |
-|Seller| | |
+|Seller|seller/* |- 상품 등록 및 수정 </br> - 주문된 상품에 대한 데이터 확인 및 설정|
 |Admin|admin/*|- 전체적인 소비자, 판매자, 커뮤니티, 댓글, 상품에 대한 전체 데이터 확인 </br> - 판매자의 승인을 관리하여 승인 취소 및 승인 수락 설정|
 
 ### [화면 설명](https://github.com/HJ-j11/naeilHouse/wiki/%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%A0%95%EB%A6%AC)
