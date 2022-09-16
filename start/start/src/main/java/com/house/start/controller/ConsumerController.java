@@ -46,7 +46,7 @@ public class ConsumerController {
         return "";
     }
 
-    // 물건 상세
+    // 상품 상세
     @GetMapping("/list/item/{id}")
     public String getOneItem(@PathVariable Long id, Model model,
                              @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember){
@@ -149,14 +149,14 @@ public class ConsumerController {
      */
     @GetMapping("/cart")
     public String cart(HttpServletRequest request,
-                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember,
+                       @AuthenticationPrincipal Member loginMember,
                        Model model) {
 
         System.out.println("------ Member Id: "+ loginMember + "-------");
 
-//        if(loginMember == null) {
-//            return "redirect:/login";
-//        }
+        if(loginMember == null) {
+            return "redirect:/login";
+        }
 
         // 로그인 전제로
         Cart cart = consumerService.findByCart(loginMember);

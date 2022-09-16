@@ -1,15 +1,18 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
+import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.domain.entity.Member;
 import com.house.start.domain.entity.Role;
 import com.house.start.repository.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -27,6 +30,7 @@ public class ConsumerService {
     private final CartRepository cartRepository;
     private final RoleRepository roleRepository;
 
+    private final ModelMapper modelMapper;
     /**
      * 상품
      **/
@@ -116,9 +120,12 @@ public class ConsumerService {
      **/
 
     // 글 목록
-    public List<Post> getAllPost() {
+    public List<PostDto> getAllPost() {
         List<Post> posts = postRepository.findAll();
-        return posts;
+        List<PostDto> postDto = posts.stream()
+                .map(post -> modelMapper.map(post, PostDto.class))
+                .collect(Collectors.toList());
+        return postDto;
     }
     // 좋아요 갯수
     public long countByLikes(Long id) {

@@ -1,5 +1,6 @@
 package com.house.start.domain;
 
+import com.house.start.domain.entity.BaseTimeEntity;
 import com.house.start.domain.entity.Member;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-public class Post {
+public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
@@ -34,21 +35,15 @@ public class Post {
     private String contents;
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
-    private LocalDateTime postDate; // 게시물 작성일시
     
     // 조회수
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
-    public Long countLikes() {
-        return Long.valueOf(this.likes.size());
-    }
-
 
     @Builder
     public Post(UploadFile uploadFile, String contents, LocalDateTime postDate, Member member) {
         this.uploadFile = uploadFile;
         this.contents = contents;
-        this.postDate = postDate;
         this.member = member;
     }
 
