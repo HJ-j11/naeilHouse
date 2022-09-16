@@ -43,9 +43,6 @@ public class PostController {
     public String getAllPost(Model model) {
         log.info("--- PostController - /community -----------------------------------------");
 
-        String realPath = servletContext.getRealPath("/resources");
-        logger.info("realPath:  "+realPath);
-
         List<PostDto> posts = consumerService.getAllPost();
         model.addAttribute("postList", posts);
         return "consumer/post_list";

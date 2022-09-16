@@ -2,7 +2,7 @@ package com.house.start.controller;
 
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Item.ItemAdminDTO;
-import com.house.start.domain.dto.Item.ItemDTO;
+import com.house.start.domain.dto.Item.ItemDto;
 import com.house.start.domain.dto.Order.OrderAdminDTO;
 import com.house.start.domain.dto.Order.OrderItem.OrderOrderItemAdminDTO;
 import com.house.start.domain.dto.Post.PostAdminDTO;
