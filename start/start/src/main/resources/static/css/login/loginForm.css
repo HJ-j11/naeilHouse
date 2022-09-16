@@ -541,3 +541,27 @@
   box-shadow: 7px 14px 30px 3px rgba(163, 174, 184, 0.7);
   cursor: pointer;
 }
+
+#login-oauth {
+  position:absolute;
+  left:440px;
+  top:660px;
+  width:557px;
+  height:60px;
+
+  font-family:"Gothic A1 ", "Gothic A1", sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:25px;
+  color:#FFFFFF;
+  text-align: center;
+
+  background:inherit;
+  background-color:rgba(53, 197, 240, 1);
+  border:none;
+  border-radius:5px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow: 7px 14px 30px 3px rgba(163, 174, 184, 0.7);
+  cursor: pointer;
+}
