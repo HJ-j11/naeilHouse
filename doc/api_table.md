@@ -25,7 +25,7 @@
 |[커뮤니티]|/community/{id}/comments/write|POST|글에 댓글 달기|
 |[커뮤니티]|/comments/{id}/put|PUT|글에 게시한 댓글 수정|
 |[커뮤니티]|/comments/{id}/delete|DELETE|글에 게시한 댓글 삭제|
-|[주문 취소]|/orderlist/{order_id}|GET|배송 완료가 되지 않은 주문 취소|
+|[주문 취소]|/orderlist/{order_id}/delete|GET|배송 완료가 되지 않은 주문 취소|
 |[마이페이지]|/user/{consumer_id}|GET|소비자의 정보(좋아요, 프로필이미지, 주문, 리뷰, 좋아요)를 확인할 수 있는 마이페이지로 이동|
 |[마이페이지/주문내역]|/user/orders|GET|소비자의 주문내역을 확인할 수 있는 페이지로 이동|
 |[마이페이지/리뷰생성]|/user/orders/{orderitem_id}|POST|주문한 상품에 대해서 리뷰 생성|
