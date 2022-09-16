@@ -10,11 +10,11 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class ItemDto {
-
+    private Long id;
     private String name;
     private String price;
     private UploadFile uploadFile;
-    private String itemInfo;
+    private String info;
     private List<Review> reviews;
 
 }
