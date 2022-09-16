@@ -136,7 +136,7 @@
   width:0px;
   height:0px;
 }
-#u5_div {
+#a5_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -151,7 +151,7 @@
   -webkit-box-shadow:none;
   box-shadow:none;
 }
-#u5 {
+#a5 {
   border-width:0px;
   position:absolute;
   left:1295px;
@@ -161,14 +161,14 @@
   display:flex;
   opacity:0.99;
 }
-#u5 .text {
+#a5 .text {
   position:absolute;
   align-self:center;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#u5_text {
+#a5_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
