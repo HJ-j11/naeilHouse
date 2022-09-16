@@ -52,7 +52,7 @@ public class Order {
     /**
      *  주문 객체 생성
      */
-    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+    public static Order createOrder(Member member, OrderItem... orderItems) {
 
         // 현재 소비자 포인트 - 총 주문 포인트
         int totalOrderPoint = 0;

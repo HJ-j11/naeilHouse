@@ -52,6 +52,12 @@ public class OrderItem {
         orderItem.setOrderPrice(orderPrice);
         orderItem.setCount(count);
 
+        // 배송정보 생성
+        Delivery delivery = new Delivery();
+        delivery.setAddress("서울");
+        delivery.setDeliveryStatus(DeliveryStatus.PREPARING);
+        orderItem.setDelivery(delivery);
+
         item.removeStock(count);
         return orderItem;
     }
