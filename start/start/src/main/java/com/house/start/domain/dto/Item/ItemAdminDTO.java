@@ -6,6 +6,7 @@ import lombok.Getter;
 
 @Getter
 public class ItemAdminDTO {
+    private String name;
     private String item_uploadFileName;
     private String seller_name;
     private String category;
@@ -15,7 +16,8 @@ public class ItemAdminDTO {
     private Integer reviews_cnt;
 
     public ItemAdminDTO(Item item) {
-        this.item_uploadFileName = item.getUploadFile().getUploadFileName();
+        this.name = item.getName();
+        this.item_uploadFileName = item.getUploadFile().getStoreFileName();
         this.seller_name = item.getMember().getName();
         this.category = item.getCategory();
         this.price = item.getPrice();
