@@ -1,6 +1,6 @@
 package com.house.start.service;
 
-import com.house.start.domain.dto.Item.ItemDto;
+import com.house.start.domain.dto.Item.ItemDTO;
 import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.repository.QueryDslRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class SearchService {
      * **/
 
     // 상품 검색
-    public List<ItemDto> findItemByName(String name) {
+    public List<ItemDTO> findItemByName(String name) {
         return dslRepository.findItemsByName(name);
     }
 

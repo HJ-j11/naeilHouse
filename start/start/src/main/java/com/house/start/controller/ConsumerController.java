@@ -3,8 +3,8 @@ package com.house.start.controller;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Cart.CartDto;
-import com.house.start.domain.dto.Cart.CartItemDto;
-import com.house.start.domain.dto.Item.ItemDto;
+import com.house.start.domain.dto.Cart.CartItemDTO;
+import com.house.start.domain.dto.Item.ItemDTO;
 import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
@@ -37,7 +37,7 @@ public class ConsumerController {
     // 상품 리스트
     @GetMapping("/list")
     public String getAllItem(HttpServletRequest request, Model model){
-        List<ItemDto> items = consumerService.getAllItems();
+        List<ItemDTO> items = consumerService.getAllItems();
         model.addAttribute("items", items);
         return "consumer/item_list";
     }
@@ -45,7 +45,7 @@ public class ConsumerController {
    // 상품 상세
     @GetMapping("/list/item/{id}")
     public String getOneItem(@PathVariable Long id, Model model, @AuthenticationPrincipal Member member){
-        ItemDto item = consumerService.getOneItem(id);
+        ItemDTO item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
         return "consumer/consumer_itemInfo";
     }
@@ -153,7 +153,7 @@ public class ConsumerController {
 
         // 로그인 전제로
         Cart cart = consumerService.findByCart(loginMember);
-        List<CartItemDto> cartItem = consumerService.getCartItemDto(cart);
+        List<CartItemDTO> cartItem = consumerService.getCartItemDTO(cart);
         int totalPrice = cart.getTotalPrice();
         model.addAttribute("cartItems", cartItem);
         model.addAttribute("totalPrice", totalPrice);

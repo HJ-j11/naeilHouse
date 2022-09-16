@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class CartItemDto {
+public class CartItemDTO {
     private Long id;
     private String name;
     private Long count;

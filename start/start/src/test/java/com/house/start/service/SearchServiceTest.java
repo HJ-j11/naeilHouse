@@ -4,7 +4,7 @@
 //import static org.junit.Assert.*;
 //
 //import com.house.start.domain.Item;
-//import com.house.start.domain.dto.Item.ItemDto;
+//import com.house.start.domain.dto.Item.ItemDTO;
 //import com.house.start.domain.dto.Post.PostDto;
 //import com.house.start.repository.QueryDslRepository;
 //import org.junit.Test;
@@ -30,7 +30,7 @@
 //        String word = createWord();
 //
 //        //When
-//        List<ItemDto> items = dslRepository.findItemsByName(word);
+//        List<ItemDTO> items = dslRepository.findItemsByName(word);
 //
 //        //Then
 //
