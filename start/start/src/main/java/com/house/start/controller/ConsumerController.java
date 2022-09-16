@@ -45,7 +45,7 @@ public class ConsumerController {
    // 상품 상세
     @GetMapping("/list/item/{id}")
     public String getOneItem(@PathVariable Long id, Model model, @AuthenticationPrincipal Member member){
-        ItemDTO item = consumerService.getOneItem(id);
+        Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
         return "consumer/consumer_itemInfo";
     }

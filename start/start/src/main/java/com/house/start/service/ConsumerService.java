@@ -3,6 +3,7 @@ package com.house.start.service;
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Cart.CartDto;
 import com.house.start.domain.dto.Cart.CartItemDTO;
+import com.house.start.domain.dto.Item.ItemAdminDTO;
 import com.house.start.domain.dto.Item.ItemDTO;
 import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.domain.entity.Member;
@@ -43,7 +44,8 @@ public class ConsumerService {
     public List<ItemDTO> getAllItems() {
         List<Item> items = itemRepository.findAll();
         List<ItemDTO> ItemDTO = items.stream()
-                .map(item -> modelMapper.map(item, ItemDTO.class))
+                .filter(item -> item != null)
+                .map(ItemDTO::new)
                 .collect(Collectors.toList());
         return ItemDTO;
     }
@@ -55,10 +57,9 @@ public class ConsumerService {
     }
 
     // 물건 상세
-    public ItemDTO getOneItem(Long id) {
+    public Item getOneItem(Long id) {
         Item item = itemRepository.getById(id);
-        ItemDTO ItemDTO =  modelMapper.map(item, ItemDTO.class);
-        return ItemDTO;
+        return item;
     }
 
     // 장바구니 보기
@@ -138,7 +139,8 @@ public class ConsumerService {
     public List<PostDto> getAllPost() {
         List<Post> posts = postRepository.findAll();
         List<PostDto> postDto = posts.stream()
-                .map(post -> modelMapper.map(post, PostDto.class))
+                .filter(post -> post != null)
+                .map(PostDto::new)
                 .collect(Collectors.toList());
         return postDto;
     }
