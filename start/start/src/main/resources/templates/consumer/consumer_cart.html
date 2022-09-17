@@ -88,7 +88,7 @@
         <div id="u27" class="ax_default shape" data-label="할인 액수">
             <div id="u27_div" class=""></div>
             <div id="u27_text" class="text ">
-                <p><span th:text="${totalPrice}">00000</span></p>
+                <p><span th:text="${totalPrice} ? ${totalPrice} : 0 ">00000</span></p>
             </div>
         </div>
 
@@ -207,16 +207,19 @@
             </thead>
             <tbody>
             <tr th:each="cartItem: ${cartItems}">
-                <td>
-                    <img th:src="|/upload/${cartItem.getItem().uploadFile.storeFileName}|" width="40" height="40">
+                <td th:if="${not #strings.isEmpty(cartItem.uploadFile)}">
+                    <img th:src="|/upload/${cartItem.uploadFile.storeFileName}|" width="40" height="40">
+                </td>
+                <td th:unless="${not #strings.isEmpty(cartItem.uploadFile.storeFileName)}">
+                    <img src="/images/main/u15_div.png" width="40" height="40">
                 </td>
                 <td>
-                    <a th:href="'/list/item/'+${cartItem.getItem().id}">
-                        <span th:text="${cartItem.getItem().name}"></span>
+                    <a th:href="'/list/item/'+${cartItem.id}">
+                        <span th:text="${cartItem.name}"></span>
                     </a>
                 </td>
                 <td th:text="${cartItem.count}"></td>
-                <td th:text="${cartItem.getItem().price}*${cartItem.count}"></td>
+                <td th:text="${cartItem.price}*${cartItem.count}"></td>
             </tr>
             </tbody>
         </table>

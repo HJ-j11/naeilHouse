@@ -70,8 +70,10 @@ public class ConsumerService {
     }
 
     public List<CartItemDTO> getCartItemDTO(Cart cart) {
-        List<CartItemDTO> CartItemDTO = cart.getCartItems().stream()
-                .map(cartItem -> modelMapper.map(cartItem, CartItemDTO.class))
+        List<CartItem> cartItems = cart.getCartItems();
+        List<CartItemDTO> CartItemDTO = cartItems.stream()
+                .filter(cartItem -> cartItem != null)
+                .map(CartItemDTO::new)
                 .collect(Collectors.toList());
         return CartItemDTO;
     }

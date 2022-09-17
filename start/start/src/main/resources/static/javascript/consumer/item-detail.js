@@ -8,8 +8,7 @@ function checkLogin(consumerId) {
     return true;
 }
 
-function addItemToCart(consumerId, id) {
-    if(checkLogin(consumerId)) {
+function addItemToCart(id) {
         let url = "/item/" + id + "/cart";
 
         console.log(cnt);
@@ -33,7 +32,6 @@ function addItemToCart(consumerId, id) {
             .then(
                 alert("장바구니에 담겼습니다.")
             );
-    }
 }
 
 function goOrder(id) {
