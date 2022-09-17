@@ -37,7 +37,7 @@ public class PostService {
 
     public boolean checkLikeOnPost(Long postId, Long memberId) {
         Long like = queryDslRepository.checkLikeOnPost(postId, memberId);
-        if(like == 0) {
+        if(like == null) {
             return false;
         } else {
             return true;

@@ -20,10 +20,11 @@ public class PostDto implements Serializable {
     private UploadFile uploadFile;
     private LocalDateTime createdDate;
     private int views;
-    private List<Like> likes ;
+    private List<Like> likes;
     private List<Comment> comments;
 
     public PostDto(Post post) {
+        this.id = post.getId();
         this.contents = post.getContents();
         this.writer = post.getMember().getName();
         this.uploadFile = post.getUploadFile();

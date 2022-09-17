@@ -53,7 +53,7 @@ public class PostController {
                              @AuthenticationPrincipal Member loginMember,
                              Model model, HttpServletRequest request) {
 
-        PostDto post = consumerService.getOnePost(id);
+        Post post = consumerService.getOnePost(id);
         List<Like> likes = post.getLikes();
         // 글 조회수 update
         consumerService.updateView(id);
@@ -121,7 +121,6 @@ public class PostController {
         Long likeId = consumerService.putLikes(Long.valueOf(id), loginMember);
         System.out.println("Like Create No: "+likeId);
 
-
         return "redirect:/community/"+id;
     }
 
@@ -143,7 +142,12 @@ public class PostController {
 
     // 댓글 수정
     @PutMapping("/comments/{id}/put")
-    public String putComment(@PathVariable String id, @RequestBody CommentForm commentForm, Model model) {
+    public String putComment(@PathVariable String id, @RequestBody CommentForm commentForm,
+                             @AuthenticationPrincipal Member loginMember, Model model) {
+
+        if(loginMember == null) {
+            return "redirected:/login";
+        }
         consumerService.updateComment(commentForm.getId(), commentForm.getContent());
         model.addAttribute("ACCESS", "SUCCESS");
         return "redirect:/community/"+commentForm.getPostId();

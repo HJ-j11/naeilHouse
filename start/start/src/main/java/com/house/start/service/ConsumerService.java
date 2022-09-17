@@ -10,6 +10,7 @@ import com.house.start.domain.entity.Member;
 import com.house.start.domain.entity.Role;
 import com.house.start.repository.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -149,15 +150,14 @@ public class ConsumerService {
         return postRepository.countByLikes(id);
     }
     // 글 조회
-    public PostDto getOnePost(Long id) {
+    public Post getOnePost(Long id) {
         Post post = postRepository.getById(id);
-        PostDto postDto = modelMapper.map(post, PostDto.class);
-        return postDto;
+        return post;
     }
-    // 글 조회 수 카운트
-    @Transactional
-    public Long updateView(Long id) {
-        return postRepository.updateView(id);
+    
+    // 글 조회 수 업데이트
+    public void updateView(Long id) {
+        postRepository.updateView(id);
     }
 
     // 글 좋아요
