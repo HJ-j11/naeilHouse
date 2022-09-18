@@ -1939,7 +1939,13 @@ body {
 .form_disabled {
 }
 textarea, select, input, button { outline: none; }
-
+.delete_btn {
+    background: #fa5a5a;
+    color:white;
+    border:0;
+    outline:0;
+    font-family: "Gothic A1 ", "Gothic A1", sans-serif;
+}
 #main_content {
     position: absolute;
     top: 100px;
