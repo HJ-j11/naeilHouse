@@ -1194,3 +1194,40 @@ th, td {
   border-bottom: 1px solid rgba(196, 196, 196, 1);
 }
 
+.orderItemDiv {
+  position: relative;
+  top: 610px;
+  left: 110px;
+}
+
+.orderItem {
+  font-family: "Gothic A1", sans-serif;
+}
+
+.orderItemName {
+  position: relative;
+  left: 140px;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 20px;
+  color: #000000;
+}
+.order_item_detail {
+  position: relative;
+  top: -25px;
+  left: 240px;
+}
+
+.order_item_img_div {
+  position: relative;
+  top: -100px;
+  border: 1px solid rgba(196, 196, 196, 1);
+  width: 670px;
+}
+.order_item_img {
+  border-width: 0px;
+  left: -4px;
+  top: 0px;
+  width: 117px;
+  height: 117px;
+}
