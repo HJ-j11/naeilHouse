@@ -172,13 +172,21 @@ public class ConsumerController {
         }
         // 상품 조회
         Cart cart = consumerService.findByCart(loginMember);
-
+        List<CartItemDTO> cartItem = consumerService.getCartItemDTO(cart);
+        int totalPrice = cart.getTotalPrice();
         // cart에 있는 List<cartItem> cartItems
-        model.addAttribute("items", cart.getCartItems());
-        model.addAttribute("totalPrice", cart.getTotalPrice());
+        model.addAttribute("items", cartItem);
+        model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("consumer", loginMember);
-        return "consumer/consumer_order";
 
+        return "consumer_beforePurchaseCart";
+
+    }
+
+    @PostMapping("/order")
+    public void orderCartItem(@AuthenticationPrincipal Member loginMember) {
+        Long orderId = orderService.orders(loginMember);
+        log.info("New order: "+orderId+" created!");
     }
 
 }
