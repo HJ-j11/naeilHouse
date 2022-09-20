@@ -184,9 +184,11 @@ public class ConsumerController {
     }
 
     @PostMapping("/order")
-    public void orderCartItem(@AuthenticationPrincipal Member loginMember) {
+    public String orderCartItem(@AuthenticationPrincipal Member loginMember) {
         Long orderId = orderService.orders(loginMember);
         log.info("New order: "+orderId+" created!");
+
+        return "consumer_afterPurchaseTmp";
     }
 
 }
