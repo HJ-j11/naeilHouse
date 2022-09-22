@@ -9,13 +9,12 @@
              data-height="31">
             <!-- border (Shape) -->
             <div id="a17" class="ax_default shape" data-label="border">
-                <td th:if="${member.uploadFile != null}">
-                    <img id="a17_img" th:src="${member.uploadFileName}" width="80" height="80">
+                <td th:if="${member.uploadFileName != ''}">
+                    <img id="a17_img" class="img " th:src="${member.uploadFileName}"/>
                 </td>
-                <td th:if="${member.uploadFile == null}">
+                <td th:if="${member.uploadFileName == ''}">
                     <img id="a17_img" class="img " src="/images/page_1/border_u17.svg"/>
                 </td>
-
 
             </div>
 
