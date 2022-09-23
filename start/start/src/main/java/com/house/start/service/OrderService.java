@@ -124,19 +124,25 @@ public class OrderService {
      */
     public List<Long> countStatus(List<Order> orders) {
         List<Long> statusList = new ArrayList<>();
+        Long prepareStatus = 0L;
         Long completeStatus = 0L;
         Long orderStatus = 0L;
         for(Order order: orders){
             List<OrderItem> orderItems = order.getOrderItems();
             for (OrderItem orderItem: orderItems) {
-                if (orderItem.getOrderItemStatus() == OrderItemStatus.COMPLETED) {
+                Delivery delivery = orderItem.getDelivery();
+                if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
                     completeStatus = completeStatus + 1L;
                 }
-                else if (orderItem.getOrderItemStatus() == OrderItemStatus.ORDER) {
+                else if (delivery.getDeliveryStatus() == DeliveryStatus.DELIVERING) {
                     orderStatus = orderStatus + 1L;
+                }
+                else if (delivery.getDeliveryStatus() == DeliveryStatus.PREPARING) {
+                    prepareStatus = prepareStatus + 1L;
                 }
             }
         }
+        statusList.add(prepareStatus);
         statusList.add(completeStatus);
         statusList.add(orderStatus);
         return statusList;

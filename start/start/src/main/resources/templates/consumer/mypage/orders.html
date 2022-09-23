@@ -56,24 +56,24 @@
                     <h3 id="orderDate" th:text="${order.orderDate}"> 날짜</h3>
                     <div th:each="orderitem: ${order.orderItems}" style="madding-top: 2%; display: inline-block; width:1000px; margin-bottom: 2%">
                         <ul id="orderStatus">
-                            <h3 th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.delivery.deliveryStatus}|">
+                            <h3 th:text="|주문 상태: ${orderitem.orderItemStatus} / 배송 상태: ${orderitem.deliveryStatus}|">
                                 주문/ 배송상태 </h3>
                         </ul>
                         <div>
-                            <ul th:if="${orderitem.item.uploadFile == null}" style="float: left; margin-right: 5%;">
+                            <ul th:if="${orderitem.uploadFileName == null}" style="float: left; margin-right: 5%;">
                                 <img id="uploadFile" src="/upload/default_img.png" width="80"
                                      height="80">
                             </ul>
 
-                            <ul th:if="${orderitem.item.uploadFile != null}" style="float: left; margin-right: 5%;">
+                            <ul th:if="${orderitem.uploadFileName != null}" style="float: left; margin-right: 5%;">
                                 <img id="uploadFile"
-                                     th:src="|/upload/${orderitem.item.uploadFile.uploadFileName}.png|"
+                                     th:src="|/upload/${orderitem.uploadFileName}.png|"
                                      width="80" height="80">
                             </ul>
 
                             <ul style="float: left; margin-right: 10%;">
-                                <p th:text="|상호명: ${orderitem.item.member.storeName}|"> 상호명</p>
-                                <p th:text="|상품명: ${orderitem.item.name}|"> 상품 이름</p>
+                                <p th:text="|상호명: ${orderitem.member_storeName}|"> 상호명</p>
+                                <p th:text="|상품명: ${orderitemitem_name}|"> 상품 이름</p>
                             </ul>
 
                             <ul style="float: left; margin-right: 30%;">
@@ -82,22 +82,28 @@
                             </ul>
 
                             <!-- 변경예정  -->
-                            <ul th:if="${orderitem.orderItemStatus == 'ORDER'}" style="padding-bottom: 10%;">
+                            <ul th:if="${orderitem.orderItemStatus.equals('ORDER')}" style="padding-bottom: 10%;">
                             <a href="#" th:href="@{/orderlist/{orderitem_id}/cancel (orderitem_id=${orderitem.id})}"
                                role="button" id="approved">배송취소</a>
                             </ul>
 
-                            <ul th:if="${orderitem == false}" style="padding-bottom: 10%;">
+                            <ul th:if="${orderitem.orderItemStatus == 0}" style="padding-bottom: 10%;">
+                                <a href="#" th:href="@{/orderlist/{orderitem_id}/cancel (orderitem_id=${orderitem.id})}"
+                                   role="button" id="approved">배송취소</a>
+                            </ul>
+
+                            <ul th:if="${orderitem.orderItemStatus == 'COMPLETED'}" style="padding-bottom: 10%;">
                                 <button id="goReview"
                                         type="button">리뷰하기
                                 </button>
                             </ul>
 
-                            <ul th:if="${orderitem == true}" style="padding-bottom: 10%;">
-                                <button id="notReview"
-                                        type="button">
+                            <ul th:if="${orderitem.orderItemStatus == 1}" style="padding-bottom: 10%;">
+                                <button id="goReview"
+                                        type="button">리뷰하기
                                 </button>
                             </ul>
+
                         </div>
 
                         <div id="reviewSaveModal">
