@@ -4,6 +4,7 @@ import com.house.start.controller.form.ReviewForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Member.Consumer.ConsumerMypageDTO;
+import com.house.start.domain.dto.Member.Consumer.Order.ConsumerMypageOrderDTO;
 import com.house.start.domain.entity.Member;
 import com.house.start.service.*;
 import com.house.start.service.impl.MemberServiceImpl;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,11 +68,18 @@ public class ConsumerMypageController {
 
         // orders 데이터
         List<Order> orderList = orderService.findOrderByConsumer(member);
-        model.addAttribute("orderList", orderList);
+        List<ConsumerMypageOrderDTO> consumerMypageOrderDTOList = new ArrayList<>();
+        for (Order order: orderList) {
+            consumerMypageOrderDTOList.add(new ConsumerMypageOrderDTO(order));
+        }
+        model.addAttribute("orderList", consumerMypageOrderDTOList
+        );
         List<Long> statusList = orderService.countStatus(orderList);
-        Long orderStatus = statusList.get(1);
-        Long completeStatus = statusList.get(0);
+        Long prepareStatus = statusList.get(0);
+        Long orderStatus = statusList.get(2);
+        Long completeStatus = statusList.get(1);
 
+        model.addAttribute("prepareStatus", prepareStatus);
         model.addAttribute("orderStatus", orderStatus);
         model.addAttribute("completeStatus", completeStatus);
         model.addAttribute("paidStatus", orderStatus + completeStatus);

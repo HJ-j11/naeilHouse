@@ -8,15 +8,22 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ConsumerMypageDTO {
+    private Long id;
     private String name;
     private int likes_size;
     private String uploadFileName;
     private UploadFile uploadFile;
 
-    public ConsumerMypageDTO(Member member) {
-        this.name = member.getName();
-        this.likes_size = member.getLikes().size();
-        this.uploadFileName = member.getUploadFile().getStoreFileName();
-        this.uploadFile = member.getUploadFile();
+    public ConsumerMypageDTO(Member memeber) {
+        this.id = memeber.getId();
+        this.name = memeber.getName();
+        this.likes_size = memeber.getLikes().size();
+        if (memeber.getUploadFile() == null) {
+            this.uploadFileName = null;
+            this.uploadFile = null;
+        }else {
+            this.uploadFileName = memeber.getUploadFile().getStoreFileName();
+            this.uploadFile = memeber.getUploadFile();
+        }
     }
 }
