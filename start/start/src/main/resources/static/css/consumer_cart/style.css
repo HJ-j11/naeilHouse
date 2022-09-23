@@ -149,12 +149,6 @@ body {
     box-sizing:border-box;
     width:100%;
 }
-#u5_text {
-    border-width:0px;
-    word-wrap:break-word;
-    text-transform:none;
-    visibility:hidden;
-}
 #u6_div {
     border-width:0px;
     position:absolute;
@@ -1505,14 +1499,6 @@ body {
     text-transform:none;
 }
 #u41 {
-    border-width:0px;
-    position:absolute;
-    left:0px;
-    top:0px;
-    width:0px;
-    height:0px;
-}
-#u42 {
     border-width:0px;
     position:absolute;
     left:0px;

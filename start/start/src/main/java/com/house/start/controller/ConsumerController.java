@@ -4,7 +4,9 @@ import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
 import com.house.start.domain.dto.Cart.CartDto;
 import com.house.start.domain.dto.Cart.CartItemDTO;
+import com.house.start.domain.dto.Item.ItemAdminDTO;
 import com.house.start.domain.dto.Item.ItemDTO;
+import com.house.start.domain.dto.Order.OrderItem.OrderItemDTO;
 import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -184,9 +187,23 @@ public class ConsumerController {
     }
 
     @PostMapping("/order")
-    public String orderCartItem(@AuthenticationPrincipal Member loginMember) {
+    public String orderCartItem(@AuthenticationPrincipal Member loginMember, Model model) {
+
+        Cart cart = consumerService.findByCart(loginMember);
         Long orderId = orderService.orders(loginMember);
+        Order order = orderService.findOrder(orderId).get();
+        int totalPrice = cart.getTotalPrice();
+        List<OrderItemDTO> orderItems = orderService.findOrderItemByOrder(order)
+                .stream()
+                .filter(orderItem -> orderItem != null)
+                .map(OrderItemDTO::new)
+                .collect(Collectors.toList());
+        cart.removeCartItem();
+
         log.info("New order: "+orderId+" created!");
+
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("orderItems", orderItems);
 
         return "consumer_afterPurchaseTmp";
     }

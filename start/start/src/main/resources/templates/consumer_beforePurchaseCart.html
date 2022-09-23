@@ -151,54 +151,54 @@
         </div>
     </div>
 
-    <div id="u44_a" class="ax_default shape">
-        <div id="u44_div_a" class=""></div>
-        <div id="u44_text_a" class="text ">
-            <p style="color: rgba(53, 197, 240, 1);"><span>주문상품</span></p>
+    <div class="orderDiv">
+        <div id="u44_a" class="ax_default shape">
+            <div id="u44_div_a" class=""></div>
+            <div id="u44_text_a" class="text ">
+                <p style="color: rgba(53, 197, 240, 1);"><span>주문상품</span></p>
+            </div>
         </div>
-    </div>
-
-    <!-- 장바구니에 담긴 상품 -->
-
-    <div class="orderItemDiv">
-        <div th:each="cartItem : ${items}" class="orderItem">
-            <div class="ax_default shape">
-                <div class=""></div>
-                <div class="text orderItemName" style="position: relative;
+        <!-- 장바구니에 담긴 상품 -->
+        <div class="orderItemDiv">
+            <div th:each="cartItem : ${items}" class="orderItem">
+                <div class="ax_default shape">
+                    <div class=""></div>
+                    <div class="text orderItemName" style="position: relative;
     left: 140px;">
-                    <p><span>상품명</span></p>
+                        <p><span>상품명</span></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ax_default shape">
-                <div class=""></div>
-                <div class="text order_item_detail">
-                    <p th:text="${cartItem.name}"><span>아무거나</span></p>
+                <div class="ax_default shape">
+                    <div class=""></div>
+                    <div class="text order_item_detail">
+                        <p th:text="${cartItem.name}"><span>아무거나</span></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ax_default shape">
-                <div class=""></div>
-                <div class="text orderItemName">
-                    <p><span>가격</span></p>
+                <div class="ax_default shape">
+                    <div class=""></div>
+                    <div class="text orderItemName">
+                        <p><span>가격</span></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ax_default shape">
-                <div class=""></div>
-                <div  class="text order_item_detail">
-                    <p th:text="${cartItem.price}"><span>100000원</span></p>
+                <div class="ax_default shape">
+                    <div class=""></div>
+                    <div  class="text order_item_detail">
+                        <p th:text="${cartItem.price}"><span>100000원</span></p>
+                    </div>
                 </div>
-            </div>
 
-            <div  class="ax_default shape order_item_img_div " data-label="Rectangle 7">
-                <img class="img order_item_img" th:src="|/upload/${cartItem.uploadFile}|"
-                     src="/images/consumer_beforePurchase/rectangle_7_u49.svg"/>
-                <div class="text " style="display:none; visibility: hidden">
-                    <p></p>
+                <div  class="ax_default shape order_item_img_div " data-label="Rectangle 7">
+                    <img class="img order_item_img" th:src="|/upload/${cartItem.uploadFile}|"
+                         src="/images/consumer_beforePurchase/rectangle_7_u49.svg"/>
+                    <div class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 
