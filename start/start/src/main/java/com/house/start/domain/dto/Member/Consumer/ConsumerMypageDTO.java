@@ -13,10 +13,10 @@ public class ConsumerMypageDTO {
     private String uploadFileName;
     private UploadFile uploadFile;
 
-    public ConsumerMypageDTO(Member memeber) {
-        this.name = memeber.getName();
-        this.likes_size = memeber.getLikes().size();
-        this.uploadFileName = memeber.getUploadFile().getStoreFileName();
-        this.uploadFile = memeber.getUploadFile();
+    public ConsumerMypageDTO(Member member) {
+        this.name = member.getName();
+        this.likes_size = member.getLikes().size();
+        this.uploadFileName = member.getUploadFile().getStoreFileName();
+        this.uploadFile = member.getUploadFile();
     }
 }
