@@ -79,7 +79,7 @@ public class OrderService {
         for (CartItem cartItem: cart.getCartItems()) {
             Item itemInCart = cartItem.getItem();
             OrderItem orderItem = OrderItem.createOrderItem(itemInCart, itemInCart.getPrice(), cartItem.getCount());
-            orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
+            orderItem.setOrderItemStatus(OrderItemStatus.ORDER);
             order.addOrderItem(orderItem);
 
             Delivery delivery = Delivery.builder()
