@@ -39,6 +39,7 @@
   <script src="/scripts/axure/math.js"></script>
   <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
   <script src="/css/consumer_postnew/data.js"></script>
+  <script src="/javascript/consumer/item-detail.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
@@ -47,7 +48,7 @@
   <!-- consumer_newpost (Group) -->
   <div id="u0" class="ax_default" data-label="consumer_newpost" data-left="0" data-top="0" data-width="1440" data-height="1024">
     <!-- form 태그 전송 -->
-    <form name="submitForm" onsubmit="return false;" th:object="${post}" enctype="multipart/form-data">
+    <form name="submitForm" th:object="${post}" enctype="multipart/form-data" th:action="@{/community/write}" action="#">
     <!-- Rectangle 2 (Rectangle) -->
     <div id="u22" class="ax_default shape" data-label="Rectangle 2">
       <div id="u22_div" class="">
@@ -84,7 +85,7 @@
         <div id="u26_div" class=""></div>
         <div id="u26_text" class="text ">
 <!--          <p><span id="submitBtn" th:attr="onclick=|newPost()|">글 작성</span></p>-->
-          <button id="submit_button">글 작성</button>
+          <button type="submit" id="submit_button">글 작성</button>
         </div>
       </div>
     </div>
@@ -92,7 +93,7 @@
     <!-- Rectangle 5 (Rectangle) -->
     <div id="u27" class="ax_default shape" data-label="Rectangle 5">
 <!--      <div id="u27_div" class="">-->
-        <textarea  style="width: 100%; border: none;" placeholder="내용을 적어주세요." th:field="*{contents}"name="contents"></textarea>
+        <textarea  type="text" style="width: 100%; border: none;" placeholder="내용을 적어주세요." th:field="*{contents}"name="contents"></textarea>
 <!--      </div>-->
       <div id="u27_text" class="text" style="display:none; visibility: hidden">
         <p></p>
@@ -104,19 +105,6 @@
 </div>
 <script src="/scripts/axure/ios.js"></script>
 <script>
-  var submitBtn = document.getElementById("submit_button");
-  submitBtn.addEventListener("click", function() {
-    var submitForm = document.submitForm;
-    var photo = submitForm.photo.value;
-    if(photo=="") {
-      alert("사진이 비었습니다.");
-      return false;
-    }
-    submitForm.action = "/community/write";
-    submitForm.method = "POST";
-    submitForm.submit();
-  })
-
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();

@@ -21,4 +21,5 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     @Query("SELECT o FROM OrderItem  o WHERE o.orderItemStatus = :orderItemStatus AND o.item.member = :member")
     List<OrderItem> findOrderItemsBySeller(@Param("orderItemStatus") OrderItemStatus orderItemStatus, @Param("member") Member member);
 
+    List<OrderItem> findOrderItemByOrder(Order order);
 }

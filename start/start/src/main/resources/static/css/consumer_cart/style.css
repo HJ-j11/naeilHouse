@@ -149,12 +149,6 @@ body {
     box-sizing:border-box;
     width:100%;
 }
-#u5_text {
-    border-width:0px;
-    word-wrap:break-word;
-    text-transform:none;
-    visibility:hidden;
-}
 #u6_div {
     border-width:0px;
     position:absolute;
@@ -1512,14 +1506,6 @@ body {
     width:0px;
     height:0px;
 }
-#u42 {
-    border-width:0px;
-    position:absolute;
-    left:0px;
-    top:0px;
-    width:0px;
-    height:0px;
-}
 #u43_div {
     border-width:0px;
     position:absolute;
@@ -1939,7 +1925,13 @@ body {
 .form_disabled {
 }
 textarea, select, input, button { outline: none; }
-
+.delete_btn {
+    background: #fa5a5a;
+    color:white;
+    border:0;
+    outline:0;
+    font-family: "Gothic A1 ", "Gothic A1", sans-serif;
+}
 #main_content {
     position: absolute;
     top: 100px;

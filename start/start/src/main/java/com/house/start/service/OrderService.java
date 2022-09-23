@@ -63,6 +63,10 @@ public class OrderService {
         return orderRepository.findOrderItemsByConsumer(member);
     }
 
+    public List<OrderItem> findOrderItemByOrder(Order order) {
+        return orderItemRepository.findOrderItemByOrder(order);
+    }
+
     // 장바구니에 있는 상품 구매
     @Transactional
     public Long orders(Member member) {

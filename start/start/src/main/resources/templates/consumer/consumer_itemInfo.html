@@ -82,7 +82,7 @@
                 </div>
 
                 <!-- 장바구니 (Rectangle) -->
-                <div id="u27" th:onclick="|addItemToCart(${session.user_id}, ${item.id})|" class="ax_default shape" data-label="장바구니">
+                <div id="u27" th:onclick="|addItemToCart(${item.id})|" class="ax_default shape" data-label="장바구니">
                     <div id="u27_div" class=""></div>
                     <div id="u27_text" class="text ">
                         <p><span>장바구니</span></p>
@@ -214,7 +214,34 @@
             </div>
         </div>
     </div>
-<!--</div>-->
+    <script th:inline="javascript">
+        function addItemToCart(id) {
+            let url = "/item/" + id + "/cart";
+            let cnt = document.getElementsByName("itemCount")[0].value;
+
+            console.log(cnt);
+            console.log(id);
+
+            if (cnt <= 0) {
+                alert("수량을 선택해 주세요");
+                return ;
+            }
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "id": id,
+                    "cnt": cnt,
+                })
+            })
+                .then((response) => response.json())
+                .then(
+                    alert("장바구니에 담겼습니다.")
+                );
+        }
+    </script>
 </div>
 <script src="/scripts/axure/ios.js"></script>
 </body>

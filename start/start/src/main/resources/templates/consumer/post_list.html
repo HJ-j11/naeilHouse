@@ -45,7 +45,7 @@
     <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="/javascript/document.js"></script>
     <script src="/css/consumer/data.js"></script>
-
+    <script src="/scripts/axure/ios.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
@@ -55,7 +55,7 @@
                 <tr>
                     <th th:width="200">이미지</th>
                     <th th:width="200">No</th>
-                    <th th:width="400">제목</th>
+                    <th th:width="400">내용</th>
                     <th th:width="200">작성자</th>
                     <th th:width="200">작성일자</th>
                     <th th:width="100">조회수</th>
@@ -75,12 +75,11 @@
                     </td>
                     <td th:text="${post.writer}"></td>
                     <td th:text="${post.createdDate}"></td>
-                    <td th:text="${post.view}"></td>
+                    <td th:text="${post.views}"></td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
-<script src="/scripts/axure/ios.js"></script>
 </body>
 </html>
