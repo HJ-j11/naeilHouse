@@ -26,7 +26,8 @@ public class OrderController {
      * 주문 취소
      */
     @GetMapping("/orderlist/{orderitem_id}/cancel")
-    public void showOrder (Model model, @PathVariable Long orderitem_id) {
+    public String showOrder (Model model, @PathVariable Long orderitem_id) {
         orderService.cancelOrder(orderitem_id);
+        return "redirect:/user/orders";
     }
 }
