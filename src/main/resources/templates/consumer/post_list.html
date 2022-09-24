@@ -62,7 +62,7 @@
                 </tr>
                 <tr th:each="post : ${postList}">
                     <td th:if="${not #strings.isEmpty(post.uploadFile)}">
-                        <img th:src="|/${post.uploadFile.storeFileName}|" width="100" height="100">
+                        <img th:src="|upload/${post.uploadFile.storeFileName}|" width="100" height="100">
                     </td>
                     <td th:unless="${not #strings.isEmpty(post.uploadFile)}">
                         <img src="/images/main/u15_div.png" width="100" height="100">
@@ -74,7 +74,7 @@
                         </a>
                     </td>
                     <td th:text="${post.writer}"></td>
-                    <td th:text="${post.createdDate}"></td>
+                    <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${post.views}"></td>
                 </tr>
             </table>

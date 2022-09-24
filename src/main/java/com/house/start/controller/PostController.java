@@ -86,7 +86,7 @@ public class PostController {
 
 
     // 글 작성
-    @PostMapping("/community/write")
+    @PostMapping("/newpost")
     public String postUser(@ModelAttribute PostForm post,
                            @AuthenticationPrincipal Member member,
                            HttpServletRequest request) throws IOException {
