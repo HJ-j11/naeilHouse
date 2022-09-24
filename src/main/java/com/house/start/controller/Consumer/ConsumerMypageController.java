@@ -104,7 +104,7 @@ public class ConsumerMypageController {
         OrderItem orderItem = orderItemService.findOrderItemById(orderitem_id);
         Item item = orderItem.getItem();
         Review review = reviewService.saveReview(member, item, content);
-        return "redirect:";
+        return "redirect:/user/orders";
     }
 
     // 리뷰 보기
