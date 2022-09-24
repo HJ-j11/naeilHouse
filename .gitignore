@@ -12,6 +12,7 @@ start/start/src/main/resources/application-oauth.properties
 .apt_generated
 .classpath
 .factorypath
+.gradle
 .project
 .settings
 .springBeans
