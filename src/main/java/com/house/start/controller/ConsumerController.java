@@ -1,59 +1,53 @@
 package com.house.start.controller;
 
-import com.house.start.controller.form.CommentForm;
-import com.house.start.controller.form.PostForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.dto.Cart.CartDto;
+import com.house.start.domain.dto.Cart.CartItemDTO;
+import com.house.start.domain.dto.Item.ItemAdminDTO;
+import com.house.start.domain.dto.Item.ItemDTO;
+import com.house.start.domain.dto.Order.OrderItem.OrderItemDTO;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
+import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class  ConsumerController {
+public class ConsumerController {
     private final ConsumerService consumerService;
+    private final MemberServiceImpl memberService;
     private final FileStore fileStore;
     private final ItemService itemService;
     private final OrderService orderService;
 
 
 
-    // 물건 리스트
+    // 상품 리스트
     @GetMapping("/list")
     public String getAllItem(HttpServletRequest request, Model model){
-        List<Item> items = consumerService.getAllItems();
+        List<ItemDTO> items = consumerService.getAllItems();
         model.addAttribute("items", items);
         return "consumer/item_list";
     }
 
-    // 물건 카테고리
-    @GetMapping("/list/{category_id}")
-    public String getItemByCategory(@PathVariable Long category_id, Model model){
-        List<Item> items = consumerService.getAllByCategory(category_id);
-        model.addAttribute("items", items);
-        return "";
-    }
-
-    // 물건 상세
+   // 상품 상세
     @GetMapping("/list/item/{id}")
-    public String getOneItem(@PathVariable Long id, Model model){
+    public String getOneItem(@PathVariable Long id, Model model, @AuthenticationPrincipal Member member){
         Item item = consumerService.getOneItem(id);
         model.addAttribute("item", item);
         return "consumer/consumer_itemInfo";
@@ -63,27 +57,26 @@ public class  ConsumerController {
     @PostMapping("/item/{id}/cart")
     public String addItemToCart(@PathVariable Long id,
                                 @RequestBody HashMap<String, Object> map,
-                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
-                                HttpServletRequest request) {
+                                @AuthenticationPrincipal Member loginMember) {
 
         int count = Integer.parseInt(map.get("cnt").toString());
         Item item = itemService.findItem(id);
-        Cart cart = consumerService.findByCart(loginConsumer);
+        Cart cart = consumerService.findByCart(loginMember);
 
         Long cartId = consumerService.addItemToCart(item, cart, count);
-        System.out.println("cartId :"+cartId);
+        System.out.println("cartId :" + cartId);
         return "redirect:/list";
     }
 
     // 배송 완료
     @PutMapping("/seller/deliveries/{id}/completed")
-    public void getAllDelivery(@PathVariable Long id){
+    public void getAllDelivery(@PathVariable Long id) {
         consumerService.completeDelivery(id);
     }
 
 
     /**
-     *  상품 목록 페이지
+     * 상품 목록 페이지
      */
     @GetMapping("/consumer/item/list")
     public String itemList(Model model) {
@@ -93,7 +86,7 @@ public class  ConsumerController {
     }
 
     /**
-     *  상품 상세 페이지
+     * 상품 상세 페이지
      */
     @GetMapping("/consumer/item/{id}/info")
     public String itemInfo(@PathVariable Long id, Model model) {
@@ -105,50 +98,38 @@ public class  ConsumerController {
     }
 
     /**
-     *  상품 상세 -> 바로 구매시 (결제 준비 페이지)
+     * 상품 상세 -> 바로 구매시 (결제 준비 페이지)
      */
     @GetMapping("/consumer/item/{id}/purchase")
     public String beforePurchase(@PathVariable Long id,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
-                           Model model) {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginConsumer == null) {
-            return "redirect:/list";
-        }
-
-        // 소비자 id 조회
-        Long consumerId = loginConsumer.getId();
-        Consumer consumer = consumerService.findConsumerById(consumerId);
+                                 @AuthenticationPrincipal Member member,
+                                 Model model) {
 
         // 상품 조회
         Item item = itemService.findItem(id);
 
         model.addAttribute("item", item);
 //        model.addAttribute("totalPrice", item.getPrice());
-        model.addAttribute("consumer", consumer);
+        model.addAttribute("consumer", member);
 
-        return "consumer_beforePurchase";
+        return "consumer_beforePurchaseTmp";
 //        return "test_cartToBeforePurchase";
     }
 
     /**
-     *  결제 준비 페이지 -> 결제하기 (상품 1개) : 결제 완료 페이지로 이동
+     * 결제 준비 페이지 -> 결제하기 (상품 1개) : 결제 완료 페이지로 이동
      */
     @PostMapping("/consumer/item/{id}/purchase")
     public String afterPurchase(@PathVariable Long id,
-                           @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
-                           Model model) {
-
-        // 소비자 id 조회
-        Long consumerId = loginConsumer.getId();
+                                @AuthenticationPrincipal Member member,
+                                Model model) {
 
         // 상품 id 조회
         Long itemId = itemService.findItem(id).getId();
         Item item = itemService.findItem(id);
 
         // 주문 생성
-        Long orderId = orderService.order(consumerId, itemId, 1); // 주문
+        Long orderId = orderService.order(member.getId(), id, 1); // 주문
         /*Optional<Order> completedOrder = orderService.findOrder(orderId); // 주문 완료된 객체 반환
         List<OrderItem> orderItems = completedOrder.get().getOrderItems();*/
 
@@ -157,43 +138,27 @@ public class  ConsumerController {
         model.addAttribute("orderItems", item);
 
         // 주문 완료 페이지
-        return "consumer_afterPurchase";
-//        return "test_afterPurchase";
+        return "consumer_afterPurchaseTmp";
     }
 
     /**
-     *  상품 상세 -> 장바구니 담기
-     */
-    @PostMapping("/consumer/cart/{id}/add")
-    public String addItemToCart(@PathVariable Long id,
-                                @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
-
-        // 소비자 정보 조회
-        Long consumerId = loginConsumer.getId();
-
-        // 아이템 정보 조회
-        Item item = itemService.findItem(id);
-
-        // Order 생성
-        // order.setOrderStatus(OrderStatus.CART);
-
-        return "redirect:/cart";
-    }
-
-    /**
-     *  장바구니 페이지
+     * 장바구니 페이지
      */
     @GetMapping("/cart")
-    public String cart(HttpServletRequest request,
-                       @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Consumer loginConsumer,
+    public String cart(@AuthenticationPrincipal Member loginMember,
                        Model model) {
-        if(loginConsumer == null) {
+
+        System.out.println("------ Member Id: "+ loginMember + "-------");
+
+        if(loginMember == null) {
             return "redirect:/login";
         }
+
         // 로그인 전제로
-        Cart cart = consumerService.findByCart(loginConsumer);
+        Cart cart = consumerService.findByCart(loginMember);
+        List<CartItemDTO> cartItem = consumerService.getCartItemDTO(cart);
         int totalPrice = cart.getTotalPrice();
-        model.addAttribute("cartItems", cart.getCartItems());
+        model.addAttribute("cartItems", cartItem);
         model.addAttribute("totalPrice", totalPrice);
         return "consumer/consumer_cart";
     }
@@ -201,42 +166,47 @@ public class  ConsumerController {
     /**
      * 장바구니 -> 구매
      * 주문 객체 생성
-     * **/
+     **/
     @GetMapping("/order")
-    public String beforeOrderItems(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer,
+    public String beforeOrderItems(@AuthenticationPrincipal Member loginMember,
                              Model model) {
-        if (loginConsumer == null) {
+        if (loginMember == null) {
             return "redirect:/login";
         }
         // 상품 조회
-        Cart cart = consumerService.findByCart(loginConsumer);
-
+        Cart cart = consumerService.findByCart(loginMember);
+        List<CartItemDTO> cartItem = consumerService.getCartItemDTO(cart);
+        int totalPrice = cart.getTotalPrice();
         // cart에 있는 List<cartItem> cartItems
-        model.addAttribute("items", cart.getCartItems());
-        model.addAttribute("totalPrice", cart.getTotalPrice());
-        model.addAttribute("consumer", loginConsumer);
-        return "consumer/consumer_order";
-//        return "consumer_beforePurchase";
+        model.addAttribute("items", cartItem);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("consumer", loginMember);
+
+        return "consumer_beforePurchaseCart";
 
     }
 
-    // 잠시 주석 처리해놓습니다.
-    /*@PostMapping("/order")
-    public String afterOrderItems( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER) Consumer loginConsumer) {
-        Long orderId = orderService.orders(loginConsumer);
-        System.out.println("new OrderId : "+orderId+" created!");
-        // 주문을 생성한 후 장바구니에 있는 상품 비우기.
-        Cart cart = consumerService.findByCart(loginConsumer);
+    @PostMapping("/order")
+    public String orderCartItem(@AuthenticationPrincipal Member loginMember, Model model) {
+
+        Cart cart = consumerService.findByCart(loginMember);
+        Long orderId = orderService.orders(loginMember);
+        Order order = orderService.findOrder(orderId).get();
+        int totalPrice = cart.getTotalPrice();
+        List<OrderItemDTO> orderItems = orderService.findOrderItemByOrder(order)
+                .stream()
+                .filter(orderItem -> orderItem != null)
+                .map(OrderItemDTO::new)
+                .collect(Collectors.toList());
         cart.removeCartItem();
-        return "consumer/item_list";
-//        return "consumer_afterPurchase";
-    }*/
 
-    // 소비자 정보 조회`
-    //
+        log.info("New order: "+orderId+" created!");
 
-//        orderService.findCartOrder(consumerId);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("orderItems", orderItems);
 
+        return "consumer_afterPurchaseTmp";
+    }
 
 }
 

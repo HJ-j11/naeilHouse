@@ -86,7 +86,7 @@ public class PostController {
 
 
     // 글 작성
-    @PostMapping("/newpost")
+    @PostMapping("/community/write")
     public String postUser(@ModelAttribute PostForm post,
                            @AuthenticationPrincipal Member member,
                            HttpServletRequest request) throws IOException {
@@ -123,7 +123,6 @@ public class PostController {
 
         return "redirect:/community/"+id;
     }
-
 
     /**
      * 댓글

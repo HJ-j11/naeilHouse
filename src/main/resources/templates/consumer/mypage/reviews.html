@@ -13,7 +13,7 @@
             <div id="reviewData" th:each="review : ${reviewList}">
                 <p class="my-review-list__list__item__product__name" th:text="| ${review.item.name}|">아이템명</p>
                 <p class="my-review-list__list__item__product__info__text"
-                   th:text="|${member.name}!${review.reviewDate}|">이름</p>
+                   th:text="|${consum}!${review.reviewDate}|">이름</p>
                 <p class="my-review-list__list__item__product__content" th:text="|${review.content}|">리뷰내용</p>
             </div>
 

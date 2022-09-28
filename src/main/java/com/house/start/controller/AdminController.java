@@ -1,25 +1,26 @@
 package com.house.start.controller;
 
-import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.dto.Item.ItemAdminDTO;
 import com.house.start.domain.dto.Order.OrderAdminDTO;
 import com.house.start.domain.dto.Order.OrderItem.OrderOrderItemAdminDTO;
 import com.house.start.domain.dto.Post.PostAdminDTO;
+import com.house.start.domain.entity.Member;
 import com.house.start.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.house.start.controller.session.SessionConstants.ROLE;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -36,44 +37,22 @@ public class AdminController {
      * 소비자 정보 조회
      */
     @GetMapping("/consumers")
-    public String showConsumer(HttpServletRequest request, Model model) {
+    public String showConsumer(Model model) {
         log.info("--- admin controller - show consumers info -----------------------------------------");
-        HttpSession session = request.getSession();
-
-        // 세션이 없으면 홈으로 이동
-        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "err/notLogin";
-        }else if (session.getAttribute(ROLE).toString().equals("admin")) {
-            // 관리자인 경우
-            List<Consumer> consumerList = consumerService.findConsumers();
+            List<Member> consumerList = consumerService.findConsumers();
             model.addAttribute("consumerList", consumerList);
-            return "admin/showConsumers";
-        } else {
-            // 소비자나 판매자인 경우
-            return "err/denyPage";
-        }
+        return "admin/showConsumers";
     }
 
     /**
      * 판매자 정보 조회
      */
     @GetMapping("/sellers")
-    public String showSellers(HttpServletRequest request, Model model) {
+    public String showSellers( Model model) {
         log.info("--- admin controller - show sellers info -----------------------------------------");
-        HttpSession session = request.getSession();
-
-        // 세션이 없으면 홈으로 이동
-        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "err/notLogin";
-        } else if (session.getAttribute(ROLE).toString().equals("admin")) {
-            // 관리자인 경우
-            List<Seller> sellerList = sellerService.findSellers();
-            model.addAttribute("sellerList", sellerList);
-            return "admin/showSellers";
-        } else {
-            // 소비자나 판매자인 경우
-            return "err/denyPage";
-        }
+        List<Member> sellerList = sellerService.findSellers();
+        model.addAttribute("sellerList", sellerList);
+        return "admin/showSellers";
 
     }
 
@@ -101,87 +80,64 @@ public class AdminController {
      * 게시글 정보 조회
      */
     @GetMapping("/posts")
-    public String showPosts(HttpServletRequest request, Model model) {
+    public String showPosts(@PageableDefault(size = 7) Pageable pageable, Model model) {
         log.info("--- admin controller - show posts info -----------------------------------------");
-        HttpSession session = request.getSession();
+        // 관리자인 경우
+        List<PostAdminDTO> postAdminDTOS = postService.findPostDTO(pageable).getContent();
+        model.addAttribute("postList", postAdminDTOS);
+        return "admin/showPosts";
+    }
 
-        if (session.getAttribute(ROLE) == null) {
-            // 세션이 없으면 홈으로 이동
-            return "err/notLogin";
-        } else if (session.getAttribute(ROLE).toString().equals("admin")) {
-            // 관리자인 경우
-            List<PostAdminDTO> postAdminDTOS = new ArrayList<>();
-            List<Post> postList = postService.findPosts();
-            for (Post post: postList) {
-                PostAdminDTO postAdminDTO = new PostAdminDTO(post);
-                postAdminDTOS.add(postAdminDTO);
-            }
-            model.addAttribute("postList", postAdminDTOS);
-            return "admin/showPosts";
-        } else {
-            // 소비자나 판매자인 경우
-            log.info("in2");
-            return "err/denyPage";
-        }
+    @GetMapping("/posts_data")
+    public ResponseEntity<?> findPostPage(@PageableDefault(size = 7) Pageable pageable) {
+        log.info("--- admin controller - find postAdminDTO info -----------------------------------------");
+        List<PostAdminDTO> addd = postService.findPostDTO(pageable).getContent();
+        log.info(addd.toString());
+        return ResponseEntity.ok(addd);
     }
 
     /**
      * 상품 목록 조회
      */
     @GetMapping("/items")
-    public String showItems(HttpServletRequest request, Model model) {
+    public String showItems(Model model) {
         log.info("--- admin controller - show items info -----------------------------------------");
-        HttpSession session = request.getSession();
 
-        // 세션이 없으면 홈으로 이동
-        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "err/notLogin";
-        } else if (session.getAttribute(ROLE).toString().equals("admin")) {
-            // 관리자인 경우
-            List<Item> itemList = itemService.findItems();
-            model.addAttribute("itemList", itemList);
-            return "admin/showItems";
-        } else {
-            // 소비자나 판매자인 경우
-            return "err/denyPage";
-        }
+        List<ItemAdminDTO> itemAdminDTOList = itemService.findItems()
+                .stream()
+                .filter(item -> item != null)
+                .map(ItemAdminDTO::new)
+                .collect(Collectors.toList());
+        model.addAttribute("itemList", itemAdminDTOList);
+        return "admin/showItems";
     }
 
     /**
      * 주문 목록 조회
      */
     @GetMapping("/orders")
-    public String showOrders(HttpServletRequest request, Model model) {
+    public String showOrders(Model model) {
         log.info("--- admin controller - show orders info -----------------------------------------");
-        HttpSession session = request.getSession();
-        // 세션이 없으면 홈으로 이동
-        if (session.getAttribute(SessionConstants.LOGIN_MEMBER) == null) {
-            return "err/notLogin";
-        } else if (session.getAttribute(ROLE).toString().equals("admin"))  {
-            // 관리자인 경우
-            List<Order> orderList = orderService.findOrders();
-            List<OrderAdminDTO> orderDTOList = new ArrayList<>();
-            for (Order order: orderList) {
-                List<OrderItem> orderItemList = order.getOrderItems();
-                List<OrderOrderItemAdminDTO> orderOrderItemDTOList = new ArrayList<>();
-                for (OrderItem orderItem: orderItemList) {
-                    OrderOrderItemAdminDTO orderOrderItemDTO = OrderOrderItemAdminDTO.builder()
-                                                            .orderItem(orderItem)
-                                                            .build();
-                    orderOrderItemDTOList.add(orderOrderItemDTO);
-                }
-                OrderAdminDTO orderDTO = OrderAdminDTO.builder()
-                        .order(order)
-                        .orderItems(orderOrderItemDTOList)
+        // 관리자인 경우
+        List<Order> orderList = orderService.findOrders();
+        List<OrderAdminDTO> orderDTOList = new ArrayList<>();
+        for (Order order: orderList) {
+            List<OrderItem> orderItemList = order.getOrderItems();
+            List<OrderOrderItemAdminDTO> orderOrderItemDTOList = new ArrayList<>();
+            for (OrderItem orderItem: orderItemList) {
+                OrderOrderItemAdminDTO orderOrderItemDTO = OrderOrderItemAdminDTO.builder()
+                        .orderItem(orderItem)
                         .build();
-                orderDTOList.add(orderDTO);
+                orderOrderItemDTOList.add(orderOrderItemDTO);
             }
-            model.addAttribute("orderList", orderDTOList);
-            return "admin/showOrders";
-        } else {
-            // 소비자나 판매자인 경우
-            return "err/denyPage";
+            OrderAdminDTO orderDTO = OrderAdminDTO.builder()
+                    .order(order)
+                    .orderItems(orderOrderItemDTOList)
+                    .build();
+            orderDTOList.add(orderDTO);
         }
+        model.addAttribute("orderList", orderDTOList);
+        return "admin/showOrders";
     }
 
 }

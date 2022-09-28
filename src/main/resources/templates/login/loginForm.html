@@ -6,40 +6,41 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <!--axure-->
-    <link href="css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="css/login/loginForm.css" type="text/css" rel="stylesheet"/>
-    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
-    <script src="resources/scripts/axure/axQuery.js"></script>
-    <script src="resources/scripts/axure/globals.js"></script>
-    <script src="resources/scripts/axutils.js"></script>
-    <script src="resources/scripts/axure/annotation.js"></script>
-    <script src="resources/scripts/axure/axQuery.std.js"></script>
-    <script src="resources/scripts/axure/doc.js"></script>
-    <script src="resources/scripts/messagecenter.js"></script>
-    <script src="resources/scripts/axure/events.js"></script>
-    <script src="resources/scripts/axure/recording.js"></script>
-    <script src="resources/scripts/axure/action.js"></script>
-    <script src="resources/scripts/axure/expr.js"></script>
-    <script src="resources/scripts/axure/geometry.js"></script>
-    <script src="resources/scripts/axure/flyout.js"></script>
-    <script src="resources/scripts/axure/model.js"></script>
-    <script src="resources/scripts/axure/repeater.js"></script>
-    <script src="resources/scripts/axure/sto.js"></script>
-    <script src="resources/scripts/axure/utils.temp.js"></script>
-    <script src="resources/scripts/axure/variables.js"></script>
-    <script src="resources/scripts/axure/drag.js"></script>
-    <script src="resources/scripts/axure/move.js"></script>
-    <script src="resources/scripts/axure/visibility.js"></script>
-    <script src="resources/scripts/axure/style.js"></script>
-    <script src="resources/scripts/axure/adaptive.js"></script>
-    <script src="resources/scripts/axure/tree.js"></script>
-    <script src="resources/scripts/axure/init.temp.js"></script>
-    <script src="resources/scripts/axure/legacy.js"></script>
-    <script src="resources/scripts/axure/viewer.js"></script>
-    <script src="resources/scripts/axure/math.js"></script>
-    <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="javascript/document.js"></script>
-    <script src="css/login/data.js"></script>
+    <link href="/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/login/loginForm.css" type="text/css" rel="stylesheet"/>
+    <script src="/scripts/jquery-3.2.1.min.js"></script>
+    <script src="/scripts/axure/axQuery.js"></script>
+    <script src="/scripts/axure/globals.js"></script>
+    <script src="/scripts/axutils.js"></script>
+    <script src="/scripts/axure/annotation.js"></script>
+    <script src="/scripts/axure/axQuery.std.js"></script>
+    <script src="/scripts/axure/doc.js"></script>
+    <script src="/scripts/messagecenter.js"></script>
+    <script src="/scripts/axure/events.js"></script>
+    <script src="/scripts/axure/recording.js"></script>
+    <script src="/scripts/axure/action.js"></script>
+    <script src="/scripts/axure/expr.js"></script>
+    <script src="/scripts/axure/geometry.js"></script>
+    <script src="/scripts/axure/flyout.js"></script>
+    <script src="/scripts/axure/model.js"></script>
+    <script src="/scripts/axure/repeater.js"></script>
+    <script src="/scripts/axure/sto.js"></script>
+    <script src="/scripts/axure/utils.temp.js"></script>
+    <script src="/scripts/axure/variables.js"></script>
+    <script src="/scripts/axure/drag.js"></script>
+    <script src="/scripts/axure/move.js"></script>
+    <script src="/scripts/axure/visibility.js"></script>
+    <script src="/scripts/axure/style.js"></script>
+    <script src="/scripts/axure/adaptive.js"></script>
+    <script src="/scripts/axure/tree.js"></script>
+    <script src="/scripts/axure/init.temp.js"></script>
+    <script src="/scripts/axure/legacy.js"></script>
+    <script src="/scripts/axure/viewer.js"></script>
+    <script src="/scripts/axure/math.js"></script>
+    <script src="/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="/scripts/axure/ios.js"></script>
+<!--    <script src="/javascript/document.js"></script>-->
+    <script src="/css/login/data.js"></script>
 
 </head>
 <body>
@@ -65,13 +66,12 @@
             </div>
         </div>
 
-        <form th:action="@{/login}" th:object="${loginForm}" method="post">
+        <form th:action="@{/login_proc}" method="post">
 
             <!-- 로그인 에러 메세지 -->
-            <div id="login-error-msg" th:if="${#fields.hasGlobalErrors()}">
-                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
-
-            </div>
+<!--            <div id="login-error-msg" th:if="${#fields.hasGlobalErrors()}">-->
+<!--                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>-->
+<!--            </div>-->
 
             <!-- pwd_box (Group) -->
             <div id="u22" class="ax_default" data-label="pwd_box" data-left="440" data-top="399" data-width="557"
@@ -86,9 +86,8 @@
                 <!-- 비밀번호 (Text Field) -->
                 <div id="u24" class="ax_default text_field" data-label="비밀번호">
                     <img id="u24_img" class="img " src="images/login/비밀번호_u24.svg"/>
-                    <input id="u24_input" type="password" th:field="*{pwd}" th:errorclass="field-error" value=""
-                           class="u24_input"/>
-                    <div class="field-error" th:errors="*{pwd}"/>
+                    <input id="u24_input" type="password" th:name="password" class="u24_input"/>
+<!--                    <div class="field-error" th:errors="*{password}"/>-->
                 </div>
 
             </div>
@@ -106,26 +105,25 @@
                 <!-- 이메일 (Text Field) -->
                 <div id="u27" class="ax_default text_field" data-label="이메일">
                     <img id="u27_img" class="img " src="images/login/비밀번호_u24.svg"/>
-                    <input id="u27_input" type="text" th:field="*{loginId}" th:errorclass="field-error" value=""
-                           class="u27_input"/>
-                    <div class="field-error" th:errors="*{loginId}"/>
+                    <input id="u27_input" type="text" th:name="username" class="u27_input"/>
+<!--                    <div class="field-error" th:errors="*{username}"/>-->
                 </div>
 
             </div>
 
             <!-- 소비자, 판매자, 관리자 중 선택-->
-            <div id="user-type">
-                <input type="radio" id="role" name="role" value="0" th:field="*{role}" th:errorclass="field-error">
-                <label for="role">회원</label>
+<!--            <div id="user-type">-->
+<!--                <input type="radio" id="role" name="role" value="0" th:field="*{role}" th:errorclass="field-error">-->
+<!--                <label for="role">회원</label>-->
 
-                <input type="radio" id="role" name="role" value="1" th:field="*{role}" th:errorclass="field-error">
-                <label for="role">판매자</label>
+<!--                <input type="radio" id="role" name="role" value="1" th:field="*{role}" th:errorclass="field-error">-->
+<!--                <label for="role">판매자</label>-->
 
-                <input type="radio" id="role" name="role" value="2" th:field="*{role}" th:errorclass="field-error">
-                <label for="role">관리자</label>
+<!--                <input type="radio" id="role" name="role" value="2" th:field="*{role}" th:errorclass="field-error">-->
+<!--                <label for="role">관리자</label>-->
 
-                <div class="field-error" th:errors="*{role}"/>
-            </div>
+<!--                <div class="field-error" th:errors="*{role}"/>-->
+<!--            </div>-->
 
             <!-- login_summit (Group) -->
             <button id="login-summit" type="submit">로그인</button>
@@ -139,9 +137,11 @@
                 <p><span>판매자 신청</span></p>
             </div>
         </div>
-
+        <button id="login-oauth" onclick="location.href='/oauth2/authorization/google'">
+            Google 계정에 로그인
+        </button>
     </div>
 </div>
-<script src="resources/scripts/axure/ios.js"></script>
+
 </body>
 </html>

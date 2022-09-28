@@ -1,0 +1,20 @@
+use naeilhouse_db;
+
+ALTER TABLE cart convert to charset utf8;
+ALTER TABLE cart_item convert to charset utf8;
+ALTER TABLE category convert to charset utf8;
+ALTER TABLE comment convert to charset utf8;
+ALTER TABLE delivery convert to charset utf8;
+ALTER TABLE item convert to charset utf8;
+ALTER TABLE likes convert to charset utf8;
+ALTER TABLE member convert to charset utf8;
+ALTER TABLE member convert to charset utf8;
+ALTER TABLE order_item convert to charset utf8;
+ALTER TABLE orders convert to charset utf8;
+ALTER TABLE post convert to charset utf8;
+ALTER TABLE resources convert to charset utf8;
+ALTER TABLE review convert to charset utf8;
+ALTER TABLE member convert to charset utf8;
+ALTER TABLE role convert to charset utf8;
+ALTER TABLE role_resources convert to charset utf8;
+ALTER TABLE upload_file convert to charset utf8;

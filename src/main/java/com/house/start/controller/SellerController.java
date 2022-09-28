@@ -5,14 +5,17 @@ import com.house.start.controller.form.ItemForm;
 import com.house.start.controller.form.MemberJoinForm;
 import com.house.start.controller.session.SessionConstants;
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.file.FileStore;
 import com.house.start.repository.OrderItemRepository;
 import com.house.start.repository.OrderRepository;
 import com.house.start.service.ConsumerService;
 import com.house.start.service.ItemService;
+import com.house.start.service.impl.MemberServiceImpl;
 import com.house.start.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -29,59 +33,43 @@ public class SellerController {
 
     private final ItemService itemService;
     private final SellerService sellerService;
+    private final MemberServiceImpl memberService;
     private final FileStore fileStore;
     private final ConsumerService consumerService;
     private final OrderItemRepository orderItemRepository;
     private final OrderRepository orderRepository;
 
     /**
-     *  상품 등록 폼 페이지
+     * 상품 등록 폼 페이지
      */
     @GetMapping("/seller/item/add")
-    public String addItem( @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller,
-                           Model model) {
+    public String addItem(Model model) {
 
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginSeller == null) {
-            return "redirect:/login";
-        }
-
-        log.info("seller controller - get");
         model.addAttribute("form", new ItemForm());
-        return "seller/seller_createItemForm";
+        return "seller/seller_createItemFormTmp";
     }
 
     /**
-     *  상품 등록 완료 후 -> 상품 목록 페이지로
+     * 상품 등록 완료 후 -> 상품 목록 페이지로
      */
     @Transactional
     @PostMapping("/seller/item/add")
     public String createItem(@ModelAttribute ItemForm form,
-                             @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller,
+                             @AuthenticationPrincipal Member member,
                              HttpServletRequest request) throws IOException {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginSeller == null) {
-            return "redirect:/login";
-        }
-
-        // 판매자 id 조회
-        Seller seller = sellerService.findSeller(loginSeller.getId());
 
         // 이미지 저장
         UploadFile uploadFile = fileStore.storeFile(form.getImage(), request);
 
-        Item item = new Item();
-        item.setSeller(seller);
-        item.setName(form.getName());
-        item.setPrice(form.getPrice());
-        item.setStockQuantity(form.getStockQuantity());
-        item.setInfo(form.getInfo());
-        item.setUploadFile(uploadFile);
-
-        Category category = new Category();
-        category.setName(form.getCategory());
-        item.setCategory(category);
+        Item item = Item.builder()
+                .member(member)
+                .name(form.getName())
+                .price(form.getPrice())
+                .stockQuantity(form.getStockQuantity())
+                .info(form.getInfo())
+                .uploadFile(uploadFile)
+                .category(new Category(form.getCategory()))
+                .build();
 
         itemService.createItem(item);
 
@@ -89,29 +77,20 @@ public class SellerController {
     }
 
     /**
-     *  등록된 상품 목록 페이지
+     * 등록된 상품 목록 페이지
      */
     @GetMapping("/seller/item/list")
-    public String itemList(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller,
-                           Model model) {
-
-        // 세션에 회원 데이터가 없으면 예외처리
-        if (loginSeller == null) {
-            return "redirect:/login";
-        }
-
-        // 판매자 조회
-        Seller seller = sellerService.findSeller(loginSeller.getId());
+    public String itemList(@AuthenticationPrincipal Member member, Model model) {
 
         // 판매자가 등록한 상품 조회
-        List<Item> items = itemService.findItemsBySeller(seller);
+        List<Item> items = itemService.findItemsByMember(member);
 
         model.addAttribute("items", items);
-        return "/seller/seller_itemList";
+        return "/seller/seller_itemListTmp";
     }
 
     /**
-     *  상품 수정 페이지
+     * 상품 수정 페이지
      */
     @GetMapping("/seller/item/{id}/edit")
     public String editItemForm(@PathVariable("id") Long id, Model model) {
@@ -126,11 +105,11 @@ public class SellerController {
 
         model.addAttribute("item", item);
         model.addAttribute("form", form);
-        return "seller/seller_itemEdit";
+        return "seller/seller_itemEditTmp";
     }
 
     /**
-     *  상품 수정 페이지 -> 수정하기 버튼
+     * 상품 수정 페이지 -> 수정하기 버튼
      */
     @PostMapping("/seller/item/{id}/edit")
     public String editItem(@PathVariable Long id, @ModelAttribute("form") ItemEditForm form) {
@@ -141,50 +120,49 @@ public class SellerController {
     }
 
     @RequestMapping("/seller/manage")
-    public String deliveryManage(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Seller loginSeller) {
+    public String deliveryManage(@AuthenticationPrincipal Member member, Model model) {
 
-        // 판매자 조회
-        Seller seller = sellerService.findSeller(loginSeller.getId());
+        List<OrderItem> orderItemsBySeller = orderItemRepository.findOrderItemsBySeller(OrderItemStatus.ORDER, member);
 
-        // 판매자가 등록한 상품 조회
-        List<Item> itemsBySeller = itemService.findItemsBySeller(seller);
-
-        // 판매자가 등록한 상품에 해당하는 Order 조회
-        List<Order> orderItemsByItems = orderItemRepository.findOrderItemsByItems(itemsBySeller);
-        for (Order order : orderItemsByItems) {
-            log.info("order : " + order.getId());
+        for (OrderItem orderItem : orderItemsBySeller) {
+            log.info("orderItem.getOrder().getId() = " + orderItem.getOrder().getId());
         }
 
+        model.addAttribute("orderItems", orderItemsBySeller);
+        model.addAttribute("deliveryStatus", DeliveryStatus.values());
 
-        return "true";
+        return "seller/seller_manage";
+    }
 
+    @PostMapping("/seller/manage/{id}")
+    public String changeDelivery(@PathVariable("id") Long orderItemId,
+                                 @RequestParam("deliverySelected") DeliveryStatus deliveryStatus,
+                                 @AuthenticationPrincipal Member member) {
+
+        Optional<OrderItem> orderItem = orderItemRepository.findById(orderItemId);
+
+        log.info("deliverySelected = " + deliveryStatus);
+
+        if (deliveryStatus == DeliveryStatus.COMPLETE) {
+            orderItem.get().setOrderItemStatus(OrderItemStatus.COMPLETED);
+        }
+
+        orderItem.get().getDelivery().setDeliveryStatus(deliveryStatus);
+
+        return "redirect:/seller/manage";
     }
 
 
     // 테스트 페이지
-    @GetMapping("/test")
-    public String test(Model model) {
-//        List<Item> items = itemService.findItems();
-//        model.addAttribute("items", items);
+    @GetMapping("/test/{id}")
+    public String test(@PathVariable Long id, @AuthenticationPrincipal Member member, Model model) {
 
-        Item item = itemService.findItem(23L);
+
+        Item item = itemService.findItem(id);
         model.addAttribute("item", item);
+        model.addAttribute("consumer", member);
 
-//        Seller seller = sellerService.findSeller(3L);
-//        List<Item> items = itemService.findItemsBySeller(seller);
-
-//        Consumer consumer = consumerService.findConsumerById(1L);
-//        model.addAttribute("consumer", consumer);
-
-//        model.addAttribute("form", new ItemForm());
-
-//        int totalPrice = 30000;
-//        model.addAttribute("totalPrice", totalPrice);
-//        model.addAttribute("items", items);
-
-        model.addAttribute("form", new MemberJoinForm());
-
-        return "test_afterPurchase";
+        return "consumer_beforePurchaseTmp";
     }
 
 }
