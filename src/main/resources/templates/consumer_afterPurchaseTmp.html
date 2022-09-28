@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/main-layout}">
+<head>
+    <link href="/css/consumer_afterPurchase/styles_tmp.css" type="text/css" rel="stylesheet"/>
+    <script src="/javascript/consumer_afterPurchase/document.js"></script>
+    <script src="/javascript/consumer_afterPurchase/data.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div id="u15_a" class="ax_default shape">
+        <div id="u15_div_a" class=""></div>
+        <div id="u15_text_a" class="text ">
+            <p><span>주문이 완료 완료되었습니다.</span></p>
+        </div>
+    </div>
+
+    <div id="u17_a" class="ax_default shape" data-label="post_box">
+        <div id="u17_div_a" class=""></div>
+        <div id="u17_text_a" class="text " style="display:none; visibility: hidden">
+            <p></p>
+        </div>
+    </div>
+
+    <div id="u18_a" class="ax_default shape" data-label="구매 하기">
+        <button id="u18_div_a" th:onclick="|location.href='@{/list}'|">상품 목록으로</button>
+    </div>
+
+    <div id="u19_a" class="ax_default shape">
+        <div id="u19_div_a" class=""></div>
+        <div id="u19_text_a" class="text ">
+            <p><span>주문 상품</span></p>
+        </div>
+    </div>
+
+    <div id="u20_a" class="ax_default shape">
+        <div id="u20_div_a" class=""></div>
+        <div id="u20_text_a" class="text ">
+            <p><span>주문 금액</span></p>
+        </div>
+    </div>
+
+    <div id="u21_a" class="ax_default shape">
+        <div id="u21_div_a" class=""></div>
+        <div id="u21_text_a" class="text ">
+            <p th:text="${totalPrice}"><span>아무개</span></p>
+        </div>
+    </div>
+
+    <div id="item_list">
+        <table id="item_table" style="width: 500px">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+                <th>가격</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item: ${orderItems}">
+                <td>
+                    <img th:src="|/upload/${item.uploadFile.storeFileName}|" width="40" height="40">
+                </td>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script src="/scripts/axure/ios.js"></script>
+</html>

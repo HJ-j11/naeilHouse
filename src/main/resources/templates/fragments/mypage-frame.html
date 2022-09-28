@@ -9,20 +9,20 @@
              data-height="31">
             <!-- border (Shape) -->
             <div id="a17" class="ax_default shape" data-label="border">
-                <td th:if="${consumer.photo == null}">
-                    <img id="a17_img" class="img " src="http://localhost:8080/images/page_1/border_u17.svg"/>
+                <td th:if="${member.uploadFileName != ''}">
+                    <img id="a17_img" class="img " th:src="${member.uploadFileName}"/>
+                </td>
+                <td th:if="${member.uploadFileName == ''}">
+                    <img id="a17_img" class="img " src="/images/page_1/border_u17.svg"/>
                 </td>
 
-                <td th:if="${consumer.photo != null}">
-                    <img id="a17_img" th:src="${consumer.photo}" width="80" height="80">
-                </td>
             </div>
 
             <!-- nav-mypage (Group) -->
             <div id="a19" class="ax_default" data-label="nav-mypage" data-left="0" data-top="92" data-width="1440"
                  data-height="61">
                 <!-- 좋아요 (Rectangle) -->
-                <a th:href="@{/user/{id}/likes (id=${consumer.id})}">
+                <a th:href="@{/user/likes }">
                     <div id="a21" class="ax_default shape" data-label="좋아요">
                         <div id="a21_div"></div>
                         <div id="a21_text" class="text ">
@@ -32,7 +32,7 @@
                 </a>
 
                 <!-- 리뷰 (Rectangle) -->
-                <a  th:href="@{/user/{id}/reviews (id=${consumer.id})}">
+                <a  th:href="@{/user/reviews }">
                     <div id="a22" class="ax_default shape" data-label="리뷰">
                         <div id="a22_div" class=""></div>
                         <div id="a22_text" class="text ">
@@ -41,7 +41,7 @@
                     </div>
                 </a>
 
-                <a th:href="@{/user/{id}/orders (id=${consumer.id})}">
+                <a th:href="@{/user/orders}">
                     <div id="a23" class="ax_default shape">
                         <div id="a23_div" class=""></div>
                         <div id="a23_text" class="text ">
@@ -79,7 +79,7 @@
                 <div id="a29" class="ax_default shape">
                     <div id="a29_div" class=""></div>
                     <div id="a29_text" class="text ">
-                        <p><span th:text="${consumer.cId}">아이디</span></p>
+                        <p><span th:text="${member.name}">아이디</span></p>
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                 <div id="a31" class="ax_default shape" data-label="count_like">
                     <div id="a31_div" class=""></div>
                     <div id="a31_text" class="text ">
-                        <p><span th:text="${consumer.likes.size}">0</span></p>
+                        <p><span th:text="${member.likes_size}">0</span></p>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@
 
                             <!-- HEART (Shape) -->
                             <div id="a33" class="ax_default shape" data-label="HEART">
-                                <img id="a33_img" class="img " src="http://localhost:8080/images/page_1/heart_u33.svg"/>
+                                <img id="a33_img" class="img " src="/images/page_1/heart_u33.svg"/>
                                 <div id="a33_text" class="text " style="display:none; visibility: hidden">
                                     <p></p>
                                 </div>
@@ -123,7 +123,7 @@
                                     <!-- HEART (Shape) -->
                                     <div id="a36" class="ax_default shape" data-label="HEART">
                                         <img id="a36_img" class="img "
-                                             src="http://localhost:8080/images/page_1/heart_u36.svg"/>
+                                             src="/images/page_1/heart_u36.svg"/>
                                         <div id="a36_text" class="text " style="display:none; visibility: hidden">
                                             <p></p>
                                         </div>
@@ -132,7 +132,7 @@
                                     <!-- Vector 1 (Shape) -->
                                     <div id="a37" class="ax_default shape" data-label="Vector 1">
                                         <img id="a37_img" class="img "
-                                             src="http://localhost:8080/images/page_1/vector_1_u37.svg"/>
+                                             src="/images/page_1/vector_1_u37.svg"/>
                                         <div id="a37_text" class="text " style="display:none; visibility: hidden">
                                             <p></p>
                                         </div>

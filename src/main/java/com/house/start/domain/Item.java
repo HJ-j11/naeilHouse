@@ -1,9 +1,11 @@
 package com.house.start.domain;
+import com.house.start.domain.entity.Member;
 import com.house.start.exception.NotEnoughStockException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,9 +22,9 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "seller_id")
-    private Seller seller; // 판매자
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member; // 판매자
 
     private String name; // 상품 이름
     private int price; // 상품 가격
@@ -42,20 +44,21 @@ public class Item {
 
     // builder 패턴
     @Builder
-    public Item(Seller seller, String name, int price, int stockQuantity, String info, UploadFile uploadFile) {
-        this.seller = seller;
+    public Item(Member member, String name, int price, int stockQuantity, String info, UploadFile uploadFile, Category category) {
+        this.member = member;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.uploadFile = uploadFile;
         this.info = info;
+        this.category = category;
     }
 
     //==연관관계 편의 메서드==//
 
-    public void setSeller(Seller seller) {
-        this.seller = seller;
-        seller.getItems().add(this);
+    public void setMember(Member member) {
+        this.member = member;
+        member.getItems().add(this);
     }
 
     public void setCategory(Category category) {

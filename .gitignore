@@ -5,10 +5,13 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+start/start/src/main/resources/application-oauth.properties
+
 ### STS ###
 .apt_generated
 .classpath
 .factorypath
+.gradle
 .project
 .settings
 .springBeans
@@ -40,5 +43,4 @@ out/
 **/src/main/webapp/uplaod/*.png
 
 ## application
-**/src/main/resources/application-mysql.properties
-application.properties
+.src/main/resources/*.properties

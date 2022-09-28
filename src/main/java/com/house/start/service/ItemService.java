@@ -2,9 +2,10 @@ package com.house.start.service;
 
 import com.house.start.domain.Category;
 import com.house.start.domain.Item;
-import com.house.start.domain.Seller;
+import com.house.start.domain.entity.Member;
 import com.house.start.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ItemService {
@@ -42,8 +44,8 @@ public class ItemService {
     /**
      *  특정 판매자의 등록 상품 조회
      */
-    public List<Item> findItemsBySeller(Seller seller) {
-        return itemRepository.findItemBySeller(seller);
+    public List<Item> findItemsByMember(Member member) {
+        return itemRepository.findItemByMember(member);
     }
 
     /**
@@ -52,6 +54,8 @@ public class ItemService {
     @Transactional
     public void updateItem(Long id, String name, int price, String info, int stockQuantity, String category) {
         Optional<Item> item = itemRepository.findById(id);
+        log.info("item.getName() = " + item.get().getName());
+
         item.get().setName(name);
         item.get().setPrice(price);
         item.get().setInfo(info);

@@ -1,8 +1,7 @@
 package com.house.start.service;
 
-import com.house.start.domain.Item;
 import com.house.start.domain.dto.Item.ItemDTO;
-import com.house.start.domain.dto.Post.PostDTO;
+import com.house.start.domain.dto.Post.PostDto;
 import com.house.start.repository.QueryDslRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class SearchService {
     }
 
     // 글 검색
-    public List<PostDTO> findPostByContents(String contents) {
+    public List<PostDto> findPostByContents(String contents) {
         return dslRepository.findPostsByContent(contents);
     }
 

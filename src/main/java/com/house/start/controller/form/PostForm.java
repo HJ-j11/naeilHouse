@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Getter @Setter
 public class PostForm {
     private MultipartFile photo;
-
     private String contents;
 
 }

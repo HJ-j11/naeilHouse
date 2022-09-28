@@ -1288,7 +1288,7 @@ body {
   width:0px;
   height:0px;
 }
-#u34_div {
+#u34_div_a {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -1309,7 +1309,7 @@ body {
   font-size:25px;
   color:#FFFFFF;
 }
-#u34 {
+#u34_a {
   border-width:0px;
   position:absolute;
   left:91px;
@@ -1318,14 +1318,14 @@ body {
   height:58px;
   display:flex;
 }
-#u34 .text {
+#u34_a .text {
   position:absolute;
   align-self:center;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#u34_text {
+#u34_text_a {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;

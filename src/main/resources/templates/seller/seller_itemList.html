@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>Page 1</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <!-- develop -->
-    <link href="http://localhost:8080/css/admin/show_sellers.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/admin/show_sellers.css" type="text/css" rel="stylesheet"/>
 
     <link href="/css/seller_createItemForm/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href="/css/seller_createItemForm/styles.css" type="text/css" rel="stylesheet"/>
@@ -182,33 +183,51 @@
 
     </div>
 
-    <!-- 네비게이션바 -->
-    <ul id="ul_dropdown">
-        <li id="li_dropdown" class="dropdown">
-            <a href="/community">
-                <div class="dropdown-menu">커뮤니티</div>
-            </a>
-            <!--        <div class="dropdown-content">-->
-            <!--            <a href="#">회원 관리</a>-->
-            <!--            <a href="#">주문 관리</a>-->
-            <!--            <a href="#">게시판 관리</a>-->
-            <!--        </div>-->
-        </li>
-        <li id="li_dropdown" class="dropdown">
-            <div class="dropdown-menu">스토어</div>
-            <div class="dropdown-content">
-                <a href="/list">상품 목록</a>
-                <a href="/seller/item/add">상품 등록</a>
-            </div>
-        </li>
-        <li id="li_dropdown" class="dropdown">
-            <div class="dropdown-menu">관리 페이지</div>
-            <div class="dropdown-content">
-                <a href="#">배송 관리</a>
-            </div>
-        </li>
-    </ul>
+<!--    <ul id="ul_dropdown">-->
+<!--        <li id="li_dropdown" class="dropdown">-->
+<!--            <div class="dropdown-menu" style="width:80px;">스토어</div>-->
+<!--            <div class="dropdown-content">-->
+<!--                <a href="#">회원 관리</a>-->
+<!--            </div>-->
+<!--        </li>-->
+
+<!--        <li id="li_dropdown" class="dropdown">-->
+<!--            <div class="dropdown-menu" style="width:80px;">커뮤니티</div>-->
+<!--            <div class="dropdown-content">-->
+<!--                <a href="#">회원 관리</a>-->
+<!--            </div>-->
+<!--        </li>-->
+
+<!--        <li id="li_dropdown" class="dropdown">-->
+<!--            <div class="dropdown-menu"><a href="/user" style="text-decoration: none;">마이페이지</a></div>-->
+<!--        </li>-->
+
+<!--        <li id="li_dropdown" class="dropdown">-->
+<!--            <div class="dropdown-menu">판매자페이지</div>-->
+<!--            <div class="dropdown-content">-->
+<!--                <a href="/admin/consumers">회원 관리</a>-->
+<!--                <a href="/admin/sellers">판매자 관리</a>-->
+
+<!--            </div>-->
+<!--        </li>-->
+
+<!--        <li id="li_dropdown" class="dropdown">-->
+<!--            <div class="dropdown-menu">관리자페이지</div>-->
+<!--            <div class="dropdown-content">-->
+<!--                <a href="/admin/consumers">회원 관리</a>-->
+<!--                <a href="/admin/sellers">판매자 관리</a>-->
+<!--                <a href="/admin/orders">주문 관리</a>-->
+<!--                <a href="/admin/items">상품 관리</a>-->
+<!--                <a href="/admin/posts">커뮤니티 관리</a>-->
+<!--            </div>-->
+<!--        </li>-->
+
+<!--    </ul>-->
+
+    <!-- nav.html -->
+    <nav th:replace="fragments/nav::navFragment"></nav>
 
     <script src="/scripts/axure/ios.js"></script>
+</div>
 </body>
 </html>

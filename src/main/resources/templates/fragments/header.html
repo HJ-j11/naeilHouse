@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div th:fragment="headerFragment" class="header navbar-fixed-top">
 
@@ -9,7 +10,7 @@
 
         <!-- logo (Rectangle) -->
         <div id="u32" class="ax_default shape" data-label="logo">
-            <div id="u32_div" class=""></div>
+            <div id="u32_div" class="" onclick="location.href='/'"></div>
             <div id="u32_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
             </div>
@@ -51,7 +52,7 @@
             <img id="u42_img" class="img " src="/images/main/border_u14.svg"/>
         </div>
 
-        <div th:if="${session.login_state == false}">
+        <div sec:authorize="isAnonymous()">
             <!-- 회원가입 (Rectangle) -->
             <a href="/member/join">
                 <div id="signin" class="ax_default shape" data-label="회원가입">
@@ -85,7 +86,7 @@
             </a>
         </div>
 
-        <div th:unless="${session.login_state == false}">
+        <div sec:authorize="isAuthenticated()">
             <!-- 로그아웃 (Rectangle) -->
             <a href="/logout">
                 <div id="logout" class="ax_default shape" data-label="로그인">
@@ -110,7 +111,7 @@
             <div id="u125" class="ax_default shape" data-label="글쓰기">
                 <div id="u125_div" class=""></div>
                 <div id="u125_text" class="text ">
-                    <p><span>글쓰기</span></p>
+                    <p><span onclick="location.href='/community/new'">글쓰기</span></p>
                 </div>
             </div>
 
@@ -124,4 +125,5 @@
 
         </div>
     </div>
+</div>
 </html>

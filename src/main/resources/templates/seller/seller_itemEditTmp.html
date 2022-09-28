@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/main-layout}">
+<head>
+    <link href="/css/admin/showPosts.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/seller_createItemForm/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/seller_createItemForm/styles_tmp.css" type="text/css" rel="stylesheet"/>
+    <script src="/javascript/seller_createItemForm/document.js"></script>
+    <script src="/javascript/seller_createItemForm/data.js"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('u16_img').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                document.getElementById('u16_img').src = "";
+            }
+        }
+    </script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="routing_info" class="text">
+        <p><span>판매자 상품 등록</span></p>
+
+        <!-- border -->
+        <div id="border_middle" class="ax_default shape" data-label="border">
+            <img class="img " src="/images/main/border_u14.svg"/>
+            <div class="text " style="display:none; visibility: hidden">
+            </div>
+        </div>
+    </div>
+
+    <div id="main_content">
+        <form th:action="@{/seller/item/{id}/edit (id=${item.id})}" th:object="${form}" method="post">
+            <!-- Rectangle 7 (Shape) -->
+            <div id="u16_a" class="ax_default shape" data-label="Rectangle 7">
+                <img id="u16_img" th:src="|/upload/${item.uploadFile.storeFileName}|"/>
+<!--                <input id="file_input" type="file" th:field="*{image}" onchange="readURL(this)" style="display: none">-->
+<!--                <input id="file_input" type="file" onchange="readURL(this)" style="display: none">-->
+                <div id="u16_text_a" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- pwd (Rectangle) -->
+<!--            <div id="image2_a" class="ax_default shape" data-label="pwd">-->
+<!--                <div id="image2_div_a" class=""></div>-->
+<!--                <div id="image2_text_a" class="text ">-->
+<!--                    <label for="file_input">-->
+<!--                        <p style="cursor:pointer;"><span>업로드</span></p>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u17_a" class="ax_default shape">
+                <div id="u17_div_a" class=""></div>
+                <div id="u17_text_a" class="text ">
+                    <p><span>상품명</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u18_a" class="ax_default shape">
+                <div id="u18_div_a" class=""></div>
+                <div id="u18_text_a" class="text ">
+                    <p><span>상품 사진</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u19_a" class="ax_default shape">
+                <div id="u19_div_a" class=""></div>
+                <div id="u19_text_a" class="text ">
+                    <p><span>상품 가격</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u20_a" class="ax_default shape">
+                <div id="u20_div_a" class=""></div>
+                <div id="u20_text_a" class="text ">
+                    <p><span>재고 수량</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u21_a" class="ax_default shape">
+                <!--            <div id="u21_div" class=""></div>-->
+                <!--            <div id="u21_text" class="text ">-->
+                <p><span><input id="u21_text_a" type="number" th:field="*{stockQuantity}"/></span></p>
+                <!--            </div>-->
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u22_a" class="ax_default shape">
+                <div id="u22_div_a" class=""></div>
+                <div id="u22_text_a" class="text ">
+                    <p><span>상품 정보</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u23_a" class="ax_default shape">
+                <!--            <div id="u23_div" class=""></div>-->
+                <!--            <div id="u23_text" class="text ">-->
+                <p><span><input id="u23_text_a" type="text" th:field="*{info}"/></span></p>
+                <!--            </div>-->
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u24_a" class="ax_default shape">
+                <div id="u24_div_a" class=""></div>
+                <div id="u24_text_a" class="text ">
+                    <p><span>카테고리</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u25_a" class="ax_default shape">
+                <!--            <div id="u25_div" class=""></div>-->
+                <!--            <div id="u25_text" class="text ">-->
+                <p><span><input id="u25_text_a" type="text" th:field="*{category}"/></span></p>
+                <!--            </div>-->
+            </div>
+
+            <!-- Rectangle 9 (Shape) -->
+            <div id="u26_a" class="ax_default shape" data-label="Rectangle 9">
+                <img id="u26_img_a" class="img " src="/images/seller_createItemForm/rectangle_9_u26.svg"/>
+                <div id="u26_text_a" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Rectangle 10 (Shape) -->
+            <div id="u27_a" class="ax_default shape" data-label="Rectangle 10">
+                <img id="u27_img_a" class="img " src="/images/seller_createItemForm/rectangle_9_u26.svg"/>
+                <div id="u27_text_a" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Rectangle 11 (Shape) -->
+            <div id="u28_a" class="ax_default shape" data-label="Rectangle 11">
+                <img id="u28_img_a" class="img " src="/images/seller_createItemForm/rectangle_9_u26.svg"/>
+                <div id="u28_text_a" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Rectangle 12 (Shape) -->
+            <div id="u29_a" class="ax_default shape" data-label="Rectangle 12">
+                <img id="u29_img_a" class="img " src="/images/seller_createItemForm/rectangle_9_u26.svg"/>
+                <div id="u29_text_a" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Rectangle 13 (Shape) -->
+            <div id="u30_a" class="ax_default shape" data-label="Rectangle 13">
+                <img id="u30_img_a" class="img " src="/images/seller_createItemForm/rectangle_9_u26.svg"/>
+                <div id="u30_text_a" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- pwd (Rectangle) -->
+            <div id="u31_a" class="ax_default shape" data-label="pwd">
+                <!--            <div id="u31_div" class=""></div>-->
+                <!--            <div id="u31_text" class="text ">-->
+                <p><span><input id="u31_text_a" type="text" th:field="*{name}"/></span></p>
+                <!--            </div>-->
+            </div>
+
+            <!-- pwd (Rectangle) -->
+            <div id="u32_a" class="ax_default shape" data-label="pwd">
+                <!--            <div id="u32_div" class=""></div>-->
+                <!--            <div id="u32_text" class="text ">-->
+                <p><span><input id="u32_text_a" type="number" th:field="*{price}"/></span></p>
+                <!--            </div>-->
+            </div>
+
+            <!-- posting_button (Group) -->
+            <div id="u33_a" class="ax_default" data-label="posting_button" data-left="91" data-top="735" data-width="402"
+                 data-height="58">
+
+                <!-- post_box (Rectangle) -->
+                <div id="u34_a" class="ax_default shape" data-label="post_box">
+                    <!--                <div id="u34_div" class=""></div>-->
+                    <button type="submit" id="u34_div_a">수정하기</button>
+                    <div id="u34_text_a" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+<script src="/scripts/axure/ios.js"></script>
+</html>

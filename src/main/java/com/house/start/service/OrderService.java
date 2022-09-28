@@ -1,6 +1,7 @@
 package com.house.start.service;
 
 import com.house.start.domain.*;
+import com.house.start.domain.entity.Member;
 import com.house.start.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class OrderService {
     private final ItemRepository itemRepository;
-    private final ConsumerRepository consumerRepository;
+    private final MemberRepository memberRepository;
     private final OrderRepository orderRepository;
     private final DeliveryRepository deliveryRepository;
     private final CartRepository cartRepository;
@@ -30,26 +31,23 @@ public class OrderService {
      *  주문 (바로 구매)
      */
     @Transactional
-    public Long order(Long consumerId, Long itemId, int count) {
+    public Long order(Long memberId, Long itemId, int count) {
 
         // 엔티티 조회 (소비자 정보 + 상품 정보)
-        Consumer consumer = consumerRepository.findById(consumerId).get();
-        log.info("1 consumer id : " + consumer.getId());
+//        Consumer consumer = consumerRepository.findById(consumerId).get();
+        Member member = memberRepository.findById(memberId).get();
+
+        log.info("1 consumer id : " + member.getId());
         Item item = itemRepository.findById(itemId).get();
         log.info("1 item id : " + item.getId());
 
-        // 배송정보 생성
-        Delivery delivery = new Delivery();
-        delivery.setAddress("서울");
-        delivery.setDeliveryStatus(DeliveryStatus.PREPARING);
-
         // 주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
-        orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
+        orderItem.setOrderItemStatus(OrderItemStatus.ORDER);
         log.info("orderItem id : " + orderItem.getId());
 
         // 주문 생성
-        Order order = Order.createOrder(consumer, delivery, orderItem);
+        Order order = Order.createOrder(member, orderItem);
         log.info("order id : " + order.getId());
 
         // 주문 저장
@@ -57,27 +55,31 @@ public class OrderService {
         return order.getId();
     }
 
-    public List<Order> findOrderByConsumer (Consumer consumer) {
-        return orderRepository.findByConsumer(consumer);
+    public List<Order> findOrderByConsumer (Member member) {
+        return orderRepository.findByMember(member);
     }
 
-    public List<OrderItem> findOrderItemByConsumer(Consumer consumer) {
-        return orderRepository.findOrderItemsByConsumer(consumer);
+    public List<OrderItem> findOrderItemByConsumer(Member member) {
+        return orderRepository.findOrderItemsByConsumer(member);
+    }
+
+    public List<OrderItem> findOrderItemByOrder(Order order) {
+        return orderItemRepository.findOrderItemByOrder(order);
     }
 
     // 장바구니에 있는 상품 구매
     @Transactional
-    public Long orders(Consumer consumer) {
-        Cart cart = cartRepository.findByConsumer(consumer);
+    public Long orders(Member member) {
+        Cart cart = cartRepository.findByMember(member);
 
         Order order = Order.builder()
-                .consumer(consumer)
+                .member(member)
                 .build();
 
         for (CartItem cartItem: cart.getCartItems()) {
             Item itemInCart = cartItem.getItem();
             OrderItem orderItem = OrderItem.createOrderItem(itemInCart, itemInCart.getPrice(), cartItem.getCount());
-            orderItem.setOrderItemStatus(OrderItemStatus.COMPLETED);
+            orderItem.setOrderItemStatus(OrderItemStatus.ORDER);
             order.addOrderItem(orderItem);
 
             Delivery delivery = Delivery.builder()
@@ -118,6 +120,7 @@ public class OrderService {
         // Delivery 삭제
         deliveryRepository.delete(delivery);
     }
+
     /**
      * Order과 연결된 OrderItem의 상태 갯수 반환
      * @param orders Order객체의 리스트
@@ -125,19 +128,25 @@ public class OrderService {
      */
     public List<Long> countStatus(List<Order> orders) {
         List<Long> statusList = new ArrayList<>();
+        Long prepareStatus = 0L;
         Long completeStatus = 0L;
         Long orderStatus = 0L;
         for(Order order: orders){
             List<OrderItem> orderItems = order.getOrderItems();
             for (OrderItem orderItem: orderItems) {
-                if (orderItem.getOrderItemStatus() == OrderItemStatus.COMPLETED) {
+                Delivery delivery = orderItem.getDelivery();
+                if (delivery.getDeliveryStatus() == DeliveryStatus.COMPLETE) {
                     completeStatus = completeStatus + 1L;
                 }
-                else if (orderItem.getOrderItemStatus() == OrderItemStatus.ORDER) {
+                else if (delivery.getDeliveryStatus() == DeliveryStatus.DELIVERING) {
                     orderStatus = orderStatus + 1L;
+                }
+                else if (delivery.getDeliveryStatus() == DeliveryStatus.PREPARING) {
+                    prepareStatus = prepareStatus + 1L;
                 }
             }
         }
+        statusList.add(prepareStatus);
         statusList.add(completeStatus);
         statusList.add(orderStatus);
         return statusList;
